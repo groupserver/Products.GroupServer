@@ -10,7 +10,7 @@
 <head>
 	<title>ABEL eCampus</title>
 	<meta http-equiv="Content-Type" content="text/html" />
-	<link rel="stylesheet" href="/css/globalstyle.css" />
+	<link rel="stylesheet" href="/Presentation/Tofu/Common/css/globalstyle.css" />
         <base href="{//output/metadata/base/@href}" />
 </head>
 

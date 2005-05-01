@@ -24,7 +24,7 @@
 		<xsl:value-of select="//output/metadata/sitename"/>
 		<xsl:if test="//output/metadata/title">: <xsl:value-of select="//output/metadata/title"/></xsl:if>
 	</title>
-	<link rel="stylesheet" href="/css/globalstyle.css" />
+	<link rel="stylesheet" href="/Presentation/Tofu/Common/css/globalstyle.css" />
         <base href="{//output/metadata/base/@href}" />
 </head>
 
