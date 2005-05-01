@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+  <output>
+    <content metal:fill-slot="maincontent"
+             tal:define="ztu python:modules['ZTUtils'];
+                                           mq python:ztu.make_query;
+                                           uq python:ztu.url_query;
+                                           xcu python:modules['Products.XWFCore.XWFUtils'];
+                                           cr python:xcu.createRequestFromRequest;
+                                           ct python:xcu.convertTextToAscii;
+                                           me python:xcu.markupEmail"
+             tal:attributes="url python:request.URL+'?'+cr(request)">
+<email:collection metal-fill-slot="maincontent" xmlns:email="http://xwft.net/namespaces/email/0.9/"
+                  tal:attributes="fullthread python:request.get('show_thread', 0)"
+              encoding="UTF-8" >
+  <email:email tal:repeat="email python:options['result_set']" tal:attributes="id python:email['id']">
+    <email:mailFrom tal:content="python:email['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
+    <email:from tal:content="python:email['from'][0]">someaddress@iopen.co.nz</email:from>
+    <span tal:omit-tag="" tal:define="mailUserId email/mailUserId | nothing; mailUserExists python:here.Scripts.get.user_exists(mailUserId);
+                                      mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
+        <email:mailUserId tal:content="mailUserId | nothing" tal:attributes="exists python:mailUserExists and 1 or 0" />
+        <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
+    </span>
+    <email:mailSubject tal:content="python:email['mailSubject']">someaddress@iopen.co.nz</email:mailSubject>
+    <email:subject tal:condition="python:hasattr(email, 'subject')" tal:content="python:email['subject']">someaddress@iopen.co.nz</email:subject>
+    <email:mailDate tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">2003/04/09 12:00pm</email:mailDate>
+    <tal:block tal:define="wrapped_email python:me(here.lscripts.wrap_email(ct(email['mailBody']))).strip()">
+        <tal:block tal:define="intro_remainder python:here.lscripts.intro_email(wrapped_email, 12)">
+          <email:mailIntro tal:content="structure python:intro_remainder[0]">Some body text.</email:mailIntro>
+          <email:mailRemainder tal:content="structure python:'\n%s' % intro_remainder[1]">Some body text.</email:mailRemainder>
+        </tal:block>
+        <email:mailBody tal:content="structure wrapped_email">Some body text.</email:mailBody>
+    </tal:block>
+  </email:email>
+</email:collection>
+
+
+       <tal:block tal:define="email python:options['result_set'][-1]" tal:condition="email">
+       <email:sendemail tal:attributes="id python:email['id']" xmlns:email="http://xwft.net/namespaces/email/0.9/">
+           <email:mailSubject
+               tal:content="python:'Re: %s' % email['mailSubject']"/>
+           <email:subject
+               tal:content="python:'%s' % email.getProperty('subject', '')"/>
+       </email:sendemail>
+       </tal:block>
+    </content>
+  </output>
+</root>

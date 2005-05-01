@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+  <output>
+
+    <messages metal:fill-slot="messages" 
+              tal:define="message python:request.form.get('message', '')"
+              tal:condition="message">
+        <message type="result" tal:condition="python:message=='no_file_given'">
+          <paragraph>You must specify the file you wish to upload</paragraph>
+        </message>
+    </messages>
+
+    <content metal:fill-slot="maincontent">
+<form xmlns="http://xwft.org/namespaces/input/forms/0.9">
+  
+  <target>wf_addXWFFile</target>
+
+  <element>
+    <type>textbox</type>
+    <name>title</name>
+    <label>Title</label>
+    <note></note>
+    <length>50</length>
+    <maxlength>100</maxlength>
+    <validation>
+      <required/>
+    </validation>
+  </element>
+
+  <element>
+    <type>textbox</type>
+    <name>description</name>
+    <label>Description</label>
+    <note></note>
+    <length>50</length>
+    <maxlength>100</maxlength>
+    <validation>
+      <required/>
+    </validation>
+  </element>
+  
+  <element>
+    <type>file</type>
+    <name>file_object</name>
+    <label>Filename</label>
+    <note></note>
+    <length>50</length>
+    <maxlength>100</maxlength>
+    <validation>
+      <required/>
+    </validation>
+  </element>
+  
+  <element>
+    <type>submit</type>
+    <name>submit</name>
+    <value>add new file</value>
+  </element>
+
+</form>
+</content>
+</output>
+</root>

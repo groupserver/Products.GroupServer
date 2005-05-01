@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<root xmlns:xf="http://www.w3.org/2002/xforms">
+  
+  <data>
+
+    <xf:model id="model_1">
+      <xf:instance><data><name_1>some set data</name_1><name_2>blarg</name_2><name_3>wibble</name_3><name_4>blarg foo blargwibble</name_4><name_5>wibble</name_5><name_6/><name_7>some data</name_7><name_8>some hidden data</name_8><name_9>morehiddendata</name_9></data></xf:instance>
+      <xf:submission action="/sites/xwft/test/methods/1" method="urlencoded-post" id="submission_1"/>
+    </xf:model>
+    
+    <xf:model id="model_2">
+      <xf:instance><data><name_1/><name_2/><name_3/></data></xf:instance>
+      <xf:submission action="/sites/xwft/test/methods/2" method="get" id="submission_2"/>
+    </xf:model>
+    
+    <xf:model id="model_3">
+      <xf:instance><data><name_1/><name_2/><name_3/></data></xf:instance>
+      <xf:submission action="/sites/xwft/test/methods/3" method="get" id="submission_3"/>
+      <xf:submission action="/sites/xwft/test/methods/4" method="get" id="submission_4"/>
+    </xf:model>
+    
+  </data>
+  
+  <content>
+    
+    <p>
+       <xf:input model="model_1" ref="name_1">
+         <xf:label>name_1</xf:label>
+         <xf:hint>Enter the name_1 here</xf:hint>
+       </xf:input>
+    </p>
+    
+    <p>
+       <xf:select1 model="model_1" ref="name_2">
+         <xf:label>name_2</xf:label>
+         <xf:hint>Select the appropriate value for name_2</xf:hint>
+         <xf:item>
+           <xf:label>blarg</xf:label>
+           <xf:value>blarg</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>wibble</xf:label>
+           <xf:value>wibble</xf:value>
+         </xf:item>
+       </xf:select1>
+     </p>
+
+     <p>
+       <xf:select1 appearance="minimal" model="model_1" ref="name_3">
+         <xf:label>name_3</xf:label>
+         <xf:hint>Select the appropriate value for name_3</xf:hint>
+         <xf:item>
+           <xf:label>blarg</xf:label>
+           <xf:value>blarg</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>wibble</xf:label>
+           <xf:value>wibble</xf:value>
+         </xf:item>
+       </xf:select1>
+     </p>
+
+     <p>
+       <xf:select appearance="minimal" model="model_1" ref="name_4">
+         <xf:label>name_4</xf:label>
+         <xf:hint>Select the appropriate value for name_4</xf:hint>
+         <xf:item>
+           <xf:label>blarg</xf:label>
+           <xf:value>blarg</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>wibble</xf:label>
+           <xf:value>wibble</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>blargwibble</xf:label>
+           <xf:value>blargwibble</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>foo</xf:label>
+           <xf:value>foo</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>wibbleblarg</xf:label>
+           <xf:value>wibbleblarg</xf:value>
+         </xf:item>
+       </xf:select>
+     </p>
+
+     <p>
+       <xf:select appearance="full" model="model_1" ref="name_5">
+         <xf:label>name_5</xf:label>
+         <xf:hint>Select the appropriate value for name_5</xf:hint>
+         <xf:item>
+           <xf:label>blarg</xf:label>
+           <xf:value>blarg</xf:value>
+         </xf:item>
+         <xf:item>
+           <xf:label>wibble</xf:label>
+           <xf:value>wibble</xf:value>
+         </xf:item>
+       </xf:select>
+     </p>
+
+     <p>
+       <xf:upload model="model_1" ref="name_6">
+         <xf:label>name_6</xf:label>
+         <xf:hint>Select the appropriate value for name_6</xf:hint>
+       </xf:upload>
+     </p>
+
+     <p>
+       <xf:textarea model="model_1" ref="name_7">
+         <xf:label>name_7</xf:label>
+         <xf:hint>Enter the name_7 here</xf:hint>
+       </xf:textarea>
+     </p>
+
+     <p>
+       <xf:submit model="model_1" submission="submission_1"><xf:label>submit</xf:label></xf:submit>
+    </p>
+  
+  </content>
+
+</root>

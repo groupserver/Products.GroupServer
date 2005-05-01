@@ -1,0 +1,49 @@
+<!-- Page Template Diagnostics
+ Compilation failed
+ xml.parsers.expat.ExpatError: unbound prefix: line 38, column 6
+-->
+<?xml version="1.0"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:search="http://purl.org/rss/1.0/modules/search/"
+         xmlns:results="http://xwft.org/ns/rss/modules/results/0.9"
+         xmlns="http://purl.org/rss/1.0/">
+
+  <channel id="siteresults" rdf:about="http://...">
+    <title></title>
+    <link>http://query.url.com/?query=...</link>
+    
+    <results:first>0</results:first>
+    <results:last>10</results:last>
+    <results:total>1000</results:total>
+    <results:nextlink></results:nextlink>
+    <results:prevlink></results:prevlink>
+    
+    <description>
+      A channel for file results
+    </description>
+
+    <image rdf:resource="http://..." />
+
+    <items>
+      <rdf:Seq>
+        <!-- An ordered list of URLs -->
+        <rdf:li resource="http://..." />
+      </rdf:Seq>
+    </items>
+
+    <textinput rdf:resource="http://search.xml.com" />
+
+    <item rdf:about="http://...">
+      <title>title of file</title> 
+      <link>link to file</link>
+      <description>description of file</description>
+      <!-- Verbatim extraction of the dublin core metadata of the file -->
+      <dc:creator></dc:creator>
+      <search:relevance>100</search:relevance>
+      <search:scope>100</search:scope>
+    </item> 
+
+  </channel>
+
+</rdf:RDF>

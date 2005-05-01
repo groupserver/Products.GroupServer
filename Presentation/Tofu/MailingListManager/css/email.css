@@ -1,0 +1,67 @@
+div.emailwrap {
+        margin: 0;
+        padding: 0;
+        border-style: dotted;
+        border-width: 0 0 1px 0;
+        border-color: #000;
+}
+
+span.emailname-self {
+        font-style: italic;
+}
+
+div.emaildetails-even {
+	background-color:#ffffff;
+        margin: 0 0 0 0;
+        padding: 10px 10px 10px 10px;
+        border-style: dotted;
+        border-width: 1px 0 0 0;
+        border-color: #000;
+}
+div.emaildetails-odd {
+	background-color:#eeeeee;
+        margin: 0;
+        padding: 10px 10px 10px 10px;
+        border-style: dotted;
+        border-width: 1px 0 0 0;
+        border-color: #000;
+}
+div.emaildetails-self-even {
+	background-color: #eeeecc;
+        margin: 0 0 0 0;
+        padding: 10px 10px 10px 10px;
+        border-style: dotted;
+        border-width: 1px 0 0 0;
+        border-color: #000;
+}
+div.emaildetails-self-odd {
+	background-color: #eeeecc;
+        margin: 0 0 0 0;
+        padding: 10px 10px 10px 10px;
+        border-style: dotted;
+        border-width: 1px 0 0 0;
+        border-color: #000;
+}
+
+pre.email-body {
+        margin: 10px 0px 10px 0px;
+}
+
+p.email-metadata {
+        margin: 0px;
+}
+
+p.email-navlink {
+        margin: 0px;
+}
+
+span.emailintro {
+        margin: 0;
+        padding: 0;
+}
+
+span.emailremainder {
+        margin: 0;
+        padding: 0;
+        display: none;
+}        

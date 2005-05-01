@@ -1,0 +1,55 @@
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+<output>
+    <messages metal:fill-slot="messages" 
+              tal:define="message python:request.form.get('message', '')"
+              tal:condition="message">
+        <message type="result" tal:condition="python:message=='removed_folder'">
+          <paragraph>The folder was removed successfully</paragraph>
+        </message>
+        <message type="result" tal:condition="python:message=='removed_file'">
+          <paragraph>The file was removed successfully</paragraph>
+        </message>
+        <message type="result" tal:condition="python:message=='added_folder'">
+          <paragraph>The folder was added successfully</paragraph>
+        </message>
+        <message type="result" tal:condition="python:message=='added_file'">
+          <paragraph>The file was added successfully</paragraph>
+        </message>
+    </messages>
+
+    <content metal:fill-slot="maincontent" tal:define="group_object here/Scripts/get/group_object | nothing">
+    <file:collection xmlns:file="http://xwft.org/ns/filelibrary/0.9/" xmlns:dc="http://purl.org/dc/elements/1.1/"
+              encoding="UTF-8" resultsummary="1"
+                               tal:attributes="foldertitle python:options['folder_title'];
+                                               folderid python:options['folder_id'];
+                                               isroot python:options['is_root_folder'];
+                                               start python:options['b_start'];
+                                               bsize python:options['b_size'];
+                                               end python:options['b_end'];
+                                               size python:options['result_size'];
+                                               prevbsize python:min(options['b_size'], options['result_size']);
+                                               nextbsize python:min(options['b_size'], options['result_size']-options['b_end']) or options['b_size'];
+                                               next python:(options['b_end'] &lt; options['result_size']) and request.URL+'?'+cr(request, b_start=options['b_start']+options['b_size'],b_size=options['b_size']) or nothing;
+                                               prev python:(options['b_start'] > 1) and request.URL+'?'+cr(request, b_start=options['b_start']-options['b_size'],b_size=options['b_size']) or nothing;
+                                               reversedate python:request.URL+'?'+cr(request, b_start=1, s_order=request.get('s_order', 'asc')=='asc' and 'desc' or 'asc', s_on='mailDate')"
+              tal:define="xcu python:modules['Products.XWFCore.XWFUtils']; cr python:xcu.createRequestFromRequest; ct python:xcu.convertTextToAscii;">
+ <result tal:omit-tag="" tal:repeat="result python:options['result_set']">
+  <file:file tal:define="result python:result.getObject()" tal:attributes="id result/id | nothing; deletable python:int(user.getUserName() == result.getProperty('dc+Creator', '') or user.has_role('Manager') or user.has_role('GroupAdmin', group_object) or 0)">
+    <file:modification_time tal:content="python:result.modification_time().toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')"/>
+    <dc:Creator tal:content="python:getattr(result,'dc+Creator', '')"/>
+    <file:Creator tal:define="user python:getattr(result,'dc+Creator', '') and getattr(here.contacts, getattr(result,'dc+Creator', ''), '') or ''" tal:content="string:${user/preferredName | nothing} ${user/lastName | nothing}"/>
+    <dc:Description tal:content="result/dc+Description"/>
+    <file:title tal:content="result/title"/>
+    <file:size tal:content="python:(result.size &lt; 1000.0 and 'tiny') or (result.size &lt; 50000.0 and 'small') or (result.size &lt; 1000000.0 and '%s KB' % (result.size/1000)) or ('%s MB' % (result.size/1000000))"/>
+  </file:file>
+  </result>
+
+  <result tal:omit-tag="" tal:repeat="result python:options['folders']">
+    <file:folder tal:attributes="id python:result[0].getId(); filecount python:len(result[0].find_files()); foldercount python:len(result[0].get_virtualFileFolders(parent=0)); depth python:result[1];
+                 deletable python:int(user.has_role('Manager') or user.has_role('GroupAdmin', group_object) or 0)"/>
+  </result>
+  
+  </file:collection>
+</content>
+</output>
+</root>

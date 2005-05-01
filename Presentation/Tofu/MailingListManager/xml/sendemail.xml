@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/Templates/page.xml/macros/page">
+  <output>
+    <content metal:fill-slot="maincontent" xmlns:email="http://xwft.net/namespaces/email/0.9/">
+       <email:sendemail tal:condition="options/email_object"
+                            tal:attributes="id options/email_object/id">
+           <email:mailSubject
+               tal:content="python:'Re: %s' % options['email_object'].getProperty('subject', '')"/>
+           <email:subject
+               tal:content="python:'%s' % options['email_object'].getProperty('subject', '')"/>
+       </email:sendemail>
+       <email:sendemail tal:condition="not:options/email_object"/>
+    </content>
+  </output>
+</root>
+

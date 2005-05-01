@@ -1,0 +1,225 @@
+form {
+	margin: 0;
+	padding: 0;
+}
+
+label {
+	font-size: 11px;
+}
+
+label.required {
+	margin: 0;
+	padding: 0 5px 0 0;
+	background-image: url(/Presentation/Tofu/XForms/images/required.gif);
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+}
+
+div.text {
+	margin: 0;
+	padding: 0;
+	clear:both;
+	width: 520px;
+	line-height: 25px;
+}
+
+div.text label {
+	float:left;
+	width:150px;
+	padding: 0 5px 0 0;
+	font-weight:bold;
+}
+
+div.text input {
+	float:left;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	font-size: 12px;
+}
+
+
+div.textarea {
+	margin: 0;
+	padding: 0;
+	clear:both;
+	width: 520px;
+	line-height: 25px;
+}
+
+div.textarea label {
+	float:left;
+	width: 150px;
+	padding: 0 5px 0 0;
+	font-weight:bold;
+}
+
+div.textarea textarea {
+	float:left;
+	margin: 0;
+	padding: 0;
+	width: 350px;
+        height: 120px;
+	font-size: 12px;
+}
+
+
+
+div.select {
+	margin: 0;
+	padding: 0;
+	clear:both;
+	width: 420px;
+	height:25px;
+}
+
+div.select label {
+	float:left;
+	width:150px;
+	padding: 0 5px 0 0;
+	font-weight:bold;
+	line-height: 11px;
+}
+
+div.select select {
+	float:left;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	font-size: 12px;
+}
+
+div.checkbox {
+	margin: 5px 0 0 0;
+	padding: 0;
+	clear:both;
+	width: 520px;
+	height:25px;
+}
+
+div.checkbox label {
+	float:left;
+	padding: 0 5px 0 0;
+        width: 150px;
+	font-weight:bold;
+	line-height: 11px;
+}
+
+div.checkbox input {
+	float:left;
+	margin: 0 0 0 10px;
+	padding: 0;
+	font-size: 12px;
+}
+
+
+div.radio {
+	margin: 5px 0 0 0;
+	padding: 0;
+	width: 400px;
+}
+
+div.radio label {
+	padding: 0 5px 0 0;
+	font-weight:normal;
+	width: 200px;
+	display: block;
+	float: left;
+}
+
+div.radio input {
+	margin: 0 10px 0 0;
+	padding: 0;
+	font-size: 12px;
+	float: left;
+	display: block;
+}
+
+div.radio div.row {
+	margin: 0;
+	padding: 0;
+	width: 400px;
+	clear:both;
+}
+
+div.radio div.row:hover {
+	color: #666;
+}
+
+/* Submit Button */
+
+div.button {
+	margin: 10px 0 0 0;
+	padding: 0;
+	clear:both;
+}
+
+div.button input {
+	background-color: #ff9966;
+	border-color:#000;
+	border-style:solid;
+	border-width:1px;
+	font-weight:bold;
+	font-size: 11px;
+	color:#000;
+	cursor: pointer;
+	padding: 2px 4px 2px 4px;
+}
+
+div#steps {
+	position:absolute;
+	top: 90px;
+	right:60px;
+	width: 122px;
+	height:28px;
+}
+
+
+
+/* Style */
+
+div.styleicon {
+	float:left;
+	margin: 0 15px 0 0;
+	width: 84px;
+	height:52px;
+	cursor: pointer;
+}
+
+img {
+	border-style:none;
+}
+
+
+/* Messages */
+
+div.message {
+	margin: 0 0 25px 0;
+	padding: 10px;
+	background-color: #EDEDED;
+	font-weight: bold;
+	border-style:solid;
+	border-width: 1px;
+	border-color: #ccc;
+}
+
+div.message p {
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+}
+
+/* Form Layouts */
+
+div.row {
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+div.formspacer {
+	margin: 0;
+	padding: 0;
+	clear: both;
+	line-height: 5px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+  <output>
+
+    <messages metal:fill-slot="messages" 
+              tal:define="message python:request.form.get('message', '')"
+              tal:condition="message">
+        <message type="result" tal:condition="python:message=='no_title_given'">
+          <paragraph>You must specify the title of the folder</paragraph>
+        </message>
+    </messages>
+
+    <content metal:fill-slot="maincontent">
+<form xmlns="http://xwft.org/namespaces/input/forms/0.9">
+  
+  <target>wf_addXWFFolder</target>
+
+  <element>
+    <type>textbox</type>
+    <name>id</name>
+    <label>Folder Title</label>
+    <note></note>
+    <length>50</length>
+    <maxlength>100</maxlength>
+    <validation>
+      <required/>
+    </validation>
+  </element>
+  
+  <element>
+    <type>submit</type>
+    <name>submit</name>
+    <value>add new folder</value>
+  </element>
+
+</form>
+</content>
+</output>
+</root>

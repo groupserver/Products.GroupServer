@@ -1,0 +1,32 @@
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+  <output>
+    <content metal:fill-slot="maincontent">
+<email:collection xmlns:email="http://xwft.net/namespaces/email/0.9/" >
+  <email:threadsummary xmlns:tal="http://xml.zope.org/namespaces/tal"
+                       encoding="UTF-8" 
+                               tal:attributes="start python:options['b_start'];
+                                               bsize python:options['b_size'];
+                                               end python:options['b_end'];
+                                               size python:options['result_size'];
+                                               prevbsize python:min(options['b_size'], options['result_size']);
+                                               nextbsize python:min(options['b_size'], options['b_size']-(options['result_size']-options['b_start']))>=0 or options['b_size'];
+                                               next python:(options['b_end'] &lt; options['result_size']) and request.URL+'?'+cr(request, b_start=options['b_start']+options['b_size'],b_size=options['b_size']) or nothing;
+                                               prev python:(options['b_start'] > 1) and request.URL+'?'+cr(request, b_start=options['b_start']-options['b_size'],b_size=options['b_size']) or nothing;
+                                               reversedate python:request.URL+'?'+cr(request, b_start=1, s_order=request.get('s_order', 'asc')=='asc' and 'desc' or 'asc', s_on='mailDate')"
+
+                       tal:define="ztu python:modules['ZTUtils'];
+                                   mq python:ztu.make_query;
+                                   uq python:ztu.url_query;
+                                   xcu python:modules['Products.XWFCore.XWFUtils'];
+                                   cr python:xcu.createRequestFromRequest;
+                                   ct python:xcu.convertTextToAscii">
+      <email:thread tal:repeat="thread python:options['result_set']" tal:attributes="size python:thread[0]">
+          <email:lastid tal:content="python:thread[1][0]['id']"/>
+          <email:subject tal:content="python:thread[1][0]['mailSubject']"/>
+          <email:lastdate tal:content="python:thread[1][0]['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')"/>
+      </email:thread>
+  </email:threadsummary>
+</email:collection>
+    </content>
+  </output>
+</root>
