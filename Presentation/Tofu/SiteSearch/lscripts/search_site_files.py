@@ -8,6 +8,8 @@
 ##title=
 ##
 from Products.XWFCore.XWFUtils import createBatch
+if not query.strip():
+    return createBatch([], start, size)
 
 groups = context.Scripts.get.groups()
 
