@@ -22,7 +22,10 @@ division_ids = map(lambda x: x.getId(), division_objects)
 
 division = ''
 if not id:
-    id = user.getProperty('currentDivision', '')
+    tid = user.getProperty('currentDivision', '')
+    # check we actually have access to the division still
+    if tid in division_ids:
+        id = tid
 
 # if we don't have an id, look to see if we're in a system group that corresponds to
 # a particular division
