@@ -1,3 +1,12 @@
+## Script (Python) "search_email"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=text, lines=0, max_consecutive_comment=12, max_consecutive_whitespace=3
+##title=
+##
 slines = text.split('\n')
 
 intro = []; body = []; i = 1; bodystart = 0; consecutive_comment = 0; consecutive_whitespace = 0

@@ -1,3 +1,12 @@
+## Script (Python) "search_email"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=text, width=79
+##title=
+##
 from string import find, rfind, join
 width = int(width)
 remaining = text
