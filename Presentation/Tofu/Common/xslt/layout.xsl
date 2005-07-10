@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:template match="paragraph">
+<xsl:template match="paragraph | p">
 <p><xsl:apply-templates /></p>
 </xsl:template>
 
@@ -16,6 +16,7 @@
 <xsl:template match="pparagraph">
 &#160;
 </xsl:template>
+
 <xsl:template match="pheading1">
 &#160;
 </xsl:template>
@@ -74,6 +75,12 @@
 
 <xsl:template match="link">
 	<a href="{@url}">
+		<xsl:apply-templates/>
+	</a>
+</xsl:template>
+
+<xsl:template match="a">
+	<a href="{@href}">
 		<xsl:apply-templates/>
 	</a>
 </xsl:template>
