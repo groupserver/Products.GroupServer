@@ -292,7 +292,7 @@
 		  	<xsl:attribute name="{local-name()}"><xsl:value-of select="."/></xsl:attribute>
 		  </xsl:for-each>
           <xsl:for-each select="xf:item">
-            <xsl:variable name="selected"><xsl:call-template name="match-single">
+          <xsl:variable name="selected"><xsl:call-template name="match-single">
                                             <xsl:with-param name="ref" select="$ref"/>
                                             <xsl:with-param name="match" select="xf:value/text()"/>
                                           </xsl:call-template></xsl:variable>
