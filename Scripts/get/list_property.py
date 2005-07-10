@@ -9,5 +9,10 @@
 ##
 site_root = context.site_root()
 listManager = site_root.objectValues('XWF Mailing List Manager')[0]
+group = getattr(listManager.aq_explicit, group_id)
 
-return getattr(getattr(listManager, group_id),group_property, default)
+val = group.getProperty(group_property, None)
+if not val:
+    val = listManager.getProperty(group_property, default)
+
+return val

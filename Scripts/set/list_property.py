@@ -12,7 +12,8 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 listObject = getattr(listManager, group_id)
 
 # don't set the value if the value is the same
-if getattr(listObject, group_property, None) == value:
+curr_val = context.Scripts.get.list_property(group_id, group_property)
+if curr_val == value:
     return
 
 if listObject.hasProperty(group_property):
