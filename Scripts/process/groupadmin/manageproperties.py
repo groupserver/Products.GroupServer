@@ -159,6 +159,4 @@ if messagevisibility != permviewmessages:
         group.messages.manage_permission('Access contents information', ['DivisionAdmin','GroupAdmin','GroupMember','Manager', 'Owner'])
         message.append('<paragraph>Updated messages area permissions to make the messages visible to only group members</paragraph>')
 
-context.commit_transaction()
-
 return '\n'.join(message)
