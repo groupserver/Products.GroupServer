@@ -13,9 +13,10 @@ elif division_id and group_id:
     site_root = context.site_root()
     group_object = getattr(getattr(site_root.Content, division_id).groups, group_id)
 else:
-    return invite
+    return 'invite'
 
-view_roles = filter(None, map(lambda x: x['selected'] and x['name'] or None, group_object.rolesOfPermission('View')))
+view_roles = filter(None, map(lambda x: x['selected'] and x['name'] or None, 
+                              group_object.rolesOfPermission('View')))
 
 subscribe = context.list_property(group_object.getId(), 'subscribe')
 if subscribe:
