@@ -112,7 +112,6 @@ for row in results.mainData:
             message += ["<paragraph>%s</paragraph>" % str(x)]
             errors += 1
         
-        context.commit_transaction()
         created += 1
         
     rowcount += 1
