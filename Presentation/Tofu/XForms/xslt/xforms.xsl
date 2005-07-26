@@ -194,10 +194,10 @@
     <xsl:choose>
         <xsl:when test="$bind != ''">
             <xsl:variable name="bindref"><xsl:value-of select="//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@nodeset"/></xsl:variable>
-            <xsl:value-of select="//data/xf:model[@id=$model]/xf:instance//*[name()=$bindref]/text()"/>
+            <xsl:apply-templates select="//data/xf:model[@id=$model]/xf:instance//*[name()=$bindref]/."/>
         </xsl:when>
         <xsl:when test="$ref != ''">
-            <xsl:value-of select="//data/xf:model[@id=$model]/xf:instance//*[name()=$ref]/text()"/>
+            <xsl:apply-templates select="//data/xf:model[@id=$model]/xf:instance//*[name()=$ref]/."/>
         </xsl:when>
         <xsl:otherwise/>
     </xsl:choose>
