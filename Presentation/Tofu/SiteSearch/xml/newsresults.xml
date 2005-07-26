@@ -2,13 +2,14 @@
          xmlns:search="http://purl.org/rss/1.0/modules/search/"
          xmlns:results="http://xwft.org/ns/rss/modules/results/0.9"
          xmlns="http://purl.org/rss/1.0/"
-         xmlns:email="http://xwft.net/namespaces/email/0.9/"
          xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:tal="http://xml.zope.org/namespaces/tal"
          xmlns:metal="http://xml.zope.org/namespaces/metal"
-         tal:define="b_results python:here.lscripts.search_site_email(request.form.get('query', ''), request.form.get('start', 0), request.form.get('size', 10)); xcu python:modules['Products.XWFCore.XWFUtils']; cr python:xcu.createRequestFromRequest; ct python:xcu.convertTextToAscii;">
-# e_b_start, e_b_end, e_b_size, e_result_size, e_result_set 
-  <channel id="emailresults" rdf:about="">
+         tal:define="b_results python:here.lscripts.search_news(request.form.get('query', ''), request.form.get('start', 0), request.form.get('size', 10));
+                     xcu python:modules['Products.XWFCore.XWFUtils'];
+                     cr python:xcu.createRequestFromRequest;
+                     ct python:xcu.convertTextToAscii">
+  <channel id="newsresults" rdf:about="">
     <title></title>
     <link>http://query.url.com/?query=...</link>
     
@@ -33,28 +34,15 @@
     </items>
     </channel>
 
-    <textinput rdf:resource="http://search.xml.com" />
-
     <item tal:repeat="result python:b_results[4]" tal:attributes="rdf:about python:result.getObject().absolute_url()">
 
-      <result tal:define="object result/getObject" tal:omit-tag="">
-        <title tal:content="object/mailSubject"></title>      
-        <email:mailFrom tal:content="python:object['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
-        <email:from tal:content="python:object['from'][0]">someaddress@iopen.co.nz</email:from>
-        <span tal:omit-tag="" tal:define="mailUserId object/mailUserId | nothing;
-                                      mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
-            <email:mailUserId tal:content="mailUserId | nothing"/>
-            <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
-        </span>
-        <email:subject tal:condition="python:hasattr(object, 'subject')" tal:content="python:object['subject']">someaddress@iopen.co.nz</email:subject>
-        <dc:date tal:content="python:object['mailDate'].ISO()">2003/04/09 12:00pm</dc:date>
-        <description tal:content="python:ct(object['mailBody'])">Some body text.</description>
-        <email:listId tal:content="python:ct(object.listId())">list id</email:listId>
-        <email:id tal:content="python:ct(object.getId())">email id</email:id>
-
+      <result tal:define="object result/getObject | nothing" tal:omit-tag="">
+        <title tal:content="object/dc_title | nothing"></title>      
+        <dc:date tal:content="object/dc_valid | nothing">2003/04/09 12:00pm</dc:date>
+        <description tal:content="structure python:ct(object.dc_description)[:200]">Some body text.</description>
       </result> 
 
-      <search:relevance tal:content="result/data_record_normalized_score_">100</search:relevance>
+      <search:relevance tal:content="result/data_record_normalized_score_ | nothing">100</search:relevance>
     </item> 
 
 </rdf:RDF>

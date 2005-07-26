@@ -7,10 +7,12 @@
     <content metal:fill-slot="maincontent">
 
       <heading1>Current News</heading1>
-      
+
       <tal:block tal:repeat="result python:map(lambda x: x.getObject(), options['results'])">
-        <heading2>[<span tal:replace="python:result.dc_valid.toZone(here.Scripts.get.option('timezone')).strftime('%d %b %Y %H:%M')"/><tal:block tal:condition="python:result.dc_valid > DateTime()"> UNPUBLISHED</tal:block>] <span tal:replace="structure result/title"/></heading2>
-        <p>Posted By <a tal:attributes="href python:'/contacts/%s/' % result.dc_creator" tal:content="result/dc_creator"/> (<link tal:condition="python:user.has_permission('Add news item', result)" tal:attributes="url python:'view_modify_newsitem?id=%s' % result.getId()">modify newsitem</link>)</p>
+        <heading2>[<span tal:replace="python:result.dc_valid.toZone(here.Scripts.get.option('timezone')).strftime('%d %b %Y %H:%M')"/><tal:block tal:condition="python:result.dc_valid > DateTime()">
+UNPUBLISHED</tal:block>] <span tal:replace="structure result/title"/></heading2>
+        <p>Posted By <a tal:attributes="href python:'/contacts/%s/' % result.dc_creator" tal:content="result/dc_creator"/> <tal:block tal:condition="python:user.has_permission('Add news item', result)">
+(<link tal:attributes="url python:'view_modify_newsitem?id=%s' % result.getId()">modify newsitem</link>)</tal:block></p>
         <bulletlist tal:condition="python:filter(None, result.linked_resources)">
           <listitem tal:repeat="link result/linked_resources"><a tal:attributes="href link" tal:content="link"/></listitem>
         </bulletlist>
@@ -21,4 +23,3 @@
   </output>
 
 </root>
-

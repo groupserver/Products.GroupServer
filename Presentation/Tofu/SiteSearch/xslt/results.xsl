@@ -25,6 +25,9 @@
         <xsl:when test="@id='fileresults'">
           <xsl:call-template name="file-results"/>
         </xsl:when>        
+        <xsl:when test="@id='newsresults'">
+          <xsl:call-template name="news-results"/>
+        </xsl:when>        
       </xsl:choose>
     </xsl:template>
     
@@ -129,6 +132,63 @@
 							</td>
 							<td>
 						            <a href="/{$item/groups:url/text()}"><xsl:value-of select="$item/groups:title/text()"/></a>
+							</td>
+			            		</tr>
+			        </xsl:for-each>
+			</table>
+			
+			<div class="resultsnav">
+				<xsl:if test="results:prevlink">
+					<a href="{results:prevlink/text()}">previous</a>
+				</xsl:if>
+				<xsl:if test="results:nextlink">
+					<a href="{results:nextlink/text()}">next</a>
+				</xsl:if>
+			</div>
+			
+        </xsl:otherwise>
+
+        </xsl:choose>
+
+    </xsl:template>
+
+    <xsl:template name="news-results">
+
+	<h2>Search Results found in News</h2>
+	
+	<xsl:choose>
+	
+        	<xsl:when test="count(rss:items/rdf:Seq/rdf:li)=0">
+			<p>No matching news items found.</p>
+       	 </xsl:when>
+
+       	 <xsl:otherwise>
+			<p>
+				News items <xsl:value-of select="number(results:first/text())+1"/> to <xsl:value-of select="number(results:last/text())"/> of the <xsl:value-of select="number(results:total/text())"/> news containing your search text (in the Title or Description):
+			</p>
+        
+			<table id="results">
+				<tr>
+					<th>Date</th>
+					<th>Title</th>
+					<th>Description</th>
+				</tr>
+				
+				<xsl:for-each select="rss:items/rdf:Seq/rdf:li">
+					<xsl:variable name="resource" select="@rdf:resource"/>
+					<xsl:variable name="item" select="ancestor::rdf:RDF/rss:item[@rdf:about=$resource]"/>
+						<tr>
+			               		<xsl:if test="position() mod 2 != 0">
+			               			<xsl:attribute name="class">alternate</xsl:attribute>
+			              		 </xsl:if>
+               			              		<td>
+								<xsl:value-of select="$item/dc:date/text()"/>
+							</td>
+					              <td>
+								<a href="{$item/@rdf:about}"><xsl:value-of select="$item/rss:title/text()"/></a>
+							</td>
+					              <td>
+								<xsl:value-of select="$item/rss:description/text()"/>
 							</td>
 			            		</tr>
 			        </xsl:for-each>
