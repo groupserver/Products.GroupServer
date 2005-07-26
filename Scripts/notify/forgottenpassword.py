@@ -26,4 +26,4 @@ if user:
     return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
 
 else:
-    return context.REQUEST.RESPONSE.redirect('/forgotten_password.xml?error=1')
+    return context.REQUEST.RESPONSE.redirect('/login/forgotten_password.xml?error=1')
