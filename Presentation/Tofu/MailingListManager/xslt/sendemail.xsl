@@ -5,16 +5,19 @@
    <xsl:output method="html" encoding="UTF-8"/>
    
    <xsl:template match="email:sendemail">
-          <xsl:choose>
-              <xsl:when test="email:subject/text()">
-                  <h2 id="add_to_topic">Add to the "<xsl:value-of select="email:subject/text()"/>" topic</h2>
-              </xsl:when>
-              <xsl:otherwise>
-                  <h2>Start a new Topic</h2>
-              </xsl:otherwise>
-          </xsl:choose>
+       <xsl:choose>
+         <xsl:when test="email:subject/text()">
+           <h2 id="add_to_topic">Add to the "<xsl:value-of select="email:subject/text()"/>" topic</h2>
+         </xsl:when>
+         <xsl:otherwise>
+           <h2>Start a new Topic</h2>
+         </xsl:otherwise>
+       </xsl:choose>
+       <xsl:variable name="groupId" select="//metadata/group/@id"/>
+       <xsl:choose>
+         <xsl:when test="//groupmemberships/groupmembership[@id=$groupId]">
           <table border="0" cellspacing="5">
-          <form action="send_email">
+          <form action="send_email" method="POST">
           <input type="hidden" name="group_id" value="{//output/metadata/group/@id}"/>
           <input type="hidden" name="email_id" value="{@id}"/>
           <tr><td><strong>Subject:</strong></td>
@@ -23,7 +26,7 @@
                       <td><xsl:value-of select="email:mailSubject/text()"/></td>
                   </xsl:when>
                   <xsl:otherwise>
-                      <td><input type="text" size="40" name="subject" value="Enter a Title for Your New Topic Here"/></td>
+                      <td><input type="text" size="40" onfocus="javascript:this.value = ''" name="subject" value="Enter a Title for Your New Topic Here"/></td>
                   </xsl:otherwise>
               </xsl:choose>
           </tr>
@@ -44,6 +47,15 @@
           <tr><td colspan="2"><input type="submit" name="submit" value="Send Email"/></td></tr>
           </form>
           </table>
+       </xsl:when>
+       <xsl:when test="//user/id/text()='Anonymous User'">
+         You must be <a href="/login">logged in</a>, and a member of this group in order to post.
+       </xsl:when>
+       <xsl:otherwise>
+         You must be a member of this group in order to post.
+       </xsl:otherwise>
+     </xsl:choose>
    </xsl:template>
 
 </xsl:stylesheet>
+

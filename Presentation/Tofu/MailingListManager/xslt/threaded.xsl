@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:template name="email-present-threadsummary" xmlns:email="http://xwft.net/namespaces/email/0.9/">
+            <xsl:variable name="groupId" select="//metadata/group/@id"/>
                         <h1>Topics</h1>
 
 			<p><xsl:if test="number(@size)"><span class="note"><a href="view_results">Posts</a></span>
                            &#160;&#160;&#160;&#160;</xsl:if>
-                           <span class="note"><a href="view_send_email">Start a new topic</a></span></p>
+                           <xsl:if test="//groupmemberships/groupmembership[@id=$groupId]">
+                             <span class="note"><a href="view_send_email">Start a new Topic</a></span>
+                           </xsl:if>
+                        </p>
 
                     <xsl:choose>
                         <xsl:when test="number(@size)">			

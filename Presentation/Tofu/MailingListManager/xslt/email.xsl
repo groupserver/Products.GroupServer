@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:email="http://xwft.net/namespaces/email/0.9/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" encoding="UTF-8"/>
-	<xsl:include href="file://MailingListManager/xslt/results"/>
-	<xsl:include href="file://MailingListManager/xslt/sitesearchresults"/>
-	<xsl:include href="file://MailingListManager/xslt/threaded"/>
+        <xsl:include href="file://MailingListManager/xslt/results"/>
+        <xsl:include href="file://MailingListManager/xslt/sitesearchresults"/>
+        <xsl:include href="file://MailingListManager/xslt/threaded"/>
         <xsl:include href="file://MailingListManager/xslt/sendemail"/>
 
 	<xsl:template match="email:collection">
+            <xsl:variable name="groupId" select="//metadata/group/@id"/>
             <xsl:variable name="userid" select="//user[@type='self']/id/text()"/>
 		<xsl:choose>
 			<xsl:when test="email:threadsummary">
@@ -26,9 +27,14 @@
                                         <h1>Topic</h1>
                                         <h2>"<xsl:value-of select="email:email/email:mailSubject"/>"</h2>
 					<a name="top"/>
-					<p><span class="note"><a href="view_threads">all Topics</a></span>
+					<p><span class="note"><a href="view_threads">All Topics</a></span>
                                            &#160;&#160;&#160;&#160;
-                                           <span class="note"><a href="view_email?id={email:email[position()=last()]/@id}&amp;show_thread=1#add_to_topic">Add to topic</a></span></p>
+                                          <xsl:if test="//groupmemberships/groupmembership[@id=$groupId]">
+                                            <span class="note"><a href="view_email?id={email:email[position()=last()]/@id}&amp;show_thread=1#add_to_topic">Add to Topic</a></span>
+                                           &#160;&#160;&#160;&#160;
+                                           <span class="note"><a href="view_send_email">Start a new Topic</a></span>
+                                          </xsl:if>
+                                        </p>
 					<p>The "<xsl:value-of select="email:email/email:mailSubject"/>" Topic contains these posts:</p>
 
 					<table id="results">
