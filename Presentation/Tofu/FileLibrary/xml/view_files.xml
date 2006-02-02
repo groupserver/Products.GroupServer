@@ -1,5 +1,5 @@
 <root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
-<output>
+  <output xmlns:xf="http://www.w3.org/2002/xforms">
     <messages metal:fill-slot="messages" 
               tal:define="message python:request.form.get('message', '')"
               tal:condition="message">
@@ -17,39 +17,116 @@
         </message>
     </messages>
 
-    <content metal:fill-slot="maincontent" tal:define="group_object here/Scripts/get/group_object | nothing">
-    <file:collection xmlns:file="http://xwft.org/ns/filelibrary/0.9/" xmlns:dc="http://purl.org/dc/elements/1.1/"
-              encoding="UTF-8" resultsummary="1"
-                               tal:attributes="foldertitle python:options['folder_title'];
-                                               folderid python:options['folder_id'];
-                                               isroot python:options['is_root_folder'];
-                                               start python:options['b_start'];
-                                               bsize python:options['b_size'];
-                                               end python:options['b_end'];
-                                               size python:options['result_size'];
-                                               prevbsize python:min(options['b_size'], options['result_size']);
-                                               nextbsize python:min(options['b_size'], options['result_size']-options['b_end']) or options['b_size'];
-                                               next python:(options['b_end'] &lt; options['result_size']) and request.URL+'?'+cr(request, b_start=options['b_start']+options['b_size'],b_size=options['b_size']) or nothing;
-                                               prev python:(options['b_start'] > 1) and request.URL+'?'+cr(request, b_start=options['b_start']-options['b_size'],b_size=options['b_size']) or nothing;
-                                               reversedate python:request.URL+'?'+cr(request, b_start=1, s_order=request.get('s_order', 'asc')=='asc' and 'desc' or 'asc', s_on='mailDate')"
-              tal:define="xcu python:modules['Products.XWFCore.XWFUtils']; cr python:xcu.createRequestFromRequest; ct python:xcu.convertTextToAscii;">
- <result tal:omit-tag="" tal:repeat="result python:options['result_set']">
-  <file:file tal:define="result python:result.getObject()" tal:attributes="id result/id | nothing; deletable python:int(user.getUserName() == result.getProperty('dc+Creator', '') or user.has_role('Manager') or user.has_role('GroupAdmin', group_object) or 0)">
-    <file:modification_time tal:content="python:result.modification_time().toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')"/>
-    <dc:Creator tal:content="python:getattr(result,'dc+Creator', '')"/>
-    <file:Creator tal:define="user python:getattr(result,'dc+Creator', '') and getattr(here.contacts, getattr(result,'dc+Creator', ''), '') or ''" tal:content="string:${user/preferredName | nothing} ${user/lastName | nothing}"/>
-    <dc:Description tal:content="result/dc+Description"/>
-    <file:title tal:content="result/title"/>
-    <file:size tal:content="python:(result.size &lt; 1000.0 and 'tiny') or (result.size &lt; 50000.0 and 'small') or (result.size &lt; 1000000.0 and '%s KB' % (result.size/1000)) or ('%s MB' % (result.size/1000000))"/>
-  </file:file>
-  </result>
+	  <data metal:fill-slot="data">
+	    <xf:model id="find_file">
+	      <xf:instance>
+	        <data>
+	          <submitted>1</submitted>
+	          <s_order>asc</s_order>
+	          <modification_time tal:content="request/form/modification_time | string:0"/>
+	          <b_size tal:content="request/form/b_size | string:10"/>
+	          <topic tal:content="request/form/topic | string:"/>
+	        </data>
+	      </xf:instance>
+	      <xf:submission id="findFiles" method="get"
+	        tal:attributes="action request/URL" />
+	    </xf:model>
+	  </data>
 
-  <result tal:omit-tag="" tal:repeat="result python:options['folders']">
-    <file:folder tal:attributes="id python:result[0].getId(); filecount python:len(result[0].find_files()); foldercount python:len(result[0].get_virtualFileFolders(parent=0)); depth python:result[1];
-                 deletable python:int(user.has_role('Manager') or user.has_role('GroupAdmin', group_object) or 0)"/>
-  </result>
-  
-  </file:collection>
-</content>
+    <content metal:fill-slot="maincontent">
+      <h1>Files</h1>
+      
+      <xf:select1 appearance="minimal"
+          model="find_file" ref="b_size"
+          class="text">
+          <xf:label>Items to Show</xf:label>
+          <xf:hint>
+            How many matching items would you like to show at once?
+          </xf:hint>
+        <xf:item>
+          <xf:label>5</xf:label>
+          <xf:value>5</xf:value>
+        </xf:item><xf:item>
+          <xf:label>10</xf:label>
+          <xf:value>10</xf:value>
+        </xf:item><xf:item>
+          <xf:label>25</xf:label>
+          <xf:value>25</xf:value>
+        </xf:item><xf:item>
+          <xf:label>50</xf:label>
+          <xf:value>50</xf:value>
+        </xf:item>
+      </xf:select1>
+      
+      <xf:select1 appearance="minimal"
+        model="find_file" ref="modification_time"
+        class="text">
+        <xf:label>Age of File</xf:label>
+        <xf:hint>
+          How recently was the file you are looking for published?
+        </xf:hint>
+        <xf:item>
+          <xf:label>Very recent</xf:label>
+          <xf:value>recent</xf:value>
+        </xf:item>
+        <xf:item>
+          <xf:label>Today</xf:label>
+          <xf:value>today</xf:value>
+        </xf:item>
+        <xf:item>
+          <xf:label>Yesterday</xf:label>
+          <xf:value>yesterday</xf:value> 
+        </xf:item>
+        <xf:item>
+          <xf:label>Past week</xf:label>
+          <xf:value>week</xf:value> 
+        </xf:item>
+        <xf:item>
+          <xf:label>Past month</xf:label>
+          <xf:value>month</xf:value> 
+        </xf:item>
+        <xf:item>
+          <xf:label>Past year</xf:label>
+          <xf:value>year</xf:value> 
+        </xf:item>
+        <xf:item>
+          <xf:label>Not sure (show any age)</xf:label>
+          <xf:value>0</xf:value>
+        </xf:item>
+      </xf:select1>
+      
+      <xf:select1 appearance="minimal"
+        model="find_file" ref="topic"
+        class="text">
+        <xf:label>Topic</xf:label>
+        <xf:hint>
+          Are you looking for files related to a specific topic?
+        </xf:hint>
+        <xf:item>
+          <xf:label>No specific topic</xf:label>
+          <xf:value></xf:value>
+        </xf:item>
+        <xf:item tal:repeat="topic options/topics">
+          <xf:label tal:content="topic">sometopic</xf:label>
+          <xf:value tal:content="topic">sometopic</xf:value>
+        </xf:item>
+      </xf:select1>
+      
+      <xf:submit class="button" model="find_file" submission="findFiles">
+        <xf:label>Search</xf:label>
+      </xf:submit>
+            
+      <adl:slot xmlns:adl="http://iopen.net/ns/adl" name="listfiles"
+                tal:attributes="b_size request/form/b_size | string:10">
+                 Finding matches...
+        <files:selector xmlns:files="http://iopen.net/ns/files"
+                        tal:attributes="batchsize request/form/b_size | string:10;
+                                        batchstart request/form/b_start | string:1;
+                                        modificationtime request/form/modification_time | string:0;
+                                        topic request/form/topic | string:"
+                                         
+                        slotname="listfiles"/>
+      </adl:slot>
+    </content>
 </output>
 </root>

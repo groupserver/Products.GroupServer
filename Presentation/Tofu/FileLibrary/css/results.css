@@ -1,82 +1,21 @@
-table#results {
-	margin: 0;
-	padding: 0;
-	border-width:0;
-	border-collapse: collapse;
-	/*width:100%;*/
+li.searchitem {
+    list-style-type: none;
+    clear: both;
+    margin: 0 0 10px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: #cccccc;
+    border-bottom-style: solid;
 }
 
-table#results th {
-	margin: 0;
-	padding: 4px 10px 4px 10px;
-	text-align:left;
-	vertical-align: top;
+span.searchlink {
+    font-size: 120%;
 }
-
-table#results tr.alternate {
-	background-color:#dddddd;
+div.searchdescription {
+    font-size: 90%;
 }
-
-table#results td {
-	margin: 0;
-	padding: 4px 10px 4px 10px;
-	text-align:left;
-	/*font-size: 12px;*/
+div.searchinfo {
+    font-size: 90%;
 }
-
-table#results td:first-child {
-	text-align:left;
-	white-space:nowrap;
+div.searchtime {
+    font-size: 90%;
 }
-
-div.resultsnav {
-	margin: 25px 0 15px 0;
-	padding: 0;
-}
-
-div.resultsnav a {
-	margin: 0 25px 0 0;
-	padding: 0;
-}
-
-hr {
-	margin: 25px 0 25px 0;
-}
-
-div.emaildetails {
-	margin: 0;
-	padding: 0;
-}
-
-div.emaildetails p {
-	margin: 0;
-	padding: 0 0 5px 0;
-}
-
-div.emaildetails strong {
-	margin: 0;
-	padding: 0 15px 0 0;
-	width: 300px;
-}
-
-pre {
-	font-size:1em;
-	font-family: verdana, arial, sans-serif;
-}
-
-ul.folders {
-	padding: 0 0 10px 35px;
-	margin: 0 0 0 0;
-        list-style-image: url(Presentation/Tofu/FileLibrary/images/folder.gif);
-
-}
-
-ul.folders li {
-	padding: 0 0 5px 22px;
-	margin: 0 0 0 0;
-	background-repeat: no-repeat;
-	color: #000;
-}
-
-
-
