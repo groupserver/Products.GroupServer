@@ -4,9 +4,12 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=groups_object, gtype, user_id=None
+##parameters=groups_object=None, gtype=None, user_id=None
 ##title=
 ##
+if not groups_object:
+    groups_object = context.Scripts.get.groups_object()
+    
 memberships = context.group_memberships(groups_object, user_id)
 if gtype:
     memberships = memberships.get(gtype, [])

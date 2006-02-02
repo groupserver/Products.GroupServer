@@ -1,4 +1,3 @@
-
 function getEventSrc(e) {
  // get a reference to the IE/windows event object
  if (!e) e = window.event;
@@ -9,6 +8,22 @@ function getEventSrc(e) {
  // IE/windows name of event source property
  else if (e.srcElement)
    return e.srcElement;
+}
+
+// New in firefox 1.5
+window.onpageshow = initXForms;
+window.onload = initXForms;
+
+function initXForms() {
+	var form = document.forms[0];
+	for (var i=0; i < form.elements.length; i++) {
+		if (form.elements[i].disabled == true) {
+		    if (form.elements[i].oldvalue) {
+		        form.elements[i].value = form.elements[i].oldvalue;
+		    }
+		    form.elements[i].disabled = false;
+		}
+	}
 }
 
 //
@@ -32,10 +47,14 @@ function submitForm(form, modelid, submissionid) {
             if (form.elements[i].value == 'form-data-post') {
                 form.method = 'POST';
                 form.enctype = 'multipart/form-data';
+                // IE, for some reason, handles this differently
+                form.encoding = 'multipart/form-data';
             }
             else if (form.elements[i].value == 'urlencoded-post') {
                 form.method = 'POST';
                 form.enctype = 'application/x-www-form-urlencoded';
+                // IE, for some reason, handles this differently
+                form.encoding = 'application/x-www-form-urlencoded';
             }
             else {
                 form.method = 'GET';
@@ -44,7 +63,7 @@ function submitForm(form, modelid, submissionid) {
         else if (form.elements[i].name == starget) {
             form.target = form.elements[i].value;
         }
-
+		
          // Set up the real form elements for submission, and delete
          // the placeholders
          currElement = form.elements[i];
@@ -65,28 +84,28 @@ function submitForm(form, modelid, submissionid) {
          catch (e) {}
     }
 
-
-     // figure out which elements we've used, and which are supposed
-     // to be 'automatically' submitted as hidden elements
-     var uLen = usedElements.length;
-     var imLen = imElements.length;
-     for (var i=0; i < imLen; i++) {
-         var imElement = imElements[i];
-         var imParts = imElement.name.split('+');
-         var used = false;
-         for (var j=0; j < uLen; j++) {
-             if (usedElements[j] == imParts[2]) {
-                 used = true;
-                 break;
-             }
-         }
-         if (used == false) {
-             imElement.name = imParts[2];
-             imElement.disabled = false;
-         }
-     }
-
+    // figure out which elements we've used, and which are supposed
+    // to be 'automatically' submitted as hidden elements
+    var uLen = usedElements.length;
+    var imLen = imElements.length;
+    for (var i=0; i < imLen; i++) {
+        var imElement = imElements[i];
+        var imParts = imElement.name.split('+');
+        var used = false;
+        for (var j=0; j < uLen; j++) {
+            if (usedElements[j] == imParts[2]) {
+                used = true;
+                break;
+            }
+        }
+        if (used == false) {
+            imElement.name = imParts[2];
+            imElement.disabled = false;
+        }
+    }
+	
     form.submit();
+
     return true;
 };
 
@@ -95,7 +114,11 @@ function submitButtonHandler(submitter) {
     var sname = sparts[0];
     var modelid = sparts[1];
     var submissionid = sparts[2];
-
+	
+	submitter.oldvalue = submitter.value;
+	submitter.value = 'Processing - Please Wait ...'
+	submitter.disabled = true;
+	
     return submitForm(submitter.form, modelid, submissionid);
 }
 
@@ -104,8 +127,13 @@ function keypressEventHandler(form, event) {
     var sparts = target.name.split('+');
     var modelid = sparts[0];
     var submissionid = '';
+    
     if (event.keyCode == 13) {
-        submissionid = getSubmissionId(form);
+    	// don't submit on textareas, very bad!
+        if (event.target.type == 'textarea') {
+        	return true;
+        }
+        submissionid = getSubmissionId(modelid, form);
         submitForm(form, modelid, submissionid);
         return false;
     }
@@ -115,7 +143,6 @@ function keypressEventHandler(form, event) {
 //------------------------------------------------------------------------------
 // getSubmissionId - gets the submission id of a form.
 //------------------------------------------------------------------------------
-
 function getSubmissionId (modelid, form) {
     for (var i=0; i < form.elements.length; i++) {
         var eparts = form.elements[i].name.split('+');
@@ -132,7 +159,6 @@ function getSubmissionId (modelid, form) {
 // ToggleNavigationVisibility - toggles the visibility of a single object in the
 // site navigation.
 //------------------------------------------------------------------------------
-
 function ToggleNavigationVisibility (modelid, id, submissionid) {
     // Check the corresponding checkbox.
     var checkboxid = modelid + '-' + id;

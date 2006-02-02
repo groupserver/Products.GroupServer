@@ -353,7 +353,6 @@ div.breadcrumb {
 	margin: 0 0 15px 0;
 }
 
-
 /* Search Area */
 
 /*
@@ -370,7 +369,7 @@ div#searcharea {
 	float: right;
 	width:170px;
 	text-align:right;
-	margin: 20px 15px 0 0;
+	margin: 20px 30px 0 0;
 }
 
 div#searcharea h3 {
@@ -395,6 +394,22 @@ div#searcharea form {
 	padding: 0 0 12px 0;
 }
 
-p.message {
-        color: #ff0000;
+div.message-result {
+        background-color: #eeeeee;
+        border-color: black;
+        border-width: thin;
+        border-style: solid;
+        width: 70%;
+        padding: 5px 5px 0 5px;
+        font-size: 100%;
+}
+
+div.message-error {
+        background-color: #ff1111;
+        border-color: black;
+        border-width: thin;
+        border-style: solid;
+        width: 70%;
+        padding: 5px 5px 0 5px;
+        font-size: 100%;
 }

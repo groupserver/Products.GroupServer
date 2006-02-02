@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- Main Navigation Starts -->
 
@@ -135,28 +135,7 @@
   </xsl:choose>
   </xsl:if>
 </xsl:template>
-
 <!-- Bread Crumbs Ends -->
-
-
-<!-- Compare Roles Starts -->
-<xsl:template name="compareroles">
-  <xsl:param name="objectroles"/>
-  <xsl:param name="userroles"/>
-
-  
-  <xsl:for-each select="$objectroles">
-    <xsl:variable name="objectrole" select="." />
-    <xsl:for-each select="$compareroles">
-     <xsl:if test=".=$objectrole">
-        
-     </xsl:if>
-    </xsl:for-each>
-  </xsl:for-each>
-
-</xsl:template>
-
-<!-- Compare Roles Ends -->
 
 <!-- Division Switcher Starts -->
 <xsl:template name="divisionswitcher">
@@ -216,7 +195,6 @@
 		</div>
 	</xsl:if>
 </xsl:template>
-
 <!-- Login name Ends -->
 
 <!-- Logged in links Starts -->

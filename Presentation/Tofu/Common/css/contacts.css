@@ -98,6 +98,9 @@ legend {
 div.row {
 	margin: 0;
 	padding: 0 0 5px 0;
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
 	clear: both;
 }
 

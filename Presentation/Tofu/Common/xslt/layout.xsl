@@ -2,10 +2,14 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="paragraph | p">
-<p><xsl:apply-templates /></p>
+    <p><xsl:apply-templates /></p>
 </xsl:template>
 
-<xsl:template match="heading1">
+<xsl:template match="div">
+    <div class="{@class}"><xsl:apply-templates /></div>
+</xsl:template>
+
+<xsl:template match="heading1 | h1">
 <h1>
 <xsl:if test="@id">
 <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
@@ -21,7 +25,7 @@
 &#160;
 </xsl:template>
 
-<xsl:template match="heading2">
+<xsl:template match="heading2 | h2">
 <h2>
 <xsl:if test="@id">
 <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
@@ -29,7 +33,7 @@
 <xsl:value-of select="." /></h2>
 </xsl:template>
 
-<xsl:template match="heading3">
+<xsl:template match="heading3 | h3">
 <h3>
 <xsl:if test="@id">
 <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
@@ -37,7 +41,7 @@
 <xsl:value-of select="." /></h3>
 </xsl:template>
 
-<xsl:template match="heading4">
+<xsl:template match="heading4 | h4">
 <h4>
 <xsl:if test="@id">
 <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
@@ -57,10 +61,10 @@
 <xsl:value-of select="." /><br/>
 </xsl:template>
 
-<xsl:template match="bulletlist">
-<ul>
-<xsl:for-each select="listitem">
-<li><xsl:apply-templates /></li>
+<xsl:template match="bulletlist | ul">
+<ul class="{@class}">
+<xsl:for-each select="listitem | li">
+<li class="{@class}"><xsl:apply-templates /></li>
 </xsl:for-each>
 </ul>
 </xsl:template>
@@ -78,61 +82,23 @@
 		<xsl:apply-templates/>
 	</a>
 </xsl:template>
-
+  
+<xsl:template match="span">
+    <span class="{@class}">
+      <xsl:apply-templates />
+    </span>
+</xsl:template>
+  
 <xsl:template match="a">
-	<a href="{@href}">
-		<xsl:apply-templates/>
-	</a>
+    <a href="{@href}">
+      <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+      <xsl:apply-templates />
+    </a>
 </xsl:template>
 
 <xsl:template match="anchor">
 <a><xsl:attribute name="name"><xsl:value-of select="@name"/></xsl:attribute></a>
 </xsl:template> 
-
-<xsl:template match="login_box">
-        <xsl:apply-templates select="//input[@id='login']"/>
-</xsl:template>
-
-<xsl:template match="//input[@id='login']">
-<form action="{@target}" method="POST">
-		<table class="FormLayout">
-			<xsl:for-each select="object">
-                           <xsl:choose>
-                              <xsl:when test="@type='string'">
-				<tr>
-					<td align="left" valign="top"><strong><span class="help" title="{description}"><xsl:value-of select="label"/>:</span></strong></td>
-					<td align="left" valign="top">
-					<xsl:choose>
-						<xsl:when test="@id='__ac_name'">
-							<input type="text" name="{@id}" size="20" />
-<script language="JavaScript"> document.forms[0].__ac_name.focus(); </script>
-						</xsl:when>
-					        <xsl:when test="@id='__ac_password'">
-							<input type="password" name="{@id}" size="20" />
-						</xsl:when>
-					</xsl:choose>
-					</td>
-				</tr>
-                              </xsl:when>
-                              <xsl:when test="@type='checkbox' and @id='__ac_persistent'">
-                                <tr>
-			            <td colspan="2"><input type="checkbox" name="{@id}" /><strong><span class="help" title="{description}"><xsl:value-of select="label"/></span></strong></td>
-                                </tr>
-                              </xsl:when>
-                              <xsl:when test="@type='hidden'">
-                                  <input type="hidden" name="{@id}" value="{element}" />
-                              </xsl:when>
-                           </xsl:choose>
-			</xsl:for-each>
-			<tr>
-  				<td align="left" valign="top"></td>
-  				<td align="right" valign="top">
-  					<input type="submit" name="{@id}" value=" Login "/>
-  				</td>
-			</tr>
-	</table>
-</form>
-</xsl:template>
 
 <xsl:template match="registration_box">
         <xsl:apply-templates select="//input[@id='registration']"/>
@@ -555,33 +521,29 @@
 
 <!-- Forgotten Password Ends -->
 
-<!-- Messages Start -->
-<xsl:template match="message">
-	<xsl:apply-templates select="//output/messages/message[@type='error']"/>
-</xsl:template>
-
-<xsl:template match="//output/messages/message[@type='error']">
-	<p class="message">
-		<xsl:apply-templates/>
-	</p>
-</xsl:template>
-
+<!-- Error/Result Messages Start -->
 <xsl:template name="result-messages">
-    <div class="message">
+    <xsl:if test="//output/messages/message[@type='result']">
+    <div class="message-result">
        <xsl:for-each select="//output/messages/message[@type='result']">
          <xsl:apply-templates />
        </xsl:for-each>
     </div>
+    </xsl:if>
+    <xsl:if test="//output/messages/message[@type='error']">
+    <div class="message-error">
+       <xsl:for-each select="//output/messages/message[@type='error']">
+         <xsl:apply-templates />
+       </xsl:for-each>
+    </div>
+    </xsl:if>
 </xsl:template>
-
-<!-- Messages End -->
+<!-- Error/Result Messages End -->
 
 <xsl:template name="searcharea">
-	<form action="search_all.xml" method="GET">
-		<h3>Site Search</h3>
-		<input type="text" class="text" name="query"/>
-		<input type="submit" name="submit" value="Go" class="button"/>
-	</form>
+	<h3>Site Search</h3>
+	<input type="text" class="text" name="sitesearch+query"/>
+	<input type="submit" name="__submit+sitesearch+search" onclick="submitButtonHandler(this)" value="Go" class="button"/>
 </xsl:template>
 
 <xsl:template match="parenttitle">
@@ -600,7 +562,7 @@
 </xsl:template>
 
 <xsl:template match="legend">
-    <legend><xsl:value-of select="text()"/></legend>
+    <legend><xsl:apply-templates /></legend>
 </xsl:template>
 
 <!-- Results ends -->
