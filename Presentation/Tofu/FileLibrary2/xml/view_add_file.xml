@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+  <output xmlns:xf="http://www.w3.org/2002/xforms">
+
+    <messages metal:fill-slot="messages" 
+              tal:define="message python:options.get('result',{}).get('message', '')"
+      tal:condition="message">
+      <message type="result" tal:content="structure message">
+      </message>
+    </messages>
+    
+    <data metal:fill-slot="data">
+      <xf:model id="file">
+        <xf:instance>
+          <data>
+            <submitted>1</submitted>
+            <file />
+            <topic />
+            <tags />
+          </data>
+        </xf:instance>
+        <xf:submission method="form-data-post" id="addFile"
+          tal:attributes="action request/URL" />
+      </xf:model>
+    </data>
+    
+    <content metal:fill-slot="maincontent">
+      <fieldset>
+        <legend>Add a new file</legend>
+        <xf:upload class="text" model="file" ref="file" submission="addFile">
+          <xf:label>File</xf:label>
+        </xf:upload>
+        
+        <xf:select1 appearance="minimal"
+          model="file" ref="topic"
+          class="text">
+          <xf:label>Associate with topic</xf:label>
+          <xf:hint>
+            You may associate this file with an existing topic.
+          </xf:hint>
+          <xf:item>
+            <xf:label>No topic</xf:label>
+            <xf:value></xf:value>
+          </xf:item>
+          <xf:item tal:repeat="topic options/topics">
+            <xf:label tal:content="topic">sometopic</xf:label>
+            <xf:value tal:content="topic">sometopic</xf:value>
+          </xf:item>
+        </xf:select1>
+        
+        <xf:textarea class="text" model="file" ref="tags">
+          <xf:label>Tags</xf:label>
+          <xf:hint>
+            You may add arbitrary tags to this file, one per line.
+          </xf:hint>
+        </xf:textarea>
+        
+        <xf:submit class="button" model="file" submission="addFile">
+          <xf:label>Add File</xf:label>
+        </xf:submit>
+      </fieldset>
+    </content>
+    
+</output>
+</root>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  metal:use-macro="here/Templates/page.xml/macros/page">
+  <output>
+    <content metal:fill-slot="maincontent" tal:define="xcu
+      python:modules['Products.XWFCore.XWFUtils']; rfr python:xcu.createRequestFromRequest">
+      <div class="batchcount"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
+      <div class="batchnavigation">
+        <a tal:condition="python:options['b_start']-1 > 0" tal:attributes="href python:'%s/view_files?%s' % (request.URL1, rfr(request, b_start=options['b_start']-options['b_size']))">prev <span tal:replace="python:options['b_size']"/></a>
+        &#160;&#160;&#160; 
+        <a tal:condition="python:options['result_size'] &gt; options['b_end']" tal:attributes="href python:'%s/view_files?%s' % (request.URL1, rfr(request, b_start=options['b_end']+1))">next <span tal:replace="python:min(options['result_size']-options['b_end'], options['b_size'])"/></a>
+      </div>
+      <div tal:condition="not:options/result_set">No matching files found</div>
+      <ul class="files" tal:condition="options/result_set">
+        <li class="searchitem" tal:repeat="result options/result_set">
+          <a tal:attributes="href python:'get_file?id=%s' % result.id">
+            <span class="searchlink" tal:content="result/title">link</span>
+          </a> topic: <span class="searchtopic" tal:content="structure result/topic">this is the
+            topic of the file</span>, uploaded by: <a tal:condition="python:getattr(result,
+            'dc_creator', None)" class="searchuser" tal:attributes="href python:'/contacts/%s' %
+            result.dc_creator" tal:define="user
+            python:here.Scripts.get.user_realnames(result.dc_creator)" tal:content="python:user"/>
+          <div class="searchdescription" tal:content="structure
+            python:here.printable_summary(result) or 'No summary available'">This is a description
+            of the file, pulled from the stuff in the file</div>
+          <div class="searchinfo"><span class="searchsize">size: <tal:block
+                tal:content="python:here.pretty_size(result.size)"/></span>, <span
+              class="searchcontenttype">type: <tal:block tal:content="python:result.content_type"
+            /></span>, tags: <tal:block tal:repeat="tag result/tags">"<span class="searchtags"
+                tal:content="structure tag"/>" </tal:block></div>
+          <div class="searchtime">
+            <span class="searchtime">date: <span tal:replace="result/modification_time"/></span>
+          </div>
+        </li>
+      </ul>
+      <div class="batchcount"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
+      <div class="batchnavigation">
+        <a tal:condition="python:options['b_start']-1 > 0" tal:attributes="href python:'%s/view_files?%s' % (request.URL1, rfr(request, b_start=options['b_start']-options['b_size']))">prev <span tal:replace="python:options['b_size']"/></a>
+        &#160;&#160;&#160; 
+        <a tal:condition="python:options['result_size'] &gt; options['b_end']" tal:attributes="href python:'%s/view_files?%s' % (request.URL1, rfr(request, b_start=options['b_end']+1))">next <span tal:replace="python:min(options['result_size']-options['b_end'], options['b_size'])"/></a>
+      </div>
+    </content>
+  </output>
+</root>
