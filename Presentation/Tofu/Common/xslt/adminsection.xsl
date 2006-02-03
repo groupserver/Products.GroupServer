@@ -30,6 +30,10 @@
 				</title>
 				<link rel="stylesheet" type="text/css"
 					href="/Presentation/Tofu/Common/css/globalstyle.css" />
+				<link rel="stylesheet" type="text/css" 
+					media="print"
+                                        href="/Presentation/Tofu/Common/css/print.css" />
+
 				<script type="text/javascript"
 					src="/Presentation/Tofu/XForms/js/xforms.js">
 					&#160;
