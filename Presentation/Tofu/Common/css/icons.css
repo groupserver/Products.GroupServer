@@ -1,0 +1,80 @@
+/* icons.css: Icons used on the pages.                                      */
+/*                                                                          */
+/* Author: Michael JasonSmith, 2006                                         */
+/*                                                                          */
+/* Some links have small icons next to them, to help in identifing the file */
+/*   format of the target document. Most of the icons, which are from       */
+/*   tango-project.org, are 16x16 pixels and are placed to the left of the  */
+/*   link. They are implemented as background images.                       */
+
+/* General layout for the link icons.                                       */
+/* Note: I know the following layout styles are all the same, you know that */
+/*   the following layout styles are all the same. However, if you have too */
+/*   many selectors for one rule then IE6 dies a death. This is bad .       */
+.weblink, .pdflink, .homelink, .peoplelink, .searchlink, .logoutlink
+ {
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+}
+
+#Home-menu-link, #Resources-menu-link, #People-menu-link, #Groups-menu-link, #Help-menu-link
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  line-height: 26px;
+}
+
+.resourceslink, #searcharea h3, #log-in-link, #log-out-link
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+}
+
+#loggedin a, .name a, #profile-link
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+}
+
+
+/* Images for the different icons. */
+
+.weblink {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/applications-internet.gif");
+}
+.pdflink {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/application-pdf.png");
+}
+.searchlink,
+#searcharea h3 {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-search.gif");
+}
+.logoutlink, #log-out-link {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-log-out.gif");
+}
+.profilelink, #profile-link, #log-in-link, .name a {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/user.gif");
+}
+.homelink, #Home-menu-link {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/go-home.gif");
+}
+.resourceslink, #Resources-menu-link {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/text-x-generic.gif");
+}
+.peoplelink, #People-menu-link {
+background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/user.gif");
+}
+.grouplink, #Groups-menu-link {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
+}
+.group-list {
+list-style-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
+}
+.helplink, #Help-menu-link {
+  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/help-browser.gif");
+}

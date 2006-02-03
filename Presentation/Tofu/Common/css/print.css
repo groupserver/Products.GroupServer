@@ -1,0 +1,62 @@
+/* Print Medium Style Sheet         */
+/* Michael JasonSmith               */
+/* Copyright OnlineGroups.Net, 2005 */
+
+/* Set up the page format. Nice big margins, just like LaTeX. */
+@page {
+  margin: 3cm;
+}
+
+/* Set up the default colours and font. Serif is easier to read on */
+/*   paper, as is back on white text. (Besides, colour is rare and */
+/*   expensive.) */
+body {
+  color: black;
+  background-color: white;
+  font-family: serif;
+}
+
+/* Do not display any of the navigation elements. */
+div#externallinks, div#utilities, div#sitenavigation, div#contextnav {
+  display: none;
+}
+div#searcharea {
+  display: none;
+}
+
+/* Now the navigation elements are gone, we need to */
+/*   reformat the main body content.                */
+div#content {
+  margin: 18px 0px 25px 0px;
+  padding: 0px;
+  border: none;
+}
+
+/* Reformat the title-bar text, which is not the page title.*/
+div#titlebar {
+  font-size: normal;
+}
+div#titlebar span.group {
+  margin: 0px;
+  padding: 0px;
+  font-size: normal;
+}
+div#titlebar span.division {
+  margin: 0px;
+  padding-left: 1em;
+  font-size: normal;
+}
+
+/* Reformat the links:                        */
+/* - No underlining,                          */
+/* - No colour, and                           */
+/* - Add the link destination after the text. */
+a, a:visited {
+  color: inherit;
+  background-color: inherit;
+  text-decoration: none;
+}
+a:after {
+  font-size: xx-small;
+  content: " (URI: " attr(href) ")";
+}
