@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=limit=100
+##parameters=limit=5
 ##title=
 ##
 site_root = context.site_root()
