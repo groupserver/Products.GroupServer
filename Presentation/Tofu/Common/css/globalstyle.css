@@ -8,6 +8,7 @@
 @import "feedback.css";
 @import "/Presentation/Tofu/XForms/css/calendar.css";
 @import "/Presentation/Tofu/XForms/css/xforms.css";
+@import "icons.css";
 
 
 /* General Styles */
@@ -57,3 +58,4 @@ h4 { font-family: verdana, arial, sans-serif; font-size: 0.8em; color:#000000; m
 p {
 	margin: 0 0 1em 10px;
 }
+

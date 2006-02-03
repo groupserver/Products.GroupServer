@@ -21,9 +21,6 @@
 			<td class="name">
 				<xsl:apply-templates select="name"/>
 			</td>
-			<td class="userdetail">
-				<a href="{link/@url}">Profile</a>
-			</td>
 			<td>
 				<xsl:call-template name="userbioicon"/>
 			</td>

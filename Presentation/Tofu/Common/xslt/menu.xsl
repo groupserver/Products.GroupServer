@@ -10,8 +10,10 @@
 
 			<xsl:for-each select="menuitem">
 				<xsl:choose>
-  					<xsl:when test="@current='1'"><li class="current"><a class="current" href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:when>
-  					<xsl:otherwise><li><a href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:otherwise>
+  					<xsl:when test="@current='1'">
+  					 <li class="current"><a  id="{@name}-menu-link" class="current" href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:when>
+  					<xsl:otherwise>
+  					 <li><a  id="{@name}-menu-link" href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:otherwise>
 				</xsl:choose>
 			</xsl:for-each>						
 		</ul>
@@ -189,7 +191,7 @@
 		<div id="loggedin">
 			<p>You are logged in as:</p>
 			<p>
-				<strong><a href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"><xsl:value-of select="output/user[@type='self']/name/preferredname"/>&#160;<!--/a>
+				<strong><a id="profile-link" href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"><xsl:value-of select="output/user[@type='self']/name/preferredname"/>&#160;<!--/a>
 				<a href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"--><xsl:value-of select="output/user[@type='self']/name/lastname"/></a></strong>
 			</p>
 		</div>
@@ -201,13 +203,13 @@
 <xsl:template name="loggedinlinks">
 	<div id="utilitylinks">
 		<ul>
-                        <xsl:choose>
+      <xsl:choose>
 				<xsl:when test="output/user[@type='self']/id='Anonymous User'">
-					<li><a href="/login" title="Log in here">Log In</a></li>
+					<li><a id="log-in-link" href="/login" title="Log in here">Log In</a></li>
 				</xsl:when>
 				<xsl:otherwise>
 					<li><a href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}">Your Profile</a></li>
-					<li><a href="/cookie_authentication/logout">Log Out</a></li>
+					<li><a id="log-out-link" href="/cookie_authentication/logout">Log Out</a></li>
 				</xsl:otherwise>
 			</xsl:choose>
 		</ul>

@@ -538,7 +538,6 @@
     </div>
     </xsl:if>
 </xsl:template>
-<!-- Error/Result Messages End -->
 
 <xsl:template name="searcharea">
 	<h3>Site Search</h3>
