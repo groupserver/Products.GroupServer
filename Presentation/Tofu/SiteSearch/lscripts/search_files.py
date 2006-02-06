@@ -7,30 +7,29 @@
 ##parameters=groups, query
 ##title=
 ##
-queries = [{'title': query}, {'dc+Description': query}, {'dc+Creator': query}]
+queries = [{'title': query}, {'indexable_content': query}, {'tags': query}]
+#,
+#           , {'topic': query},
+#           {'dc_creator': query}]
+
+site_root = context.site_root()
+
+def sorter(x, y):
+    if x.modification_time < y.modification_time:
+        return 1
+    else:
+        return -1
 
 results = []
-for group in groups:
-    for query in queries:
-        try:
-            results.append(group.files.find_files(query, -1))
-        except:
-            pass
+for (group_title, group_id, group_url) in context.Scripts.get.group_memberships_ids():
+     for query in queries:
+         query['group_ids'] = [group_id]
+         result = site_root.FileLibrary2.find_files(query)
+         results += result
+         #for result in results:
+         #    if result not in results:
+         #        results.append(result)
 
-results = filter(None, results)
-fresults = []
-if results:
-    # we need to do this because reduce isn't available to us
-    fresults = results.pop()
-    for result in results:
-        fresults += result
+results.sort(sorter)
 
-nfresults = []
-for result in fresults:
-    try:
-        context.restrictedTraverse(result.getObject().getProperty('virtual_path')[0])
-        nfresults.append(result)
-    except:
-        pass
-
-return nfresults
+return results

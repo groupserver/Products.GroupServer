@@ -11,7 +11,8 @@
          tal:define="b_results python:here.lscripts.search_site_files(request.form.get('query', ''), request.form.get('start', 0), request.form.get('size', 10));
                      xcu python:modules['Products.XWFCore.XWFUtils'];
                      cr python:xcu.createRequestFromRequest;
-                     ct python:xcu.convertTextToAscii;">
+                     ct python:xcu.convertTextToAscii;
+                     groups_object python:here.Scripts.get.groups_object()">
 # e_b_start, e_b_end, e_b_size, e_result_size, e_result_set 
   <channel id="fileresults" rdf:about="">
     <title></title>
@@ -33,31 +34,30 @@
     <items>
       <rdf:Seq>
         <!-- An ordered list of URLs -->
-        <rdf:li tal:repeat="result python:map(lambda x: x.getObject(), b_results[4])" tal:attributes="rdf:resource python:'%s/get_file?id=%s' % (result.getProperty('virtual_path')[0], result.getId())"/>
+        <rdf:li tal:repeat="result python:map(lambda x: x.getObject(), b_results[4])" 
+                tal:attributes="rdf:resource python:'%s/get_file?id=%s' % (result.getProperty('group_ids')[0], result.getId())"/>
       </rdf:Seq>
     </items>
     </channel>
 
     <textinput rdf:resource="http://search.xml.com" />
 
-    <tal:block tal:repeat="oresult python:b_results[4]">
-    <item tal:define="result oresult/getObject; rfolder python:here.restrictedTraverse(result.getProperty('virtual_path')[0])" tal:attributes="rdf:about python:'%s/get_file?id=%s' % (result.getProperty('virtual_path')[0], result.getId())">
- 
+    <tal:block tal:repeat="result python:b_results[4]">
+    <item tal:define="oresult result/getObject" tal:attributes="rdf:about python:'%s/get_file?id=%s' % (oresult.getProperty('group_ids')[0], result.id)">
       <result tal:omit-tag="">
         <title tal:content="result/title"></title>      
-        <description tal:content="python:ct(result.getProperty('dc+Description'))">Some file description.</description>
-        <dc:creator tal:content="python:ct(result.getProperty('dc+Creator'))">Some file description.</dc:creator>
-        <dc:date tal:content="python:result.modification_time().ISO()">2003/04/09 12:00pm</dc:date>
-        <groups:title tal:content="python:rfolder.Scripts.get.group_object().title_or_id()"></groups:title>
-        <groups:id tal:content="python:rfolder.Scripts.get.group_object().getId()"></groups:id>
-        <groups:url tal:content="python:rfolder.Scripts.get.group_object().absolute_url(1)"></groups:url>
-        <files:folderid tal:content="python:result.getProperty('content_folder_id')[0]"></files:folderid>
-        <files:id tal:content="python:result.getId()"></files:id>
-        <files:foldertitle tal:content="python:rfolder.getProperty('title')"></files:foldertitle>
-        <files:folderurl tal:content="python:here.lscripts.find_content_folder(result.getProperty('content_folder_id')[0])"></files:folderurl>
-      </result> 
+        <description tal:content="python:ct(result.indexable_summary or '')">Some file description.</description>
+        <dc:creator tal:content="python:ct(result.dc_creator or '')">Some file description.</dc:creator>
+        <dc:date tal:content="python:result.modification_time.ISO()">2003/04/09 12:00pm</dc:date>
+        <tal:block tal:define="group python:getattr(groups_object, oresult.group_ids[0], None)">
+          <groups:title tal:content="python:group and group.title_or_id()"/>
+          <groups:id tal:content="python:group.getId()"/>
+          <groups:url tal:content="python:group.absolute_url(1)"/>
+        </tal:block>
+        <files:id tal:content="python:result.id"></files:id>
+      </result>  -->
       
-      <search:relevance tal:content="oresult/data_record_normalized_score_">100</search:relevance>
+      <search:relevance tal:content="result/data_record_normalized_score_">100</search:relevance>
     </item>
     </tal:block>
 
