@@ -45,36 +45,36 @@
 /* Images for the different icons. */
 
 .weblink {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/applications-internet.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/applications-internet.gif");
 }
 .pdflink {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/application-pdf.png");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/application-pdf.png");
 }
 .searchlink,
 #searcharea h3 {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-search.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/system-search.gif");
 }
 .logoutlink, #log-out-link {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-log-out.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/system-log-out.gif");
 }
 .profilelink, #profile-link, #log-in-link, .name a {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/user.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/user.gif");
 }
 .homelink, #Home-menu-link {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/go-home.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/go-home.gif");
 }
 .resourceslink, #Resources-menu-link {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/text-x-generic.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/text-x-generic.gif");
 }
 .peoplelink, #People-menu-link {
-background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/user.gif");
+background-image: url("/Presentation/Tofu/Common/images/16x16/user.gif");
 }
 .grouplink, #Groups-menu-link {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
+  background-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
 }
 .group-list {
-list-style-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
+list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
 }
 .helplink, #Help-menu-link {
-  background-image: url("http://abel.ac.nz/Presentation/Tofu/Common/images/16x16/help-browser.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/help-browser.gif");
 }
