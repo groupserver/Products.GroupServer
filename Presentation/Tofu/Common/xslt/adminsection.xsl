@@ -88,7 +88,6 @@
 			<!-- Utilities Start -->
 			<div id="utilities">
 				<xsl:call-template name="loggedinlinks" />
-				<xsl:call-template name="loginname" />
 				<xsl:call-template name="groups" />
 			</div>
 			<!-- Utilities End -->
