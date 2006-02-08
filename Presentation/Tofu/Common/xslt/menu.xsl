@@ -185,38 +185,22 @@
 </xsl:template>
 <!-- Group Icons End -->
 
-<!-- Login name Starts -->
-<xsl:template name="loginname">
-	<xsl:if test="output/user[@type='self']/id!='Anonymous User'">
-		<div id="loggedin">
-			<p>You are logged in as:</p>
-			<p>
-				<strong><a id="profile-link" href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"><xsl:value-of select="output/user[@type='self']/name/preferredname"/>&#160;<!--/a>
-				<a href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"--><xsl:value-of select="output/user[@type='self']/name/lastname"/></a></strong>
-			</p>
-		</div>
-	</xsl:if>
-</xsl:template>
-<!-- Login name Ends -->
-
 <!-- Logged in links Starts -->
 <xsl:template name="loggedinlinks">
 	<div id="utilitylinks">
 		<ul>
-      <xsl:choose>
+		      <xsl:choose>
 				<xsl:when test="output/user[@type='self']/id='Anonymous User'">
 					<li><a id="log-in-link" href="/login" title="Log in here">Log In</a></li>
 				</xsl:when>
 				<xsl:otherwise>
-					<li><a href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}">Your Profile</a></li>
 					<li><a id="log-out-link" href="/cookie_authentication/logout">Log Out</a></li>
+				        <li><a id="profile-link" href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"><xsl:value-of select="output/user[@type='self']/name/preferredname"/>&#160;<xsl:value-of select="output/user[@type='self']/name/lastname"/> (profile)</a></li>
 				</xsl:otherwise>
 			</xsl:choose>
 		</ul>
 	</div>
 </xsl:template>
-
 <!-- Logged in links Ends -->
-
 
 </xsl:stylesheet>
