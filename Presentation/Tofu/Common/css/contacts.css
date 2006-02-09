@@ -1,32 +1,7 @@
 /* Contacts List  */
-table.contacts {
-	border-width: 0;
-	margin: 10px 0 10px 0;
-	padding: 0;
-}
 
-table.contacts td {
-	font-size: 1em;
-}
-
-table.contacts {
-	border-width: 0;
-	margin: 10px 0 10px 0;
-	padding: 0;
-}
-
-table.contacts td.name {
-	margin: 0;
-	padding: 0 15px 0 0;
-}
-
-table.contacts td.userdetail {
-	margin: 0;
-	padding: 0 15px 0 0;
-}
-
-table.contacts img {
-	cursor: help;
+ul.contacts {
+	list-style-type: none;
 }
 
 /* User Instructions */
