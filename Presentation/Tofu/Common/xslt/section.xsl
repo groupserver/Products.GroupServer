@@ -5,7 +5,7 @@
 
 	<xsl:include href="file://menu" />
 	<xsl:include href="file://layout" />
-	<!-- <xsl:include href="file://contacts" /> -->
+	<xsl:include href="file://contacts" /> 
 	<xsl:include href="file://news" />
 
 	<xsl:include href="file://Presentation/Tofu/MailingListManager/xslt/email" />
