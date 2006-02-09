@@ -9,25 +9,19 @@
 	<!-- User Instructions Ends -->
 	<!-- Contacts Starts -->
 	<xsl:template match="users">
-		<table class="contacts">
+		<ul class="contacts">
 			<xsl:for-each select="user">
 				<xsl:sort select="name/preferredname" order="ascending"/>
 				<xsl:call-template name="user"/>
 			</xsl:for-each>
-		</table>
+		</ul>
 	</xsl:template>
 	<xsl:template name="user">
-		<tr>
-			<td class="name">
+		<li>
+			<span class="name">
 				<xsl:apply-templates select="name"/>
-			</td>
-			<td>
-				<xsl:call-template name="userbioicon"/>
-			</td>
-			<td>
-				<xsl:call-template name="userphotoicon"/>
-			</td>
-		</tr>
+			</span>
+		</li>
 	</xsl:template>
 	<xsl:template match="name">
 		<a href="{../link/@url}">
@@ -35,29 +29,9 @@
 		</a>
 		<xsl:if test="../type/text()!=''"> ( <xsl:value-of select="../type"/> ) </xsl:if>
 	</xsl:template>
-	<xsl:template name="userbioicon">
-		<xsl:choose>
-			<xsl:when test="count(biography)=1">
-				<img src="/images/other/icon-bio.gif" width="16" height="16" alt="Bio Available"
-					title="Bio Available"/>
-			</xsl:when>
-			<xsl:when test="count(biography)!=1">
-				<img src="/images/layout/spacer.gif" width="16" height="16"/>
-			</xsl:when>
-		</xsl:choose>
-	</xsl:template>
-	<xsl:template name="userphotoicon">
-		<xsl:choose>
-			<xsl:when test="count(image)=1">
-				<img src="/images/other/photo.gif" width="20" height="13" alt="Photo Available"
-					title="Photo Available"/>
-			</xsl:when>
-			<xsl:when test="count(image)!=1">
-				<img src="/images/layout/spacer.gif" width="20" height="13"/>
-			</xsl:when>
-		</xsl:choose>
-	</xsl:template>
+
 	<!-- Contacts Ends -->
+
 	<!-- User Detail Page Starts -->
 	<xsl:template match="userdetails">
 		<xsl:apply-templates select="//root/output/user"/>
