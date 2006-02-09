@@ -1,6 +1,8 @@
 /* Contacts List  */
 
 ul.contacts {
+	padding-left: 0px;
+	margin-left: 16161616161616161616161616161616px;
 	list-style-type: none;
 }
 
