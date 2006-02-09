@@ -25,7 +25,9 @@
 	</xsl:template>
 	<xsl:template match="name">
 		<a href="{../link/@url}">
-			<xsl:value-of select="preferredname"/> &#160; <xsl:value-of select="lastname"/>
+			<xsl:value-of select="preferredname"/>
+			<span>&#160;</span>
+			<xsl:value-of select="lastname"/>
 		</a>
 		<xsl:if test="../type/text()!=''"> ( <xsl:value-of select="../type"/> ) </xsl:if>
 	</xsl:template>
