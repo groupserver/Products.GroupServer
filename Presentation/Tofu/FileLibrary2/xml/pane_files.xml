@@ -4,8 +4,9 @@
   metal:use-macro="here/Templates/page.xml/macros/page">
   <output>
     <content metal:fill-slot="maincontent" tal:define="xcu
-      python:modules['Products.XWFCore.XWFUtils']; rfr python:xcu.createRequestFromRequest">
-      <div class="batchcount"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
+      python:modules['Products.XWFCore.XWFUtils']; rfr python:xcu.createRequestFromRequest;
+      durl python:here.Scripts.get.division_url()">
+      <div class="batchcount" tal:condition="options/result_size"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
       <div class="batchnavigation">
         <a tal:condition="python:options['b_start']-1 > 0" tal:attributes="href python:'%s/view_files?%s' % (request.URL1, rfr(request, b_start=options['b_start']-options['b_size']))">prev <span tal:replace="python:options['b_size']"/></a>
         &#160;&#160;&#160; 
@@ -18,8 +19,8 @@
             <span class="searchlink" tal:content="result/title">link</span>
           </a> topic: <span class="searchtopic" tal:content="structure result/topic">this is the
             topic of the file</span>, uploaded by: <a tal:condition="python:getattr(result,
-            'dc_creator', None)" class="searchuser" tal:attributes="href python:'/contacts/%s' %
-            result.dc_creator" tal:define="user
+            'dc_creator', None)" class="searchuser" tal:attributes="href python:'%s/contacts/%s' %
+            (durl, result.dc_creator)" tal:define="user
             python:here.Scripts.get.user_realnames(result.dc_creator)" tal:content="python:user"/>
           <div class="searchdescription" tal:content="structure
             python:here.printable_summary(result) or 'No summary available'">This is a description
@@ -34,7 +35,7 @@
           </div>
         </li>
       </ul>
-      <div class="batchcount"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
+      <div class="batchcount" tal:condition="options/result_size"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
       <div class="batchnavigation">
         <a tal:condition="python:options['b_start']-1 > 0" tal:attributes="href python:'%s/view_files?%s' % (request.URL1, rfr(request, b_start=options['b_start']-options['b_size']))">prev <span tal:replace="python:options['b_size']"/></a>
         &#160;&#160;&#160; 

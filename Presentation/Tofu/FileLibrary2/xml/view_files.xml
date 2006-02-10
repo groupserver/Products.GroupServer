@@ -1,22 +1,5 @@
 <root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
   <output xmlns:xf="http://www.w3.org/2002/xforms">
-    <messages metal:fill-slot="messages" 
-              tal:define="message python:request.form.get('message', '')"
-              tal:condition="message">
-        <message type="result" tal:condition="python:message=='removed_folder'">
-          <paragraph>The folder was removed successfully</paragraph>
-        </message>
-        <message type="result" tal:condition="python:message=='removed_file'">
-          <paragraph>The file was removed successfully</paragraph>
-        </message>
-        <message type="result" tal:condition="python:message=='added_folder'">
-          <paragraph>The folder was added successfully</paragraph>
-        </message>
-        <message type="result" tal:condition="python:message=='added_file'">
-          <paragraph>The file was added successfully</paragraph>
-        </message>
-    </messages>
-
 	  <data metal:fill-slot="data">
 	    <xf:model id="find_file">
 	      <xf:instance>
@@ -26,6 +9,7 @@
 	          <modification_time tal:content="request/form/modification_time | string:0"/>
 	          <b_size tal:content="request/form/b_size | string:10"/>
 	          <topic tal:content="request/form/topic | string:"/>
+	          <tags tal:content="request/form/tags | string:"/>
 	        </data>
 	      </xf:instance>
 	      <xf:submission id="findFiles" method="get"
@@ -35,6 +19,8 @@
 
     <content metal:fill-slot="maincontent">
       <h1>Files</h1>
+
+      <p><a href="view_add_file">Add File</a></p>
       
       <xf:select1 appearance="minimal"
           model="find_file" ref="b_size"
@@ -111,6 +97,23 @@
           <xf:value tal:content="topic">sometopic</xf:value>
         </xf:item>
       </xf:select1>
+
+      <xf:select1 appearance="minimal"
+        model="find_file" ref="tags"
+        class="text">
+        <xf:label>Tags</xf:label>
+        <xf:hint>
+          Are you looking for files related to a specific tag?
+        </xf:hint>
+        <xf:item>
+          <xf:label>No specific tag</xf:label>
+          <xf:value></xf:value>
+        </xf:item>
+        <xf:item tal:repeat="tag options/tags">
+          <xf:label tal:content="tag">sometopic</xf:label>
+          <xf:value tal:content="tag">sometopic</xf:value>
+        </xf:item>
+      </xf:select1>
       
       <xf:submit class="button" model="find_file" submission="findFiles">
         <xf:label>Search</xf:label>
@@ -123,7 +126,8 @@
                         tal:attributes="batchsize request/form/b_size | string:10;
                                         batchstart request/form/b_start | string:1;
                                         modificationtime request/form/modification_time | string:0;
-                                        topic request/form/topic | string:"
+                                        topic request/form/topic | string:;
+                                        tags request/form/tags | string:"
                                          
                         slotname="listfiles"/>
       </adl:slot>

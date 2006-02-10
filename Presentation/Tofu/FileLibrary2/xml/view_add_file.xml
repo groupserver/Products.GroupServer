@@ -25,6 +25,7 @@
     </data>
     
     <content metal:fill-slot="maincontent">
+      <p><a href="view_files">View Existing Files</a></p>
       <fieldset>
         <legend>Add a new file</legend>
         <xf:upload class="text" model="file" ref="file" submission="addFile">
