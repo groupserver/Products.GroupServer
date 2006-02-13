@@ -12,7 +12,8 @@ user = context.REQUEST.AUTHENTICATED_USER
 cd = user.getProperty('currentDivision')
 if not cd:
     context.REQUEST.RESPONSE.redirect('/cookie_authentication/logout')
-    
+    return
+
 try:
     password = context.REQUEST.AUTHENTICATED_USER.get_password()
     if not password:
