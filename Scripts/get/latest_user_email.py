@@ -7,7 +7,9 @@
 ##parameters=user_id, limit=15
 ##title=
 ##
-division_object = context.get.division_object()
+groups_object = context.get.groups_object()
+if not groups_object:
+    return []
 
 def sorter(x, y):
     if x['mailDate'] < y['mailDate']:
@@ -16,7 +18,7 @@ def sorter(x, y):
         return -1
 
 messages = []
-for group in filter(lambda x: getattr(x, 'is_group', 0), context.Scripts.get.object_values(division_object.groups, 'Folder')):
+for group in filter(lambda x: getattr(x, 'is_group', 0), context.Scripts.get.object_values(groups_object, 'Folder')):
     try:
         messages += group.messages.find_email({'mailUserId': user_id})
     except:
