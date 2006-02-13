@@ -8,6 +8,11 @@
 ##title=
 ##
 # if the user doesn't have a password set, nag them for it
+user = context.REQUEST.AUTHENTICATED_USER
+cd = user.getProperty('currentDivision')
+if not cd:
+    context.REQUEST.RESPONSE.redirect('/cookie_authentication/logout')
+    
 try:
     password = context.REQUEST.AUTHENTICATED_USER.get_password()
     if not password:
