@@ -6,6 +6,7 @@
 <xsl:template match="output/menus/menu[@id='main']">
 
 	<div id="sitenavigation">
+
 		<ul>
 
 			<xsl:for-each select="menuitem">
@@ -27,8 +28,13 @@
 <!-- Sub Navigation Starts -->
 
 <xsl:template match="output/menus/menu[@id='side']">
+  <xsl:variable name="mainmenu"
+       select="//menu[@id='main']"/>
 
 <div id="contextnav">
+        <p class="label">
+	  <xsl:value-of select ="$mainmenu/menuitem[@current='1']/@name"/>
+	</p>
 	<dl>
 		<xsl:for-each select="menuitem">
 			<xsl:choose>

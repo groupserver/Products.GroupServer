@@ -276,6 +276,13 @@ div#contextnav {
 	border-color:#ccc;
 }
 
+div#contextnav p {
+	font-size: 11px;
+	margin: 0px;
+	padding: 2px 2px 2px 10px;
+	border-bottom: 1px solid #ccc;
+}
+
 div#contextnav dl {
 	margin: 0;
 	padding: 10px;
