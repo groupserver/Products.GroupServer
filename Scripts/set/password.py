@@ -24,11 +24,7 @@ if not password1:
     error = 1
 
 if not error:
-    roles = user.getRoles()
-    domains = user.getDomains()
-    
-    site_root.acl_users.userFolderEditUser(user.getId(), password1, roles, domains)
-    site_root.cookie_authentication.credentialsChanged(user, user.getId(), password1)
+    user.set_password(password)
 
 if came_from:
     return context.REQUEST.RESPONSE.redirect('%s?message=Your password was updated successfully' % came_from)
