@@ -21,6 +21,8 @@ if not user and username.find('@') > 0:
     user = site_root.acl_users.get_userByEmail(username.lower())
 
 if user:
+    # Reset the password and send the user a new one.
+    user.reset_password()
     user.send_notification('forgotten_password', 'default')
     
     return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
