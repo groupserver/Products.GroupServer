@@ -11,7 +11,7 @@
 user = context.REQUEST.AUTHENTICATED_USER
 cd = user.getProperty('currentDivision')
 # if we aren't a groupserver user, force a logout now
-if not cd:
+if cd == None:
     return context.cookie_authentication.logout()
 
 try:
