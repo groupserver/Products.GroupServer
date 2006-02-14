@@ -9,6 +9,8 @@
 ##
 groups_object = groups_object or context.Scripts.get.groups_object()
 groups = []
+if not groups_object:
+    return groups
 for id in groups_object.objectIds(('Folder', 'Folder (Ordered)')):
     try:
         object = getattr(groups_object, id)
