@@ -17,9 +17,9 @@
 
 			<table id="results">
 				<tr>
-					<th>Date of Last Post</th>
-					<th>Topic</th>
-					<th>Posts</th>
+					<th class="dateCol">Date of Last Post</th>
+					<th class="topicCol">Topic</th>
+					<th class="postsCol">Posts</th>
 			</tr>
 				
 			<xsl:for-each select="email:thread">
@@ -27,9 +27,9 @@
 					<xsl:if test="position() mod 2 != 0">
 						<xsl:attribute name="class">alternate</xsl:attribute>
 					</xsl:if>
-					<td><xsl:value-of select="email:lastdate"/></td>
-					<td><a href="view_email?id={email:lastid}&amp;show_thread=1"><xsl:value-of select="email:subject"/></a></td>
-					<td><xsl:value-of select="@size"/></td>
+					<td class="dateCol"><xsl:value-of select="email:lastdate"/></td>
+					<td class="topicCol"><a href="view_email?id={email:lastid}&amp;show_thread=1"><xsl:value-of select="email:subject"/></a></td>
+					<td class="postsCol"><xsl:value-of select="@size"/></td>
 				</tr>
 			</xsl:for-each>
 			</table>
