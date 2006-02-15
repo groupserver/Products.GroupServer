@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=
+##parameters=limit=12
 ##title=
 ##
 division_object = context.get.division_object()
@@ -31,4 +31,4 @@ for group in filter(lambda x: getattr(x, 'is_group', 0), context.Scripts.get.obj
 
 messages.sort(sorter)
 
-return messages[:12]
+return messages[:limit]
