@@ -31,4 +31,4 @@ for group in filter(lambda x: getattr(x, 'is_group', 0), context.Scripts.get.obj
 
 messages.sort(sorter)
 
-return messages[:5]
+return messages[:12]
