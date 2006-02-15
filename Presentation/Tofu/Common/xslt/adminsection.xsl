@@ -66,7 +66,7 @@
 		<div id="toparea">
 			<!-- External Bar Starts -->
 			<div id="externalbar">
-				<xsl:call-template name="divisionswitcher"/>
+				<!--xsl:call-template name="divisionswitcher"/-->
 					<xsl:apply-templates select="output/menus/menu[@id='external']"/>
 			</div>
 			<!-- External Bar Ends -->
