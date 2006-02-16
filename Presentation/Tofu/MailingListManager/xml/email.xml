@@ -17,9 +17,11 @@
     <email:mailFrom tal:content="python:email['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
     <email:from tal:content="python:email['from'][0]">someaddress@iopen.co.nz</email:from>
     <span tal:omit-tag="" tal:define="mailUserId email/mailUserId | nothing; mailUserExists python:here.Scripts.get.user_exists(mailUserId);
-                                      mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
+                                      mailFromName python:here.Scripts.get.user_realnames(mailUserId);
+                                      mailUserImage python:here.Scripts.get.user_image(mailUserId)">
         <email:mailUserId tal:content="mailUserId | nothing" tal:attributes="exists python:mailUserExists and 1 or 0" />
         <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
+        <email:mailUserImage tal:content="mailUserImage | nothing">Mr Wonderful</email:mailUserImage>
     </span>
     <email:mailSubject tal:content="python:email['mailSubject']">someaddress@iopen.co.nz</email:mailSubject>
     <email:subject tal:condition="python:hasattr(email, 'subject')" tal:content="python:email['subject']">someaddress@iopen.co.nz</email:subject>

@@ -126,7 +126,12 @@
                                                       <xsl:value-of select="email:from"/>
                                                   </xsl:otherwise>
                                               </xsl:choose></strong></p>
-			<!-- <p>Subject: <strong><xsl:value-of select="email:mailSubject"/></strong></p> -->
+
+                <xsl:if test="email:mailUserImage/text()">
+                    <div class="userimage">
+                        <a href="/contacts/{email:mailUserId/text()}"><img src="{email:mailUserImage/text()}" alt="Photo of {email:mailFromName/text()}"/></a>
+                    </div>
+                </xsl:if>
 
 		<pre class="email-body">
 			<xsl:call-template name="mailBody"><xsl:with-param name="email" select="."/><xsl:with-param name="pos" select="position()"/></xsl:call-template>
