@@ -86,7 +86,7 @@ group.manage_addProperty('short_name', title, 'string')
 group.manage_changeProperties(title=title)
 
 # add a files area
-group.manage_addProduct['XWFFileLibrary'].manage_addXWFVirtualFileFolder('files', 'files')
+group.manage_addProduct['XWFFileLibrary2'].manage_addXWFVirtualFileFolder2('files', 'files')
 
 # add a messages area
 group.manage_addProduct['XWFMailingListManager'].manage_addXWFVirtualMailingListArchive('messages', 'messages')
