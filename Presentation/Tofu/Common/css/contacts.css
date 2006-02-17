@@ -52,13 +52,13 @@ ul.groups li {
 	padding: 0;
 }
 
-div.userimage img {
+/* div.userimage img {
 	position: absolute;
 	top: 170px;
 	right: 25px;
 	width: 125;
 	height: 156px;
-}
+} */
 
 /* User Self */
 fieldset {

@@ -1,3 +1,17 @@
+div.userimage {
+	width: 80px;
+	height: 100px;
+        float: left;
+        display: inline;
+        margin: 5px 5px 0 0;
+}
+
+div.userimage img {
+	width: 80px;
+	height: 100px;
+        border: 1px solid black;
+}
+
 div.emailwrap {
         margin: 0;
         padding: 0;
@@ -45,6 +59,7 @@ div.emaildetails-self-odd {
 
 pre.email-body {
         margin: 10px 0px 10px 0px;
+        min-height: 120px;
 }
 
 p.email-metadata {
