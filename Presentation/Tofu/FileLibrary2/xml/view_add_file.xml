@@ -17,6 +17,7 @@
             <file />
             <topic />
             <tags />
+            <summary />
           </data>
         </xf:instance>
         <xf:submission method="form-data-post" id="addFile"
@@ -48,11 +49,29 @@
             <xf:value tal:content="topic">sometopic</xf:value>
           </xf:item>
         </xf:select1>
+
+        <p><strong>or</strong></p>
+
+        <xf:input model="file" ref="topic" class="text">
+          <xf:label>Create new topic</xf:label>
+          <xf:hint>
+            Alternatively, you may create a new topic for this file
+          </xf:hint>
+        </xf:input>
+
+        <xf:input model="file" ref="summary" class="text">
+          <xf:label>Summary</xf:label>
+          <xf:hint>
+            You should provide a summary of the file, to help people
+            understand the file
+          </xf:hint>
+        </xf:input>
         
         <xf:textarea class="text" model="file" ref="tags">
           <xf:label>Tags</xf:label>
           <xf:hint>
-            You may add arbitrary tags to this file, one per line.
+            You may add arbitrary tags to this file, one per line. This
+            will help people find your file
           </xf:hint>
         </xf:textarea>
         
