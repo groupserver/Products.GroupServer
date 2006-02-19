@@ -4,10 +4,6 @@ form {
 	padding: 0;
 }
 
-input {
-	padding: 2px;
-}
-
 label.required {
 	margin: 0;
 	padding: 3px 8px 0 0;
@@ -19,94 +15,49 @@ label.required {
 
 /* text input row */
 div.formelementtext {
-	margin: 0;
-	padding: 5px;
-	width: 520px;
+	width: 600px;
 }
 
 div.formelementtext input {
-	margin: 0;
-	padding: 5px;
-	width: 250px;
+ 	margin: 0 0 0 205px;
+	width: 300px;
+}
+
+div.formelementtext textarea {
+        margin: 0 0 0 205px;
+        width: 300px;
+        height: 200px;
 }
 
 div.formelementtext label {
 	float: left;
 	text-align: right;
 	width: 200px;
-	margin: 10px 0 0 0;
 	padding: 0 5px 0 0;
 	font-weight: bold;
 }
 
 div.formelementtext div.hint {
     padding: 0 5px 0 5px;
-	visibility: hidden;
-	display: none;
-}
-
-/* radio checkbox row */
-div.formelementradio {
-	margin: 0;
-	padding: 5px;
-	clear: both;
-	width: 520px;
-}
-
-div.formelementradio label {
-	float: left;
-	width: 150px;
-	padding: 0 5px 0 0;
-	font-weight: bold;
-}
-
-div.formelementradio input {
-	margin: 0 10px 0 0;
-	padding: 0;
-	font-size: 12px;
-	float: left;
-	width: 15px;
-	height: 15px;
-}
-
-div.radiogroup label {
-	width: 150px;
-}
-
-div.radiogroup {
-	margin: 0 0 0 10px;
-	width: 600px;
+    font-size: 9px;
+    color: #aaaaaa;
+    /* visibility: hidden;
+       display: none; */
 }
 
 /* checkbox row */
 div.formelementcheck label {
-	float: left;
-	margin: 0 0 0 5px;
 	padding: 0 5px 0 0;
 	font-weight: bold;
+}
+
+/* single checkbox */
+div.formelementsinglecheck label {
+	float: left;
+	text-align: right;
+	width: 200px;
 	padding: 0 5px 0 0;
-}
-
-div.formelementcheck input {
-	clear: both;
-	margin: 0 10px 0 5px;
-	padding: 0;
-	font-size: 12px;
-	float: left;
-	width: 15px;
-	height: 15px;
-}
-
-div.checkgroup label {
-	width: 500px;
-	float: left;
-	vertical-align: middle;
-}
-
-div.checkgroup {
-	margin: 0 0 0 10px;
-	width: 550px;
-	float: left;
+	font-weight: bold;
 }
 
 /* Submit Button */
