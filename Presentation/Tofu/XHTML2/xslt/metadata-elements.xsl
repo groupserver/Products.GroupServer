@@ -30,4 +30,13 @@
     </script>
   </xsl:template>
   
+  <xsl:template match="xhtml2:meta">
+    <meta>
+      <xsl:apply-templates select="@*"/>
+      <xsl:attribute name="content">
+        <xsl:value-of select="text()"/>
+      </xsl:attribute>
+    </meta>
+  </xsl:template>
+  
 </xsl:stylesheet>

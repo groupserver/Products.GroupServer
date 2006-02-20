@@ -159,6 +159,12 @@
       <xsl:value-of select="."/>
     </xsl:attribute>
   </xsl:template>
+  <xsl:template match="@property">
+    <xsl:attribute name="name">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+
 
   <!-- === Handler === -->
   <xsl:template match="@type">
