@@ -101,7 +101,7 @@
 
 <xsl:template name="breadcrumbs">
         <div class="breadcrumb">
-            <xsl:apply-templates select="output/context"/>
+            <xsl:apply-templates select="output/context"/> <xsl:value-of select="//output/metadata/title/text()"/>
 	</div>
 </xsl:template>
 
