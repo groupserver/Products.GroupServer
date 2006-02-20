@@ -18,7 +18,7 @@ if not query.strip():
     return createBatch([], start, size)
 
 results = context.Catalog.searchResults(meta_type='XWF News Item',
-                                        path_index=division.getPhysicalPath(),
+                                        path=division.getPhysicalPath(),
                                         dc_valid={'query': DateTime.DateTime(),
                                                   'range': 'max'},
                                         sort_order='descending',
