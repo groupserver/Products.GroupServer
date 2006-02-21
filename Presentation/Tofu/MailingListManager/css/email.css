@@ -25,6 +25,7 @@ span.emailname-self {
 }
 
 div.emaildetails-even {
+        clear: both;
 	background-color:#ffffff;
         margin: 0 0 0 0;
         padding: 10px 10px 10px 10px;
@@ -33,6 +34,7 @@ div.emaildetails-even {
         border-color: #000;
 }
 div.emaildetails-odd {
+        clear: both;
 	background-color:#eeeeee;
         margin: 0;
         padding: 10px 10px 10px 10px;
@@ -41,6 +43,7 @@ div.emaildetails-odd {
         border-color: #000;
 }
 div.emaildetails-self-even {
+        clear: both;
 	background-color: #eeeecc;
         margin: 0 0 0 0;
         padding: 10px 10px 10px 10px;
@@ -49,6 +52,7 @@ div.emaildetails-self-even {
         border-color: #000;
 }
 div.emaildetails-self-odd {
+        clear: both;
 	background-color: #eeeecc;
         margin: 0 0 0 0;
         padding: 10px 10px 10px 10px;
@@ -59,7 +63,6 @@ div.emaildetails-self-odd {
 
 pre.email-body {
         margin: 10px 0px 10px 0px;
-        min-height: 120px;
 }
 
 p.email-metadata {
