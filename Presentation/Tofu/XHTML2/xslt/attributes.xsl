@@ -164,8 +164,17 @@
       <xsl:value-of select="."/>
     </xsl:attribute>
   </xsl:template>
-
-
+  <!-- ---=mpj17=---
+  --  The media attribute is *not* supported by XHTML2: it does not need it
+  --    because it has "<?xml-stylesheet...?>" goodness. HOWEVER, I need to
+  --    support the media attribute for  old-fashoned stylesheet inclusion.
+  -->
+  <xsl:template match="@media">
+    <xsl:attribute name="media">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+  
   <!-- === Handler === -->
   <xsl:template match="@type">
     <xsl:attribute name="type">
