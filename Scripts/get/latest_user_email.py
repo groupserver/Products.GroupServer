@@ -26,4 +26,14 @@ for group in filter(lambda x: getattr(x, 'is_group', 0), context.Scripts.get.obj
 
 messages.sort(sorter)
 
-return messages[:limit]
+ids = []
+filtered_messages = []
+for message in messages:
+    if message['id'] not in ids:
+        filtered_messages.append(message)
+        ids.append(message['id'])
+
+del(ids)
+filtered_messages = filtered_messages[:limit]
+
+return filtered_messages
