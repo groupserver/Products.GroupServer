@@ -31,7 +31,7 @@
             /></span>, tags: <tal:block tal:repeat="tag result/tags">"<span class="searchtags"
                 tal:content="structure tag"/>" </tal:block></div>
           <div class="searchtime">
-            <span class="searchtime">date: <span tal:replace="result/modification_time"/></span>
+            <span class="searchtime">date: <span tal:replace="python:result['modification_time'].ISO().toZone(here.Scripts.get.option('timezone')"/></span>
           </div>
         </li>
       </ul>
