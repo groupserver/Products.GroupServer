@@ -34,17 +34,17 @@ div#content {
 
 /* Reformat the title-bar text, which is not the page title.*/
 div#titlebar {
-  font-size: normal;
+  font-size: medium;
 }
 div#titlebar span.group {
   margin: 0px;
   padding: 0px;
-  font-size: normal;
+  font-size: medium;
 }
 div#titlebar span.division {
   margin: 0px;
   padding-left: 1em;
-  font-size: normal;
+  font-size: medium; 
 }
 
 /* Reformat the links:                        */

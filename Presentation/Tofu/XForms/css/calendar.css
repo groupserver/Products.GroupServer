@@ -10,7 +10,7 @@ div.calendar {
 	top: 0px;
 	width: 174px;
 	height: 200px;
-	clip:rect(0px 174px 200px 0px);
+	clip:rect(0px, 174px, 200px, 0px);
 	visibility: hidden;
 	z-index: 3;
 }
