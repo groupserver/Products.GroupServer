@@ -40,12 +40,6 @@ for field in form:
 if result.get('error', False):
     return result
 
-try:
-    pass
-except:
-    result['message'] = ("<p>Some problem.</p>")
-    result['error'] = True
-    return result
 
 user = context.REQUEST.AUTHENTICATED_USER
 email = form.get('email')

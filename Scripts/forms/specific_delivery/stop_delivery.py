@@ -50,7 +50,16 @@ except:
     return result
 
 user = context.REQUEST.AUTHENTICATED_USER
-user.remove_defaultDeliveryEmailAddress(email)
+try:
+    # crude, really crude, way of telling if we're a list
+    email.append
+except:
+    email = [email]
+    
+group_id = form.get('group_id')
+for e in email:
+    if e:
+        user.remove_deliveryEmailAddressByKey(group_id, e)
 
 result['message'] = "<p>Successfully added address</p>"
 

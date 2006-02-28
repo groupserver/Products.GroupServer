@@ -56,9 +56,10 @@ try:
 except:
     email = [email]
 
+group_id = form.get('group_id')
 for e in email:
     if e:
-        user.add_defaultDeliveryEmailAddress(e)
+        user.add_deliveryEmailAddressByKey(group_id, e)
 
 result['message'] = "<p>Successfully removed address</p>"
 

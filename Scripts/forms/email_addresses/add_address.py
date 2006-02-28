@@ -43,14 +43,15 @@ if result.get('error', False):
 email = form.get('email')
 
 try:
-    pass
+    # crude, really crude, way of telling if we're a list
+    email.append
 except:
-    result['message'] = ("<p>Some problem.</p>")
-    result['error'] = True
-    return result
+    email = [email]
 
 user = context.REQUEST.AUTHENTICATED_USER
-user.add_emailAddress(email)
+for e in email:
+    if e:
+        user.add_emailAddress(e)
 
 result['message'] = "<p>Successfully added address</p>"
 
