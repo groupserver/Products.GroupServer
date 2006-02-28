@@ -10,7 +10,7 @@
 from Products.XWFCore import validators as v
 required = {"email": "An email address is required, but was not given"}
             
-validators = {"email": v.validate_email}
+validators = {}
 
 result = {}
 
@@ -51,8 +51,14 @@ except:
 user = context.REQUEST.AUTHENTICATED_USER
 for e in email:
     if e:
-        user.add_emailAddress(e)
+        try:
+            v.validate_email(e)
+            user.add_emailAddress(e)
+        except v.ValidationError, x:
+            result['message'] = result['message']+"<dw:para>%s</dw:para>" % x
+            result['error'] = True
 
-result['message'] = "<p>Successfully added address</p>"
+if not result.get('error', False):
+    result['message'] = "<p>Successfully added address</p>"
 
 return result
