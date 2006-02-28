@@ -10,7 +10,7 @@
 from Products.XWFCore import validators as v
 required = {"email": "An email address is required, but was not given"}
             
-validators = {"email": v.validate_email}
+validators = {}
 
 result = {}
 
