@@ -61,6 +61,6 @@ for e in email:
     if e:
         user.remove_deliveryEmailAddressByKey(group_id, e)
 
-result['message'] = "<p>Successfully added address</p>"
+result['message'] = "<p>Successfully removed address for delivery</p>"
 
 return result
