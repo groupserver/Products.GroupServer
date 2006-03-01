@@ -73,6 +73,10 @@ p.email-navlink {
         margin: 0px;
 }
 
+p.email-navlink a {
+	margin: 0 30px 0 0;
+}
+
 span.emailintro {
         margin: 0;
         padding: 0;
