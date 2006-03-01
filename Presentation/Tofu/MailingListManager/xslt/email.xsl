@@ -25,7 +25,7 @@
 	
 				<xsl:if test="@fullthread='1'">
                                         <h1>Topic</h1>
-                                        <h2>"<xsl:value-of select="email:email/email:mailSubject"/>" <!-- <a class="email-link" href="/r/topic/{email:email[position()=first()]/@id}">link</a>--></h2>
+                                        <h2>"<xsl:value-of select="email:email/email:mailSubject"/>" <a class="email-link" href="/r/topic/{email:email[position()=last()]/@id}">link</a></h2>
 					<a name="top"/>
 					<p><span class="note"><a href="view_threads">All Topics</a></span>
                                            &#160;&#160;&#160;&#160;
