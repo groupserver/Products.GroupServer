@@ -25,7 +25,7 @@
 	
 				<xsl:if test="@fullthread='1'">
                                         <h1>Topic</h1>
-                                        <h2>"<xsl:value-of select="email:email/email:mailSubject"/>"</h2>
+                                        <h2>"<xsl:value-of select="email:email/email:mailSubject"/>" <a class="email-link" href="/r/topic/{//email:email[position()=first()]/@id}">link</a></h2>
 					<a name="top"/>
 					<p><span class="note"><a href="view_threads">All Topics</a></span>
                                            &#160;&#160;&#160;&#160;
@@ -137,7 +137,7 @@
 			<xsl:call-template name="mailBody"><xsl:with-param name="email" select="."/><xsl:with-param name="pos" select="position()"/></xsl:call-template>
 		</pre>
 		
-		<p class="email-navlink"><a href="{//content/@url}#top">top</a></p>
+		<p class="email-navlink"><a href="{//content/@url}#top">top</a> <a class="email-link" href="/r/post/{@id}">link</a></p>
 <div class="spacer">&#160;</div>
 
 	</xsl:template>
