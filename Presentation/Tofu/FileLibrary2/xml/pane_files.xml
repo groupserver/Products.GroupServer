@@ -17,19 +17,18 @@
         <li class="searchitem" tal:repeat="result options/result_set">
           <a tal:attributes="href python:'get_file?id=%s' % result.id">
             <span class="searchlink" tal:content="result/title">link</span>
-          </a> topic: <span class="searchtopic" tal:content="structure result/topic">this is the
+          </a> topic: <span class="searchtopic" tal:content="result/topic">this is the
             topic of the file</span>, uploaded by: <a tal:condition="python:getattr(result,
             'dc_creator', None)" class="searchuser" tal:attributes="href python:'%s/contacts/%s' %
             (durl, result.dc_creator)" tal:define="user
             python:here.Scripts.get.user_realnames(result.dc_creator)" tal:content="python:user"/>
-          <div class="searchdescription" tal:content="structure
-            python:here.printable_summary(result) or 'No summary available'">This is a description
+          <div class="searchdescription" tal:content="python:here.printable_summary(result) or 'No summary available'">This is a description
             of the file, pulled from the stuff in the file</div>
           <div class="searchinfo"><span class="searchsize">size: <tal:block
                 tal:content="python:here.pretty_size(result.size)"/></span>, <span
               class="searchcontenttype">type: <tal:block tal:content="python:result.content_type"
             /></span>, tags: <tal:block tal:repeat="tag result/tags">"<span class="searchtags"
-                tal:content="structure tag"/>" </tal:block></div>
+                tal:content="tag"/>" </tal:block></div>
           <div class="searchtime">
             <span class="searchtime">date: <span tal:replace="python:result['modification_time'].toZone(here.Scripts.get.option('timezone')).ISO()"/></span>
           </div>
