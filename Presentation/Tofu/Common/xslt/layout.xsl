@@ -6,15 +6,17 @@
 </xsl:template>
 
 <xsl:template match="div">
-    <div class="{@class}"><xsl:apply-templates /></div>
+    <div>
+      <xsl:apply-templates select="@id | @class"/>
+      <xsl:apply-templates />
+   </div>
 </xsl:template>
 
 <xsl:template match="heading1 | h1">
 <h1>
-<xsl:if test="@id">
-<xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-</xsl:if>
-<xsl:value-of select="." /></h1>
+  <xsl:apply-templates select="@id | @class"/>
+  <xsl:value-of select="." />
+</h1>
 </xsl:template>
 
 <xsl:template match="pparagraph">
@@ -27,26 +29,20 @@
 
 <xsl:template match="heading2 | h2">
 <h2>
-<xsl:if test="@id">
-<xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-</xsl:if>
-<xsl:value-of select="." /></h2>
+  <xsl:apply-templates select="@id | @class"/>
+  <xsl:value-of select="." /></h2>
 </xsl:template>
 
 <xsl:template match="heading3 | h3">
 <h3>
-<xsl:if test="@id">
-<xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-</xsl:if>
-<xsl:value-of select="." /></h3>
+  <xsl:apply-templates select="@id | @class"/>
+  <xsl:value-of select="." /></h3>
 </xsl:template>
 
 <xsl:template match="heading4 | h4">
 <h4>
-<xsl:if test="@id">
-<xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-</xsl:if>
-<xsl:value-of select="." /></h4>
+  <xsl:apply-templates select="@id | @class"/>
+  <xsl:value-of select="." /></h4>
 </xsl:template>
 
 <xsl:template match="bold">
@@ -79,8 +75,20 @@
 
 <xsl:template match="link">
 	<a href="{@url}">
+		<xsl:apply-templates select="@id | @class"/>
 		<xsl:apply-templates/>
 	</a>
+</xsl:template>
+
+<xsl:template match="@id">
+	<xsl:attribute name="id">
+		<xsl:value-of select="."/>
+	</xsl:attribute>
+</xsl:template>
+<xsl:template match="@class">
+	<xsl:attribute name="class">
+		<xsl:value-of select="."/>
+	</xsl:attribute>
 </xsl:template>
   
 <xsl:template match="span">
@@ -91,7 +99,7 @@
   
 <xsl:template match="a">
     <a href="{@href}">
-      <xsl:if test="@class"><xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute></xsl:if>
+      <xsl:apply-templates select="@id | @class"/>
       <xsl:apply-templates />
     </a>
 </xsl:template>

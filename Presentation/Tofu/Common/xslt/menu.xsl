@@ -12,7 +12,11 @@
 			<xsl:for-each select="menuitem">
 				<xsl:choose>
   					<xsl:when test="@current='1'">
-  					 <li class="current"><a  id="{@name}-menu-link" class="current" href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:when>
+					  <li class="current" 
+					    id="{@name}-menu-link">
+					    <xsl:value-of select="@name"/>
+					  </li>
+					</xsl:when>
   					<xsl:otherwise>
   					 <li><a  id="{@name}-menu-link" href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:otherwise>
 				</xsl:choose>
@@ -39,9 +43,10 @@
 		<xsl:for-each select="menuitem">
 			<xsl:choose>
 				<xsl:when test="@current='1'">
-			 		<dd><a class="current" href="{@url}"><xsl:value-of select="@name"/></a>
-						<xsl:choose>
-							<xsl:when test="count(menuitem)!=0">
+			 		<dd class="current">
+					  <xsl:value-of select="@name"/>
+					<xsl:choose>
+					  <xsl:when test="count(menuitem)!=0">
 								<dl>
 									<xsl:for-each select="menuitem">
 										<xsl:call-template name="thirdmenuitem"/>
