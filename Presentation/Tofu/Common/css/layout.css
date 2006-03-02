@@ -337,7 +337,7 @@ div#contextnav dd a:hover {
 
 /* Main Content Area */
 
-div#content {
+div#content, div#divisionHomeContent {
 	margin: 18px 25px 25px 150px;
 	padding:15px 10px 15px 10px;
 	min-height:300px;
@@ -346,12 +346,12 @@ div#content {
 	border-color:#ccc;
 }
 
-div#content ul li {
+div#content ul li, div#divisionHomeContent ul li {
 	margin: 0 0 3px 0;
 	padding: 0 0 0 0;
 }
 
-div#content ul ul {
+div#content ul ul, div#divisionHomeContent ul ul  {
 	margin: 5px 0 5px 1.5em;
 	padding: 0 0 0 0;
 }
@@ -421,3 +421,31 @@ div.message-error {
         padding: 5px 5px 0 5px;
         font-size: 100%;
 }
+
+/* Two column layout for the division homepage: there is a left column
+ * 	and a right column  and a noFloat div to stop them causing havoc.
+ */
+.leftColumn {
+	float: left;
+	width: 45%;
+}
+.rightColumn {
+	float: right;
+	width: 45%;
+}
+.noFloat {
+	clear: both;
+}
+/* Layout the division homepage. It is like every other home page, but
+ *	without the context-navigation (alias sidemenu, alias menuside)
+ * 	so it shares a lot in common with #content. 
+ */
+div#divisionHomeConent div#contextnav {
+	display: none;
+}
+
+div#divisionHomeContent {
+	margin: 18px 25px 25px 25px;
+	padding:15px 10px 15px 10px;
+}
+
