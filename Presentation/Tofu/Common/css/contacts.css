@@ -6,6 +6,11 @@ ul.contacts {
 	list-style-type: none;
 }
 
+ul.contacts li img {
+	padding-left: 6px;
+	padding-top: 2px;
+}
+
 /* User Instructions */
 div.userinstructions {
 	margin: 0 180px 10px 0;
@@ -130,3 +135,6 @@ table.changeemail td {
 	padding: 0 5px 0 5px;
 	text-align: center;
 }
+
+
+
