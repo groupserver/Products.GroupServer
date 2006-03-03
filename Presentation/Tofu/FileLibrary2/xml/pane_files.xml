@@ -52,8 +52,8 @@
 	    <div class="infotags">
 	      Tags: 
 	      <tal:block tal:repeat="tag result/tags">
-		<q><span class="searchtags"
-                tal:content="tag"/></q>
+		<q class="searchtags"
+                tal:content="tag"/>
 	      </tal:block>
 	    </div><!--infotags-->
 	  </div><!--searchinfo-->
