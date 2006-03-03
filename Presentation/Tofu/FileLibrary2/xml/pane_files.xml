@@ -43,13 +43,15 @@
 	    </div>
 	  </div><!--description-->
 	  <div class="searchinfo">
-	    <div class="infotopic">
+	    <div class="infotopic"
+              tal:condition="result/topic">
 	      Topic:
 	      <span class="searchtopic" tal:content="result/topic">
 		This is the topic of the file.
 	      </span>
 	    </div><!--infotopic-->
-	    <div class="infotags">
+	    <div class="infotags"
+              tal:condition="result/tags">
 	      Tags: 
 	      <tal:block tal:repeat="tag result/tags">
 		<q class="searchtags"
