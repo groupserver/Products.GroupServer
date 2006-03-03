@@ -47,15 +47,13 @@ li#profile-link a {
   background-image: url("/Presentation/Tofu/Common/images/16x16/user.gif");
 }
 /* The menu links are done ever-so-slightly differently. */
+
 #groupserver #sitenavigation {
   padding-left: 10px;
 }
 #Home-menu-link a, #People-menu-link a, #Groups-menu-link a, 
 #Help-menu-link a {
 	padding: 0 18px 0 10px;
-}
-div#sitenavigation .current a:link, div#sitenavigation .current a:visited {
-  color: #ffcc00;
 }
 
 /* Context Navigation Menu, A.K.A. sidemenu, A.K.A. menuside          */
