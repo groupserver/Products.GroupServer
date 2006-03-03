@@ -21,7 +21,8 @@
 			<span class="name">
 				<xsl:apply-templates select="name"/>
 			</span>
-			<xsl:apply-templates select="image | biography"/>
+			<xsl:apply-templates select="image | biography"
+				mode="name"/>
 		</li>
 	</xsl:template>
 	<xsl:template match="name">
@@ -31,14 +32,14 @@
 		<xsl:if test="../*[@present='auto']">&#160;(<xsl:for-each select="../*[@present='auto']"><xsl:if test="position()!=1">, </xsl:if><xsl:value-of select="@title"/>: <xsl:choose><xsl:when test="text()"><xsl:value-of select="text()"/></xsl:when><xsl:otherwise>[not set]</xsl:otherwise></xsl:choose></xsl:for-each>)</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="image">
+	<xsl:template match="image" mode="name">
 	  <img 
 	    src="/Presentation/Tofu/Common/images/16x16/image-x-generic.gif"
 	    width="16" height="16"
 	    alt="Image present."/>
 	</xsl:template>
 
-	<xsl:template match="biography">
+	<xsl:template match="biography" mode="name">
 	  <img 
 	    src="/Presentation/Tofu/Common/images/16x16/text-x-generic.gif"
 	    width="16" height="16" 
