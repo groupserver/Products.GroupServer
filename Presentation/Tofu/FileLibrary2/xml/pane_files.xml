@@ -18,9 +18,11 @@
           <a tal:attributes="href python:'get_file?id=%s' % result.id">
             <span class="searchlink" tal:content="result/title">link</span>
           </a>
-	  <span class="searchsize">
-	    (<tal:block
-	      tal:content="python:here.pretty_size(result.size)">-1GB</tal:block>
+	  (<span class="searchsize"
+	     tal:content="python:here.pretty_size(result.size)">
+		-1GB</span>,
+             <span class="searchcontenttype">
+		<tal:block tal:content="python:result.content_type" />
 	  </span>)
 	  uploaded by
 	  <a tal:condition="python:getattr(result, 'dc_creator', None)" 
@@ -29,12 +31,10 @@
 	    tal:define="user python:here.Scripts.get.user_realnames(result.dc_creator)" 
 	    tal:content="python:user">Username</a>
 	  on
-          <div class="searchtime">
-            <span class="searchtime">
-	      <span 
-		tal:replace="python:result['modification_time'].toZone(here.Scripts.get.option('timezone')).ISO()"/>
-	    </span>
-          </div>
+          <span class="searchtime"
+	    tal:content="python:result['modification_time'].toZone(here.Scripts.get.option('timezone')).ISO()">
+		1977-01-01
+	  </span>
 	  <div class="description">
             <div class="searchdescription" 
 	      tal:content="python:here.printable_summary(result) or 'No summary available'">
@@ -42,7 +42,6 @@
 	      file.
 	    </div>
 	  </div><!--description-->
-	  <br/>
 	  <div class="searchinfo">
 	    <div class="infotopic">
 	      Topic:
@@ -50,7 +49,6 @@
 		This is the topic of the file.
 	      </span>
 	    </div><!--infotopic-->
-	    <br/>
 	    <div class="infotags">
 	      Tags: 
 	      <tal:block tal:repeat="tag result/tags">
@@ -58,12 +56,6 @@
                 tal:content="tag"/></q>
 	      </tal:block>
 	    </div><!--infotags-->
-	    <div class="infocontenttype">
-	      Type:
-	      <span class="searchcontenttype">
-		<tal:block tal:content="python:result.content_type" />
-	      </span>
-	    </div><!--infocontenttype-->
 	  </div><!--searchinfo-->
 	</li>
       </ul>
