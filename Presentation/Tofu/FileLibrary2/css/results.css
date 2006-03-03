@@ -19,3 +19,7 @@ div.searchinfo {
 div.searchtime {
     font-size: 90%;
 }
+
+q.searchtags {
+    quotes: "“" "”";
+}
