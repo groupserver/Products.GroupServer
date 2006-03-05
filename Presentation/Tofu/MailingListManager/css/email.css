@@ -12,9 +12,19 @@ div.userimage img {
         border: 1px solid black;
 }
 
+div.propimage {
+        float: right;
+        width: 1px;
+        height: 100px;
+}
+
+div.clear {
+        clear: both;
+        height: 1px;
+        overflow: hidden;
+}
+
 div.emailwrap {
-        margin: 0;
-        padding: 0;
         border-style: dotted;
         border-width: 0 0 1px 0;
         border-color: #000;
@@ -27,7 +37,6 @@ span.emailname-self {
 div.emaildetails-even {
         clear: both;
 	background-color:#ffffff;
-        margin: 0 0 0 0;
         padding: 10px 10px 10px 10px;
         border-style: dotted;
         border-width: 1px 0 0 0;
@@ -36,7 +45,6 @@ div.emaildetails-even {
 div.emaildetails-odd {
         clear: both;
 	background-color:#eeeeee;
-        margin: 0;
         padding: 10px 10px 10px 10px;
         border-style: dotted;
         border-width: 1px 0 0 0;
@@ -45,7 +53,6 @@ div.emaildetails-odd {
 div.emaildetails-self-even {
         clear: both;
 	background-color: #eeeecc;
-        margin: 0 0 0 0;
         padding: 10px 10px 10px 10px;
         border-style: dotted;
         border-width: 1px 0 0 0;
@@ -54,7 +61,6 @@ div.emaildetails-self-even {
 div.emaildetails-self-odd {
         clear: both;
 	background-color: #eeeecc;
-        margin: 0 0 0 0;
         padding: 10px 10px 10px 10px;
         border-style: dotted;
         border-width: 1px 0 0 0;

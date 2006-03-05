@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:email="http://xwft.net/namespaces/email/0.9/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+                xmlns:email="http://xwft.net/namespaces/email/0.9/"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="email">
+        
 	<xsl:output method="html" encoding="UTF-8"/>
+        
         <xsl:include href="file://MailingListManager/xslt/results"/>
         <xsl:include href="file://MailingListManager/xslt/sitesearchresults"/>
         <xsl:include href="file://MailingListManager/xslt/threaded"/>
@@ -25,7 +30,7 @@
 	
 				<xsl:if test="@fullthread='1'">
                                         <h1>Topic</h1>
-                                        <h2>"<xsl:value-of select="email:email/email:mailSubject"/>" <a class="email-link" href="/r/topic/{email:email[position()=last()]/@id}">link</a></h2>
+                                        <h2>"<xsl:value-of select="email:email/email:mailSubject"/>" (<a class="email-link" href="/r/topic/{email:email[position()=last()]/@id}">short link</a>)</h2>
 					<a name="top"/>
 					<p><span class="note"><a href="view_threads">All Topics</a></span>
                                            &#160;&#160;&#160;&#160;
@@ -125,21 +130,22 @@
                                                   <xsl:otherwise>
                                                       <xsl:value-of select="email:from"/>
                                                   </xsl:otherwise>
-                                              </xsl:choose></strong></p>
+                                              </xsl:choose></strong> (<a class="email-link" href="/r/post/{@id}">short link</a>)
+		</p>
 
                 <xsl:if test="email:mailUserImage/text()">
                     <div class="userimage">
                         <a href="/contacts/{email:mailUserId/text()}"><img src="{email:mailUserImage/text()}" alt="Photo of {email:mailFromName/text()}"/></a>
                     </div>
+                    <div class="propimage"></div>
                 </xsl:if>
 
 		<pre class="email-body">
 			<xsl:call-template name="mailBody"><xsl:with-param name="email" select="."/><xsl:with-param name="pos" select="position()"/></xsl:call-template>
 		</pre>
 		
-		<p class="email-navlink"><a href="{//content/@url}#top">top</a> <a class="email-link" href="/r/post/{@id}">link</a></p>
-<div class="spacer">&#160;</div>
-
+		<p class="email-navlink"><a href="{//content/@url}#top">top</a></p>
+                <div class="clear"></div>                
 	</xsl:template>
 
     <xsl:template name="mailBody">
