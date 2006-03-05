@@ -41,6 +41,12 @@
   background-repeat: no-repeat;
 }
 
+.network-waiting
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+}
 
 /* Images for the different icons. */
 
@@ -77,4 +83,7 @@ list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif")
 }
 .helplink, #Help-menu-link {
   background-image: url("/Presentation/Tofu/Common/images/16x16/help-browser.gif");
+}
+.network-waiting {
+  background-image: url("/Presentation/Tofu/Common/images/anim/wait.gif"); 
 }

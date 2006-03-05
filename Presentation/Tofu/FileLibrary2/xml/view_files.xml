@@ -121,7 +121,7 @@
             
       <adl:slot xmlns:adl="http://iopen.net/ns/adl" name="listfiles"
                 tal:attributes="b_size request/form/b_size | string:10">
-                 Finding matches...
+                 <span class="network-waiting">Finding matches...</span>
         <files:selector xmlns:files="http://iopen.net/ns/files"
                         tal:attributes="batchsize request/form/b_size | string:10;
                                         batchstart request/form/b_start | string:1;
