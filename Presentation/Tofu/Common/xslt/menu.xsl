@@ -2,94 +2,96 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- Main Navigation Starts -->
-
 <xsl:template match="output/menus/menu[@id='main']">
-
-	<div id="sitenavigation">
-
-		<ul>
-
-			<xsl:for-each select="menuitem">
-				<xsl:choose>
-  					<xsl:when test="@current='1'">
-					  <li class="current" 
-					    id="{@name}-menu-link">
-					    <xsl:value-of select="@name"/>
-					  </li>
-					</xsl:when>
-  					<xsl:otherwise>
-  					 <li><a  id="{@name}-menu-link" href="{@url}"><xsl:value-of select="@name"/></a></li></xsl:otherwise>
-				</xsl:choose>
-			</xsl:for-each>						
-		</ul>
-	</div>
-
-</xsl:template>
-
-<!-- Main Navigation Ends -->
-
-
-<!-- Sub Navigation Starts -->
-
-<xsl:template match="output/menus/menu[@id='side']">
-  <xsl:variable name="mainmenu"
-       select="//menu[@id='main']"/>
-
-<div id="contextnav">
-        <p class="label">
-	  <xsl:value-of select ="$mainmenu/menuitem[@current='1']/@name"/>
-	</p>
-	<dl>
-		<xsl:for-each select="menuitem">
-			<xsl:choose>
-				<xsl:when test="@current='1'">
-			 		<dd class="current">
-					  <xsl:value-of select="@name"/>
-					<xsl:choose>
-					  <xsl:when test="count(menuitem)!=0">
-								<dl>
-									<xsl:for-each select="menuitem">
-										<xsl:call-template name="thirdmenuitem"/>
-									</xsl:for-each>
-								</dl>
-							</xsl:when>
-						</xsl:choose>
-					</dd>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:choose>
-						<xsl:when test="count(menuitem)!=0">
-							<dd class="current"><xsl:value-of select="@name"/></dd>
-						</xsl:when>
-						<xsl:otherwise>
-							<dd><a href="{@url}"><xsl:value-of select="@name"/></a></dd>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:for-each>
-	</dl>
+  <div id="sitenavigation">
+    <ul>
+      <xsl:for-each select="menuitem">
+	<xsl:choose>
+	 <xsl:when test="@current='1'">
+	  <li>
+	    <a class="current"
+	      href="{@url}"
+	      id="{@name}-menu-link"><xsl:value-of select="@name"/></a>
+	  </li>
+	</xsl:when>
+	<xsl:otherwise>
+	  <li>
+	    <a id="{@name}-menu-link"
+	      href="{@url}"><xsl:value-of select="@name"/></a>
+	  </li>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>						
+  </ul>
 </div>
 </xsl:template>
+<!-- Main Navigation Ends -->
 
-
-<xsl:template name="thirdmenuitem">
-	<xsl:choose>
-		<xsl:when test="@current='1'">
-			 <dd><xsl:value-of select="@name"/></dd>
+<!-- Sub Navigation Starts -->
+<xsl:template match="output/menus/menu[@id='side']">
+  <xsl:variable name="mainmenu"
+    select="//menu[@id='main']"/>
+<div id="contextnav">
+  <p class="label">
+    <xsl:value-of select ="$mainmenu/menuitem[@current='1']/@name"/>
+  </p>
+  <dl>
+    <xsl:for-each select="menuitem">
+      <xsl:choose>
+	<xsl:when test="@current='1'">
+	  <dd>
+	    <a href="{@url}"
+	      class="current"><xsl:value-of select="@name"/></a>
+	      <xsl:choose>
+		<xsl:when test="count(menuitem)!=0">
+		  <dl>
+		    <xsl:for-each select="menuitem">
+		      <xsl:call-template name="thirdmenuitem"/>
+		    </xsl:for-each>
+		  </dl>
 		</xsl:when>
-		<xsl:otherwise>
-			 <dd><a href="{@url}"><xsl:value-of select="@name"/></a></dd>
-		</xsl:otherwise>
+	      </xsl:choose>
+	    </dd>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:choose>
+	      <xsl:when test="count(menuitem)!=0">
+		<dd>
+		  <a href="{@url}"
+		    class="current"><xsl:value-of select="@name"/></a>
+		</dd>
+	      </xsl:when>
+	      <xsl:otherwise>
+		<dd>
+		  <a href="{@url}">
+		    <xsl:value-of select="@name"/></a>
+		</dd>
+	      </xsl:otherwise>
+	    </xsl:choose>
+	  </xsl:otherwise>
 	</xsl:choose>
+      </xsl:for-each>
+    </dl>
+  </div>
 </xsl:template>
 
-
+<xsl:template name="thirdmenuitem">
+  <xsl:choose>
+    <xsl:when test="@current='1'">
+      <dd>
+	<a class="current" href="{@url}"><xsl:value-of select="@name"/></a>
+      </dd>
+    </xsl:when>
+    <xsl:otherwise>
+      <dd>
+	<a href="{@url}"><xsl:value-of select="@name"/></a>
+      </dd>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 <!-- Sub Navigation Ends -->
 
-
 <!-- External Menu Starts -->
-
 <xsl:template match="output/menus/menu[@id='external']">
 	<div id="externallinks">
 		<ul>
