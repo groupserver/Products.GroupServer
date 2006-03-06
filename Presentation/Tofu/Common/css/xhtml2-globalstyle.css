@@ -51,6 +51,11 @@ li#profile-link a {
 #groupserver #sitenavigation {
   padding-left: 10px;
 }
+
+#sitenavigation li a {
+ padding-left: 18px;
+}
+
 #Home-menu-link a, #People-menu-link a, #Groups-menu-link a, 
 #Help-menu-link a {
 	padding: 0 18px 0 0;
