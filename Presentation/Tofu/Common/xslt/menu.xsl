@@ -59,7 +59,7 @@
 				<xsl:otherwise>
 					<xsl:choose>
 						<xsl:when test="count(menuitem)!=0">
-							<dd class="current"><a href="{@url}"><xsl:value-of select="@name"/></a></dd>
+							<dd class="current"><xsl:value-of select="@name"/></dd>
 						</xsl:when>
 						<xsl:otherwise>
 							<dd><a href="{@url}"><xsl:value-of select="@name"/></a></dd>
@@ -76,7 +76,7 @@
 <xsl:template name="thirdmenuitem">
 	<xsl:choose>
 		<xsl:when test="@current='1'">
-			 <dd><a class="current" href="{@url}"><xsl:value-of select="@name"/></a></dd>
+			 <dd><xsl:value-of select="@name"/></dd>
 		</xsl:when>
 		<xsl:otherwise>
 			 <dd><a href="{@url}"><xsl:value-of select="@name"/></a></dd>
