@@ -14,6 +14,10 @@ table.feedbackresults td {
 	padding: 5px 5px 15px 5px;
 }
 
+table.feedbackresults div.label, table.choice td {
+	font-weight: normal;
+}
+
 /* Multiple */
 
 ul.multiple {
