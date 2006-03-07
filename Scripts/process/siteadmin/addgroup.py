@@ -34,7 +34,7 @@ templateid = form.get('templateid','').strip().lower()
 
 divisionid = form.get('divisionid')
 
-if hasattr(groups, groupid):
+if hasattr(groups.aq_explicit, groupid):
     message.append('<paragraph>Unfortunately group ID %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
     error = 1
 
@@ -79,7 +79,7 @@ if error:
     return '\n'.join(message)
 
 groups.manage_addFolder(groupid)
-group = getattr(groups, groupid)
+group = getattr(groups.aq_explicit, groupid)
 
 group.manage_addProperty('is_group', True, 'boolean')
 group.manage_addProperty('short_name', title, 'string')
