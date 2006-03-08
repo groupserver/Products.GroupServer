@@ -5,26 +5,22 @@ form {
 }
 
 label.required {
-	margin: 0;
-	padding: 3px 8px 0 0;
-	/* background-image: url(/Presentation/Default/XForms/images/required.gif);
-	background-repeat: no-repeat;
-	background-position: center right; */
 	color: #dd0000;
 }
 
 /* text input row */
 div.formelementtext {
 	width: 600px;
+        margin: 12px 0 0 0;
 }
 
 div.formelementtext input {
- 	margin: 0 0 0 205px;
+ 	/*margin: 0 0 0 205px;*/
 	width: 300px;
 }
 
 div.formelementtext textarea {
-        margin: 0 0 0 205px;
+        /*margin: 0 0 0 205px;*/
         width: 300px;
         height: 200px;
 }
@@ -33,7 +29,8 @@ div.formelementtext label {
 	float: left;
 	text-align: right;
 	width: 200px;
-	padding: 0 5px 0 0;
+        height: 25px; /*hack to force correct layout of elements*/
+	padding: 0 5px 10px 0;
 	font-weight: bold;
 }
 
@@ -41,6 +38,7 @@ div.formelementtext div.hint {
     padding: 0 5px 0 5px;
     font-size: 9px;
     color: #aaaaaa;
+    vertical-align: bottom;
     /* visibility: hidden;
        display: none; */
 }

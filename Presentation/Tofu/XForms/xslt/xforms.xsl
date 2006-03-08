@@ -102,7 +102,7 @@
 	<!-- Match an XForms submit element -->
 	<xsl:template match="xf:submit">
 		<div class="formelement{@class}">
-	         	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<input type="submit" name="__submit+{@model}+{@submission}"
 				onclick="submitButtonHandler(this)" class="{@class}"
 				value="{xf:label/text()}" title="{xf:hint/text()}" />
@@ -129,8 +129,7 @@
 			<xsl:call-template name="label">
 				<xsl:with-param name="labelNode" select="xf:label" />
 			</xsl:call-template>
-
-     	         	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<input type="text" id="{@model}-{$ref}"
 				name="{@model}+{$ref}" class="{@class}" title="{xf:hint/text()}">
 				<xsl:attribute name="value">	<xsl:call-template
@@ -168,8 +167,7 @@
 			<xsl:call-template name="label">
 				<xsl:with-param name="labelNode" select="xf:label" />
 			</xsl:call-template>
-
-	         	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<input type="text" id="{@model}-{$ref}"
 				name="{@model}+{$ref}" class="{@class}" title="{xf:hint/text()}">
 				<xsl:attribute name="value">	<xsl:call-template
@@ -231,7 +229,7 @@
 			<xsl:call-template name="label">
 				<xsl:with-param name="labelNode" select="xf:label" />
 			</xsl:call-template>
-	         	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<input type="password" id="{@model}-{$ref}"
 				name="{@model}+{$ref}" class="{@class}" title="{xf:hint/text()}">
 				<xsl:attribute name="value">	<xsl:call-template
@@ -314,7 +312,7 @@
 			<xsl:call-template name="label">
 				<xsl:with-param name="labelNode" select="xf:label" />
 			</xsl:call-template>
-			<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<textarea name="{@model}+{$ref}" class="{@class}"
 				id="{@model}-{$ref}" title="{xf:hint/text()}"><!-- Copy across all other attributes in the xhtml namespace --><xsl:for-each
 					select="@*[namespace-uri(.)='http://www.w3.org/1999/xhtml']">
@@ -349,7 +347,7 @@
 		<xsl:call-template name="label">
 			<xsl:with-param name="labelNode" select="xf:label" />
 		</xsl:call-template>
-       	 	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 		<input type="file" name="{$model}+{$ref}"
 			id="{$model}-{$ref}" title="{xf:hint/text()}" class="{@class}"
 			value="" />
@@ -376,8 +374,7 @@
 			<xsl:call-template name="label">
 				<xsl:with-param name="labelNode" select="xf:label" />
 			</xsl:call-template>
-	         	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
-
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<xsl:choose>
 				<xsl:when test="@appearance='minimal' or @appearance='compact'">
 					<select name="{@model}+{$ref}" id="{@model}-{$ref}"
@@ -465,8 +462,7 @@
 			<xsl:call-template name="label">
 				<xsl:with-param name="labelNode" select="xf:label" />
 			</xsl:call-template>
-	         	<div class="hint"><xsl:apply-templates select="xf:hint"/></div>
-			
+	       	 	<xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
 			<!-- Build the control -->
 			<xsl:choose>
 				<xsl:when
