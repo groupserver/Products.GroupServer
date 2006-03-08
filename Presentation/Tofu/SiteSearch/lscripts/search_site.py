@@ -16,7 +16,7 @@ if not query.strip():
     return createBatch([], start, size)
 
 results = context.Catalog.searchResults(meta_type='XML Template',
-                                        path_index=division.getPhysicalPath(),
+                                        path=division.getPhysicalPath(),
                                         sort_order='descending',
                                         indexable_content=query)
 
