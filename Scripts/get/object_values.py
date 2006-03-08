@@ -10,6 +10,9 @@
 # Basically a wrapped version of OFS.objectValues -- only
 # return objects we are actually allowed to see
 objects = []
+if not ocontainer:
+    return objects
+
 for object_id in ocontainer.objectIds(otypes):
     try:
         object = getattr(ocontainer, object_id)
