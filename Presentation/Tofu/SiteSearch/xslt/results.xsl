@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                xmlns:search="http://purl.org/rss/1.0/modules/search/"
@@ -11,7 +11,7 @@
                xmlns:file="http://xwft.org/ns/filelibrary/0.9/" 
                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:output method="html" encoding="ISO-8859-1"/>
+    <xsl:output method="html" encoding="utf-8"/>
 
     <xsl:template match="rdf:RDF">
       <xsl:apply-templates select="rss:channel"/>
@@ -85,7 +85,6 @@
         </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
 
     <xsl:template name="file-results">
 
@@ -209,5 +208,62 @@
 
     </xsl:template>
 
+
+    <xsl:template name="site-results">
+
+        <h2>Search Results found in Other Content</h2>
+
+        <xsl:choose>
+
+                <xsl:when test="count(rss:items/rdf:Seq/rdf:li)=0">
+                        <p>No matching content found.</p>
+         </xsl:when>
+
+         <xsl:otherwise>
+                        <p>
+                                Results <xsl:value-of select="number(results:first/text())+1"/> to <xsl:value-of select="number(results:last/text())"/> of the <xsl:value-of select="number(results:total/text())"/> pages containing your search text:
+                        </p>
+
+                        <table id="results">
+                                <tr>
+                                        <th>Date</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                </tr>
+
+                                <xsl:for-each select="rss:items/rdf:Seq/rdf:li">
+                                        <xsl:variable name="resource" select="@rdf:resource"/>
+                                        <xsl:variable name="item" select="ancestor::rdf:RDF/rss:item[@rdf:about=$resource]"/>
+                                                <tr>
+                                                <xsl:if test="position() mod 2 != 0">
+                                                        <xsl:attribute name="class">alternate</xsl:attribute>
+                                                 </xsl:if>
+                                                        <td>
+                                                                <xsl:value-of select="$item/dc:date/text()"/>
+                                                        </td>
+                                                      <td>
+                                                                <a href="{$item/@rdf:about}"><xsl:value-of select="$item/rss:title/text()"/></a>
+                                                        </td>
+                                                      <td>
+                                                                <xsl:apply-templates select="$item/rss:description"/>
+                                                        </td>
+                                                </tr>
+                                </xsl:for-each>
+                        </table>
+
+                        <div class="resultsnav">
+                                <xsl:if test="results:prevlink">
+                                        <a href="{results:prevlink/text()}">previous</a>
+                                </xsl:if>
+                                <xsl:if test="results:nextlink">
+                                        <a href="{results:nextlink/text()}">next</a>
+                                </xsl:if>
+                        </div>
+
+        </xsl:otherwise>
+
+        </xsl:choose>
+
+    </xsl:template>
 
 </xsl:stylesheet>
