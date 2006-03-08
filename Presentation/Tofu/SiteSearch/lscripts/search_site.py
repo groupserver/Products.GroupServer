@@ -16,8 +16,16 @@ if not query.strip():
     return createBatch([], start, size)
 
 results = context.Catalog.searchResults(meta_type='XML Template',
-                                        path=division.getPhysicalPath(),
                                         sort_order='descending',
                                         indexable_content=query)
 
-return createBatch(results, start, size)
+valid_results = []
+for result in results[:30]:
+    try:
+        obj = result.getObject()
+        obj.title
+        valid_results.append(result)
+    except:
+        pass
+
+return createBatch(valid_results, start, size)
