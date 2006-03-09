@@ -154,7 +154,6 @@
 
 <!-- Division Switcher Starts -->
 <xsl:template name="divisionswitcher">
-
 	<xsl:if test="count(input[@id='switch_division'])!=0">
 		<xsl:call-template name="switch"/>
 	</xsl:if>
@@ -176,7 +175,22 @@
 		<!-- input type="submit" name="send" value="Go"/ -->
 	</div>
 </form>
+</xsl:template>
 
+<xsl:template name="divisionswitch">
+	<div id="division">
+		<label>Division ID</label>
+
+                <select name="divisionswitch+id" id="divisionswitch+id">
+		<xsl:for-each select="input[@id='switch_division']/object/element">
+				<option value="{@value}">
+                                        <xsl:if test="@current='1'"><xsl:attribute name="selected">selected</xsl:attribute></xsl:if>
+					<xsl:value-of select="@description"/>
+				</option>
+			</xsl:for-each>	
+		</select>
+                <input type="submit" name="__submit+divisionswitch+submit" onclick="submitButtonHandler(this)" class="button" value="go"/>
+	</div>
 </xsl:template>
 <!-- Division Switcher Ends -->
 
