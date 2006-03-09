@@ -183,13 +183,13 @@
 
                 <select name="divisionswitch+id" id="divisionswitch+id">
 		<xsl:for-each select="input[@id='switch_division']/object/element">
-				<option value="{@value}">
+				<option value="{@value}" onchange="javascript:divisionswitchgo.submit()">
                                         <xsl:if test="@current='1'"><xsl:attribute name="selected">selected</xsl:attribute></xsl:if>
 					<xsl:value-of select="@description"/>
 				</option>
 			</xsl:for-each>	
 		</select>
-                <input type="submit" name="__submit+divisionswitch+submit" onclick="submitButtonHandler(this)" class="button" value="go"/>
+                <input type="submit" name="__submit+divisionswitch+submit" id="divisionswitchgo" onclick="submitButtonHandler(this)" class="button" value="go"/>
 	</div>
 </xsl:template>
 <!-- Division Switcher Ends -->
