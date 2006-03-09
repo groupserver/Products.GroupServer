@@ -178,6 +178,7 @@
 </xsl:template>
 
 <xsl:template name="divisionswitch">
+	<xsl:if test="count(input[@id='switch_division'])!=0">
 	<div id="division">
 		<label>Division ID</label>
 
@@ -191,6 +192,7 @@
 		</select>
                 <input type="submit" name="__submit+divisionswitch+submit" id="divisionswitchgo" onclick="submitButtonHandler(this)" class="button" value="go"/>
 	</div>
+        </xsl:if>
 </xsl:template>
 <!-- Division Switcher Ends -->
 
