@@ -9,7 +9,8 @@
                xmlns:groups="http://xwft.net/namespaces/groups/0.9/"
                xmlns:dc="http://purl.org/dc/elements/1.1/"
                xmlns:file="http://xwft.org/ns/filelibrary/0.9/" 
-               xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+               xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+               exclude-result-prefixes="rdf search results rss email files groups dc file">
 
     <xsl:output method="html" encoding="utf-8"/>
 
@@ -27,7 +28,10 @@
         </xsl:when>        
         <xsl:when test="@id='newsresults'">
           <xsl:call-template name="news-results"/>
-        </xsl:when>        
+        </xsl:when>
+        <xsl:when test="@id='otherresults'">
+          <xsl:call-template name="other-results"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:template>
     
@@ -208,14 +212,13 @@
 
     </xsl:template>
 
-
-    <xsl:template name="site-results">
+    <xsl:template name="other-results">
 
         <h2>Search Results found in Other Content</h2>
 
         <xsl:choose>
 
-                <xsl:when test="count(rss:items/rdf:Seq/rdf:li)=0">
+         <xsl:when test="count(rss:items/rdf:Seq/rdf:li)=0">
                         <p>No matching content found.</p>
          </xsl:when>
 
