@@ -181,9 +181,9 @@
 	<div id="division">
 		<label>Division ID</label>
 
-                <select name="divisionswitch+id" id="divisionswitch+id">
+                <select name="divisionswitch+id" id="divisionswitch+id" onchange="javascript:divisionswitchgo.submit()">
 		<xsl:for-each select="input[@id='switch_division']/object/element">
-				<option value="{@value}" onchange="javascript:divisionswitchgo.submit()">
+				<option value="{@value}">
                                         <xsl:if test="@current='1'"><xsl:attribute name="selected">selected</xsl:attribute></xsl:if>
 					<xsl:value-of select="@description"/>
 				</option>
