@@ -7,20 +7,17 @@
 ##parameters=
 ##title=Change User's Image
 ##
+if not form.get('submitted', False):
+    return result
+
 site_root = context.site_root
-
-validators = {}
 result = {}
-
 user = context.REQUEST.AUTHENTICATED_USER
 origimage = getattr(context.contactsimages, '%s.jpg' % user.getId(), None)
 form = context.REQUEST.form
 result['form'] = form
 result['message'] = ""
 fileData = form.get('fileData','')
-
-if not form.get('submitted', False):
-    return result
 
 # Try and delete the old tempory image, but don't worry if it is not there.
 try:
