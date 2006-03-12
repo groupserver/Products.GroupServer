@@ -11,7 +11,7 @@
 /* Note: I know the following layout styles are all the same, you know that */
 /*   the following layout styles are all the same. However, if you have too */
 /*   many selectors for one rule then IE6 dies a death. This is bad .       */
-.weblink, .pdflink, .homelink, .peoplelink, .searchlink, .logoutlink
+.weblink, .pdflink, .homelink, .peoplelink, .searchlink, .logoutlink, .aboutlink
  {
   padding: 0 0 0 18px;
   margin: 0 0 0 0;
@@ -86,4 +86,7 @@ list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif")
 }
 .network-waiting {
   background-image: url("/Presentation/Tofu/Common/images/anim/wait.gif"); 
+}
+.aboutlink {
+  background-image: url("/Presentation/Tofu/Common/images/16x16/gnome-stock-about.gif");
 }
