@@ -18,7 +18,16 @@
   background-repeat: no-repeat;
 }
 
-#Home-menu-link, #Resources-menu-link, #People-menu-link, #Groups-menu-link, #Help-menu-link
+#Home-menu-link, #Resources-menu-link, #People-menu-link, #Groups-menu-link
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  line-height: 26px;
+}
+
+#Help-menu-link, #About-menu-link, #Photos-menu-link
 {
   padding: 0 0 0 18px;
   margin: 0 0 0 0;
@@ -87,6 +96,9 @@ list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif")
 .network-waiting {
   background-image: url("/Presentation/Tofu/Common/images/anim/wait.gif"); 
 }
-.aboutlink {
+.aboutlink, #About-menu-link {
   background-image: url("/Presentation/Tofu/Common/images/16x16/gnome-stock-about.gif");
+}i
+#Photos-menu-link {
+  background-image: url("/Presentation/Tofu/Common/images/16x16/image-x-generic.gif");
 }
