@@ -18,111 +18,99 @@
                 doctype-system="http://www.w3.org/TR/html4/strict.dtd" />
 
 	<xsl:template match="root">
-		<html>
-			<head>
-				<meta http-equiv="Content-Type"
-					content="text/xhtml; charset=UTF8" />
-				<title>
-					<xsl:value-of select="//output/metadata/sitename" />
-					<xsl:if test="//output/metadata/title">
-						:
-						<xsl:value-of select="//output/metadata/title" />
-					</xsl:if>
-				</title>
-				<link rel="stylesheet" type="text/css"
-					href="/Presentation/Tofu/Common/css/globalstyle.css" />
-                         <link rel="stylesheet" type="text/css" media="print"
-                                        href="/Presentation/Tofu/Common/css/print.css" />
-				<base href="{//output/metadata/base/@href}" />
-			</head>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF8" />
+    <title>
+      <xsl:value-of select="//output/metadata/sitename" />
+      <xsl:if test="//output/metadata/title">:
+	<xsl:value-of select="//output/metadata/title" />
+      </xsl:if>
+    </title>
 
-			<body>
+    <link rel="stylesheet" type="text/css"
+      href="/Presentation/Tofu/Common/css/globalstyle.css" />
+    <link rel="stylesheet" type="text/css" media="print"
+      href="/Presentation/Tofu/Common/css/print.css" />
 
-				<!-- Top Area Starts -->
-				<div id="toparea">
-					<!-- External Bar Starts -->
-					<div id="externalbar">
-						<xsl:call-template name="divisionswitcher" />
-						<xsl:apply-templates
-							select="output/menus/menu[@id='external']" />
-					</div>
-					<!-- External Bar Ends -->
+    <xsl:if test="//link[@class='alternate']">
+      <link rel="alternate" type="application/atom+xml" title="ATOM"
+        href="{//link[@class='alternate']/@url}"/>
+    </xsl:if>
 
-					<!-- Title Bar Starts -->
-					<div id="titlebar">
-						<span class="group">
-							<xsl:value-of
-								select="output/metadata/sitename/text()" />
-						</span>
-						<xsl:if test="output/metadata/division/@name">
-							<span class="division">
-								<xsl:value-of
-									select="output/metadata/division/@name" />
-							</span>
-						</xsl:if>
-						<xsl:if test="output/metadata/bannerimage/@url">
-							<span class="bannerimage">
-								<a href="{output/metadata/bannerimage/@link}">
-									<img
-										src="{output/metadata/bannerimage/@url}" alt="banner image" />
-								</a>
-							</span>
-						</xsl:if>
-					</div>
-					<!-- Title Bar Ends -->
+    <xsl:if test="//link/@class='alternateRDF'">
+      <link rel="alternate" type="application/rdf+xml" title="RDF"
+        href="{//link[@class='alternate']/@url}"/>
+    </xsl:if>
 
+    <base href="{//output/metadata/base/@href}" />
 
-					<!-- Utilities Start -->
-					<div id="utilities">
-						<xsl:call-template name="loggedinlinks" />
-						<xsl:call-template name="groups" />
-					</div>
-					<!-- Utilities End -->
+  </head>
+  <body>
+    <!-- Top Area Starts -->
+    <div id="toparea">
+      <!-- External Bar Starts -->
+      <div id="externalbar">
+	<xsl:call-template name="divisionswitcher" />
+	<xsl:apply-templates
+	  select="output/menus/menu[@id='external']" />
+      </div><!-- External Bar Ends -->
 
+      <!-- Title Bar Starts -->
+      <div id="titlebar">
+	<span class="group">
+	  <xsl:value-of select="output/metadata/sitename/text()" />
+	</span>
 
-					<!-- Navigation Bar Starts -->
-					<xsl:apply-templates select="output/menus/menu[@id='main']" />
-					<!-- Navigation Bar Ends -->
+	<xsl:if test="output/metadata/division/@name">
+	  <span class="division">
+	    <xsl:value-of select="output/metadata/division/@name" />
+	  </span>
+	</xsl:if>
 
-					<!-- Search Starts -->
-					<!--    <xsl:if test="//user[@type='self']/id/text()!='Anonymous User'">
-						<div id="searcharea">
-						<xsl:call-template name="searcharea"/>
-						</div>
-						</xsl:if>  -->
-					<!-- Search Ends -->
+	<xsl:if test="output/metadata/bannerimage/@url">
+	  <span class="bannerimage">
+	    <a href="{output/metadata/bannerimage/@link}">
+	      <img src="{output/metadata/bannerimage/@url}"
+		alt="banner image" />
+	    </a>
+	  </span>
+	</xsl:if>
+      </div><!-- Title Bar Ends -->
 
+      <!-- Utilities Start -->
+      <div id="utilities">
+	<xsl:call-template name="loggedinlinks" />
+	<xsl:call-template name="groups" />
+      </div><!-- Utilities End -->
 
-				</div>
-				<!-- Top Area Starts -->
+      <!-- Navigation Bar Starts -->
+      <xsl:apply-templates select="output/menus/menu[@id='main']" />
+      <!-- Navigation Bar Ends -->
+    </div><!-- Top Area Ends-->
 
+    <!-- Contextual Navigation Starts -->
+    <xsl:apply-templates select="output/menus/menu[@id='side']" />
+    <!-- Contextual Navigation Ends -->
 
-				<!-- Contextual Navigation Starts -->
-				<xsl:apply-templates select="output/menus/menu[@id='side']" />
-				<!-- Contextual Navigation Ends -->
+    <!-- Main Content Area Starts -->
+    <div id="content">
+      <!-- Breadcrumbs Start -->
+      <xsl:call-template name="breadcrumbs" />
+      <!-- Breadcrumbs End -->
 
+      <!-- Present any messages from the system -->
+      <xsl:if test="//output/messages/message">
+        <xsl:call-template name="result-messages" />
+      </xsl:if>
+      <!-- Messages End -->
 
-				<!-- Main Content Area Starts -->
-				<div id="content">
-
-					<!-- Breadcrumbs Start -->
-					<xsl:call-template name="breadcrumbs" />
-					<!-- Breadcrumbs End -->
-					<!-- Present any messages from the system -->
-					<xsl:if test="//output/messages/message">
-						<xsl:call-template name="result-messages" />
-					</xsl:if>
-					<!-- Messages End -->
-
-					<!-- Body Content Starts -->
-					<xsl:apply-templates select="output/content" />
-					<!-- Body Content Ends -->
-
-				</div>
-				<!-- Main Content Area Ends -->
-
-			</body>
-		</html>
-	</xsl:template>
+      <!-- Body Content Starts -->
+      <xsl:apply-templates select="output/content" />
+      <!-- Body Content Ends -->
+    </div><!-- Main Content Area Ends -->
+  </body>
+</html>
+</xsl:template>
 
 </xsl:stylesheet>
