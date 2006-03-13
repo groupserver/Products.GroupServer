@@ -16,6 +16,7 @@ table.feedbackresults td {
 
 table.feedbackresults div.label, table.choice td {
 	font-weight: normal;
+	font-size: 90%;
 }
 
 /* Multiple */
@@ -88,4 +89,8 @@ div.textanswer {
 div.textanswer label {
 	margin: 5px 10px 0 0;
 	font-weight:normal;
+}
+
+h4 {
+	font-size: 90%;
 }
