@@ -17,7 +17,19 @@
                 doctype-public="-//W3C//DTD HTML 4.01//EN"
                 doctype-system="http://www.w3.org/TR/html4/strict.dtd" />
 
-	<xsl:template match="root">
+  <xsl:template match="link[@class='alternateRSS']" mode="feedLink">
+    <xsl:attribute name="href">
+      <xsl:value-of select="./@url"/>
+    </xsl:attribute>
+  </xsl:template>
+
+ <xsl:template match="link[@class='alternateATOM']" mode="feedLink">
+    <xsl:attribute name="href">
+      <xsl:value-of select="./@url"/>
+    </xsl:attribute>
+  </xsl:template>
+
+ <xsl:template match="root">
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF8" />
@@ -33,14 +45,18 @@
     <link rel="stylesheet" type="text/css" media="print"
       href="/Presentation/Tofu/Common/css/print.css" />
 
-    <xsl:if test="//link[@class='alternate']">
-      <link rel="alternate" type="application/atom+xml" title="ATOM"
-        href="{//link[@class='alternate']/@url}"/>
+    <xsl:if test="//link[@class='alternateATOM']">
+      <link rel="alternate" type="application/atom+xml" title="ATOM">
+        <xsl:apply-templates select="link[@class='alternateATOM']" 
+	  mode="feedLink"/>
+      </link>
     </xsl:if>
 
-    <xsl:if test="//link/@class='alternateRDF'">
-      <link rel="alternate" type="application/rdf+xml" title="RDF"
-        href="{//link[@class='alternate']/@url}"/>
+    <xsl:if test="//link[@class='alternateRDF']">
+      <link rel="alternate" type="application/rdf+xml" title="RDF">
+        <xsl:apply-templates select="link[@class='alternateRDF']" 
+	  mode="feedLink"/>
+      </link>
     </xsl:if>
 
     <base href="{//output/metadata/base/@href}" />

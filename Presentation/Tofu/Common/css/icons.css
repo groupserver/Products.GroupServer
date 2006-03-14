@@ -50,7 +50,7 @@
   background-repeat: no-repeat;
 }
 
-.network-waiting, .alternateRDF, .alternate
+.network-waiting, .alternateRDF, .alternateATOM
 {
   padding: 0 0 0 18px;
   margin: 0 0 0 0;
@@ -107,6 +107,6 @@ list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif")
   background-image: url("/Presentation/Tofu/Common/images/16x16/rss.gif");
 }
 
-.alternate {
-  background-image: url("/Presentation/Tofu/Common/images/16x16/image-x-generic.gif");
+.alternateATOM {
+  background-image: url("/Presentation/Tofu/Common/images/16x16/rss.gif");
 }
