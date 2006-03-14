@@ -21,8 +21,11 @@ virtualSitesOnly = context.Scripts.get.option('virtualSitesOnly')
 if virtualSitesOnly:
     division_object = context.Scripts.get.division_object()
     if division_object:
-        return context.REQUEST.RESPONSE.redirect(division_object.absolute_url(1), lock=1)
-
+        if division_object.absolute_url(1) == '':
+            return context.REQUEST.RESPONSE.redirect('/', lock=1)
+        else:
+            return context.REQUEST.RESPONSE.redirect('/%s' % division_object.absolute_url(1), lock=1)
+ 
 division_objects = context.Scripts.get_division_objects()
 division_ids = map(lambda x: x.getId(), division_objects)
 
