@@ -17,13 +17,13 @@
                 doctype-public="-//W3C//DTD HTML 4.01//EN"
                 doctype-system="http://www.w3.org/TR/html4/strict.dtd" />
 
-  <xsl:template match="link[@class='alternateRSS']" mode="feedLink">
+  <xsl:template match="//link[@class='alternateRSS']" mode="feedLink">
     <xsl:attribute name="href">
       <xsl:value-of select="./@url"/>
     </xsl:attribute>
   </xsl:template>
 
- <xsl:template match="link[@class='alternateATOM']" mode="feedLink">
+ <xsl:template match="//link[@class='alternateATOM']" mode="feedLink">
     <xsl:attribute name="href">
       <xsl:value-of select="./@url"/>
     </xsl:attribute>
@@ -47,14 +47,14 @@
 
     <xsl:if test="//link[@class='alternateATOM']">
       <link rel="alternate" type="application/atom+xml" title="ATOM">
-        <xsl:apply-templates select="link[@class='alternateATOM']" 
+        <xsl:apply-templates select="//link[@class='alternateATOM']" 
 	  mode="feedLink"/>
       </link>
     </xsl:if>
 
     <xsl:if test="//link[@class='alternateRDF']">
       <link rel="alternate" type="application/rdf+xml" title="RDF">
-        <xsl:apply-templates select="link[@class='alternateRDF']" 
+        <xsl:apply-templates select="//link[@class='alternateRDF']" 
 	  mode="feedLink"/>
       </link>
     </xsl:if>
