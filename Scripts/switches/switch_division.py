@@ -18,8 +18,10 @@ user = context.REQUEST.AUTHENTICATED_USER
 groups = user.getGroups()
 
 virtualSitesOnly = context.Scripts.get.option('virtualSitesOnly')
-if virtualSitesOnly and context.Scripts.get.division_object():
-    return context.response.redirect(context.Scripts.get.division_object().absolute_url(1), lock=1)
+if virtualSitesOnly:
+    division_object = context.Scripts.get.division_object()
+    if division_object:
+        return context.REQUEST.RESPONSE.redirect(division_object.absolute_url(1), lock=1)
 
 division_objects = context.Scripts.get_division_objects()
 division_ids = map(lambda x: x.getId(), division_objects)
