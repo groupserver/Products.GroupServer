@@ -73,7 +73,7 @@
   background-image: url("/Presentation/Tofu/Common/images/16x16/system-log-out.gif");
 }
 .profilelink, #profile-link, #log-in-link, .name a {
-  background-image: url("/Presentation/Tofu/Common/images/16x16/user.gif");
+  background-image: url("/Presentation/Tofu/Common/images/16x16/system-user.gif");
 }
 .homelink, #Home-menu-link {
   background-image: url("/Presentation/Tofu/Common/images/16x16/go-home.gif");
