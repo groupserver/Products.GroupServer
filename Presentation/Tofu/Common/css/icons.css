@@ -82,7 +82,7 @@
   background-image: url("/Presentation/Tofu/Common/images/16x16/text-x-generic.gif");
 }
 .peoplelink, #People-menu-link {
-background-image: url("/Presentation/Tofu/Common/images/16x16/user.gif");
+background-image: url("/Presentation/Tofu/Common/images/16x16/system-user.gif");
 }
 .grouplink, #Groups-menu-link {
   background-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
