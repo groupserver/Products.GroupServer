@@ -17,6 +17,10 @@ site_root = context.site_root()
 user = context.REQUEST.AUTHENTICATED_USER
 groups = user.getGroups()
 
+virtualSitesOnly = context.Scripts.get.option('virtualSitesOnly')
+if virtualSitesOnly and context.Scripts.get.division_object():
+    return 
+
 division_objects = context.Scripts.get_division_objects()
 division_ids = map(lambda x: x.getId(), division_objects)
 
