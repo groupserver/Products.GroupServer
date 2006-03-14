@@ -10,5 +10,9 @@
 division_object = context.Scripts.get.division_object()
 
 if division_object:
-    return '/%s' % division_object.absolute_url(1)
+    absolute_url = division_object.absolute_url(1)
+    if absolute_url == '':
+        return absolute_url
+    else:
+        return '/%s' % division_object.absolute_url(1)
 return no_division
