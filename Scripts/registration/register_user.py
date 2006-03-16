@@ -81,7 +81,7 @@ for prop in form:
 if groups:
     user.set_verificationGroups(groups)
 
-user.send_userVerification(site=REQUEST.SERVER_NAME)
+user.send_userVerification(site=context.REQUEST.SERVER_NAME)
 
 if manual:
     return redirect('/login?error:list=register_thanks')
