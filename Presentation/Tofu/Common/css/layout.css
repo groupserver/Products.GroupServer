@@ -236,7 +236,7 @@ div#sitenavigation li {
 	color:#333399;
 	line-height:26px;
 }
-div#sitenavigation a {
+div#sitenavigation {
 	margin-left: -18px;
 }
 div#sitenavigation a.current:link {

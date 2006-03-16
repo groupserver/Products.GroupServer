@@ -18,13 +18,18 @@
   background-repeat: no-repeat;
 }
 
-#Home-menu-link, #Resources-menu-link, #People-menu-link, #Groups-menu-link
+#Home-menu-link, #Resources-menu-link
 {
   padding: 0 0 0 18px;
   margin: 0 0 0 0;
   background-repeat: no-repeat;
-  background-position: 0 0;
-  line-height: 26px;
+}
+
+#People-menu-link, #Groups-menu-link
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
 }
 
 #Help-menu-link, #About-menu-link, #Photos-menu-link
@@ -32,8 +37,6 @@
   padding: 0 0 0 18px;
   margin: 0 0 0 0;
   background-repeat: no-repeat;
-  background-position: 0 0;
-  line-height: 26px;
 }
 
 .resourceslink, #searcharea h3, #log-in-link, #log-out-link
