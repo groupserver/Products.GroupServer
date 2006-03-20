@@ -23,7 +23,8 @@ if not user and username.find('@') > 0:
 if user:
     # Reset the password and send the user a new one.
     user.reset_password()
-    user.send_notification('forgotten_password', 'default')
+    n_dict = {'server', context.REQUEST.SERVER_URL}
+    user.send_notification('forgotten_password', 'default', n_dict=n_dict)
     
     return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
 
