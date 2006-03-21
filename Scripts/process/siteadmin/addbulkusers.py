@@ -22,6 +22,8 @@ if not submit:
 groupid = form.get('groupid', '')
 joingroups = form.get('groups', [])
 
+sendVerification = form.get('sendVerification', [])
+
 divisionid = form.get('divisionid')
 csvfile = form.get('csvfile')
 fields = {}
@@ -98,7 +100,8 @@ for row in results.mainData:
                                                               fieldmap.get('lastName',''),
                                                               fieldmap.get('email',''),
                                                               fieldmap.get('userId',''),
-                                                              groups, 0, fieldmap)
+                                                              groups, 0, fieldmap,
+                                                              sendVerification)
             if not user:
                 message += ["<paragraph>The following exception occured creating user in row %s:</paragraph>" % rowcount]
                 message += ["<paragraph>The user was unable to be registered. Please report this as a bug.</paragraph>"]

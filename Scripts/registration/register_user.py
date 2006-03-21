@@ -83,6 +83,12 @@ if groups:
 
 if sendVerification:
 	user.send_userVerification(site=context.REQUEST.SERVER_URL)
+else:
+	# --=mpj17=-- I should be punished for this:
+	# If there is no verification email sent, then just verify the
+	#   SOB. This creates a hole for spammers.
+	verificationCode = user.get_verificationCode()
+	user.verify_user(verificationCode)
 
 if manual:
     return redirect('/login?error:list=register_thanks')
