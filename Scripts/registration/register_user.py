@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=first_name='', last_name='', email='', user_id='', groups=[], manual=1, userproperties={}
+##parameters=first_name='', last_name='', email='', user_id='', groups=[], manual=1, userproperties={}, sendVerification=True
 ##title=
 ##
 from Products.XWFCore.XWFUtils import createRequestFromRequest
@@ -81,7 +81,8 @@ for prop in form:
 if groups:
     user.set_verificationGroups(groups)
 
-user.send_userVerification(site=context.REQUEST.SERVER_URL)
+if sendVerification:
+	user.send_userVerification(site=context.REQUEST.SERVER_URL)
 
 if manual:
     return redirect('/login?error:list=register_thanks')
