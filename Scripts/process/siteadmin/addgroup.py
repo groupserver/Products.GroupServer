@@ -116,6 +116,6 @@ assign_ownership(group, 'admin', 1, '/acl_users')
 
 site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title)
 
-message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
+#message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
 
 return '\n'.join(message)
