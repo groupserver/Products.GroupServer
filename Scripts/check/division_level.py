@@ -15,7 +15,9 @@ if getattr(context, 'supress_redirect', False):
 user = context.REQUEST.AUTHENTICATED_USER
 groups = user.getGroups()
 if 'unverified_member' in groups:
-    return RESPONSE.redirect('/unverified', lock=1)
+    path_bits = filter(None, request.URLPATH0.split('/'))
+    if path_bits and path_bits[0] != 'unverified':
+        return RESPONSE.redirect('/unverified/', lock=1)
 
 canonicalHost = context.Scripts.get.option('canonicalHost', None)
 if canonicalHost:
