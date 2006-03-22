@@ -44,7 +44,7 @@
           </td></tr>
           <tr><td valign="top"><strong>Message:</strong></td>
               <td><textarea cols="72" rows="20" name="message"></textarea></td></tr>
-          <tr><td colspan="2"><input type="submit" name="submit" value="Send Email"/></td></tr>
+          <tr><td colspan="2"><input type="submit" name="submit" value="Post message"/></td></tr>
           </form>
           </table>
        </xsl:when>
