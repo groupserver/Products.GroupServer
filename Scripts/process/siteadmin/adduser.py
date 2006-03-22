@@ -24,6 +24,7 @@ userid = form.get('userid','')
 firstname = form.get('firstname','')
 lastname = form.get('lastname','')
 email = form.get('email','')
+sendVerification = form.get('sendVerification', '')
 
 message = context.verifyuserdata(firstname, lastname, userid, email)
 if message:
@@ -53,7 +54,7 @@ if preferredname:
 else:
     userproperties = {}
 
-user = context.Scripts.registration.register_user(firstname, lastname, email, userid, groups, 0, userproperties)
+user = context.Scripts.registration.register_user(firstname, lastname, email, userid, groups, 0, userproperties, sendVerification)
 
 if not user:
     message.append("<paragraph>An unexpected error occured while creating the user, please report this as a bug.</paragraph>")
