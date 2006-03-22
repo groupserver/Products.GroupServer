@@ -12,6 +12,11 @@ RESPONSE =  request.RESPONSE
 if getattr(context, 'supress_redirect', False):
     return True
 
+user = context.REQUEST.AUTHENTICATED_USER
+groups = user.getGroups()
+if 'unverified_member' in groups:
+    return RESPONSE.redirect('/unverified', lock=1)
+
 canonicalHost = context.Scripts.get.option('canonicalHost', None)
 if canonicalHost:
     base_host = request.BASE0.split('/')[-1]

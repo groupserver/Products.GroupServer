@@ -16,18 +16,12 @@
 site_root = context.site_root()
 user = context.REQUEST.AUTHENTICATED_USER
 groups = user.getGroups()
-if 'unverified_member' in groups:
-    verified = False
-else:
-    verified = True
 
 virtualSitesOnly = context.Scripts.get.option('virtualSitesOnly')
 if virtualSitesOnly:
     division_object = context.Scripts.get.division_object()
     if division_object:
-        if not verified:
-            return context.REQUEST.RESPONSE.redirect('/unverified/', lock=1)                
-        elif division_object.absolute_url(1) == '':
+        if division_object.absolute_url(1) == '':
             return context.REQUEST.RESPONSE.redirect('/', lock=1)
         else:
             return context.REQUEST.RESPONSE.redirect('/%s' % division_object.absolute_url(1), lock=1)
