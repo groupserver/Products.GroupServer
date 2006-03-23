@@ -105,6 +105,14 @@
       <!-- Navigation Bar Ends -->
     </div><!-- Top Area Ends-->
 
+    <!-- Search Starts -->
+    <xsl:if test="//user[@type='self']/id/text()!='Anonymous User'">
+      <div id="searcharea">
+        <xsl:call-template name="searcharea" />
+      </div>
+    </xsl:if>
+    <!-- Search Ends -->
+
     <!-- Contextual Navigation Starts -->
     <xsl:apply-templates select="output/menus/menu[@id='side']" />
     <!-- Contextual Navigation Ends -->
