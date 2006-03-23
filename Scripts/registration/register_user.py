@@ -91,8 +91,14 @@ else:
 	user.verify_user(verificationCode)
 
 	# Send an "Administrator-Verified Join" message
+	n_dict={'first_name': user.firstname,
+		'last_name': user.lastname,
+		'user_id': user.id,
+		'password': user.get_password(),
+		'site': context.REQUEST.SERVER_URL,
+		}
 	user.send_notification(n_type='admin_verified_join', 
-		n_id='default')
+		n_id='default', n_dict=n_dict)
 
 if manual:
     return redirect('/login?error:list=register_thanks')
