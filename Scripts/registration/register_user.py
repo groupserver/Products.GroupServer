@@ -90,6 +90,10 @@ else:
 	verificationCode = user.get_verificationCode()
 	user.verify_user(verificationCode)
 
+	# Send an "Administrator-Verified Join" message
+	user.send_notification(n_type='admin_verified_join', 
+		n_id='default')
+
 if manual:
     return redirect('/login?error:list=register_thanks')
 
