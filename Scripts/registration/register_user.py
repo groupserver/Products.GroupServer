@@ -91,9 +91,9 @@ else:
 	user.verify_user(verificationCode)
 
 	# Send an "Administrator-Verified Join" message
-	n_dict={'first_name': user.firstname,
-		'last_name': user.lastname,
-		'user_id': user.id,
+	n_dict={'first_name': first_name,
+		'last_name': last_name,
+		'user_id': user_id,
 		'password': user.get_password(),
 		'site': context.REQUEST.SERVER_URL,
 		}
