@@ -11,7 +11,7 @@ form = context.REQUEST.form
 if not form.get('submitted', False):
     return result
 
-site_root = context.site_root
+site_root = context.site_root()
 result = {}
 user = context.REQUEST.AUTHENTICATED_USER
 origimage = getattr(context.contactsimages, '%s.jpg' % user.getId(), None)

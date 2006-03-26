@@ -8,7 +8,7 @@
 ##title=
 ##
 from Products.XWFCore import validators as v
-site_root = context.site_root
+site_root = context.site_root()
 
 required = {'password1': '<p>You must specify new password</p>',
             'password2': '<p>You must repeat the new password</p>'}

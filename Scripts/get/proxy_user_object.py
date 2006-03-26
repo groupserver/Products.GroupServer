@@ -7,13 +7,7 @@
 ##parameters=user_id
 ##title=
 ##
-site_root = context.site_root
+site_root = context.site_root()
 
-user = getattr(site_root.contacts, user_id)
+user = getattr(site_root.contacts, user_id, None)
 return user
-
-proxy_properties = context.proxy_properties
-proxy_properties.manage_addProperty('preferredEmailAddresses', user.get_preferredEmailAddresses(), 'lines')
-#proxy_properties.manage_addProperty('biography', user.getProperty('biography'), 'string')
-
-return proxy_properties
