@@ -14,8 +14,10 @@ subscribe = not unsubscribe
 
 listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 
-joinable = context.Scripts.get.group_joinability(division_id, group_id) == 'anyone' and True or False
-leaveable = getattr(getattr(listManager, group_id),'unsubscribe', None) and True or False
+joinable = context.Scripts.get.group_joinability(division_id, group_id) \
+	== 'anyone' and True or False
+leaveable = getattr(getattr(listManager, group_id),'unsubscribe', None) \
+	and True or False
 
 if subscribe and not joinable:
     raise 'Forbidden', 'You cannot join this list'
@@ -25,13 +27,21 @@ if unsubscribe and not leaveable:
 division = getattr(site_root.Content, division_id)
 group = getattr(division.groups, group_id)
 
+# Get the participation-coach for the group
+ptnCoachId = group.getProperty('ptn_coach_id', '')
+ptnCoach = site_root.acl_users.getUser(ptnCoachId)
+
 if int(unsubscribe):
     user.del_groupWithNotification('%s_member' % group_id)
-    return context.REQUEST.RESPONSE.redirect('/%s/groups/' % (division_id))
+    ptnCoach.send_notification('leave_group_admin', group_id, 
+      n_dict={'joining_user': user, 'joining_group': group})
+   return context.REQUEST.RESPONSE.redirect('/%s/groups/' % (division_id))
 
 if joinable:
     try:
         user.add_groupWithNotification('%s_member' % group_id)
+	ptnCoach.send_notification('join_group_admin', group_id, 
+		n_dict={'joining_user': user, 'joining_group': group})
     except:
         pass
     return context.REQUEST.RESPONSE.redirect('/%s/groups/%s/' % (division_id, group_id))
