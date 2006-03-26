@@ -12,7 +12,7 @@ user = user_id and groups_object.acl_users.getUser(user_id) or context.REQUEST.A
 objects = context.Scripts.get.object_values(groups_object, ['Folder'])
 for object in objects:
     if object and 'GroupMember' in user.getRolesInContext(object):
-        group_type = object.getProperty('group_type', 'unknown')
-        group_object.setdefault(object.getProperty('group_type', 'unknown'), []).append(object)
+        group_template = object.getProperty('group_template', 'unknown')
+        group_object.setdefault(group_template, []).append(object)
 
 return group_object
