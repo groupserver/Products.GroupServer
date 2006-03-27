@@ -32,12 +32,12 @@ ptnCoach = site_root.acl_users.getUser(ptnCoachId)
 if int(unsubscribe):
     user.del_groupWithNotification('%s_member' % group_id)
     ptnCoach.send_notification('leave_group_admin', group_id, n_dict={'joining_user': user, 'joining_group': group})
-   return context.REQUEST.RESPONSE.redirect('/%s/groups/' % (division_id))
+    return context.REQUEST.RESPONSE.redirect('/%s/groups/' % (division_id))
 
 if joinable:
     try:
         user.add_groupWithNotification('%s_member' % group_id)
-	ptnCoach.send_notification('join_group_admin', group_id, n_dict={'joining_user': user, 'joining_group': group})
+        ptnCoach.send_notification('join_group_admin', group_id, n_dict={'joining_user': user, 'joining_group': group})
     except:
         pass
     return context.REQUEST.RESPONSE.redirect('/%s/groups/%s/' % (division_id, group_id))
