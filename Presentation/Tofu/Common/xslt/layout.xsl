@@ -9,6 +9,10 @@
     <q><xsl:apply-templates select="@id | @class"/><xsl:apply-templates /></q>
 </xsl:template>
 
+<xsl:template match="img">
+    <img alt="{@alt}" src="{@src}"><xsl:apply-templates select="@id | @class"/></img>
+</xsl:template>
+
 <xsl:template match="div">
     <div>
       <xsl:apply-templates select="@id | @class"/>
