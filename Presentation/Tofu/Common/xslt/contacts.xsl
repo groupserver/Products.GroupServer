@@ -126,12 +126,15 @@
 						<xsl:value-of select="@title"/> : </th>
 					<td>
 						<xsl:choose>
+							<xsl:when test="@href != '' and text() != ''">
+								<a href="{@href}"><xsl:apply-templates select="text()"/></a>
+                                                        </xsl:when>
 							<xsl:when test="text() != ''">
 								<xsl:apply-templates select="text()"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<!-- xsl:value-of select="name/preferredname"/> has not set a <xsl:value-of select="@title"/> yet.-->
-								[not set] </xsl:otherwise>
+								[not set]
+                                                        </xsl:otherwise>
 						</xsl:choose>
 					</td>
 				</tr>
@@ -211,12 +214,17 @@
 						<div class="label">
 							<xsl:value-of select="@title"/> : </div>
 						<div class="field">
-							<xsl:choose>
-								<xsl:when test="text() != ''">
-									<xsl:apply-templates select="text()"/>
-								</xsl:when>
-								<xsl:otherwise>[not set]</xsl:otherwise>
-							</xsl:choose>
+						<xsl:choose>
+							<xsl:when test="@href != '' and text() != ''">
+								<a href="{@href}"><xsl:apply-templates select="text()"/></a>
+                                                        </xsl:when>
+							<xsl:when test="text() != ''">
+								<xsl:apply-templates select="text()"/>
+							</xsl:when>
+							<xsl:otherwise>
+								[not set]
+                                                        </xsl:otherwise>
+						</xsl:choose>
 						</div>
 					</div>
 				</xsl:for-each>
