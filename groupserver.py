@@ -84,6 +84,9 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email ):
     acl.userFolderAddGroup( 'example_group_admin', 
                                 'Administration of Example Group' )
     
+    acl.userFolderAddGroup( 'unverified_member', 
+                                'Users who have not yet been verified' )
+    
     acl._doAddUser( initial_user, initial_password, 
                               (), (), ('example_division_member', 
                                        'example_division_admin', 
