@@ -203,17 +203,28 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     get_transaction().commit()
     
     gss = getattr( container, id )
+
+    init_catalog( gss )
+    get_transaction().commit()
+
+    init_file_library( gss )
+    get_transaction().commit()
     
     import_content( gss )
     get_transaction().commit()
     
     init_user_folder( gss, initial_user, initial_password, support_email )
+    get_transaction().commit()
+
     init_fs_presentation( gss )
+    get_transaction().commit()
+
     init_fs_scripts( gss )
-    init_catalog( gss )
-    init_file_library( gss )
+    get_transaction().commit()
+
     init_global_configuration( gss, title, support_email, timezone,
                                canonicalHost, userVerificationEmail, registrationEmail )
+    get_transaction().commit()
                                
     if REQUEST is None:
         return
