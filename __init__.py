@@ -9,9 +9,11 @@ import groupserver
 
 def initialize( context ):
     context.registerClass( 
-                           groupserver.GroupserverSite, 
-                           constructors = ( groupserver.manage_addGroupserverSiteForm, 
-                                            groupserver.manage_addGroupserverSite )
+        groupserver.GroupserverSite, 
+        constructors = ( groupserver.manage_addGroupserverSiteForm, 
+                         groupserver.manage_addGroupserverSite ),
+        icon='icons/ic-groupserversite.png'
+
                            )
 
                            
