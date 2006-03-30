@@ -1,6 +1,5 @@
 from zope.interface import implements
 from OFS.OrderedFolder import OrderedFolder
-from OFS.Folder import Folder
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest
@@ -12,7 +11,7 @@ import transaction
 import DateTime
 import urlparse
 
-class GroupserverSite( Folder ):
+class GroupserverSite( OrderedFolder ):
     implements( IGroupserverSite )
     
     meta_type = 'Groupserver Site'
@@ -152,6 +151,10 @@ def init_file_library( groupserver_site ):
     fls = file_library.manage_addProduct['XWFFileLibrary2']
     fls.manage_addXWFFileStorage2( 'storage' )
     
+def init_id_factory( groupserver_site ):
+    xif = groupserver_site.manage_addProduct['XWFIdFactory']
+    xif.manage_addXWFIdFactory( 'IdFactory' )
+    
 def init_catalog( groupserver_site ):
     groupserver_site.manage_addProduct['XWFCore'].manage_addXWFCatalog( 'Catalog' )
     catalog = getattr( groupserver_site, 'Catalog' )
@@ -220,6 +223,9 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     gss = getattr( container, id )
 
     init_catalog( gss )
+    get_transaction().commit()
+
+    init_id_factory( gss )
     get_transaction().commit()
 
     init_file_library( gss )
