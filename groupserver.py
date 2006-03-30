@@ -1,15 +1,18 @@
 from zope.interface import implements
 from OFS.OrderedFolder import OrderedFolder
+from OFS.Folder import Folder
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from Products.XWFCore.XWFUtils import createRequestFromRequest
 from App.config import getConfiguration
 
 from interfaces import IGroupserverSite
 
 import transaction
 import DateTime
+import urlparse
 
-class GroupserverSite( OrderedFolder ):
+class GroupserverSite( Folder ):
     implements( IGroupserverSite )
     
     meta_type = 'Groupserver Site'
@@ -43,27 +46,36 @@ class GroupserverSite( OrderedFolder ):
         request = self.REQUEST
         redirect = request.RESPONSE.redirect
         
-        return redirect(request.URL1+'/index.xml', lock=1)
+        return redirect(request.URL1+'/index.xml?'+createRequestFromRequest(request),
+                        lock=1)
     
     def standard_error_message( self, **kw ):
         """ Override the default standard_error_message.
         
         """
+        request = self.REQUEST
+        path = tuple(filter(None, urlparse.urlsplit(request.URL1)[2].split('/')))
+        virtual_path = request.get('VirtualRootPhysicalPath', ())
+        
+        path = virtual_path + path
+        
+        context = self.unrestrictedTraverse(path)
+        
         if kw['error_type'] == 'NotFound':
-            if hasattr(self, 'notfound_message.xml'):
-                self.REQUEST.RESPONSE.redirect('/notfound_message.xml', lock=1)
+            if hasattr(context, 'notfound_message.xml'):
+                self.REQUEST.RESPONSE.redirect('%s/notfound_message.xml' % request.URL1, lock=1)
             else:
                 raise
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):
             pass
         else:
-            if hasattr(self, 'notfound_message.xml'):
-                self.REQUEST.RESPONSE.redirect('/unexpected_message.xml', lock=1)
+            if hasattr(self, 'unexpected_message.xml'):
+                self.REQUEST.RESPONSE.redirect('%s/unexpected_message.xml' % request.URL1, lock=1)
             else:
                 raise
         
-        return 1
+        raise
 
 def init_user_folder( groupserver_site, initial_user, initial_password, email ):
     cuf = groupserver_site.manage_addProduct['CustomUserFolder']
