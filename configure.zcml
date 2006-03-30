@@ -1,0 +1,5 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+    <content class=".groupserver.GroupserverSite">
+        <allow attributes="index_html" />
+    </content>
+</configure>
