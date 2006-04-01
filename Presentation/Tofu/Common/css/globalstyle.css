@@ -66,6 +66,9 @@ h4 {
 	margin:0 0 5px 0; 
 }
 
+pre { 
+	font-family: 'Trebuchet MS', 'Lucida Grande', verdana, sans-serif;
+}
 
 p {
 	margin: 0 0 1em 10px;
