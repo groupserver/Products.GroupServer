@@ -450,3 +450,7 @@ div#divisionHomeContent {
 	padding:15px 10px 15px 10px;
 }
 
+.alternateATOM, .alternateATOM a, .alternateATOM a:visited {
+  background-color: inherit;
+  color: #aaaaaa;
+}
