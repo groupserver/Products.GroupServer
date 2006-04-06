@@ -48,7 +48,23 @@
 				<script type="text/javascript" src="/Presentation/Tofu/Ajax/js/mochikit/dynamic_load.js">
 					&#160;
 				</script>
-				<base href="{//output/metadata/base/@href}" />
+
+      <xsl:if test="//link[@class='alternateRDF']">
+        <xsl:for-each select="//link[@class='alternateRDF']">
+          <link rel="alternate" type="application/rss+xml"
+            title="{//output/metadata/title}" href="{@url}"/>
+        </xsl:for-each>
+      </xsl:if>
+
+      <xsl:if test="//link[@class='alternateATOM']">
+        <xsl:for-each select="//link[@class='alternateATOM']">
+          <link rel="alternate" type="application/atom+xml"
+            title="{//output/metadata/title}" href="{@url}"/>
+        </xsl:for-each>
+      </xsl:if>
+
+      <base href="{//output/metadata/base/@href}" />
+
 			</head>
 			<body onLoad="javascript:LoadStuff()">
 				<form method="post" enctype="application/x-www-form-urlencoded" action=""
