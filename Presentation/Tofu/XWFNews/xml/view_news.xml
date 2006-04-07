@@ -16,7 +16,7 @@ UNPUBLISHED</tal:block>: <span tal:replace="structure result/title"/></heading2>
         <bulletlist tal:condition="python:filter(None, result.linked_resources)">
           <listitem tal:repeat="link result/linked_resources"><a tal:attributes="href link" tal:content="link"/></listitem>
         </bulletlist>
-        <p tal:repeat="dpart python:result.dc_description.split('\n')" tal:content="structure dpart"/>
+        <p tal:repeat="dpart python:result.dc_description.split('\n\n')" tal:content="structure dpart"/>
       </tal:block>
 
     </content>
