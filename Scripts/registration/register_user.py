@@ -101,6 +101,6 @@ else:
 		n_id='default', n_dict=n_dict)
 
 if manual:
-    return redirect('/login?error:list=register_thanks')
+    return redirect('/login/index.xml?error:list=register_thanks')
 
 return user
