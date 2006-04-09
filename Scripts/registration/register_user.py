@@ -82,7 +82,7 @@ if groups:
     user.set_verificationGroups(groups)
 
 if sendVerification:
-	user.send_userVerification(site=context.REQUEST.SERVER_URL)
+	user.send_userVerification(password=password, site=context.REQUEST.SERVER_URL)
 else:
 	# --=mpj17=-- I should be punished for this:
 	# If there is no verification email sent, then just verify the
@@ -94,7 +94,7 @@ else:
 	n_dict={'first_name': first_name,
 		'last_name': last_name,
 		'user_id': user_id,
-		'password': user.get_password(),
+		'password': password,
 		'site': context.REQUEST.SERVER_URL,
 		}
 	user.send_notification(n_type='admin_verified_join', 
