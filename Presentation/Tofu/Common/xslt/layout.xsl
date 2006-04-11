@@ -83,7 +83,7 @@
 
 <xsl:template match="link">
 	<a href="{@url}">
-		<xsl:apply-templates select="@id | @class"/>
+		<xsl:apply-templates select="@id | @class | @title"/>
 		<xsl:apply-templates/>
 	</a>
 </xsl:template>
@@ -98,6 +98,11 @@
 		<xsl:value-of select="."/>
 	</xsl:attribute>
 </xsl:template>
+<xsl:template match="@title">
+	<xsl:attribute name="title">
+		<xsl:value-of select="."/>
+	</xsl:attribute>
+</xsl:template>
   
 <xsl:template match="span">
     <span class="{@class}">
@@ -107,7 +112,7 @@
   
 <xsl:template match="a">
     <a href="{@href}">
-      <xsl:apply-templates select="@id | @class"/>
+      <xsl:apply-templates select="@id | @class | @title"/>
       <xsl:apply-templates />
     </a>
 </xsl:template>
