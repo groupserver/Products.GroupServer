@@ -30,6 +30,10 @@ if canonicalHost:
 user = request.AUTHENTICATED_USER
 if user.getUserName() != 'Anonymous User':
     if getattr(context, 'is_division', False):
+         div_object = context.Scripts.get.division_object()
+         div_id = div_object.getId()
+         if user.getProperty('currentDivision') != div_id:
+             user.manage_changeProperties(currentDivision=div_id)
          return True
     else:
          division = user.getProperty('currentDivision')
