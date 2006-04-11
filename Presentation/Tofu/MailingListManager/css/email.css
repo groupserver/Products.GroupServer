@@ -93,3 +93,9 @@ span.emailremainder {
         padding: 0;
         display: none;
 }        
+
+ul.topicNavigation {
+	list-style: none;
+	padding-left: 10px;
+	margin-left: 0px;
+}
