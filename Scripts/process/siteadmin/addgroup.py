@@ -28,7 +28,7 @@ if not submit:
     return ''
 
 groupid = form.get('groupid', '').strip().lower()
-title = form.get('title', '').strip().lower() or groupid
+title = form.get('title', '').strip() or groupid
 mailto = form.get('mailto','').strip().lower()
 templateid = form.get('templateid','').strip().lower()
 
@@ -82,7 +82,7 @@ groups.manage_addFolder(groupid)
 group = getattr(groups.aq_explicit, groupid)
 
 group.manage_addProperty('is_group', True, 'boolean')
-group.manage_addProperty('short_name', title, 'string')
+group.manage_addProperty('short_name', title.lower(), 'string')
 group.manage_changeProperties(title=title)
 
 # add a files area
@@ -114,7 +114,7 @@ group.manage_permission('Access contents information', ['DivisionAdmin','GroupAd
 
 assign_ownership(group, 'admin', 1, '/acl_users')
 
-site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title)
+site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title.lower())
 
 #message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
 
