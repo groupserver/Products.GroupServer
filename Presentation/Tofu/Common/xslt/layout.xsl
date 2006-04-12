@@ -23,7 +23,7 @@
 <xsl:template match="heading1 | h1">
 <h1>
   <xsl:apply-templates select="@id | @class"/>
-  <xsl:value-of select="." />
+  <xsl:apply-templates />
 </h1>
 </xsl:template>
 
