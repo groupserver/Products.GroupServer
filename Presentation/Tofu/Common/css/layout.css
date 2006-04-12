@@ -454,3 +454,10 @@ div#divisionHomeContent {
   background-color: inherit;
   color: #aaaaaa;
 }
+
+.helpLink {
+  font-size: x-small;
+  font-weight: medium;
+  color: #aaaaaa;
+  background-color: inherit;
+}
