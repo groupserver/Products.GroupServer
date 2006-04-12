@@ -91,7 +91,7 @@
 							<xsl:for-each select="groupmemberships/groupmembership">
                 <xsl:sort select="@divisionUrl"/>
 								<li>
-									<a href="{@url}">
+                  <a href="{@url}">
 										<xsl:value-of select="@title"/>
 									</a> (<xsl:value-of select="@divisionName"/>)
 								</li>
@@ -182,7 +182,7 @@
 								<xsl:for-each select="groupmemberships/groupmembership">
                 <xsl:sort select="@divisionUrl"/>
 								<li>
-									<a href="{@url}">
+                  <a href="{@url}">
 										<xsl:value-of select="@title"/>
 									</a> (<xsl:value-of select="@divisionName"/>)
 								</li>
