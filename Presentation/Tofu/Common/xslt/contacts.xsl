@@ -89,10 +89,11 @@
 					<td>
 						<ul class="groups">
 							<xsl:for-each select="groupmemberships/groupmembership">
+                <xsl:sort select="@divisionUrl"/>
 								<li>
 									<a href="{@url}">
 										<xsl:value-of select="@title"/>
-									</a>
+									</a> (<xsl:value-of select="@divisionName"/>)
 								</li>
 							</xsl:for-each>
 						</ul>
@@ -149,7 +150,8 @@
 				<div class="userimage">
 					<img src="{image}" alt="Photo of {name/preferredname}"/>
 					<xsl:choose>
-						<xsl:when test="//input[@id='show_image']/object/element/@default='1'">
+						<xsl:when
+              test="//input[@id='show_image']/object/element/@default='1'">
 							<p>Your photo is visible to others</p>
 						</xsl:when>
 						<xsl:when test="//output/metadata/alwaysshowphoto/text()='1'">
@@ -178,11 +180,12 @@
 						<div class="field">
 							<ul class="emails">
 								<xsl:for-each select="groupmemberships/groupmembership">
-									<li>
-										<a href="{@url}">
-											<xsl:value-of select="@title"/>
-										</a>
-									</li>
+                <xsl:sort select="@divisionUrl"/>
+								<li>
+									<a href="{@url}">
+										<xsl:value-of select="@title"/>
+									</a> (<xsl:value-of select="@divisionName"/>)
+								</li>
 								</xsl:for-each>
 							</ul>
 						</div>
