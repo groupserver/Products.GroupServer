@@ -25,7 +25,11 @@ for division_object in division_objects:
     
     for membership in memberships:
         if not membership.getId() in group_ids:
-            group_title_ids.append((membership.getProperty('title'), membership.getId(), membership.absolute_url(1)))
+            group_title_ids.append((membership.getProperty('title'),
+                                    membership.getId(),
+                                    membership.absolute_url(1),
+                                    division_object.title_or_id(),
+                                    division_object.Scripts.get.option('canonicalHost'))) 
             group_ids.append(membership.getId())
     
 return group_title_ids
