@@ -18,9 +18,9 @@
 	  </data>
 
     <messages metal:fill-slot="messages">
-    	<message type="result" tal:condition="python:request.form.get('message', None) == 'removed'">
-    	   The file has been tagged as 'removed', and will no longer be shown in the normal file list. You
-    	   may find all removed files by selecting the tag 'removed'.
+    	<message type="result" tal:condition="python:request.form.get('message', None) == 'hide'">
+    	   The file has been tagged as 'hidden', and will no longer be shown in the normal file list. You
+    	   may display all hidden files by selecting the tag 'hidden'.
     	</message>
     </messages>
     

@@ -34,7 +34,8 @@
           <span class="searchtime"
 	    tal:content="python:result['modification_time'].toZone(here.Scripts.get.option('timezone')).ISO()">
 		1977-01-01
-	  </span>
+	  </span> <a tal:condition="python:'hidden' not in result.tags" class="taghidden" tal:attributes="python:'hide_file?id=%s' % result.id">hide file</a>
+	          <a tal:condition="python:'hidden' in result.tags" class="tagshow" tal:attributes="python:'show_file?id=%s' % result.id">show file</a>
 	  <div class="description">
             <div class="searchdescription" 
 	      tal:content="python:here.printable_summary(result) or 'No summary available'">
