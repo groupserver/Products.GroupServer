@@ -60,6 +60,13 @@
   background-repeat: no-repeat;
 }
 
+.taghidden, .tagshow
+{
+  padding: 0 0 0 18px;
+  margin: 0 0 0 0;
+  background-repeat: no-repeat;
+}
+
 /* Images for the different icons. */
 
 .weblink {
