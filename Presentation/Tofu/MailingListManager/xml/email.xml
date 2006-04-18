@@ -64,7 +64,7 @@
 					<email:subject tal:condition="python:hasattr(email, 'subject')" 
 						tal:content="python:email['subject']">someaddress@iopen.co.nz</email:subject>
 					<email:mailDate 
-						tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%Z %R')">1970-01-01 00:01</email:mailDate>
+						tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">1970-01-01 00:01</email:mailDate>
 					<tal:block 
 						tal:define="wrapped_email python:me(here.lscripts.wrap_email(ct(email['mailBody']))).strip()">
 						<tal:block
