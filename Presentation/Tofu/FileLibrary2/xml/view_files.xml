@@ -22,6 +22,9 @@
     	   The file has been tagged as 'hidden', and will no longer be shown in the normal file list. You
     	   may display all hidden files by selecting the tag 'hidden'.
     	</message>
+    	<message type="result" tal:condition="python:request.form.get('message', None) == 'show'">
+    	   The file has had the 'hidden' tag removed, and will now be shown in the normal file list.
+    	</message>
     </messages>
     
     <content metal:fill-slot="maincontent">
