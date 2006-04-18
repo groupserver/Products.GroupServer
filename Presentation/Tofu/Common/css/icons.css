@@ -113,3 +113,11 @@ list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif")
 .alternateATOM {
   background-image: url("/Presentation/Tofu/Common/images/16x16/feed.gif");
 }
+
+.taghidden {
+  background-image: url("/Presentation/Tofu/Common/images/16x16/list-remove.gif");
+}
+
+.tagshow {
+  background-image: url("/Presentation/Tofu/Common/images/16x16/list-add.gif");
+}
