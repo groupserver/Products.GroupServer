@@ -50,7 +50,8 @@ if result['error']:
 context.start_site(siteId=form['subdomain'],
                    sitename=form['sitename'],
                    siteintro=form['introduction'],
-                   userId='michaeljasonsmith') # --=change=--
+                   userId='michaeljasonsmith', # --=change=--
+                   int(form['startdone']))
 
 result['error'] = False
 result['message'] = 'Starting a site has not been implemented yet.'

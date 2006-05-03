@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=siteId=None, sitename=None, siteintro='', userId=None
+##parameters=siteId=None, sitename=None, siteintro='', userId=None, step=0
 ##title=Start a Site
 ##
 
@@ -28,8 +28,10 @@ assert(siteId not in siteIds)
 
 
 #------------------------------------------------------------
-return
+if step == 0:
+    return
 #------------------------------------------------------------
+
 
 
 # 0. Remove copy of the example division, if it exists
@@ -44,9 +46,18 @@ copiedExampleSite = \
                   sitesContainer.manage_copyObjects(('example_division',))
 sitesContainer.manage_pasteObject(copiedExampleSite)
 
+#------------------------------------------------------------
+if step == 1:
+    return
+#------------------------------------------------------------
+
 # * rename the copy with the id of your virtual site
 sitesContainer.manage_renameObject('copy_of_example_division', siteId)
 
+#------------------------------------------------------------
+if step == 1.5:
+    return
+#------------------------------------------------------------
 
 # 2. configure the site object
 newSite = context.restrictedTraverse('/Content/%s' % siteId)
@@ -55,6 +66,11 @@ newSite = context.restrictedTraverse('/Content/%s' % siteId)
 # the "Title" to reflect the title of your new virtual site
 siteTitle = '%s Online Groups' % sitename
 newSite.manage_changeProperties(title=siteTitle)
+
+#------------------------------------------------------------
+if step == 2:
+    return
+#------------------------------------------------------------
 
 # * navigate to the DivisionConfiguration? object
 divisionConfiguration = newSite.objectItems('Custom Properties')[1]
@@ -65,16 +81,36 @@ divisionConfiguration = newSite.objectItems('Custom Properties')[1]
 hostname='%s.onlinegroups.net' % siteId
 divisionConfiguration.manage_changeProperties(canonicalHost=hostname)
 
+#------------------------------------------------------------
+if step == 2.5:
+    return
+#------------------------------------------------------------
+
 # * add a Virtual Host Monster, naming it VHM
 newSite.manage_addVirtualHostMonster('VHM')
 
+#------------------------------------------------------------
+if step == 2.8:
+    return
+#------------------------------------------------------------
 
 # 3. set up a site news object
 # * delete the news object
 newSite.manage_delObjects(('news',))
 
+#------------------------------------------------------------
+if step == 3:
+    return
+#------------------------------------------------------------
+
+
 # * create a new XWF News object, naming it news
 newSite.manage_addXWFNews('news')
+
+#------------------------------------------------------------
+if step == 3.2:
+    return
+#------------------------------------------------------------
 
 # * copy the news/index.xml file from example_division and
 # paste inside your new news object
@@ -83,6 +119,11 @@ exampleDivision = \
 oldNewsIndex = exampleDivision.manage_copyObjects(('index.xml',))
 newNews = context.restrictedTraverse('/Content/%s/news' % siteId)
 newNews.manage_pasteObject(oldNewsIndex)
+
+#------------------------------------------------------------
+if step == 3.4:
+    return
+#------------------------------------------------------------
 
 
 # 4. set up permissions for the site
@@ -94,6 +135,11 @@ aclUsers = context.restrictedTraverse('acl_users')
 newUsergroupName = '%s_member' % siteId
 aclUsers.manage_addGroup(newUsergroupName)
 
+#------------------------------------------------------------
+if step == 4:
+    return
+#------------------------------------------------------------
+
 # * back in your new division, navigate to the security tab
 #   and then local roles
 # * give newdivision_member the DivisionMember local role
@@ -102,6 +148,12 @@ aclUsers.manage_addGroup(newUsergroupName)
 
 #--=mpj17=-- ??
 newSite.manage_addLocalRoles(newUsergroupName, 'DivisionMember')
+
+#------------------------------------------------------------
+if step == 5:
+    return
+#------------------------------------------------------------
+
 
 # 5. appoint a site administrator
 # * navigate to the new division (GVS) object, and then to
@@ -112,14 +164,29 @@ newSite.manage_addLocalRoles(newUsergroupName, 'DivisionMember')
 #--=mpj17=-- ??
 newSite.manage_addLocalRoles(userId, 'DivisionAdmin')
 
+#------------------------------------------------------------
+if step == 5.2:
+    return
+#------------------------------------------------------------
+
 # (add them as a user if necessary)
 #--=mpj17=-- ??
 user = aclUsers.getUser(userId)
 user.manage_addGroup(newUsergroupName)
 
+#------------------------------------------------------------
+if step == 5.4:
+    return
+#------------------------------------------------------------
+
 # 6. configure the site for groups
 # * delete groups/example-group
 newSite.groups.manage_delObjects(('example-group',))
+
+#------------------------------------------------------------
+if step == 6:
+    return
+#------------------------------------------------------------
 
 # * navigate to
 # /sites/site_id/Templates/email/notifications/add_group
@@ -133,6 +200,12 @@ addGroupNotification = \
 ids = addGroupNotification.getProperty('ignore_ids')
 ids.append(newUsergroupName)
 addGroupNotification.manage_changeProperties(ignore_ids=ids)
+
+#------------------------------------------------------------
+if step == 6.5:
+    return
+#------------------------------------------------------------
+
 
 # 7. test that your new site is browseable
 
