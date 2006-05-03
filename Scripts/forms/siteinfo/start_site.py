@@ -19,7 +19,7 @@ assert(sitename != '')
 assert(userId != None)
 assert(userId != '')
 # Check to see if the site does not already exist
-sitesContainer = context.restrictedTraverse('/Content')
+sitesContainer = context.restrictedTraverse('Content')
 siteIds = map(lambda s: s[0],
               filter(lambda s: s[1].getProperty('is_division'),
                      sitesContainer.objectItems('Folder')))
