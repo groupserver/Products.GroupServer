@@ -47,6 +47,11 @@ result = container.check_introduction(form['introduction'])
 if result['error']:
     return result
 
+context.start_site(siteId=form['subdomain'],
+                   sitename=form['sitename'],
+                   siteintro=form['introduction'],
+                   userId='michaeljasonsmith') # --=change=--
+
 result['error'] = False
 result['message'] = 'Starting a site has not been implemented yet.'
 return result
