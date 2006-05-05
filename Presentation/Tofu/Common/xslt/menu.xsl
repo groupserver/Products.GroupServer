@@ -11,12 +11,12 @@
 	  <li>
 	    <a class="current"
 	      href="{@url}"
-	      id="{@name}-menu-link"><xsl:value-of select="@name"/></a>
+	      id="{translate(@name, ' ', '-')}-menu-link"><xsl:value-of select="@name"/></a>
 	  </li>
 	</xsl:when>
 	<xsl:otherwise>
 	  <li>
-	    <a id="{@name}-menu-link"
+	    <a id="{translate(@name, ' ', '-')}-menu-link"
 	      href="{@url}"><xsl:value-of select="@name"/></a>
 	  </li>
 	</xsl:otherwise>
