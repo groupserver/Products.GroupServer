@@ -70,6 +70,7 @@
 
         <!-- Title Bar Starts -->
         <div id="titlebar">
+          <span class="logo"/>
           <span class="group">
             <xsl:value-of select="output/metadata/sitename/text()" />
           </span>
