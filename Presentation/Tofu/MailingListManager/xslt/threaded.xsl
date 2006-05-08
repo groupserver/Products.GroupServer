@@ -38,15 +38,16 @@
       </xsl:for-each>
     </table>
     
+    <!--=mpj17 Previous and next have changed their defns, sorry. =-->
     <ul class="resultsnav">
       <xsl:if test="@prev">
         <li>
-          <a href="{@prev}">Previous <xsl:value-of select="@prevbsize"/></a>
+          <a href="{@prev}">Next <xsl:value-of select="@prevbsize"/></a>
         </li>
       </xsl:if>
       <xsl:if test="@next">
         <li>
-          <a href="{@next}">Next <xsl:value-of select="@nextbsize"/></a>
+          <a href="{@next}">Previous <xsl:value-of select="@nextbsize"/></a>
         </li>
       </xsl:if>
     </ul><!--resultsnav-->
