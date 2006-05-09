@@ -44,7 +44,7 @@ introXML = '''<?xml version="1.0" encoding="utf-8"?>
 </div>''' % form['introduction']
 
 divIntro = context.restrictedTraverse('Content/%s/division_introduction.xml' %\
-  siteId)
+  form['siteId'])
 
 divIntro.write(introXML)
 
