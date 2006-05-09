@@ -39,7 +39,7 @@ if result['error']:
 
 siteTitle = '%s Online Groups' % sitename
 site = context.restrictedTraverse('Content/%s' % siteId)
-site.manage_changeProperties(title=sitename)
+site.manage_changeProperties(title=siteTitle)
 
 # No error, redirect
 result['error'] = False
