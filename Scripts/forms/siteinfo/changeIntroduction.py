@@ -50,5 +50,5 @@ divIntro.write(introXML)
 
 # No error, redirect
 result['error'] = False
-result['message'] = 'Not implemented'
+result['message'] = 'The site introduction has been changed.'
 return result
