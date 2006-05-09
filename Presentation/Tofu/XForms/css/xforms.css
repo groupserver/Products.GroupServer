@@ -34,7 +34,7 @@ div.formelementtext label {
 	font-weight: bold;
 }
 
-div.formelementtext div.hint {
+div.formelementtext div.hint, .hint {
     padding: 0 5px 0 5px;
     font-size: 9px;
     color: #aaaaaa;
