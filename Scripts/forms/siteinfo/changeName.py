@@ -27,10 +27,19 @@ for field in form:
 if (form['sitename'][-13:].lower() == 'online groups'):
     form['sitename'] = form['sitename'][:-13].strip()
 
+sitename = form['sitename']
+# For most sites, the siteId is the subdomain, but not always.
+siteId = form['siteId'] 
+
 # Check for errors in the site name
-result = container.check_name(form['sitename'])
+result = container.check_name(sitename)
 if result['error']:
     return result
+
+
+siteTitle = '%s Online Groups' % sitename
+site = context.restrictedTraverse('Content/%s' % siteId)
+site.manage_changeProperties(title=sitename)
 
 # No error, redirect
 result['error'] = False
