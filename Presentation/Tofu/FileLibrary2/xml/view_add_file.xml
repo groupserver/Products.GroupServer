@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	metal:use-macro="here/Templates/page.xml/macros/page">
   <output xmlns:xf="http://www.w3.org/2002/xforms">
 
     <messages metal:fill-slot="messages" 
-              tal:define="message python:options.get('result',{}).get('message', '')"
+      tal:define="message python:options.get('result',{}).get('message', '')"
       tal:condition="message">
       <message type="result" tal:content="structure message">
       </message>
@@ -18,6 +20,7 @@
             <topic />
             <tags />
             <summary />
+						<sendEmailNotification>1</sendEmailNotification>
           </data>
         </xf:instance>
         <xf:submission method="form-data-post" id="addFile"
@@ -74,12 +77,23 @@
             will help people find your file
           </xf:hint>
         </xf:textarea>
-        
+
+				<xf:select appearance="full" model="file" 
+					ref="sendEmailNotification" class="singlecheck">
+         <xf:label>Send Email Notification</xf:label>
+         <xf:hint>Send all group members an email notification of the
+						addition</xf:hint>
+					<xf:item>
+						<xf:label></xf:label>
+						<xf:value>1</xf:value>
+					</xf:item>
+				</xf:select>
+				
         <xf:submit class="button" model="file" submission="addFile">
           <xf:label>Add File</xf:label>
         </xf:submit>
       </fieldset>
     </content>
     
-</output>
+  </output>
 </root>
