@@ -19,7 +19,8 @@ div.formelementtext input {
 	width: 300px;
 }
 
-div.formelementtext textarea {
+
+div.formelementtext textarea, div.formelementtextarea textarea {
         /*margin: 0 0 0 205px;*/
         width: 600px;
         height: 200px;
