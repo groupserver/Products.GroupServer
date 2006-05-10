@@ -461,3 +461,9 @@ div#divisionHomeContent {
   color: #aaaaaa;
   background-color: inherit;
 }
+
+ul#resultsnav {
+	list-style: none;
+	padding-left: 10px;
+	margin-left: 0px;
+}
