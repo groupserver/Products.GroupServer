@@ -29,6 +29,10 @@ if group.Scripts.get.division_object().getId() != divisionid:
 listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 grouplist = getattr(listManager, groupid)
 
+# Change the title of  the list manager object for the group.
+groupSubject = form.get('groupSubject')
+grouplist.manage_changeProperties(title=groupSubject)
+
 senderlimit = form.get('senderlimit', 0)
 try:
     senderlimit = int(senderlimit)
