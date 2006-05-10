@@ -30,7 +30,7 @@
     <content metal:fill-slot="maincontent">
       <h1>Files</h1>
 
-      <p><a href="view_add_file">Add File</a></p>
+      <p tal:condition="python:user.getId()"><a href="view_add_file">Add File</a></p>
       
       <xf:select1 appearance="minimal"
           model="find_file" ref="b_size"
