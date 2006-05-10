@@ -21,11 +21,11 @@ div.formelementtext input {
 
 div.formelementtext textarea {
         /*margin: 0 0 0 205px;*/
-        width: 300px;
+        width: 600px;
         height: 200px;
 }
 
-div.formelementtext label {
+div.formelementtext label, div.formelementtextarea label {
 	float: left;
 	text-align: right;
 	width: 200px;
