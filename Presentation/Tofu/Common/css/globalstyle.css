@@ -9,7 +9,6 @@
 @import "/Presentation/Tofu/XForms/css/calendar.css";
 @import "/Presentation/Tofu/XForms/css/xforms.css";
 @import "icons.css";
-@import "/PresentationCustom/Tofu/Common/css/globalstyle.css";
 
 /* General Styles */
 
@@ -74,4 +73,7 @@ pre {
 p {
 	margin: 0 0 1em 10px;
 }
+
+/* This is not a mistake, it should be at the end! */
+@import "/PresentationCustom/Tofu/Common/css/globalstyle.css";
 
