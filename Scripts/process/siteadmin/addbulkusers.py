@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=
-##title=
+##title=Add Bulk Users from CSV
 ##
 from Products.XWFCore.CSV import CSVFile
 
@@ -44,23 +44,29 @@ error = 0
 message = []
 if not csvfile:
     error = 1
-    message.append("<paragraph>You must specify a CSV file to process</paragraph>")
+    message.append("""<paragraph>You must specify a CSV file to
+    process</paragraph>""") 
 
 if key_fields:
     error = 1
     for field in key_fields:
         field_def = getattr(site_root.UserProperties, field, None)
         field_name = field_def and field_def.getProperty('title') or field
-        message.append("<paragraph>Missing compulsory column %s</paragraph>" % field_name)
-
+        message.append("""<paragraph>Missing compulsory column
+        %s</paragraph>""" % field_name) 
+        
 try:
     results = CSVFile(csvfile, [str]*num_fields)
 except AssertionError, x:
     error = 1
-    message.append("<paragraph>The number of columns you have defined does not match the number of columns in the CSV file you provided</paragraph>")
+    message.append("""<paragraph>The number of columns you have
+    defined does not match the number of columns in the CSV file you
+    provided</paragraph>""")
     
 if error:
-    message.insert(0, "<paragraph>The following errors have occurred:</paragraph>")
+    message.insert(0,
+                   """<paragraph>The following errors have
+                   occurred:</paragraph>""")
     return '\n'.join(message)
 
 groups = ['%s_member' % divisionid]
@@ -85,33 +91,51 @@ for row in results.mainData:
         fieldId = fields[field]
         fieldmap[fieldId] = col
         field += 1
+
+    firstName = fieldmap.get('firstName', '')
+    lastName = fieldmap.get('lastName', '')
+    userId = fieldmap.get('userId', '')
+    email = fieldmap.get('email','')
     
-    newmessage = context.verifyuserdata(fieldmap.get('firstName', ''), 
-                                        fieldmap.get('lastName', ''),
-                                        fieldmap.get('userId', ''),
-                                        fieldmap.get('email',''))
+    newmessage = context.verifyuserdata(firstName, lastName,
+                                        userId, email)
     if newmessage:
-        message += ["<paragraph>The following error/s occurred in row %s:</paragraph>" % rowcount]
+        message += ["""<paragraph>The following error/s occurred in
+        row %s:</paragraph>""" % rowcount]
         message += newmessage
         errors += 1
     else:
+        # Add the user. We should check if the user is registered
+        #   first, and just add them to the group if they are.
+
+        # user = site_root.acl_users.get_userByEmail(email.lower())
+        # if user:
+        #   for group in groups:
+        #     user.add_groupWithNotification(group)
+        
         try:
-            user = context.Scripts.registration.register_user(fieldmap.get('firstName',''),
-                                                              fieldmap.get('lastName',''),
-                                                              fieldmap.get('email',''),
-                                                              fieldmap.get('userId',''),
-                                                              groups, 0, fieldmap,
+            user = context.Scripts.registration.register_user(firstName,
+                                                              lastName,
+                                                              userId, email
+                                                              groups, 0,
+                                                              fieldmap,
                                                               sendVerification)
             if not user:
-                message += ["<paragraph>The following exception occured creating user in row %s:</paragraph>" % rowcount]
-                message += ["<paragraph>The user was unable to be registered. Please report this as a bug.</paragraph>"]
+                message += ["""<paragraph>The following exception
+                occured creating user in row %s:</paragraph>""" % \
+                            rowcount]
+                message += ["""<paragraph>The user was unable to be
+                registered. Please report this as a
+                bug.</paragraph>"""]
                 errors += 1
         except "Bad Request", x:
-            message += ["<paragraph>The following exception occured creating user in row %s:</paragraph>" % rowcount]
+            message += ["""<paragraph>The following exception occured
+            creating user in row %s:</paragraph>""" % rowcount]
             message += ["<paragraph>%s</paragraph>" % str(x)]
             errors += 1
         except Exception, x:
-            message += ["<paragraph>The following exception occured creating user in row %s:</paragraph>" % rowcount]
+            message += ["""<paragraph>The following exception occured
+            creating user in row %s:</paragraph>""" % rowcount]
             message += ["<paragraph>%s</paragraph>" % str(x)]
             errors += 1
         
@@ -121,15 +145,22 @@ for row in results.mainData:
 
 if message:
     if created == 0:
-        message.insert(0, "<paragraph>Your file has been processed but %s errors occurred.</paragraph>" % errors)
-        message.insert(1, "<paragraph>----------------------------------------------------</paragraph>")
+        message.insert(0, """<paragraph>Your file has been processed
+        but %s errors occurred.</paragraph>""" % errors)
+        message.insert(1,
+                       "<paragraph>----------------------------------------------------</paragraph>")
         message.append("<paragraph>----------------------------------------------------</paragraph>")
     else:
-        message.insert(0, "<paragraph>Your file has been processed, %s users were created, "
-                           "but %s errors occurred with creating the other users.</paragraph>" % (created, errors))
-        message.insert(1, "<paragraph>----------------------------------------------------</paragraph>")
+        message.insert(0,
+                       """<paragraph>Your file has been processed, %s
+                       users were created, """
+                       """but %s errors occurred with creating the
+                       other users.</paragraph>""" % (created, errors))
+        message.insert(1,
+                       "<paragraph>----------------------------------------------------</paragraph>")
         message.append("<paragraph>----------------------------------------------------</paragraph>")
 else:
-    message.append("<paragraph>Your file has been processed, and %s users were created.</paragraph>" % created)
+    message.append("""<paragraph>Your file has been processed, and %s
+    users were created.</paragraph>""" % created)
     
 return '\n'.join(message)
