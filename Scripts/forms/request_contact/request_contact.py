@@ -13,6 +13,7 @@ result = {}
 form = context.REQUEST.form
 assert form.has_key('contactedUser')
 assert form.has_key('site')
+assert form.has_key('siteName')
 result['form'] = form
 
 for field in form:
@@ -29,7 +30,8 @@ user = site_root.acl_users.getUser(form['contactedUser'])
 email_addresses = user.get_defaultDeliveryEmailAddresses()
 if email_addresses:
     n_dict = {'requesting_user': context.REQUEST.AUTHENTICATED_USER,
-              'site': form['site']}
+              'site': form['site'],
+              'siteName': form['siteName'],}
     user.send_notification('request_contact',
                            'default',
                            n_dict=n_dict,
