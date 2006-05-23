@@ -77,8 +77,9 @@
       <tr>
         <th valign="top">Name:</th>
         <td>
-          <xsl:value-of select="name/preferredname"/> &#160; <xsl:value-of
-          select="name/lastname"/>
+          <xsl:value-of select="name/preferredname"/> 
+          (<xsl:value-of select="name/firstname"/> 
+          <xsl:value-of select="name/lastname"/>)
           <xsl:if test="type"> &#160;( <xsl:value-of select="type/text()"/> )
         </xsl:if>
       </td>
@@ -104,8 +105,11 @@
       <th valign="top">Email Addresses:</th>
       <td>
         <xsl:choose>
-          <xsl:when test="//metadata/showEmailAddressTo/text() = 'request'"> Request
-          Contact (feature coming) </xsl:when>
+          <xsl:when test="//metadata/showEmailAddressTo/text() = 'request'">
+            <a href="/contacts/{id}/user-request-contact.xml"
+              title="Request contact with {name/preferredname}">Request
+            Contact</a>
+          </xsl:when>
           <xsl:when test="//metadata/showEmailAddressTo/text() != 'nobody'">
             <ul class="emails">
               <xsl:for-each select="emailaddresses/emailaddress">
@@ -171,71 +175,74 @@
             <span class="firstname">
               <xsl:value-of select="name/preferredname"/>
             </span>&#160;<span class="lastname">
-              <xsl:value-of select="name/lastname"/>
-            </span>
-            <xsl:if test="type">&#160;( <xsl:value-of select="type/text()"/> )
-          </xsl:if>
+            <xsl:value-of select="name/lastname"/>
+          </span>
+          <xsl:if test="type">&#160;( <xsl:value-of select="type/text()"/> )
+        </xsl:if>
+      </div>
+    </div>
+    <xsl:if test="groupmemberships/groupmembership">
+      <div class="row">
+        <div class="label">Group Memberships:</div>
+        <div class="field">
+          <ul class="emails">
+            <xsl:for-each select="groupmemberships/groupmembership">
+              <xsl:sort select="@divisionUrl"/>
+              <li>
+                <a href="{@url}">
+                  <xsl:value-of select="@title"/>
+                </a> (<xsl:value-of select="@divisionName"/>)
+              </li>
+            </xsl:for-each>
+          </ul>
         </div>
       </div>
-      <xsl:if test="groupmemberships/groupmembership">
-        <div class="row">
-          <div class="label">Group Memberships:</div>
-          <div class="field">
+    </xsl:if>
+    <div class="row">
+      <div class="label">Email Addresses:</div>
+      <div class="field">
+        <xsl:choose>
+          <xsl:when test="//metadata/showEmailAddressTo/text() = 'request'">
+            <a href="/contacts/{user[@type=other]/id}/user-request-contact.xml"
+              title="Request contact with {name/preferredname}">Request
+            Contact</a>
+          </xsl:when>
+          <xsl:when test="//metadata/showEmailAddressTo/text() != 'nobody'">
             <ul class="emails">
-              <xsl:for-each select="groupmemberships/groupmembership">
-                <xsl:sort select="@divisionUrl"/>
+              <xsl:for-each select="emailaddresses/emailaddress">
                 <li>
-                  <a href="{@url}">
-                    <xsl:value-of select="@title"/>
-                  </a> (<xsl:value-of select="@divisionName"/>)
+                  <a href="mailto:{.}">
+                    <xsl:value-of select="."/>
+                  </a>
                 </li>
               </xsl:for-each>
             </ul>
-          </div>
-        </div>
-      </xsl:if>
+          </xsl:when>
+          <xsl:otherwise> Email address has been hidden </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </div>
+    <xsl:for-each select="*[@present='auto']">
       <div class="row">
-        <div class="label">Email Addresses:</div>
-        <div class="field">
-          <xsl:choose>
-            <xsl:when test="//metadata/showEmailAddressTo/text() = 'request'">
-              Request Contact (feature coming) </xsl:when>
-              <xsl:when test="//metadata/showEmailAddressTo/text() != 'nobody'">
-                <ul class="emails">
-                  <xsl:for-each select="emailaddresses/emailaddress">
-                    <li>
-                      <a href="mailto:{.}">
-                        <xsl:value-of select="."/>
-                      </a>
-                    </li>
-                  </xsl:for-each>
-                </ul>
+        <div class="label">
+          <xsl:value-of select="@title"/>:</div>
+          <div class="field">
+            <xsl:choose>
+              <xsl:when test="@href != '' and text() != ''">
+                <a href="{@href}"><xsl:apply-templates select="text()"/></a>
               </xsl:when>
-              <xsl:otherwise> Email address has been hidden </xsl:otherwise>
+              <xsl:when test="text() != ''">
+                <xsl:apply-templates select="text()"/>
+              </xsl:when>
+              <xsl:otherwise>
+                [not set]
+              </xsl:otherwise>
             </xsl:choose>
           </div>
         </div>
-        <xsl:for-each select="*[@present='auto']">
-          <div class="row">
-            <div class="label">
-              <xsl:value-of select="@title"/>:</div>
-              <div class="field">
-                <xsl:choose>
-                  <xsl:when test="@href != '' and text() != ''">
-                    <a href="{@href}"><xsl:apply-templates select="text()"/></a>
-                  </xsl:when>
-                  <xsl:when test="text() != ''">
-                    <xsl:apply-templates select="text()"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    [not set]
-                  </xsl:otherwise>
-                </xsl:choose>
-              </div>
-            </div>
-          </xsl:for-each>
-        </fieldset>
-      </div>
-    </xsl:template>
-    <!-- Personal User Detail Page Ends -->
-  </xsl:stylesheet>
+      </xsl:for-each>
+    </fieldset>
+  </div>
+</xsl:template>
+<!-- Personal User Detail Page Ends -->
+</xsl:stylesheet>
