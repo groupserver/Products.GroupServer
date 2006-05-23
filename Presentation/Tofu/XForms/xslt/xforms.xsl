@@ -17,22 +17,24 @@
 	
 	<!-- Return true if the passed value (match) matches the value of the specified node (ref) -->
 	<xsl:template name="match-single">
+		<xsl:param name="model" />
 		<xsl:param name="ref" />
 		<xsl:param name="match" />
 		<xsl:variable name="orig">
 			<xsl:value-of
-				select="//data/xf:model/xf:instance/data/*[name()=$ref]/text()" />
+				select="//data/xf:model[@id=$model]/xf:instance/data/*[name()=$ref]/text()" />
 		</xsl:variable>
 		<xsl:value-of select="number($orig=$match)" />
 	</xsl:template>
 
 	<!-- Return true if the passed value (match), a space-delimited list of values, contains the value of the specified node (ref) -->
 	<xsl:template name="match-in-list">
+		<xsl:param name="model" />
 		<xsl:param name="ref" />
 		<xsl:param name="match" />
 		<xsl:param name="orig">
 			<xsl:value-of
-				select="//data/xf:model/xf:instance/data/*[name()=$ref]/text()" />
+				select="//data/xf:model[@id=$model]/xf:instance/data/*[name()=$ref]/text()" />
 		</xsl:param>
 
 		<xsl:variable name="before">
@@ -54,6 +56,9 @@
 			<xsl:when
 				test="$after != '' and not(starts-with($before, $match))">
 				<xsl:call-template name="match-in-list">
+					<xsl:with-param name="model">
+						<xsl:value-of select="$model" />
+					</xsl:with-param>
 					<xsl:with-param name="ref">
 						<xsl:value-of select="$ref" />
 					</xsl:with-param>
@@ -392,6 +397,8 @@
 							<xsl:variable name="selected">
 								<xsl:call-template
 									name="match-single">
+									<xsl:with-param name="model"
+										select="$model" />
 									<xsl:with-param name="ref"
 										select="$ref" />
 									<xsl:with-param name="match"
@@ -400,7 +407,7 @@
 							</xsl:variable>
 							<option value="{xf:value/text()}">
 								<xsl:if test="$selected='1'">
-									<xsl:attribute name="selected">1	</xsl:attribute>
+									<xsl:attribute name="selected">1</xsl:attribute>
 								</xsl:if>
 								<xsl:value-of select="xf:label/text()" />
 							</option>
@@ -412,6 +419,8 @@
 					<xsl:for-each select="xf:item">
 						<xsl:variable name="selected">
 							<xsl:call-template name="match-single">
+								<xsl:with-param name="model"
+									select="$model" />
 								<xsl:with-param name="ref"
 									select="$ref" />
 								<xsl:with-param name="match"
@@ -482,11 +491,12 @@
 							<xsl:variable name="selected">
 								<xsl:call-template
 									name="match-in-list">
+									<xsl:with-param name="model"
+										select="$model" />
 									<xsl:with-param name="ref"
 										select="$ref" />
 									<xsl:with-param name="match"
 										select="xf:value/text()" />
-
 								</xsl:call-template>
 							</xsl:variable>
 							<option value="{xf:value/text()}">
@@ -502,6 +512,8 @@
 					<xsl:for-each select="xf:item">
 						<xsl:variable name="selected">
 							<xsl:call-template name="match-in-list">
+								<xsl:with-param name="model"
+									select="$model" />
 								<xsl:with-param name="ref"
 									select="$ref" />
 								<xsl:with-param name="match"
