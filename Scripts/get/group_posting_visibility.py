@@ -17,6 +17,6 @@ memberlist = group.lowerList(group.getValueFor('mailinlist'))
 user = context.REQUEST.AUTHENTICATED_USER
 if user.getId():
     for address in user.get_emailAddresses():
-        if address in memberlist:
+        if address.lower() in memberlist:
             return 'yes'
 return 'no'
