@@ -47,6 +47,5 @@ else:
     grouplist.manage_addProperty('moderated', 0, 'boolean')
 
 result['error'] = False
-result['message'] = '''<paragraph>Moderation turned
-    <em>off.</em></paragraph>'''
+result['message'] = '''<paragraph>Moderation is <em>off.</em></paragraph>'''
 return result
