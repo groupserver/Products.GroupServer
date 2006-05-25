@@ -35,7 +35,7 @@
 <html>
   <head>
     <title>
-      <xsl:value-of select="//output/metadata/sitename" />
+      <xsl:value-of select="//output/metadata/division/@name" />
       <xsl:if test="//output/metadata/title">
 	: <xsl:value-of select="//output/metadata/title" />
       </xsl:if>
