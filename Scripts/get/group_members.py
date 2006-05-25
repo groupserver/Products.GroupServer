@@ -7,6 +7,13 @@
 ##parameters=
 ##title=
 ##
+
+def sorter(a,b):
+    if a.getProperty('lastName') > b.getProperty('lastName'):
+        return 1
+    else:
+        return -1
+
 users = []
 site_object = context.site_root()
 group_object = context.Scripts.get.group_object()
@@ -17,4 +24,5 @@ for group_id in group_object.groups_with_local_role('GroupMember'):
     for user_id in user_ids:
         users.append(site_object.acl_users.getUser(user_id))
 
+users.sort(sorter)
 return users
