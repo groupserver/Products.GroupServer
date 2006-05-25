@@ -57,8 +57,7 @@ else:
     grouplist.manage_addProperty('moderated_members', mmembers, 'lines')
 
 result['error'] = False
-m = (len(userids) == 1) and 'member has' or 'members have'
+m = (len(userids) == 1) and 'member has' or '%d members have' % len(userids)
 result['message'] = '''<paragraph>The %d %s been <em>removed</em>
-  from the moderation list for %s</paragraph>''' % (len(userids), m,
-                                                    group.title_or_id())
+  from the moderation list for %s.</paragraph>''' % (m, group.title_or_id())
 return result

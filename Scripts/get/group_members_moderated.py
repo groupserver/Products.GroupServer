@@ -7,6 +7,13 @@
 ##parameters=ids_only=False
 ##title=Get Moderated Group Members
 ##
+
+def sorter(a,b):
+    if a.getProperty('lastName') > b.getProperty('lastName'):
+        return 1
+    else:
+        return -1
+
 site_object = context.site_root()
 group_object = context.Scripts.get.group_object()
 group_id = group_object.getId()
@@ -23,4 +30,5 @@ else:
         if obj:
             member_objects.append(obj)
     retval = member_objects
+    retval.sort(sorter)
 return retval
