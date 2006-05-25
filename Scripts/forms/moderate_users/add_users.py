@@ -39,6 +39,10 @@ if not userids:
 elif len(userids[0]) == 1:
     userids = [userids]
 
+listManager = site_root.objectValues('XWF Mailing List Manager')[0]
+grouplist = getattr(listManager, groupid)
+assert(grouplist != None)
+
 mmembers = []
 if grouplist.hasProperty('moderated_members'):
    mmembers = filter(None, grouplist.getProperty('moderated_members'))
