@@ -58,6 +58,6 @@ else:
 
 result['error'] = False
 m = (len(userids) == 1) and 'member has' or '%d members have' % len(userids)
-result['message'] = '''<paragraph>The %d %s been <em>removed</em>
+result['message'] = '''<paragraph>The %s been <em>removed</em>
   from the moderation list for %s.</paragraph>''' % (m, group.title_or_id())
 return result
