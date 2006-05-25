@@ -32,12 +32,16 @@ userids = form.get('userid', [])
 if not userids:
     result['error'] = True
     result['message'] = '''<paragraph>You must specify at least one
-    user to moderate.</paragraph>'''
+    user to remove from moderation.</paragraph>'''
     return result
 # --=rrw=-- yes, this is a hack assuming that we will never have very
 #   short userids
 elif len(userids[0]) == 1:
     userids = [userids]
+
+listManager = site_root.objectValues('XWF Mailing List Manager')[0]
+grouplist = getattr(listManager, groupid)
+assert(grouplist != None)
 
 mmembers = []
 if grouplist.hasProperty('moderated_members'):
