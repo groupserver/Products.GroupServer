@@ -30,7 +30,7 @@
                   </xsl:choose>.</p>
               </xsl:when>
               <xsl:otherwise>
-          <table border="0" cellspacing="5">
+          <table border="0" cellspacing="5" class="sendmessage">
           <form action="send_email" method="POST">
           <input type="hidden" name="group_id" value="{//output/metadata/group/@id}"/>
           <input type="hidden" name="email_id" value="{@id}"/>
