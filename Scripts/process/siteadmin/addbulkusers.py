@@ -116,7 +116,7 @@ for row in results.mainData:
         try:
             user = context.Scripts.registration.register_user(firstName,
                                                               lastName,
-                                                              userId, email
+                                                              userId, email,
                                                               groups, 0,
                                                               fieldmap,
                                                               sendVerification)
