@@ -24,7 +24,8 @@ if canonicalHost:
     base_host = request.BASE0.split('/')[-1]
     if base_host != canonicalHost:
         URL = request.URL
-        new_url = URL.replace(base_host, canonicalHost)
+        QUERY = request.QUERY_STRING
+        new_url = URL.replace(base_host, canonicalHost)+'?'+QUERY
         return RESPONSE.redirect(new_url, lock=1)
 
 user = request.AUTHENTICATED_USER
