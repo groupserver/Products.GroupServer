@@ -121,13 +121,20 @@ for row in results.mainData:
                                                               fieldmap,
                                                               sendVerification)
             if not user:
-                message += ["""<paragraph>The following exception
-                occured creating user in row %s:</paragraph>""" % \
-                            rowcount]
-                message += ["""<paragraph>The user was unable to be
-                registered. Please report this as a
-                bug.</paragraph>"""]
-                errors += 1
+                if user == None:
+                    message += ["""<paragraph>The following exception
+                    occured creating user in row %s:</paragraph>""" % \
+                                rowcount]
+                    message += ["""<paragraph>The user was unable to be
+                    registered. Please report this as a
+                    bug.</paragraph>"""]
+                    errors += 1
+                else:
+                    message += ["""<paragraph>The following exception
+                    occured creating user in row %s:</paragraph>""" % \
+                                rowcount]
+                    message += ["""<paragraph>The long and winding road!</paragraph>"""]
+                    errors += 1
         except "Bad Request", x:
             message += ["""<paragraph>The following exception occured
             creating user in row %s:</paragraph>""" % rowcount]
