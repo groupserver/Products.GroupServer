@@ -11,7 +11,7 @@
 	  <li>
 	    <a class="current"
 	      href="{@url}"
-	      id="{translate(@name, ' ', '-')}-menu-link">
+	      id="{translate(@name, ' .', '--')}-menu-link">
           <xsl:value-of select="@name"/>
       </a>
 	  </li>
