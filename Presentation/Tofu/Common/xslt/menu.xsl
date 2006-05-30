@@ -16,7 +16,7 @@
 	</xsl:when>
 	<xsl:otherwise>
 	  <li>
-	    <a id="{translate(@name, ' ', '-')}-menu-link"
+	    <a id="{translate(@name, ' .', '--')}-menu-link"
 	      href="{@url}"><xsl:value-of select="@name"/></a>
 	  </li>
 	</xsl:otherwise>
