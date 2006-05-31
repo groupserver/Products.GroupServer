@@ -12,7 +12,9 @@
 result = {}
 
 form = context.REQUEST.form
-assert form.has_key('accept')
+# I cannot assert the following, because of the
+# oddities of HTML!
+# assert form.has_key('accept')
 result['form'] = form
 
 for field in form:
