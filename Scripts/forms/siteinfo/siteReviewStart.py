@@ -15,7 +15,7 @@ assert form.has_key('sitename')
 assert form.has_key('subdomain')
 assert form.has_key('introduction')
 result['form'] = form
-
+user =  context.REQUEST.AUTHENTICATED_USER
 for field in form:
     try:
         form[field] = form[field].strip()
@@ -50,7 +50,7 @@ if result['error']:
 context.start_site(siteId=form['subdomain'],
                    sitename=form['sitename'],
                    siteintro=form['introduction'],
-                   userId='michaeljasonsmith', # --=change=--
+                   userId=user.getUserName(),
                    step=int(form['startdone']))
 
 result['error'] = False
