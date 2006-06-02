@@ -22,6 +22,6 @@ for field in form:
     except AttributeError:
         pass
 
-context.REQUEST.RESPONSE.redirect('siteintroduction.xml?sitename=%s&subdomain=%s&introduction=%s' %
+context.REQUEST.RESPONSE.redirect('sitereview.xml?sitename=%s&subdomain=%s&introduction=%s' %
                                   (form['sitename'], form['subdomain'],
                                    form['introduction']))
