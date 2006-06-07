@@ -15,6 +15,8 @@ result = {}
 
 form = context.REQUEST.form
 assert form.has_key('introduction')
+assert form.has_key('siteId')
+
 result['form'] = form
 
 for field in form:
@@ -27,28 +29,5 @@ result = container.check_introduction(form['introduction'])
 if result['error']:
     return result
 
-# --=mppj17=--
-# We really should check if division_intro.xml exisits, rather than
-#  assuming it does!
-
-introXML = '''<?xml version="1.0" encoding="utf-8"?>
-<div
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal" 
-  metal:define-macro="division_introduction" 
-  class="introduction">
-
-  <paragraph>
-    %s
-	</paragraph> 
-</div>''' % form['introduction']
-
-divIntro = context.restrictedTraverse('Content/%s/division_introduction.xml' %\
-  form['siteId'])
-
-divIntro.write(introXML)
-
-# No error, redirect
-result['error'] = False
-result['message'] = 'The site introduction has been changed.'
-return result
+return context.Scripts.forms.siteinfo.writeIntroduction(form['introduction'],
+                                                        form['siteId'])

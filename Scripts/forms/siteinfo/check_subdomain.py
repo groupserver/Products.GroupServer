@@ -59,7 +59,8 @@ groupIds = map(lambda s: s[0],
 if subdomain in groupIds:
     result['error'] = True
     result['message'] = '''There is an online group with the ID
-      &#8220;%s&#8221;. Please choose another subdomain.'''
+      &#8220;%s&#8221;. Please choose another subdomain, as sites
+      cannot have the same name as an existing group.'''
     return result
 # The following two check should *NOT* hold if we have got this far.
 # 1. Check in ACL Users
