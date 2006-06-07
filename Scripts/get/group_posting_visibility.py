@@ -13,7 +13,11 @@ group_object = context.Scripts.get.group_object()
 listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 group = listManager.get_list(group_object.getId())
 
-memberlist = group.lowerList(group.getValueFor('mailinlist'))
+try:
+    memberlist = group.lowerList(group.getValueFor('mailinlist'))
+except:
+    return 'no'
+
 user = context.REQUEST.AUTHENTICATED_USER
 if user.getId():
     for address in user.get_emailAddresses():
