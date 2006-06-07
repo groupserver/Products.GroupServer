@@ -19,10 +19,10 @@ assert templateid != ''
 assert division != None
 assert groupid != division.title_or_id()
 assert hasattr(site_root.Templates.groups, templateid)
-try:
-    site_root.acl_users.getGroupById('%s_member' % groupid)
-except KeyError:
-    assert False, 'Existing user-group'
+#try:
+#    site_root.acl_users.getGroupById('%s_member' % groupid)
+#except KeyError:
+#    assert False, 'Existing user-group'
 # </preconditions>
 
 # the group needs to be 'owned' by a top level user, since the Scripts are
