@@ -14,7 +14,10 @@ queries = [{'mailSubject': search_term},
 results = []
 for group in groups:
     for query in queries:
-        results.append(group.messages.find_email(query))
+        try:
+            results.append(group.messages.find_email(query))
+        except:
+            pass
 
 results = filter(None, results)
 fresults = []
