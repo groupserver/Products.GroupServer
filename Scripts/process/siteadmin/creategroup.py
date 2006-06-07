@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=groupid=''title=''mailto=''templateid=''division=None
+##parameters=groupid='',title='',mailto='',templateid='',division=None
 ##title=Create Group
 ##
 from Products.XWFCore.XWFUtils import assign_ownership

@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=introduction=''siteId=''
+##parameters=introduction='',siteId=''
 ##title=Change Site Introduction
 ##
 
