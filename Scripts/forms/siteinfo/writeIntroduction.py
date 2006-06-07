@@ -11,6 +11,8 @@
 # We do not care if the introduction is empty
 assert siteId != ''
 
+result= {}
+
 introXML = '''<?xml version="1.0" encoding="utf-8"?>
 <div
   xmlns:tal="http://xml.zope.org/namespaces/tal"
