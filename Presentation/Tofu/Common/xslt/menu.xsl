@@ -234,4 +234,13 @@
 </xsl:template>
 <!-- Logged in links Ends -->
 
+<!-- The links at the foot of the page. -->
+<xsl:template match="output/menus/menu[@id='footerlinks']">
+  <p id="footerLinks">
+    <xsl:for-each select="menuitem">
+      <a href="{@url}">[<xsl:value-of select="@name"/>]</a>
+    </xsl:for-each>
+  </p>
+</xsl:template>
+
 </xsl:stylesheet>

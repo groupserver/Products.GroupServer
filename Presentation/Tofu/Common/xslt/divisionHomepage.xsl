@@ -157,6 +157,9 @@
       <!-- Body Content Starts -->
       <xsl:apply-templates select="output/content" />
       <!-- Body Content Ends -->
+
+      <xsl:apply-templates select="output/menus/menu[@id='footerlinks']"/>
+
     </div><!--divisionHomeContent-->
   </xsl:template>
 </xsl:stylesheet>

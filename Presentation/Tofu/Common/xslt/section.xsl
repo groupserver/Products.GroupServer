@@ -121,6 +121,9 @@
         <!-- Body Content Starts -->
         <xsl:apply-templates select="output/content" />
         <!-- Body Content Ends -->
+
+        <xsl:apply-templates select="output/menus/menu[@id='footerlinks']"/>
+
       </div><!-- Main Content Area Ends -->
     </body>
   </html>
