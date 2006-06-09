@@ -238,7 +238,7 @@
 <xsl:template match="output/menus/menu[@id='footerlinks']">
   <p id="footerLinks">
     <xsl:for-each select="menuitem">
-      <a href="{@url}">[<xsl:value-of select="@name"/>]</a>
+      <a href="{@url}"><xsl:value-of select="@name"/></a>
     </xsl:for-each>
   </p>
 </xsl:template>
