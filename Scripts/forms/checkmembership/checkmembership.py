@@ -37,12 +37,12 @@ if user:
     user.send_notification('checkmembership',
                            'is_member',
                            n_dict=n_dict)
-else:
+#else:
     # Not a member of OnlineGroups.Net
-    user = site_root.acl_users.getUser('Anonymous')
-    user.send_notification('checkmembership',
-                           'not_member',
-                           n_dict=n_dict)
+    #user = site_root.acl_users.getUser('Anonymous')
+    #user.send_notification('checkmembership',
+    #                       'not_member',
+    #                       n_dict=n_dict)
 
 result['error'] = False
 result['message'] = '''A message, detailing the membership of
