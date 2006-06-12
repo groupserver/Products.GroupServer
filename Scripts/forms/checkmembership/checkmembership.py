@@ -29,8 +29,8 @@ if '@' not in emailAddr:
     return result
 
 user = site_root.acl_users.get_userByEmail(emailAddr)
-n_dict{'to_addr': emailAddr,
-       'user_name': ''}
+n_dict = {'to_addr': emailAddr,
+          'user_name': ''}
 if user:
     # Member of OnlineGroups.Net
     n_dict['user_name'] = user.getUserName()
