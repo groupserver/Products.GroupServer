@@ -39,6 +39,7 @@ if user:
                            n_dict=n_dict)
 else:
     # Not a member of OnlineGroups.Net
+    user = site_root.acl_users.getUser('Anonymous')
     user.send_notification('checkmembership',
                            'not_member',
                            n_dict=n_dict)
@@ -46,3 +47,4 @@ else:
 result['error'] = False
 result['message'] = '''A message, detailing the membership of
     OnlineGroups.Net, has been sent to %s.''' % emailAddr
+return result
