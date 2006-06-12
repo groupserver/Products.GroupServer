@@ -15,9 +15,12 @@ if username:
     user = site_root.acl_users.getUser(username)
 elif email:
     user = site_root.acl_users.get_userByEmail(email.lower())
+    username=email
 
 # one last possibility exists, that the username is actually an email address
+providedEmailAddress = False
 if not user and username.find('@') > 0:
+    providedEmailAddress = True
     user = site_root.acl_users.get_userByEmail(username.lower())
 
 if user:
@@ -27,7 +30,12 @@ if user:
               'password': password}
     user.send_notification('forgotten_password', 'default', n_dict)
         
-    return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
+#    return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
+#else:
+#    return context.REQUEST.RESPONSE.redirect('/login/forgotten_password.xml?erX0ror=1')
 
-else:
-    return context.REQUEST.RESPONSE.redirect('/login/forgotten_password.xml?error=1')
+
+url = '/sent_password.xml?user_or_address=%s&providedInfo=%s' % \
+      (providedEmailAddress and 'email%20address' or 'user%20name',
+       username)
+return context.REQUEST.RESPONSE.redirect(url)
