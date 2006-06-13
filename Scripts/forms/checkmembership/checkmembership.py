@@ -37,12 +37,21 @@ if user:
     user.send_notification('checkmembership',
                            'is_member',
                            n_dict=n_dict)
-#else:
+else:
     # Not a member of OnlineGroups.Net
-    #user = site_root.acl_users.getUser('Anonymous')
-    #user.send_notification('checkmembership',
-    #                       'not_member',
-    #                       n_dict=n_dict)
+    try:
+        mailhost = site_root.superValues('Mail Host')[0]
+    except:
+        raise AttributeError, "Can't find a Mail Host object"
+    template = (getattr(ptype_templates.aq_explicit, n_id, None) or
+                getattr(ptype_templates.aq_explicit, 'default', None))
+    if not template:
+        return None
+    template(None, self.REQUEST,
+             to_addr=emailAddr,
+             'not_member',
+             'checkmembership',
+             n_dict=n_dict)
 
 result['error'] = False
 result['message'] = '''A message, detailing the membership of

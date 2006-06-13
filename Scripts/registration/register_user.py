@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=first_name='', last_name='', email='', user_id='', groups=[], manual=1, userproperties={}, sendVerification=True
+##parameters=first_name='', last_name='', email='', user_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
 ##title=
 ##
 from Products.XWFCore.XWFUtils import createRequestFromRequest
@@ -53,7 +53,7 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        return redirect('/login/register.xml?%s&first_name=%s&last_name=%s&email=%s&user_id=%s&%s' % (error_string, first_name, last_name, email, user_id, group_string))
+        return redirect('/login/register.xml?%s&came_from=%s&first_name=%s&last_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, first_name, last_name, email, user_id, group_string))
     return 0
     
 user = site_root.acl_users.getUser(user_id)
@@ -101,6 +101,9 @@ else:
 		n_id='default', n_dict=n_dict)
 
 if manual:
-    return redirect('/login/index.xml?error:list=register_thanks')
+    if came_from:
+        return redirect('/login/index.xml?error:list=register_thanks&came_from=%s' % came_from)
+    else:
+        return redirect('/login/index.xml?error:list=register_thanks')
 
 return user
