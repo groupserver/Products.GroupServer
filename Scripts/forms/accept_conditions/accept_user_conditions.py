@@ -24,9 +24,6 @@ for field in form:
     except AttributeError:
         pass
     
-canonicalHost = context.Scripts.get.option('canonicalHost', None)
-cameFrom = form.get('came_from', canonicalHost)
-
 accept = form.get('accept', 0)
 try:
     # since accept should be '1' if set
@@ -41,5 +38,7 @@ if not accept:
       conditions can become users of OnlineGroups.Net'''
     return result
 else:
+    cameFrom = form.get('came_from', '')
     # The user has accepted the conditions, so return
-    context.REQUEST.RESPONSE.redirect(cameFrom)
+    url = '/Scripts/switches/switch_login?came_from=%s' % cameFrom
+    return context.REQUEST.RESPONSE.redirect(url)
