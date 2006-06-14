@@ -34,6 +34,10 @@ templateid = form.get('templateid','').strip().lower()
 
 divisionid = form.get('divisionid')
 
+result = container.check_group_id(groupid)
+if result['error']:
+    return result
+
 if hasattr(groups.aq_explicit, groupid):
     message.append('<paragraph>Unfortunately group ID %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
     error = 1
