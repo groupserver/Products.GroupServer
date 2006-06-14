@@ -36,7 +36,7 @@ divisionid = form.get('divisionid')
 
 result = container.check_group_id(groupid)
 if result['error']:
-    return result
+    return [result['message']]
 
 if hasattr(groups.aq_explicit, groupid):
     message.append('<paragraph>Unfortunately group ID %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
@@ -121,5 +121,7 @@ assign_ownership(group, 'admin', 1, '/acl_users')
 site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title.lower())
 
 #message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
+
+message.append('The group &#8220;%s&#8221 has been created.' % title)
 
 return '\n'.join(message)
