@@ -122,6 +122,4 @@ site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMa
 
 #message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
 
-message.append('The group &#8220;%s&#8221 has been created.' % title)
-
-return '\n'.join(message)
+return ['The group &#8220;%s&#8221; has been created.' % title]
