@@ -64,6 +64,14 @@
           </xsl:otherwise>
           </xsl:choose>
        </xsl:if>
+       <xsl:if test="//metadata/group/@post = 'no'">
+         <p>
+           If you are a <xsl:value-of select="metadata/division/@name"/> 
+           member, you must 
+           <a href="/login" title="Log in here">log in</a>
+           to post messages.
+         </p>
+       </xsl:if>
    </xsl:template>   
 
 </xsl:stylesheet>

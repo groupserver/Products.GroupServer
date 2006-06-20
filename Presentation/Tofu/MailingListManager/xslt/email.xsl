@@ -16,53 +16,56 @@
     <xsl:variable name="userid" select="//user[@type='self']/id/text()"/>
     <xsl:choose>
       <xsl:when test="email:threadsummary">
-        <xsl:for-each select="email:threadsummary">
-          <xsl:call-template name="email-present-threadsummary"/>
-        </xsl:for-each>
-      </xsl:when>
-      <xsl:when test="@sitesearch='1'">
-        <xsl:call-template name="email-present-sitesearch-results"/>
-      </xsl:when>
-      <xsl:when test="@resultsummary='1'">
-        <xsl:call-template name="email-present-results"/>
-      </xsl:when>
-      <xsl:otherwise>
-        
-        <xsl:if test="@fullthread='1'">
-          <h1>
-            Topic: 
-            <span class="topicName">
-              <xsl:value-of select="email:email/email:mailSubject"/>
+				<xsl:for-each select="email:threadsummary">
+					<xsl:call-template name="email-present-threadsummary"/>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:when test="@sitesearch='1'">
+				<xsl:call-template name="email-present-sitesearch-results"/>
+			</xsl:when>
+			<xsl:when test="@resultsummary='1'">
+				<xsl:call-template name="email-present-results"/>
+			</xsl:when>
+			<xsl:otherwise>
+				
+				<xsl:if test="@fullthread='1'">
+					<h1>
+						Topic: 
+						<span class="topicName">
+							<xsl:value-of select="email:email/email:mailSubject"/>
 						</span>
 					</h1>
-
+					
 					<a name="top"/>
 					<p>
 						<xsl:if test="//groupmemberships/groupmembership[@id=$groupId]">
-              <span class="note">
-                <a href="view_email?id={email:email[position()=last()]/@id}&amp;show_thread=1#add_to_topic">Add to this topic</a>
-              </span>
-							&#160;&#160;&#160;&#160;
-							<span class="note">
-                <a href="view_send_email">Start a new topic</a>
-              </span>
-            </xsl:if>
+							<xsl:if test="//metadata/group/@post = 'yes'">
+								<span class="note">
+									<a href="view_email?id={email:email[position()=last()]/@id}&amp;show_thread=1#add_to_topic">Add to this topic</a>
+								</span>
+								&#160;&#160;&#160;&#160;
+								<span class="note">
+									<a href="view_send_email">Start a new topic</a>
+								</span>
+							</xsl:if>
 						&#160;&#160;&#160;&#160;
-            <span class="note">
-              <a href="view_threads"><xsl:value-of select="//metadata/group"/>
-              Topics</a>
-            </span>
-            &#160;&#160;&#160;&#160;
-            <span class="note">
-              <a class="email-link" 
-                href="/r/topic/{email:email[position()=last()]/@id}">Short
-              link</a>
-            </span>
+						</xsl:if>
+						<span class="note">
+							<a href="view_threads"><xsl:value-of select="//metadata/group"/>
+								Topics</a>
+						</span>
+						&#160;&#160;&#160;&#160;
+						<span class="note">
+							<a class="email-link" 
+								href="/r/topic/{email:email[position()=last()]/@id}">Short
+								link</a>
+						</span>
 					</p>
-          <xsl:apply-templates select="bulletlist[@class='topicNavigation']"/>
-          <p>The topic 
-          <q><xsl:value-of select="email:email/email:mailSubject"/></q>
-          contains the following posts.</p>
+					
+					<xsl:apply-templates select="bulletlist[@class='topicNavigation']"/>
+					<p>The topic 
+						<q><xsl:value-of select="email:email/email:mailSubject"/></q>
+						contains the following posts.</p>
 
 					<table id="results">
 						<tr>
@@ -139,7 +142,7 @@
 				</div>
 			</xsl:otherwise>
 		</xsl:choose>
-    <xsl:apply-templates select="bulletlist[@class='topicNavigation']"/>
+		<xsl:apply-templates select="bulletlist[@class='topicNavigation']"/>
 	</xsl:template>
 
 

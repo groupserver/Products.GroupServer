@@ -14,6 +14,8 @@
     </xsl:if>
   </p>
 
+  <p></p>
+
   <xsl:choose>
     <xsl:when test="number(@size)">			
     <p>Numbers <strong><xsl:value-of select="@start"/></strong> to <strong><xsl:value-of select="number(@end)"/></strong> of the most recent topics are shown. <strong><xsl:value-of select="@size"/></strong> topics have taken place in total. <xsl:value-of select="number(@end)-number(@start)+1"/> shown.</p>
