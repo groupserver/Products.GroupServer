@@ -15,7 +15,7 @@
       <div tal:condition="not:options/result_set">No matching files found</div>
       <ul class="files" tal:condition="options/result_set">
         <li class="searchitem" tal:repeat="result options/result_set">
-          <a tal:attributes="href python:'get_file?id=%s' % result.id">
+          <a tal:attributes="href python:'f/%s/%s' % (result.id, result.title)">
             <span class="searchlink" tal:content="result/title">link</span>
           </a>
 	  (<span class="searchsize"
