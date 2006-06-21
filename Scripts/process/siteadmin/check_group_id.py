@@ -29,7 +29,7 @@ if badWord:
       the group ID.''' % badWord 
     return result
 
-validChars = string.digits + string.lowercase + '-' + '.'
+validChars = string.digits + string.lowercase + '-._'
 for c in groupId:
     if c not in validChars:
         result['error'] = True

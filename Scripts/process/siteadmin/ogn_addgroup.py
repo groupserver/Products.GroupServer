@@ -40,30 +40,10 @@ divisionid = form.get('divisionid')
 
 result = container.check_group_id(groupid)
 if result['error']:
-    return [result['message']]
-
-
-if hasattr(groups.aq_explicit, groupid):
-    message.append('<paragraph>Unfortunately group ID %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
-    error = 1
-
-if groupid == divisionid:
-    message.append('<paragraph>Unfortunately you may not have a group with the same ID as the division ID. Please choose another ID for your group.</paragraph>' % groupid)
-    error = 1
-
-try:
-    site_root.acl_users.getGroupById('%s_member' % groupid)
-    message.append('<paragraph>Unfortunately a group corresponding to %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
-    error = 1
-except KeyError:
-    pass
+    return result['message']
 
 if not title:
     message.append('<paragraph>The group title is required, but was not specified.</paragraph>')
-    error = 1
-
-if not groupid:
-    message.append('<paragraph>The group ID is required, but was not specified.</paragraph>')
     error = 1
 
 create_charter = 0
@@ -120,6 +100,7 @@ mailto = '%s@onlinegroups.net' % groupid
 
 site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title.lower())
 
-#message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
-
-return ['The group &#8220;%s&#8221; has been created.' % title]
+groupPropertiesPage = '/groups/%s/admingroup/manageproperties' % groupid
+context.REQUEST.RESPONSE.redirect(groupPropertiesPage)
+# The following should not be reached
+return 'The group &#8220;%s&#8221; has been created.' % title
