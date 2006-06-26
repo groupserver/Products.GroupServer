@@ -81,9 +81,22 @@ for group in joingroups:
 if form.get('addtogroup', 'no') == 'yes' and groupid:
     groups.append('%s_member' % groupid)
 
-rowcount = 1
+# --=mpj17=--
+# Get the list of all the users on the system. This is used later to
+#   check if the user exists on the sytem or not.
+usersByEmail = {}
+for user in site_root.acl_users.getUsers():
+    emailAddresses = user.get_emailAddresses()
+    for emailAddress in emailAddresses:
+        assert same_type(usersByEmail, {})
+        usersByEmail[emailAddress] = user
+allEmailAddresses = usersByEmail.keys()
+
+msg = ''
+rowcount = 2
 errors = 0
 created = 0
+added = 0
 for row in results.mainData:
     field = 1
     fieldmap = {}
@@ -94,73 +107,92 @@ for row in results.mainData:
 
     firstName = fieldmap.get('firstName', '')
     lastName = fieldmap.get('lastName', '')
-    userId = fieldmap.get('userId', '')
+    preferredName = fieldmap.get('preferredName', '')
     email = fieldmap.get('email','')
-    
-    newmessage = context.verifyuserdata(firstName, lastName,
-                                        userId, email)
-    if newmessage:
-        message += ["""<paragraph>The following error/s occurred in
-        row %s:</paragraph>""" % rowcount]
-        message += newmessage
-        errors += 1
-    else:
-        # Add the user. We should check if the user is registered
-        #   first, and just add them to the group if they are.
+    userId = fieldmap.get('userId', '')
 
-        # user = site_root.acl_users.get_userByEmail(email.lower())
-        # if user:
-        #   for group in groups:
-        #     user.add_groupWithNotification(group)
-        
-        try:
-            user = context.Scripts.registration.register_user(firstName,
-                                                              lastName,
-                                                              email, userId,
-                                                              groups, 0,
-                                                              fieldmap,
-                                                              sendVerification)
-            if not user:
-                message += ["""<paragraph>The following exception
-                occured creating user in row %s:</paragraph>""" % \
-                            rowcount]
-                message += ["""<paragraph>The user was unable to be
-                registered. Please report this as a
-                bug.</paragraph>"""]
+    if email in allEmailAddresses:
+        # The user already exists, so just add them to the groups.
+        assert same_type(usersByEmail, {})
+        user = usersByEmail[email]
+        result = container.adduser_add_user(user,groups)
+        assert same_type(result, {})
+        if result['error']:
+            errors += 1
+            msg = '''%s\n<listitem><bold>[Row %d]</bold>
+            <bulletlist>
+            %s
+            </bulletlist>
+            </listitem>''' % (msg, rowcount, result['message'])
+        else:
+            added += 1
+    else:
+        # The user does not exist, so create the user
+        result = context.verifyuserdata(firstName, lastName, userId,
+                                        email)
+        if result:
+            errors += 1
+            msg = '''%s\n<listitem><bold>[Row %d]</bold>
+            <bulletlist>
+            %s
+            <listitem>The user on row %d <bold>has not</bold> been
+            created.</listitem>
+            </bulletlist>
+            </listitem>''' % (msg, rowcount, result, rowcount)
+        else:
+            result = container.adduser_create_new_user(firstName, lastName,
+                                                       preferredName, email,
+                                                       userId, groups, 
+                                                       sendVerification)
+
+            if result['error']:
                 errors += 1
-        except "Bad Request", x:
-            message += ["""<paragraph>The following exception occured
-            creating user in row %s:</paragraph>""" % rowcount]
-            message += ["<paragraph>%s</paragraph>" % str(x)]
-            errors += 1
-        except Exception, x:
-            message += ["""<paragraph>The following exception occured
-            creating user in row %s:</paragraph>""" % rowcount]
-            message += ["<paragraph>%s</paragraph>" % str(x)]
-            errors += 1
-        
-        created += 1
-        
+                msg = '''%s\n<listitem><bold>[Row %d]</bold>
+                <bulletlist>
+                %s
+                </bulletlist>
+                </listitem>''' % (msg, rowcount, result['message'])
+            else:
+                created += 1
     rowcount += 1
 
-if message:
-    if created == 0:
-        message.insert(0, """<paragraph>Your file has been processed
-        but %s errors occurred.</paragraph>""" % errors)
-        message.insert(1,
-                       "<paragraph>----------------------------------------------------</paragraph>")
-        message.append("<paragraph>----------------------------------------------------</paragraph>")
-    else:
-        message.insert(0,
-                       """<paragraph>Your file has been processed, %s
-                       users were created, """
-                       """but %s errors occurred with creating the
-                       other users.</paragraph>""" % (created, errors))
-        message.insert(1,
-                       "<paragraph>----------------------------------------------------</paragraph>")
-        message.append("<paragraph>----------------------------------------------------</paragraph>")
+numRows = rowcount -1
+retval = '''<paragraph>You %d-row file was processed:</paragraph>
+<bulletlist>''' % numRows
+textGroups = ', '.join(map(lambda g: g.split('_member')[0], groups[:-1]))
+textGroups = '%s and %s' % (textGroups, groups[-1].split('_member')[0])
+if created > 0:
+    userOrUsers = (created > 1 and 'users') or 'user'
+    wereOrWas = (created > 1 and 'were') or 'was'
+    retval = '''%s
+    <listitem>There %s %d new %s created and
+    added to %s''' % (retval, wereOrWas, created, userOrUsers,
+                      textGroups)
 else:
-    message.append("""<paragraph>Your file has been processed, and %s
-    users were created.</paragraph>""" % created)
-    
-return '\n'.join(message)
+    retval = '''%s
+    <listitem>There were no new users created''' % retval
+if added > 0:
+    userOrUsers = (added > 1 and 'users') or 'user'
+    wereOrWas = (added > 1 and 'were') or 'was'
+    retval = '''%s,</listitem>
+    <listitem>While %d existing %s %s
+    added to %s.</listitem>''' % (retval, added, userOrUsers,
+                                  wereOrWas, textGroups)
+else:
+    retval = '''%s.</listitem>''' % retval
+retval = '''%s</bulletlist>''' % retval
+if errors > 0:
+    errorOrErrors = (errors > 1 and 'errors') or 'error'
+    isOrAre = (errors > 1 and 'are') or 'is'
+    rowOrRows = (errors > 1 and 'rows') or 'row'
+    retval = '''%s\n<paragraph>Thre were also %d %s, which %s
+    detailed as  follows.</paragraph>
+    <bulletlist>
+    %s
+    </bulletlist>'''% (retval, errors, errorOrErrors, isOrAre,
+                       msg)
+retval = '''%s
+  <paragraph>(The top row was treated as a
+   header.)</paragraph>''' % retval
+
+return retval

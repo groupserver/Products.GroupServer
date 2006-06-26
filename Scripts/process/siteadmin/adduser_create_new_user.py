@@ -1,0 +1,51 @@
+## Script (Python) "adduser_create_new_user"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=firstname=None, lastname=None, preferredname=None,email=None, userid=None, groups=None, sendVerification=None
+##title="Add User: Create New User"
+##
+site_root = context.site_root()
+
+assert not site_root.acl_users.get_userByEmail(email)
+
+result = {}
+
+if preferredname:
+    userproperties = {'preferredName': preferredname}
+else:
+    userproperties = {}
+
+try:
+    user = context.Scripts.registration.register_user(firstname, lastname,
+                                                      email, userid,
+                                                      groups, 0,
+                                                      userproperties,
+                                                      sendVerification)
+except 'Bad Request', x:
+    result['message'] = '''<listitem>An exception occured creating user
+    with the email address %s: %s. Please report this as a
+    bug.</listitem>''' % (email, str(x))
+    result['error'] = True
+    return result
+except Exception, x:
+    result['message'] = '''<listitem>An exception occured creating user
+    with the email address %s: %s.</listitem>''' % (email, str(x))
+    result['error'] = True
+    return result
+
+if not user:
+    result['error'] = True
+    result['message'] = '''<listitem>An unexpected error occured
+    while creating the user with the email address %s, please report
+    this as a bug.</listitem>''' % email
+else:
+    textGroups = ', '.join(map(lambda g: g[:-7], groups))
+    result['error'] = False
+    result['message'] = '''<listitem>Created a user with ID
+    %s and the email address %s; the user has been added
+    to %s.</listitem>''' % (user.getId(), email, textGroups)
+
+return result

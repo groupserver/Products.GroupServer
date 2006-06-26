@@ -25,13 +25,6 @@ firstname = form.get('firstname','')
 lastname = form.get('lastname','')
 email = form.get('email','')
 sendVerification = form.get('sendVerification', '')
-
-message = context.verifyuserdata(firstname, lastname, userid, email)
-if message:
-    error = 1
-else:
-    error = 0
-
 preferredname = form.get('preferredname', '')
 
 groups = ['%s_member' % divisionid]
@@ -46,19 +39,22 @@ for group in joingroups:
 if form.get('addtogroup', 'no') == 'yes' and groupid:
     groups.append('%s_member' % groupid)
 
-if error:
-    return '\n'.join(message)
+usersByEmail = {}
+for user in site_root.acl_users.getUsers():
+    emailAddresses = user.get_emailAddresses()
+    for emailAddress in emailAddresses:
+        usersByEmail[emailAddress] = user
 
-if preferredname:
-    userproperties = {'preferredName': preferredname}
+if email in usersByEmail.keys():
+    user = usersByEmail[email]
+    result = container.adduser_add_user(user,groups)
+    return '<bulletlist>%s</bulletlist>' % result['message']
 else:
-    userproperties = {}
-
-user = context.Scripts.registration.register_user(firstname, lastname, email, userid, groups, 0, userproperties, sendVerification)
-
-if not user:
-    message.append("<paragraph>An unexpected error occured while creating the user, please report this as a bug.</paragraph>")
-else:
-    message.append("<paragraph>Created user with ID %s</paragraph>" % user.getId())
-
-return '\n'.join(message)
+    message = context.verifyuserdata(firstname, lastname, userid, email)
+    if message:
+        return message
+    result = container.adduser_create_new_user(firstname, lastname,
+                                               preferredname, email,
+                                               userid, groups, 
+                                               sendVerification)
+    return '<bulletlist>%s</bulletlist>' % result['message']
