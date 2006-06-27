@@ -100,6 +100,9 @@ mailto = '%s@onlinegroups.net' % groupid
 
 site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title.lower())
 
+user = context.REQUEST.AUTHENTICATED_USER
+user.add_groupWithNotification('%s_member' % groupid)
+
 groupPropertiesPage = '/groups/%s/admingroup/manageproperties' % groupid
 context.REQUEST.RESPONSE.redirect(groupPropertiesPage)
 # The following should not be reached
