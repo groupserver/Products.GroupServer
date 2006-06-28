@@ -49,7 +49,7 @@ siteIds = map(lambda s: s[0],
                      sitesContainer.objectItems('Folder')))
 if subdomain in siteIds:
     result['error'] = True
-    result['Message'] = '''There is already an OnlineGroups.Net site
+    result['message'] = '''There is already an OnlineGroups.Net site
       with the subdomain &#8220;%s&#8221;. Please choose another
       subdomain.''' % subdomain
     return result
