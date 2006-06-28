@@ -20,7 +20,7 @@ leaveable = getattr(getattr(listManager, group_id),'unsubscribe', None) and True
 if subscribe and not joinable:
     raise 'Forbidden', 'You cannot join this list'
 if unsubscribe and not leaveable:
-    raise 'Forbidden', 'You cannot unsubscribe from thist list'
+    raise 'Forbidden', 'You cannot unsubscribe from this list'
 
 division = getattr(site_root.Content, division_id)
 group = getattr(division.groups, group_id)

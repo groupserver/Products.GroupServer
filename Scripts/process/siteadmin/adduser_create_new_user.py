@@ -25,14 +25,16 @@ try:
                                                       userproperties,
                                                       sendVerification)
 except 'Bad Request', x:
+    msg = str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&lt;')
     result['message'] = '''<listitem>An exception occured creating user
     with the email address %s: %s. Please report this as a
-    bug.</listitem>''' % (email, str(x))
+    bug.</listitem>''' % (email, msg)
     result['error'] = True
     return result
 except Exception, x:
+    msg = str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&lt;')
     result['message'] = '''<listitem>An exception occured creating user
-    with the email address %s: %s.</listitem>''' % (email, str(x))
+    with the email address %s: %s.</listitem>''' % (email, msg)
     result['error'] = True
     return result
 

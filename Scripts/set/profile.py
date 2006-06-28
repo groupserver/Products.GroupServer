@@ -7,6 +7,7 @@
 ##parameters=user_id=None, came_from=None
 ##title=
 ##
+import cgi
 site_root = context.site_root()
 request = context.REQUEST
 if user_id:
@@ -17,7 +18,8 @@ else:
 for key in request.form.keys():
     prop = getattr(context.UserProperties, key, None)
     if prop and user.hasProperty(prop.getId()):
-        user.manage_changeProperties({key:request.form[key]})
+        text = cgi.escape(request.form[key])
+        user.manage_changeProperties({key:text})
     elif prop:
         user.manage_addProperty(prop.getId(), request.form[key], prop.getProperty('property_type'))
 
