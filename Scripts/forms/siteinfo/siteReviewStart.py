@@ -47,7 +47,7 @@ result = container.check_introduction(form['introduction'])
 if result['error']:
     return result
 
-context.start_site(siteId=form['subdomain'],
+context.start_site(siteId=subdomain,
                    sitename=form['sitename'],
                    siteintro=form['introduction'],
                    userId=user.getUserName(),

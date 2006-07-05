@@ -22,5 +22,5 @@ if result['error']:
 
 # No error, redirect
 context.REQUEST.RESPONSE.redirect('siteintroduction.xml?sitename=%s&subdomain=%s' %
-                                  (form['sitename'], form['subdomain']))
+                                  (form['sitename'], subdomain))
  

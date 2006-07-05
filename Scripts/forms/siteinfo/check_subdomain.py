@@ -62,6 +62,14 @@ if subdomain in groupIds:
       &#8220;%s&#8221;. Please choose another subdomain, as sites
       cannot have the same name as an existing group.'''
     return result
+# Check if a user exists with the same id
+userIds = acl_users.getUserNames()
+if subdomain in userIds:
+    result['error'] = True
+    result['message'] = '''There is a user with the ID
+      &#8220;%s&#8221;. Please choose another subdomain, as sites
+      cannot have the same name as an existing user.'''
+    return result
 # The following two check should *NOT* hold if we have got this far.
 # 1. Check in ACL Users
 userGroups = site_root.acl_users.getGroupNames()
