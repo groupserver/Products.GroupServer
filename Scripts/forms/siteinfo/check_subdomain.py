@@ -63,7 +63,7 @@ if subdomain in groupIds:
       cannot have the same name as an existing group.'''
     return result
 # Check if a user exists with the same id
-userIds = acl_users.getUserNames()
+userIds = site_root.acl_users.getUserNames()
 if subdomain in userIds:
     result['error'] = True
     result['message'] = '''There is a user with the ID
