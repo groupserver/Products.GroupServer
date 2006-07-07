@@ -36,6 +36,12 @@ email_addressess_delivery = form.get('emailAddressDelivery')
 assert email_addressess_delivery in 'sd'
 email_addresses = form.get('emailAddresses')
 
+# crude, really crude, way of telling if we're a list
+try:
+    email_addresses.append
+except:
+    email_addresses = [email_addresses]
+    
 if email_addressess_delivery == 's':
     # Specific address delivery
     for address in email_addresses:
