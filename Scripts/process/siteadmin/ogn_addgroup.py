@@ -86,6 +86,10 @@ if templateid:
 group.manage_addFolder('members', 'Members')
 group.members.manage_clone(getattr(context.CodeTemplates.group.members, 'index.xml'), 'index.xml')
 
+# create a email settings folder
+group.manage_addFolder('email_settings', 'Email Settings')
+group.members.manage_clone(getattr(context.CodeTemplates.group.email_settings, 'index.xml'), 'index.xml')
+
 # secure the group
 site_root.acl_users.userFolderAddGroup('%s_member' % groupid)
 group.manage_defined_roles('Add Role', {'role':'GroupMember'})
