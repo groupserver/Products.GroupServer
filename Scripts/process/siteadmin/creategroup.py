@@ -73,7 +73,7 @@ group.members.manage_clone(getattr(context.CodeTemplates.group.members, 'index.x
 
 # create a email settings folder
 group.manage_addFolder('email_settings', 'Email Settings')
-group.members.manage_clone(getattr(context.CodeTemplates.group.email_settings, 'index.xml'), 'index.xml')
+group.email_settings.manage_clone(getattr(context.CodeTemplates.group.email_settings, 'index.xml'), 'index.xml')
 
 # secure the group
 site_root.acl_users.userFolderAddGroup('%s_member' % groupid)
