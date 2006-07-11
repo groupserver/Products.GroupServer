@@ -86,10 +86,10 @@ if form.get('addtogroup', 'no') == 'yes' and groupid:
 #   check if the user exists on the sytem or not.
 usersByEmail = {}
 for user in site_root.acl_users.getUsers():
-    emailAddresses = user.get_emailAddresses()
+    emailAddresses = map(lambda x: x.lower(), user.get_emailAddresses())
     for emailAddress in emailAddresses:
         assert same_type(usersByEmail, {})
-        usersByEmail[emailAddress] = user
+        usersByEmail[emailAddress.lower()] = user
 allEmailAddresses = usersByEmail.keys()
 
 msg = ''
@@ -108,7 +108,7 @@ for row in results.mainData:
     firstName = fieldmap.get('firstName', '')
     lastName = fieldmap.get('lastName', '')
     preferredName = fieldmap.get('preferredName', '')
-    email = fieldmap.get('email','')
+    email = fieldmap.get('email','').lower()
     userId = fieldmap.get('userId', '')
 
     if email in allEmailAddresses:

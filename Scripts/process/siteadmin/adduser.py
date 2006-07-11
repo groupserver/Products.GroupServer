@@ -23,7 +23,7 @@ divisionid = form.get('divisionid')
 userid = form.get('userid','')
 firstname = form.get('firstname','')
 lastname = form.get('lastname','')
-email = form.get('email','')
+email = form.get('email','').lower()
 sendVerification = form.get('sendVerification', '')
 preferredname = form.get('preferredname', '')
 
@@ -41,7 +41,7 @@ if form.get('addtogroup', 'no') == 'yes' and groupid:
 
 usersByEmail = {}
 for user in site_root.acl_users.getUsers():
-    emailAddresses = user.get_emailAddresses()
+    emailAddresses = map(lambda x: x.lower(), user.get_emailAddresses())
     for emailAddress in emailAddresses:
         usersByEmail[emailAddress] = user
 
