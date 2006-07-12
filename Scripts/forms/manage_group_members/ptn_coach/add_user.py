@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=userid=None,groupid=None,divisionid=None
-##title=Add Users to Participation Coach List
+##title=Add User to the Participation Coach List
 ##
 from Products.PythonScripts.standard import html_quote
 

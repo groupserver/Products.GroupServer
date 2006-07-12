@@ -31,6 +31,37 @@ assert form.has_key('divisionid')
 divisionid = form['divisionid']
 
 ##############
+# Moderators #
+##############
+# Adding
+moderatorsAddUsers = form.has_key('moderators_add_userid') \
+                     and form['moderators_add_userid'] \
+                     or ''
+try:
+    moderatorsAddUsers.append
+except:
+    moderatorsAddUsers = [moderatorsAddUsers]
+if moderatorsAddUsers != ['']:
+    r = container.moderators.add_users(moderatorsAddUsers,
+                                       groupid, divisionid)
+    result['message'] = '%s%s' % (result['message'], r['message'])
+    result['error'] = result['error'] and r['error']
+    
+# Removing
+moderatorsRemoveUsers = form.has_key('moderators_remove_userid')\
+                        and form['moderators_remove_userid']\
+                      or ''
+try:
+    moderatorsRemoveUsers.append
+except:
+    moderatorsRemoveUsers = [moderatorsRemoveUsers]
+if moderatorsRemoveUsers != ['']:
+    r = container.moderators.remove_users(moderatorsRemoveUsers,
+                                          groupid, divisionid)
+    result['message'] = '%s%s' % (result['message'], r['message'])
+    result['error'] = result['error'] and r['error']
+
+##############
 # Moderation #
 ##############
 # Adding

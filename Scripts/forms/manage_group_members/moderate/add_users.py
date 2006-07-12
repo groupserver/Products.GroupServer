@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=userids=[],groupid=None,divisionid=None
-##title=Add Users to the List of Moderators
+##title=Add Users to Group Moderation List
 ##
 from Products.PythonScripts.standard import html_quote
 
@@ -22,34 +22,28 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 grouplist = getattr(listManager, groupid)
 assert(grouplist != None)
 
-mmembers = group.Scripts.get.group_moderators(ids_only=False)
-mmemberIds = map(lambda m: m.getId(), mmembers)
+mmembers = []
+if grouplist.hasProperty('moderated_members'):
+   mmembers = filter(None, grouplist.getProperty('moderated_members'))
 
-for userId in userids:
-   userObj = site_root.acl_users.getUser(userId)
-   if ((userId not in mmemberIds)
-       and (userObj.get_defaultDeliveryEmailAddresses())):
-      mmembers.append(userObj)
+   
+for member in userids:
+    if member not in mmembers:
+        mmembers.append(member)            
 
-mea = map(lambda u: u.get_defaultDeliveryEmailAddresses()[0],
-          mmembers)
-
-if grouplist.hasProperty('moderator'):
-    grouplist.manage_changeProperties(moderator=mea)
+if grouplist.hasProperty('moderated_members'):
+    grouplist.manage_changeProperties(moderated_members=mmembers)
 else:
-    grouplist.manage_addProperty('moderator', mea, 'lines')
+    grouplist.manage_addProperty('moderated_members', mmembers, 'lines')
 
 userNames = ', '.join(map(lambda m: group.Scripts.get.user_realnames(m),
                           userids))
 result['error'] = False
-m = (len(userids) == 1) and ('member you selected (%s)' % userNames) \
-    or ('%d members you selected (%s)' % (len(userids), userNames))
-isOrAre = ((len(mea) == 1) and 'is') or 'are'
-sOrNul =  ((len(mea) != 1) and 's') or ''
-result['message'] = '''<paragraph>The %s can now <em>moderate</em> messages
-  for %s.
-  There %s now %d moderator%s for
-  this group.</paragraph>''' % (m, group.title_or_id(), isOrAre, len(mea),
-                                sOrNul)
+m = (len(userids) == 1) and ('member you selected (%s) has' % userNames) \
+    or ('%d members you selected (%s) have' % (len(userids), userNames))
+result['message'] = '''<paragraph>The %s been <em>added</em>
+  to the moderation list for %s.
+  There are now %d moderated members of
+  this group.</paragraph>''' % (m, group.title_or_id(), len(mmembers))
 
 return result
