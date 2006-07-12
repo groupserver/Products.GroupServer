@@ -157,7 +157,7 @@ for row in results.mainData:
     rowcount += 1
 
 numRows = rowcount -1
-retval = '''<paragraph>You %d-row file was processed:</paragraph>
+retval = '''<paragraph>Your %d-row file was processed:</paragraph>
 <bulletlist>''' % numRows
 textGroups = ', '.join(map(lambda g: g.split('_member')[0], groups[:-1]))
 textGroups = '%s and %s' % (textGroups, groups[-1].split('_member')[0])
