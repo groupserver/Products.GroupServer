@@ -17,6 +17,13 @@ if groupId == '':
       be specified.</paragraph>'''
     return result
 
+# Check if the user has changed it
+if groupId == 'exampleid':
+    result['error'] = True
+    result['message'] = '''<paragraph>You must set the group
+      identifier.</paragraph>'''
+    return result
+
 # Check for swearing
 badWord = container.Scripts.check.bad_words(groupId)
 if badWord:
@@ -38,33 +45,33 @@ if entityExists:
     messages = [''] # The empty string in position 0 is delibarate
 
     m = '''<paragraph>The identifier &#8220;%s&#8221; cannot be used
-      for the group as a site exists with the same ID.
+      for the group, as a site exists with the same ID.
       Please pick a new ID.</paragraph>''' % groupId
     messages.append(m)
     
     m = '''<paragraph>The identifier &#8220;%s&#8221; cannot be used
-      for the group as a group exists with the same ID.
+      for the group, as a group exists with the same ID.
       Please pick a new ID.</paragraph>''' % groupId
     messages.append(m)
 
     m = '''<paragraph>The identifier &#8220;%s&#8221; cannot be used
-      for the group as a user exists with the same ID.
+      for the group, as a user exists with the same ID.
       Please pick a new ID.</paragraph>''' % groupId
     messages.append(m)
 
     m = '''<paragraph>The identifier &#8220;%s&#8221; cannot be used
-      for the group as a user-group exists with the same ID.
+      for the group, as a user-group exists with the same ID.
       Please pick a new ID.</paragraph>''' % groupId 
     messages.append(m)
 
     m = '''<paragraph>The identifier &#8220;%s&#8221; cannot be used
-      for the group as a user-group exists with the same ID.
+      for the group, as a user-group exists with the same ID.
       This is a very odd occurance, please contact
       <link url="mailto:support@onlinegroups.net">support@onlinegroups.net</link>.</paragraph>''' % groupId
     messages.append(m)
 
     m = '''<paragraph>The identifier &#8220;%s&#8221; cannot be used
-      for the group as a group-notification exists with the same ID.
+      for the group, as a group-notification exists with the same ID.
       This is a very odd occurance, please contact
       <link url="mailto:support@onlinegroups.net">support@onlinegroups.net</link>.</paragraph>''' % groupId
     messages.append(m)

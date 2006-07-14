@@ -45,6 +45,7 @@ groups.manage_addFolder(groupId)
 group = getattr(groups.aq_explicit, groupId)
 group.manage_addProperty('is_group', True, 'boolean')
 group.manage_addProperty('short_name', groupName.lower(), 'string')
+group.manage_addProperty('real_life_group', realLifeGroup, 'string')
 group.manage_changeProperties(title=groupName)
 
 # add a files area
