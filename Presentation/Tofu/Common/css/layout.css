@@ -467,3 +467,7 @@ ul#resultsnav {
 	padding-left: 10px;
 	margin-left: 0px;
 }
+
+#footerLinks a { 
+  padding-right: 10px;
+}

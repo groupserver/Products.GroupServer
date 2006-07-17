@@ -75,3 +75,31 @@ p {
 	margin: 0 0 1em 10px;
 }
 
+.fauxTable {
+  display: table;
+  border-collapse: collapse
+}
+.tr {
+  display: table-row;
+}
+.td, .th {
+  display: table-cell;
+  padding: 5px;
+}
+.th {
+  font-weight: bold;
+  border-bottom: thin solid black;
+}
+
+.colgroup {
+  display: table-column-group;
+}
+
+.col { 
+  display: table-column;
+}
+
+#colEmailAddress { 
+  border-left: 1em solid white;
+  border-right: 1em solid white;
+}

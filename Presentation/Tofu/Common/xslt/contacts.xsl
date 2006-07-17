@@ -27,7 +27,7 @@
   </xsl:template>
   <xsl:template match="name">
     <a href="{../link/@url}">
-      <xsl:value-of select="preferredname"/>&#160;<xsl:value-of select="lastname"/>
+      <xsl:value-of select="firstname"/>&#160;<xsl:value-of select="lastname"/>
     </a>
     <xsl:if test="../*[@present='auto']">&#160;(<xsl:for-each select="../*[@present='auto']"><xsl:if test="position()!=1">, </xsl:if><xsl:value-of select="@title"/>: <xsl:choose><xsl:when test="text()"><xsl:value-of select="text()"/></xsl:when><xsl:otherwise>[not set]</xsl:otherwise></xsl:choose></xsl:for-each>)</xsl:if>
   </xsl:template>
