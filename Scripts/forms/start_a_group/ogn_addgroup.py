@@ -113,7 +113,12 @@ group.email_settings.manage_permission('Access contents information',
                                        justUsers)
 
 mailto = '%s@onlinegroups.net' % groupId
-site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupId, mailto, groupName.lower())
+site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupId,
+                                                                                          mailto, groupName.lower())
+groupList = getattr(site_root.ListManager, groupList)
+assert groupList
+groupList.manage_addProperty('siteId', division.getId(), 'string')
+
 
 user = context.REQUEST.AUTHENTICATED_USER
 user.add_groupWithNotification('%s_member' % groupId)
