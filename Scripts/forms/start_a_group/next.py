@@ -64,7 +64,7 @@ gn = 'groupName=%s' % groupName.replace(' ', '%20')
 gi = 'groupId=%s' % groupId
 rlg = 'realLifeGroup=%s' % realLifeGroup.replace(' ', '%20')
 p = 'privacy=%s' % privacy
-redir ='start_a_group_preview.xml?%s' % '&'.join([gn, gi, rlg, p])
+redir ='/start_a_group/start_a_group_preview.xml?%s' % '&'.join([gn, gi, rlg, p])
 
 context.REQUEST.RESPONSE.redirect(redir)
  
