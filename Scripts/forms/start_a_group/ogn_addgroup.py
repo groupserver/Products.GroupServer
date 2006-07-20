@@ -88,14 +88,13 @@ group.manage_addLocalGroupRoles('%s_member' % groupId, ['GroupMember'])
 # Set the privacy permissions
 if privacy == 'private':
     joinCondition = 'apply'
+    userGroups = ['DivisionAdmin', 'GroupAdmin', 'GroupMember',
+                  'Manager', 'Owner']
+elif privacy == 'public':
+    joinCondition = 'anyone'
     userGroups = ['Anonymous', 'Authenticated', 'DivisionMember',
                   'DivisionAdmin', 'GroupAdmin','GroupMember','Manager',
                   'Owner']
-elif privacy == 'public':
-    joinCondition = 'anyone'
-    visibility = 'anyone'
-    userGroups = ['DivisionAdmin', 'GroupAdmin', 'GroupMember',
-                  'Manager', 'Owner']
 group.manage_changeProperties(join_condition=joinCondition)
 group.manage_permission('View', userGroups)
 group.manage_permission('Access contents information', userGroups)
