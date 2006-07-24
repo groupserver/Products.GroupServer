@@ -147,8 +147,11 @@
 
 
 	<xsl:template name="email-present-email">
-		<a name="{@id}" />
-		<p class="email-metadata">Posted <strong><xsl:value-of select="email:mailDate"/></strong> by <strong><xsl:choose>
+		<p id="{@id}" class="email-metadata">
+      <xsl:if test="//@resultsummary='0'">
+        <h2><xsl:value-of select="email:mailSubject"/></h2>
+      </xsl:if>
+      Posted <strong><xsl:value-of select="email:mailDate"/></strong> by <strong><xsl:choose>
 					<xsl:when test="email:mailUserId/text() and email:mailFromName/text()">
 						<a href="/contacts/{email:mailUserId/text()}/"><xsl:value-of select="email:mailFromName/text()"/></a>
 					</xsl:when>
