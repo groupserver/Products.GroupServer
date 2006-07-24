@@ -145,6 +145,38 @@ if group_admin_remove_userid != ['']:
                                      groupid, divisionid)
     result['message'] = '%s%s' % (result['message'], r['message'])
     result['error'] = result['error'] and r['error']
+
+####################################
+# Posting to an announcement Group #
+####################################
+# Adding
+posting_add_userid = form.has_key('posting_add_userid') \
+                     and form['posting_add_userid'] \
+                     or ''
+try:
+    posting_add_userid.append
+except:
+    posting_add_userid = [posting_add_userid]
+if posting_add_userid != ['']:
+    r = container.posting.add_users(posting_add_userid,
+                                    groupid, divisionid)
+    result['message'] = '%s%s' % (result['message'], r['message'])
+    result['error'] = result['error'] and r['error']
+
+# Removing
+posting_remove_userid = form.has_key('posting_remove_userid') \
+                        and form['posting_remove_userid'] \
+                        or ''
+try:
+    posting_remove_userid.append
+except:
+    posting_remove_userid = [posting_remove_userid]
+if posting_remove_userid != ['']:
+    r = container.posting.remove_users(posting_remove_userid,
+                                       groupid, divisionid)
+    result['message'] = '%s%s' % (result['message'], r['message'])
+    result['error'] = result['error'] and r['error']
+
     
 ####################
 # Group Membership #
