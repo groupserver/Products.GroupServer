@@ -97,11 +97,31 @@
         </xsl:if>
         <xsl:if test="@fullthread!='1'">
           <h1>Post</h1>
-          <h2>"<xsl:value-of select="email:email/email:mailSubject"/>" <a class="email-link" href="/r/post/{email:email[position()=last()]/@id}">link</a></h2>
+          <h2>Topic: <xsl:value-of select="email:email/email:mailSubject"/> <a class="email-link" href="/r/post/{email:email[position()=last()]/@id}">(link)</a></h2>
           <p>
-            <span class="note"><a href="view_results">all Posts</a></span> | <a href="{//content/@url}&amp;show_thread=1">"<xsl:value-of select="email:email/email:mailSubject"/>" Topic</a>
+            <span class="note">
+              <a href="{//content/@url}&amp;show_thread=1">The topic
+              <xsl:value-of select="email:email/email:mailSubject"/></a>
+              | 
+              <a href="view_results">Summary of posts</a>
+            </span>
           </p>
         </xsl:if>
+        
+        <!--Showing the full-text of all the posts-->
+        <xsl:if test="not(@fullthread) and @resultsummary='0'">
+          <h1>Posts to 
+          <span class="group"><xsl:value-of select="//metadata/group/text()"/></span></h1>
+          <p>
+            <span class="note">
+              <a href="view_threads">Summary of topics</a>
+              | 
+              <a href="view_results">Summary of posts</a>
+            </span>
+          </p>
+
+        </xsl:if>
+
 
         <br/>
         
