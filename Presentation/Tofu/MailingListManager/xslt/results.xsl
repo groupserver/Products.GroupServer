@@ -6,7 +6,7 @@
   <xsl:output method="html" encoding="UTF-8"/>
   
   <xsl:template name="email-present-results">
-    <h1>Summart of Posts to 
+    <h1>Summary of Posts to 
     <span class="group"><xsl:value-of select="//metadata/group/text()"/></span></h1>
     <xsl:choose>
       <xsl:when test="number(@size)=0">
