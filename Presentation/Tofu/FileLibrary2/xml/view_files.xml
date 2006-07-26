@@ -135,7 +135,7 @@
                  <span class="network-waiting">Finding matches...</span>
         <files:selector xmlns:files="http://iopen.net/ns/files"
                         tal:attributes="batchsize python:uq(request.form.get('b_size', '10'));
-                                        batchstart python:uq(request.form.get('b_start'), '1'));
+                                        batchstart python:uq(request.form.get('b_start', '1'));
                                         modificationtime python:uq(request.form.get('modification_time', '0'));
                                         topic python:uq(request.form.get('topic',''));
                                         tags python:uq(request.form.get('tags', ''))"
