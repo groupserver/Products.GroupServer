@@ -14,6 +14,7 @@ result['message'] = ''
 
 form = context.REQUEST.form
 assert form.has_key('divisionId')
+assert form.has_key('groupType')
 assert form.has_key('groupName')
 assert form.has_key('groupId')
 assert form.has_key('realLifeGroup')
@@ -27,6 +28,7 @@ for field in form:
         pass
 
 divisionId = form['divisionId']
+groupType = form['groupType']
 groupName = form['groupName']
 groupId = form['groupId'].lower()
 realLifeGroup = form['realLifeGroup']
@@ -34,6 +36,9 @@ privacy = form['privacy']
 
 # The user should not be able to stuff up the division ID as it is set
 #   by code.
+
+# The user should not be able to stuff up the group-type, as it is set
+#   with a radio-button.
 
 # Check for errors in the group name
 r = container.check_name(groupName)
@@ -60,11 +65,13 @@ if result['error']:
     return result
 
 # No error, redirect
+gt = 'groupType=%s' % groupType
 gn = 'groupName=%s' % groupName.replace(' ', '%20')
 gi = 'groupId=%s' % groupId
 rlg = 'realLifeGroup=%s' % realLifeGroup.replace(' ', '%20')
 p = 'privacy=%s' % privacy
-redir ='/start_a_group/start_a_group_preview.xml?%s' % '&'.join([gn, gi, rlg, p])
+e = [gt,gn, gi, rlg, p]
+redir ='admindivision/start_a_group/start_a_group_preview.xml?%s' % '&'.join(e)
 
 context.REQUEST.RESPONSE.redirect(redir)
  

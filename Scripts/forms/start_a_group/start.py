@@ -14,6 +14,7 @@ result['message'] = ''
 
 form = context.REQUEST.form
 assert form.has_key('divisionId')
+assert form.has_key('groupType')
 assert form.has_key('groupName')
 assert form.has_key('groupId')
 assert form.has_key('realLifeGroup')
@@ -27,6 +28,7 @@ for field in form:
         pass
 
 divisionId = form['divisionId']
+groupType = form['groupType']
 groupName = form['groupName']
 groupId = form['groupId']
 groupId = groupId.lower()
@@ -35,6 +37,9 @@ privacy = form['privacy']
 
 # The user should not be able to stuff up the division ID as it is set
 #   by code.
+
+# The user should not be able to stuff up the group type, as it is set
+#   with a radio-button.
 
 # Check for errors in the group name
 r = container.check_name(groupName)
@@ -61,5 +66,5 @@ if result['error']:
     return result
 
 # No error, start the group
-container.ogn_addgroup(divisionId, groupId, groupName, realLifeGroup,
-                       privacy)
+container.ogn_addgroup(divisionId, groupType, groupId, groupName,
+                       realLifeGroup, privacy)

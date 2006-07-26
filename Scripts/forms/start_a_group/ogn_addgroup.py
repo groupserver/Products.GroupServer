@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=divisionId='',groupId='',groupName='',realLifeGroup='',privacy=''
+##parameters=divisionId='',templateId='',groupId='',groupName='',realLifeGroup='',privacy=''
 ##title=OnlineGroups.Net Add Group
 ##
 from Products.XWFCore.XWFUtils import assign_ownership
@@ -18,6 +18,7 @@ from Products.XWFCore.XWFUtils import assign_ownership
 #   checking is done with assert statements.
 
 assert divisionId != ''
+assert templateId != ''
 assert groupId != ''
 assert groupName != ''
 assert realLifeGroup != ''
@@ -34,7 +35,6 @@ division = context.Scripts.get.division_object()
 groups = getattr(division, 'groups')
 assert not hasattr(groups, groupId)
 
-templateId = 'standard'
 assert(hasattr(site_root.Templates.groups, templateId))
 templatedir = getattr(site_root.Templates.groups, templateId)
 assert(hasattr(templatedir, 'home'))

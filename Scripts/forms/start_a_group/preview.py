@@ -14,6 +14,7 @@ result['message'] = ''
 
 form = context.REQUEST.form
 assert form.has_key('divisionId')
+assert form.has_key('groupType')
 assert form.has_key('groupName')
 assert form.has_key('groupId')
 assert form.has_key('realLifeGroup')
@@ -27,6 +28,7 @@ for field in form:
         pass
 
 divisionId = form['divisionId']
+groupType = form['groupType']
 groupName = form['groupName']
 groupId = form['groupId'].lower()
 realLifeGroup = form['realLifeGroup']
@@ -60,11 +62,14 @@ if result['error']:
     return result
 
 # No error, redirect
+# No error, redirect
+gt = 'groupType=%s' % groupType
 gn = 'groupName=%s' % groupName.replace(' ', '%20')
 gi = 'groupId=%s' % groupId
 rlg = 'realLifeGroup=%s' % realLifeGroup.replace(' ', '%20')
 p = 'privacy=%s' % privacy
-redir ='start_a_group_preview.xml?%s' % '&'.join([gn, gi, rlg, p])
+e = [gt,gn, gi, rlg, p]
+redir ='start_a_group_preview.xml?%s' % '&'.join(e)
 
 context.REQUEST.RESPONSE.redirect(redir)
  
