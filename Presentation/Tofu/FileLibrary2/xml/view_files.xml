@@ -130,14 +130,15 @@
       </xf:submit>
             
       <adl:slot xmlns:adl="http://iopen.net/ns/adl" name="listfiles"
-                tal:attributes="b_size request/form/b_size | string:10">
+                tal:define="pss modules/Products/PythonScripts/standard; uq python:pss.url_quote"
+                tal:attributes="b_size python:uq(request.form.get('b_size', '10'))">
                  <span class="network-waiting">Finding matches...</span>
         <files:selector xmlns:files="http://iopen.net/ns/files"
-                        tal:attributes="batchsize request/form/b_size | string:10;
-                                        batchstart request/form/b_start | string:1;
-                                        modificationtime request/form/modification_time | string:0;
-                                        topic request/form/topic | string:;
-                                        tags request/form/tags | string:"
+                        tal:attributes="batchsize python:uq(request.form.get('b_size', '10'));
+                                        batchstart python:uq(request.form.get('b_start'), '1'));
+                                        modificationtime python:uq(request.form.get('modification_time', '0'));
+                                        topic python:uq(request.form.get('topic',''));
+                                        tags python:uq(request.form.get('tags', ''))"
                                          
                         slotname="listfiles"/>
       </adl:slot>
