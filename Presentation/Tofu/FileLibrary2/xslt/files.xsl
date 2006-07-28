@@ -13,8 +13,8 @@
 
     <xsl:template match="files:selector">
         <script>
-            loadURLs.push('pane_files?modification_time=<xsl:value-of select="@modificationtime"/>&amp;b_size=<xsl:value-of select="@batchsize"/>&amp;b_start=<xsl:value-of select="@batchstart"/>&amp;topic=<xsl:value-of select="@topic"/>&amp;tags=<xsl:value-of select="@tags"/>');
-            loadSlots.push('slot_<xsl:value-of select="@slotname"/>');
+        	paneLoader('pane_files?modification_time=<xsl:value-of select="@modificationtime"/>&amp;b_size=<xsl:value-of select="@batchsize"/>&amp;b_start=<xsl:value-of select="@batchstart"/>&amp;topic=<xsl:value-of select="@topic"/>&amp;tags=<xsl:value-of select="@tags"/>',
+        	           'slot_<xsl:value-of select="@slotname"/>');
         </script>
     </xsl:template>
 

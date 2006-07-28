@@ -42,10 +42,10 @@
 					src="/Presentation/Tofu/XForms/js/calendar.js">
 					&#160;
 				</script>
-				<script type="text/javascript" src="/Presentation/Tofu/Ajax/js/mochikit/MochiKit.js">
+				<script type="text/javascript" src="/Presentation/Tofu/Ajax/js/dojo/dojo.js">
 					&#160;
 				</script>
-				<script type="text/javascript" src="/Presentation/Tofu/Ajax/js/mochikit/dynamic_load.js">
+				<script type="text/javascript" src="/Presentation/Tofu/Ajax/js/dojo/dynamic_load.js">
 					&#160;
 				</script>
 
@@ -74,7 +74,7 @@
       <base href="{//output/metadata/base/@href}" />
 
 			</head>
-			<body onLoad="javascript:LoadStuff()">
+			<body>
 				<form method="post" enctype="application/x-www-form-urlencoded" action=""
 					onkeypress="javascript:return keypressEventHandler(this, event)">
 					<xsl:call-template name="xf:model"/>
