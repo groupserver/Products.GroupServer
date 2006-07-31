@@ -121,6 +121,7 @@ groupList.manage_addProperty('siteId', division.getId(), 'string')
 
 user = context.REQUEST.AUTHENTICATED_USER
 user.add_groupWithNotification('%s_member' % groupId)
+group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
 
 groupPage = '/groups/%s' % groupId
 context.REQUEST.RESPONSE.redirect(groupPage)
