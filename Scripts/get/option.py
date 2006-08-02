@@ -30,7 +30,7 @@ if retval == None:
         r = context.LocalScripts.settings.get_settings(site_id=site.getId())
         if r:
             d = r.dictionaries()
-            retval = filter(lambda i: i['item'] == 'siteName', d)[0]['value']
+            retval = filter(lambda i: i['item'] == key, d)[0]['value']
         else:
             retval = default
     except:
