@@ -25,18 +25,7 @@ for config in [user, division_config, global_config]:
 
 # Try in the settings dB
 if retval == None:
-    site = context.Scripts.get.division_object()
-    sid = site.getId()
-    try:
-        r = context.LocalScripts.settings.get_object_from_settings(site_id=sid,
-                                                                   object_id=key)
-        if r:
-            item = r.dictionaries()[0]
-            retval = item['value']
-        else:
-            retval = default
-    except:
-        retval = default
+    retval = default
 
 return retval
 
