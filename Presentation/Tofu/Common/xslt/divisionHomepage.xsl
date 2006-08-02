@@ -4,7 +4,7 @@
   -   Division Homepage XSL Stylesheet
   -
   -   The main difference between this stylesheet and the "adminsection"
-  -	"divisionHomeContent" ID instead of a "content" ID.
+  - "divisionHomeContent" ID instead of a "content" ID.
   -
   -   Michael JasonSmith, 2006-03-02
   -->
@@ -25,19 +25,19 @@
   <xsl:include href="file://Presentation/Tofu/FileLibrary2/xslt/files" />
   <xsl:include href="file://Presentation/Tofu/SiteSearch/xslt/results" />
   <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
-	
+  
   <xsl:output method="html" indent="yes" encoding="UTF8"
     omit-xml-declaration="yes"
     doctype-public="-//W3C//DTD HTML 4.01//EN"
     doctype-system="http://www.w3.org/TR/html4/strict.dtd" />
-		
+    
   <xsl:template match="root">
 <html>
   <head>
     <title>
       <xsl:value-of select="//output/metadata/division/@name" />
       <xsl:if test="//output/metadata/title">
-	: <xsl:value-of select="//output/metadata/title" />
+  : <xsl:value-of select="//output/metadata/title" />
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
@@ -64,7 +64,15 @@
     <script type="text/javascript"
       src="/Presentation/Tofu/Ajax/js/mochikit/dynamic_load.js">
       &#160;
-    </script>    
+    </script>
+    
+    <script src="http://www.google-analytics.com/urchin.js" 
+      type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      _uacct = "UA-530190-1";
+      urchinTracker();
+    </script>
 
     <xsl:if test="//link[@class='alternateRDF']">
       <xsl:for-each select="//link[@class='alternateRDF']">
@@ -101,33 +109,33 @@
   </body>
 </html>
   </xsl:template>
-	
+  
   <xsl:template name="body">
     <!-- Top Area Starts -->
     <div id="toparea">
       <!-- External Bar Starts -->
       <div id="externalbar">
         <xsl:call-template name="divisionswitch"/>
-	<xsl:apply-templates select="output/menus/menu[@id='external']"/> 
+  <xsl:apply-templates select="output/menus/menu[@id='external']"/> 
       </div><!-- External Bar Ends -->
       
       <!-- Title Bar Starts -->
       <div id="titlebar">
           <span class="logo"/>
-	<span class="group">
-	  <xsl:value-of select="output/metadata/sitename/text()" />
-	</span>
-	<xsl:if test="output/metadata/division/@name">
-	  <span class="division">
-	    <xsl:value-of select="output/metadata/division/@name"/>
-	  </span>
-	</xsl:if>
+  <span class="group">
+    <xsl:value-of select="output/metadata/sitename/text()" />
+  </span>
+  <xsl:if test="output/metadata/division/@name">
+    <span class="division">
+      <xsl:value-of select="output/metadata/division/@name"/>
+    </span>
+  </xsl:if>
       </div><!-- Title Bar Ends -->
 
       <!-- Utilities Start -->
       <div id="utilities">
-	<xsl:call-template name="loggedinlinks" />
-	<xsl:call-template name="groups" />
+  <xsl:call-template name="loggedinlinks" />
+  <xsl:call-template name="groups" />
       </div><!-- Utilities End -->
 
       <!-- Site Navigation Bar Starts -->
@@ -136,9 +144,9 @@
 
       <!-- Search Starts -->
       <xsl:if test="//user[@type='self']/id/text()!='Anonymous User'">
-	<div id="searcharea">
-	  <xsl:call-template name="searcharea" />
-	</div><!--searcharea-->
+  <div id="searcharea">
+    <xsl:call-template name="searcharea" />
+  </div><!--searcharea-->
       </xsl:if><!-- Search Ends -->
     </div><!--toparea-->
     
@@ -150,7 +158,7 @@
 
       <!-- Present any messages from the system -->
       <xsl:if test="//output/messages/message">
-	<xsl:call-template name="result-messages" />
+  <xsl:call-template name="result-messages" />
       </xsl:if>
       <!-- Messages End -->
       
