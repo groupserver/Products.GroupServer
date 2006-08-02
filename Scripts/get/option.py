@@ -14,7 +14,7 @@ global_config = getattr(context, 'GlobalConfiguration', None)
 division_config = getattr(context, 'DivisionConfiguration', None)
 
 retval = None
-for config in [user, division_config, global_config]:
+for config in [user, division_config]:
     try:
         value = config.getProperty(key, None)
         if value != None:
@@ -27,16 +27,22 @@ for config in [user, division_config, global_config]:
 if retval == None:
     try:
         site = context.Scripts.get.division_object()
-        sid = site.getId()
-        r = context.LocalScripts.settings.get_object_from_settings(site_id=sid,
-                                                                   object_id=key)
+        r = context.LocalScripts.settings.get_settings(site_id=site.getId())
         if r:
-            item = r.dictionaries()[0]
-            retval = item['value']
+            d = r.dictionaries()
+            retval = filter(lambda i: i['item'] == 'siteName', d)[0]['value']
         else:
             retval = default
     except:
-        retval = default
+        retval = None
 
+if retval == None:
+    try:
+        retval = global_config.getProperty(key, None)
+    except:
+        retval = None
+
+if retval == None:
+    retval = default
 return retval
 
