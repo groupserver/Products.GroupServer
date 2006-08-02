@@ -65,6 +65,14 @@
       src="/Presentation/Tofu/Ajax/js/mochikit/dynamic_load.js">
       &#160;
     </script>
+
+    <script src="http://www.google-analytics.com/urchin.js" 
+      type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      _uacct = "UA-530190-1";
+      urchinTracker();
+    </script>
     
     <xsl:if test="//link[@class='alternateRDF']">
       <xsl:for-each select="//link[@class='alternateRDF']">
