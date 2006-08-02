@@ -6,6 +6,6 @@ default_render_method:string=html
 transform_paths:lines=Presentation/Tofu/Common/xslt/
 schema_paths:lines=
 transform_xml:string=
-transform_html:string=section
+transform_html:string=adminsection
 transform_pdf:string=
 xml_schema:string=
