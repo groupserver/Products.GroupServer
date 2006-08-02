@@ -13,13 +13,30 @@ user = context.REQUEST.AUTHENTICATED_USER
 global_config = getattr(context, 'GlobalConfiguration', None)
 division_config = getattr(context, 'DivisionConfiguration', None)
 
+retval = None
 for config in [user, division_config, global_config]:
     try:
         value = config.getProperty(key, None)
         if value != None:
-            return value
+            retval = value
+            break
     except:
         pass
 
-return default
+# Try in the settings dB
+if retval == None:
+    site = context.Scripts.get.division_object()
+    sid = site.getId()
+    try:
+        r = context.LocalScripts.settings.get_object_from_settings(site_id=sid,
+                                                                   object_id=key)
+        if r:
+            item = r.dictionaries()[0]
+            retval = item['value']
+        else:
+            retval = default
+    except:
+        retval = default
+
+return retval
 
