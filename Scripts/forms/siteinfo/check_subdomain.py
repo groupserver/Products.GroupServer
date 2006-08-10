@@ -98,9 +98,17 @@ if subdomain == 'www':
     by
     <link
       url="http://www.onlinegroups.net/">www.onlinegroups.net</link>.
-    Please pick a new subdomain.''' % (subdomain, subdomain)
+    Please pick a new subdomain.'''
     return result
-    
+
+if subdomain in ['foo', 'bar', 'wibble', 'blarg', 'baz',
+                 'qux', 'quux', 'quuux', 'quuuux', 'quuuuuux']:
+    result['error'] = True
+    result['message'] = '''Metasyntactic-variables, such as &#8220;%s&#8221;,
+    are not allowed as subdomains (as they tend to get deleted by
+    over-zealous programmers and system administrators).
+    Please pick a new subdomain.''' % (subdomain)
+    return result
 
 # If we are here, then all is well in the world
 result['error'] = False
