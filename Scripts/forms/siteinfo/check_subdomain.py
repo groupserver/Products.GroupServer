@@ -92,6 +92,16 @@ if newUsergroupName in ids:
       support.''' % (subdomain, subdomain)
     return result
 
+if subdomain == 'www':
+    result['error'] = True
+    result['message'] = '''The subdomain &#8220;www&#8221; is already used
+    by
+    <link
+      url="http://www.onlinegroups.net/">www.onlinegroups.net</link>.
+    Please pick a new subdomain.''' % (subdomain, subdomain)
+    return result
+    
+
 # If we are here, then all is well in the world
 result['error'] = False
 result['message'] = '''The subdomain %s is valid.''' % subdomain
