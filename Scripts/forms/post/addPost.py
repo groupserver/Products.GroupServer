@@ -160,7 +160,9 @@ for list_id in messages.getProperty('xwf_mailing_list_ids', []):
     else:
         groupList.manage_listboxer({'Mail': m})
 
-
-h = '/groups/%s/messages/' % groupObj.getId()
+if groupObj.Scripts.get.option('virtualSitesOnly', False):
+    h = '/groups/%s/messages/' % groupObj.getId()
+else:
+    h = '/%s/groups/%s/messages/' % (siteObj.getId(), groupObj.getId())
 context.REQUEST.RESPONSE.redirect(h)
 
