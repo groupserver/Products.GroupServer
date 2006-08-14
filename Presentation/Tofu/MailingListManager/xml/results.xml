@@ -1,37 +1,37 @@
 <root xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" metal:use-macro="here/Templates/page.xml/macros/page">
   <output>
     <content metal:fill-slot="maincontent">
-			<email:collection 
-				xmlns:email="http://xwft.net/namespaces/email/0.9/" 
-				xmlns:tal="http://xml.zope.org/namespaces/tal"
-				encoding="UTF-8" 
-				tal:attributes="start python:options['b_start'];
-				bsize python:options['b_size'];
-				end python:options['b_end'];
-				size python:options['result_size'];
-				prevbsize python:min(options['b_size'], options['result_size']);
-				nextbsize python:min(options['b_size'], options['result_size']-options['b_end']) or options['b_size'];
-				next python:(options['b_end'] &lt; options['result_size']) and request.URL+'?'+cr(request, b_start=options['b_start']+options['b_size'],b_size=options['b_size']) or nothing;
-				prev python:(options['b_start'] > 1) and request.URL+'?'+cr(request, b_start=options['b_start']-options['b_size'],b_size=options['b_size']) or nothing;
-				reversedate python:request.URL+'?'+cr(request, b_start=1, s_order=request.get('s_order', 'asc')=='asc' and 'desc' or 'asc', s_on='mailDate');
-				resultsummary python:options['resultsummary'];"
-				tal:define="xcu python:modules['Products.XWFCore.XWFUtils']; cr python:xcu.createRequestFromRequest; ct python:xcu.convertTextToAscii;">
-				<result tal:omit-tag="" tal:repeat="result python:options['result_set']">
-					<email:email tal:define="result python:result.getObject()" tal:attributes="id python:result['id']">
-						<email:mailFrom tal:content="python:result['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
-						<span tal:omit-tag="" tal:define="mailUserId result/mailUserId | nothing;
-							mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
-							<email:mailUserId tal:content="mailUserId | nothing"/>
-							<email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
-						</span>
-						<email:from tal:content="python:result['from'][0]">someaddress@iopen.co.nz</email:from>
-						<email:mailSubject tal:content="python:result['mailSubject']">someaddress@iopen.co.nz</email:mailSubject>
-						<email:subject tal:condition="python:hasattr(result, 'subject')" tal:content="python:result['subject']">someaddress@iopen.co.nz</email:subject>
-						<email:mailDate tal:content="python:result['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">2003/04/09 12:00pm</email:mailDate>
-						<email:mailBody tal:content="python:ct(result['mailBody'])">Some body text.</email:mailBody>
-					</email:email>
-				</result>
-			</email:collection>
-		</content>
-	</output>
+      <email:collection 
+        xmlns:email="http://xwft.net/namespaces/email/0.9/" 
+        xmlns:tal="http://xml.zope.org/namespaces/tal"
+        encoding="UTF-8" 
+        tal:attributes="start python:options['b_start'];
+        bsize python:options['b_size'];
+        end python:options['b_end'];
+        size python:options['result_size'];
+        prevbsize python:min(options['b_size'], options['result_size']);
+        nextbsize python:min(options['b_size'], options['result_size']-options['b_end']) or options['b_size'];
+        next python:(options['b_end'] &lt; options['result_size']) and request.URL+'?'+cr(request, b_start=options['b_start']+options['b_size'],b_size=options['b_size']) or nothing;
+        prev python:(options['b_start'] > 1) and request.URL+'?'+cr(request, b_start=options['b_start']-options['b_size'],b_size=options['b_size']) or nothing;
+        reversedate python:request.URL+'?'+cr(request, b_start=1, s_order=request.get('s_order', 'asc')=='asc' and 'desc' or 'asc', s_on='mailDate');
+        resultsummary python:options['resultsummary'];"
+        tal:define="xcu python:modules['Products.XWFCore.XWFUtils']; cr python:xcu.createRequestFromRequest; ct python:xcu.convertTextToAscii;">
+        <result tal:omit-tag="" tal:repeat="result python:options['result_set']">
+          <email:email tal:define="result python:result.getObject()" tal:attributes="id python:result['id']">
+            <email:mailFrom tal:content="python:result['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
+            <span tal:omit-tag="" tal:define="mailUserId result/mailUserId | nothing;
+              mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
+              <email:mailUserId tal:content="mailUserId | nothing"/>
+              <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
+            </span>
+            <email:from tal:content="python:result['from'][0]">someaddress@iopen.co.nz</email:from>
+            <email:mailSubject tal:content="python:result['mailSubject']">someaddress@iopen.co.nz</email:mailSubject>
+            <email:subject tal:condition="python:hasattr(result, 'subject')" tal:content="python:result['subject']">someaddress@iopen.co.nz</email:subject>
+            <email:mailDate tal:content="python:result['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">2003/04/09 12:00pm</email:mailDate>
+            <email:mailBody tal:content="python:ct(result['mailBody'])">Some body text.</email:mailBody>
+          </email:email>
+        </result>
+      </email:collection>
+    </content>
+  </output>
 </root>
