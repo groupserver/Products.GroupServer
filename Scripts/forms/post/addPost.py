@@ -155,9 +155,11 @@ for list_id in messages.getProperty('xwf_mailing_list_ids', []):
                         reply_to_id=emailMessageReplyToId,
                         n_type='new_file', n_id=groupObj.getId(),
                         file=fileObj)
-if via_mailserver:
-    listManager.MailHost.send(m)
-    return 'Posted via mail server'
-else:
-    groupList.manage_listboxer({'Mail': m})
-    return 'Posted without mail server'
+    if via_mailserver:
+        listManager.MailHost.send(m)
+    else:
+        groupList.manage_listboxer({'Mail': m})
+
+h = 'http://%s/groups/%s/messages/' % (groupObj.Scripts.get.option('canonicalHost'),
+                                        groupObj.getId())
+context.REQUEST.RESPONSE.redirect(h)
