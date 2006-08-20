@@ -66,6 +66,9 @@
   margin: 0 0 0 0;
   background-repeat: no-repeat;
 }
+.taghidden {
+  font-size: tiny;
+}
 
 /* Images for the different icons. */
 
