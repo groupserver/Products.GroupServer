@@ -237,15 +237,29 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="emailintro">
-        	<xsl:value-of 
-        	  select="substring($email/email:mailIntro, 1, number($email/email:fileNotification/messageLength))"/>
-            <xsl:apply-templates />
+          <xsl:for-each select="$email/email:mailIntro">
+          	<xsl:choose>
+          		<xsl:when test="$email/email:fileNotification">
+  		         	<xsl:value-of 
+  		         	  select="substring($email/email:mailIntro, 1, number($email/email:fileNotification/messageLength))"/>
+  		        </xsl:when>
+  		        <xsl:otherwise>
+  							<xsl:value-of select="$email/email:mailIntro"/>
+  		        </xsl:otherwise>
+  		      </xsl:choose>
           </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="emailremainder">
-        	<xsl:value-of 
-        	  select="substring($email/email:mailRemainder, 1, number($email/email:fileNotification/messageLength))"/>
-            <xsl:apply-templates />
+          <xsl:for-each select="$email/email:mailRemainder">
+          	<xsl:choose>
+          		<xsl:when test="$email/email:fileNotification">
+  		         	<xsl:value-of 
+  		         	  select="substring($email/email:mailRemainder, 1, number($email/email:fileNotification/messageLength))"/>
+  		        </xsl:when>
+  		        <xsl:otherwise>
+  							<xsl:value-of select="$email/email:mailRemainder"/>
+  		        </xsl:otherwise>
+  		      </xsl:choose>
           </xsl:for-each>
         </xsl:variable>
         <span class="emailintro"><xsl:copy-of select="$emailintro"/></span>
