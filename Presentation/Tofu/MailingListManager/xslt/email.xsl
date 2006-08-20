@@ -237,12 +237,14 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="emailintro">
-          <xsl:for-each select="$email/email:mailIntro">
+        	<xsl:value-of 
+        	  select="substring($email/email:mailIntro, 1, number($email/email:fileNotification/messageLength))"/>
             <xsl:apply-templates />
           </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="emailremainder">
-          <xsl:for-each select="$email/email:mailRemainder">
+        	<xsl:value-of 
+        	  select="substring($email/email:mailRemainder, 1, number($email/email:fileNotification/messageLength))"/>
             <xsl:apply-templates />
           </xsl:for-each>
         </xsl:variable>
