@@ -76,6 +76,25 @@
 								tal:content="structure python:'\n%s' % intro_remainder[1]">Some
 								body text.</email:mailRemainder>
 						</tal:block>
+						<email:fileNotification 
+						  tal:condition="python:hasattr(email, 'x-xwfnotification-file-id')"
+						  tal:attributes="fileId python:email['x-xwfnotification-file-id']">
+						  <tal:block
+							  tal:define="groupObj python:here.Scripts.get.group_object();
+  							  lib python:groupObj.files.get_xwfFileLibrary();
+  							  fileObj python:groupObj.files.find_files({'id': email['x-xwfnotification-file-id']})[0].getObject()"
+							  tal:condition="fileObj">
+						  	<name tal:content="fileObj/title_or_id"/>
+						  	<type tal:content="fileObj/content_type"/>
+						  	<tags>
+						  		<tag tal:repeat="tag fileObj/tags"
+						  			tal:content="tag"/>
+						  	</tags>
+						  	<size tal:content="python:'%.2fKB' % (fileObj.size/1024.0)"/>
+						  	<messageLength 
+						  		tal:content="python:email['x-xwfnotification-message-length']"/>
+						  </tal:block>
+						</email:fileNotification>
 						<email:mailBody
 							tal:content="structure wrapped_email">Some body
 							text.</email:mailBody>

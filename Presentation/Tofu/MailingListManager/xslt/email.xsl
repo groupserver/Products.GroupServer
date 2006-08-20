@@ -69,12 +69,16 @@
 
           <table id="results">
             <tr>
+            	<th/>
               <th>Date Posted</th>
               <th>Posted By</th>
             </tr>
             
             <xsl:for-each select="email:email">
               <tr>
+             	 <td>
+             	 		<xsl:apply-templates select="email:fileNotification" mode="summary"/>
+                </td>
                 <td><a href="{//content/@url}#{@id}"><xsl:value-of select="email:mailDate"/></a></td>
                 <td><xsl:choose>
                     <xsl:when test="email:mailUserId/text() and email:mailFromName/text()">
@@ -165,7 +169,6 @@
     <xsl:apply-templates select="bulletlist[@class='topicNavigation']"/>
   </xsl:template>
 
-
   <xsl:template name="email-present-email">
     <p id="{@id}" class="email-metadata">
       <xsl:if test="//@resultsummary='0'">
@@ -195,6 +198,9 @@
       </xsl:call-template>
     </pre>
 
+   	<xsl:apply-templates select="email:fileNotification" 
+   	  mode="full"/>
+
     <p class="email-navlink"><a href="{//content/@url}#top">top</a></p>
     <div class="clear"></div>                
   </xsl:template>
@@ -205,16 +211,28 @@
     <xsl:choose>
       <xsl:when test="($pos = 1)">
         <span class="emailintro">
-          <xsl:for-each select="$email/email:mailBody">
-            <xsl:apply-templates />
-          </xsl:for-each>
+        	<xsl:choose>
+        		<xsl:when test="$email/email:fileNotification">
+		         	<xsl:value-of 
+		         	  select="substring($email/email:mailBody, 1, number($email/email:fileNotification/messageLength))"/>
+		        </xsl:when>
+		        <xsl:otherwise>
+							<xsl:value-of select="$email/email:mailBody"/>
+		        </xsl:otherwise>
+		      </xsl:choose>
         </span>                
       </xsl:when>
       <xsl:when test="//@resultsummary='0'">
         <span class="emailintro">
-          <xsl:for-each select="$email/email:mailBody">
-            <xsl:apply-templates />
-          </xsl:for-each>
+        	<xsl:choose>
+        		<xsl:when test="$email/email:fileNotification">
+		         	<xsl:value-of 
+		         	  select="substring($email/email:mailBody, 1, number($email/email:fileNotification/messageLength))"/>
+		        </xsl:when>
+		        <xsl:otherwise>
+							<xsl:value-of select="$email/email:mailBody"/>
+		        </xsl:otherwise>
+		      </xsl:choose>
         </span>
       </xsl:when>
       <xsl:otherwise>
@@ -243,5 +261,34 @@
   <!-- We deliberately have our own link processing here, seperate from the rest, because we want to
   be especially careful about processing email -->
   <xsl:template match="email:link"><a href="{@url}"><xsl:value-of select="text()"/></a></xsl:template>
+
+
+
+  <xsl:template match="email:fileNotification" mode="summary">
+    <xsl:call-template name="fileIcon">
+      <xsl:with-param name="type" select="type"/>
+    </xsl:call-template>
+	</xsl:template>
+	
+  <xsl:template name="fileIcon">
+    <xsl:param name="type"/>
+    <img alt="{type}"
+  		src="/Presentation/Tofu/FileLibrary2/images/16x16/mimetypes/{translate(type, '/', '-')}.png"/>    
+  </xsl:template>
+	
+	<xsl:template match="email:fileNotification" mode="full">
+    <div class="fileNotification"> 
+      <p>The following file was added to this topic.</p>
+      <ul>
+        <li>Name: <xsl:call-template name="fileIcon">
+            <xsl:with-param name="type" select="type"/>
+          </xsl:call-template>
+          <a href="/r/file/{@fileId}">
+            <xsl:value-of select="name"/></a></li>
+        <li>Type: <xsl:value-of select="type"/></li>
+        <li>Size: <xsl:value-of select="size"/></li>
+      </ul>
+    </div>
+  </xsl:template>
 
 </xsl:stylesheet>
