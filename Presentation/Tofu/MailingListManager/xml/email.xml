@@ -98,6 +98,11 @@
 						  		tal:content="python:email['x-xwfnotification-message-length']"/>
 						  </tal:block>
 						</email:fileNotification>
+						<email:fileNotification
+						  tal:condition="python:not hasattr(email, 'x-xwfnotification-file-id') and hasattr(email, 'x-xwfnotification')">
+						  fileId="unknown"
+						  <type>unknown</type>
+					  </email:fileNotification>
 						<email:mailBody
 							tal:content="structure wrapped_email">Some body
 							text.</email:mailBody>

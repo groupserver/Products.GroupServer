@@ -263,17 +263,19 @@
   </xsl:template>
   
   <xsl:template match="email:fileNotification" mode="full">
-    <div class="fileNotification"> 
-      <p>The following file was added to this topic.</p>
-      <ul>
-        <li>Name: <xsl:call-template name="fileIcon">
-            <xsl:with-param name="type" select="type"/>
-          </xsl:call-template>
-          <a href="/r/file/{@fileId}">
-            <xsl:value-of select="name"/></a></li>
-        <li>Type: <xsl:value-of select="type"/></li>
-        <li>Size: <xsl:value-of select="size"/></li>
-      </ul>
-    </div>
+    <xsl:if test="@fileId != 'unknown'">
+      <div class="fileNotification">
+        <p>The following file was added to this topic.</p>
+        <ul>
+          <li>Name: <xsl:call-template name="fileIcon">
+              <xsl:with-param name="type" select="type"/>
+            </xsl:call-template>
+            <a href="/r/file/{@fileId}">
+              <xsl:value-of select="name"/></a></li>
+          <li>Type: <xsl:value-of select="type"/></li>
+          <li>Size: <xsl:value-of select="size"/></li>
+        </ul>
+      </div>
+    </xsl:if>
   </xsl:template>
 </xsl:stylesheet>
