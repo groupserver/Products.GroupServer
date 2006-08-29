@@ -32,7 +32,7 @@ if retval == None:
             d = r.dictionaries()
             retval = filter(lambda i: i['item'] == key, d)[0]['value']
         else:
-            retval = default
+            retval = None
     except:
         retval = None
 
