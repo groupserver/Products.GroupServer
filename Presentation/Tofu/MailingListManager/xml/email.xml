@@ -10,6 +10,7 @@
 			xcu python:modules['Products.XWFCore.XWFUtils'];
 			cr python:xcu.createRequestFromRequest;
 			ct python:xcu.convertTextToAscii;
+			ctct python:xcu.convertTextUsingContentType;
 			me python:xcu.markupEmail;
 			previous python:options['previous'];
 			next python:options['next'];
@@ -60,15 +61,15 @@
 							Wonderful</email:mailUserImage>
 					</span>
 					<email:mailSubject 
-						tal:content="python:email['mailSubject']">someaddress@iopen.co.nz</email:mailSubject>
+						tal:content="python:ctct(email['mailSubject'], getattr(email, 'content-type', None))">someaddress@iopen.co.nz</email:mailSubject>
 					<email:subject tal:condition="python:hasattr(email, 'subject')" 
-						tal:content="python:email['subject']">someaddress@iopen.co.nz</email:subject>
+						tal:content="python:ctct(email['subject'], getattr(email, 'content-type', None))">someaddress@iopen.co.nz</email:subject>
 					<email:mailDate 
 						tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">1970-01-01 00:01</email:mailDate>
 					<tal:block 
 						tal:define="fullBody python:email['mailBody'];
 						  messageLength python:int(getattr(email, 'x-xwfnotification-message-length', len(fullBody)));
-						  mailBody python:ct(fullBody[:messageLength]);
+						  mailBody python:ctct(fullBody[:messageLength], getattr(email, 'content-type', None));
 						  wrapped_email python:me(here.lscripts.wrap_email(mailBody)).strip()">
 						<tal:block
 							tal:define="intro_remainder python:here.lscripts.intro_email(wrapped_email, 12)">
@@ -114,9 +115,9 @@
 				<email:sendemail tal:attributes="id python:email['id']" 
 					xmlns:email="http://xwft.net/namespaces/email/0.9/">
 					<email:mailSubject
-						tal:content="python:'Re: %s' % email['mailSubject']"/>
+						tal:content="python:'Re: %s' % ctct(email['mailSubject'], getattr(email, 'content-type', None))"/>
 					<email:subject
-						tal:content="python:'%s' % email.getProperty('subject', '')"/>
+						tal:content="python:'%s' % ctct(email.getProperty('subject', ''), getattr(email, 'content-type', None))"/>
 				</email:sendemail>
 			</tal:block>
     </content>
