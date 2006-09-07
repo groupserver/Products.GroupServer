@@ -270,7 +270,7 @@
           <li>Name: <xsl:call-template name="fileIcon">
               <xsl:with-param name="type" select="type"/>
             </xsl:call-template>
-            <a href="/r/file/{@fileId}">
+            <a href="/r/file/{@fileId}/{name}">
               <xsl:value-of select="name"/></a></li>
           <li>Type: <xsl:value-of select="type"/></li>
           <li>Size: <xsl:value-of select="size"/></li>
