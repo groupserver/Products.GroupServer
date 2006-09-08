@@ -67,7 +67,7 @@
           <email:mailDate 
             tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">1970-01-01 00:01</email:mailDate>
           <tal:block 
-            tal:define="fullBody python:email['mailBody'].replace('\r\n', '\n');
+            tal:define="fullBody python:email['mailBody'];
             messageLength python:int(getattr(email, 'x-xwfnotification-message-length', len(fullBody)));
             mailBody python:ctct(fullBody[:messageLength], getattr(email, 'content-type', None));
             wrapped_email python:me(here.lscripts.wrap_email(mailBody)).strip()">
