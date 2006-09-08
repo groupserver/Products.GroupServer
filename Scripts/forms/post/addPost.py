@@ -71,7 +71,7 @@ topic = form.get('topic', '')
 message = form.get('message', '')
 tags = tagProcess(form.get('tags', ''))
 tagsString = ', '.join(tags)
-email = form.get('email', '')
+email = form.get('email', '').replace('\r', '')
 uploadedFile = form.get('file', '')
 
 site_root = context.site_root()
