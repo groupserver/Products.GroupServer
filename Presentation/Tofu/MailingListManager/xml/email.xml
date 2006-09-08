@@ -1,125 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root xmlns:tal="http://xml.zope.org/namespaces/tal" 
-	xmlns:metal="http://xml.zope.org/namespaces/metal" 
-	metal:use-macro="here/Templates/page.xml/macros/page">
+  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+  metal:use-macro="here/Templates/page.xml/macros/page">
   <output>
     <content metal:fill-slot="maincontent"
-			tal:define="ztu python:modules['ZTUtils'];
-			mq python:ztu.make_query;
-			uq python:ztu.url_query;
-			xcu python:modules['Products.XWFCore.XWFUtils'];
-			cr python:xcu.createRequestFromRequest;
-			ct python:xcu.convertTextToAscii;
-			ctct python:xcu.convertTextUsingContentType;
-			me python:xcu.markupEmail;
-			previous python:options['previous'];
-			next python:options['next'];
-			showThread python:request.get('show_thread', 0);"
-			tal:attributes="url python:request.URL+'?'+cr(request)">
-
-			<email:collection metal-fill-slot="maincontent" 
-				xmlns:email="http://xwft.net/namespaces/email/0.9/"
-				tal:attributes="fullthread python:request.get('show_thread', 0)"
-				encoding="UTF-8" >
-
-				<bulletlist class="topicNavigation">
-					<listitem tal:condition="next">
-						<link 
-							tal:attributes="url python:'view_email?id=%s&amp;show_thread=%s' % (next[0], showThread)">
-							<span class="note">Next topic:
-								<span class="topicName" tal:content="python:next[1]"/>
-							</span>
-						</link>
-					</listitem>
-					<listitem tal:condition="previous">
-						<link 
-							tal:attributes="url python:'view_email?id=%s&amp;show_thread=%s' % (previous[0], showThread)">
-							<span class="note">
-								Previous topic: 
-								<span class="topicName" tal:content="python:previous[1]"/>.
-							</span>
-						</link>
-					</listitem>
-				</bulletlist>
-
-				<email:email tal:repeat="email python:options['result_set']" 
-					tal:attributes="id python:email['id']">
-					<email:mailFrom
-						tal:content="python:email['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
-					<email:from
-						tal:content="python:email['from'][0]">someaddress@iopen.co.nz</email:from>
-					<span tal:omit-tag="" 
-						tal:define="mailUserId email/mailUserId | nothing; 
-						mailUserExists python:here.Scripts.get.user_exists(mailUserId);
-						mailFromName python:here.Scripts.get.user_realnames(mailUserId);
-						mailUserImage python:here.Scripts.get.user_image(mailUserId)">
-						<email:mailUserId tal:content="mailUserId | nothing" 
-							tal:attributes="exists python:mailUserExists and 1 or 0" />
-						<email:mailFromName tal:content="mailFromName | nothing">Some 
-							Person</email:mailFromName>
-						<email:mailUserImage tal:content="mailUserImage | nothing">Mr
-							Wonderful</email:mailUserImage>
-					</span>
-					<email:mailSubject 
-						tal:content="python:ctct(email['mailSubject'], getattr(email, 'content-type', None))">someaddress@iopen.co.nz</email:mailSubject>
-					<email:subject tal:condition="python:hasattr(email, 'subject')" 
-						tal:content="python:ctct(email['subject'], getattr(email, 'content-type', None))">someaddress@iopen.co.nz</email:subject>
-					<email:mailDate 
-						tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">1970-01-01 00:01</email:mailDate>
-					<tal:block 
-						tal:define="fullBody python:email['mailBody'].replace('\r', '');
-						  messageLength python:int(getattr(email, 'x-xwfnotification-message-length', len(fullBody)));
-						  mailBody python:ctct(fullBody[:messageLength], getattr(email, 'content-type', None));
-						  wrapped_email python:me(here.lscripts.wrap_email(mailBody)).strip()">
-						<tal:block
-							tal:define="intro_remainder python:here.lscripts.intro_email(wrapped_email, 12)">
-							<email:mailIntro  
-								tal:content="structure python:intro_remainder[0]">Some 
-								body text.</email:mailIntro>
-							<email:mailRemainder
-								tal:content="structure python:'\n%s' % intro_remainder[1]">Some
-								body text.</email:mailRemainder>
-						</tal:block>
-						<email:fileNotification 
-						  tal:condition="python:hasattr(email, 'x-xwfnotification-file-id')"
-						  tal:attributes="fileId python:email['x-xwfnotification-file-id']">
-						  <tal:block
-							  tal:define="groupObj python:here.Scripts.get.group_object();
-  							  lib python:groupObj.files.get_xwfFileLibrary();
-  							  fileObj python:groupObj.files.find_files({'id': email['x-xwfnotification-file-id']})[0].getObject()"
-							  tal:condition="fileObj">
-						  	<name tal:content="fileObj/title_or_id"/>
-						  	<type tal:content="fileObj/content_type"/>
-						  	<tags>
-						  		<tag tal:repeat="tag fileObj/tags"
-						  			tal:content="tag"/>
-						  	</tags>
-						  	<size tal:content="python:'%.2fKB' % (fileObj.size/1024.0)"/>
-						  	<messageLength 
-						  		tal:content="python:email['x-xwfnotification-message-length']"/>
-						  </tal:block>
-						</email:fileNotification>
-						<email:fileNotification
-						  tal:condition="python:not hasattr(email, 'x-xwfnotification-file-id') and hasattr(email, 'x-xwfnotification')">
-						  fileId="unknown"
-						  <type>unknown</type>
-					  </email:fileNotification>
-						<email:mailBody
-							tal:content="structure wrapped_email">Some body
-							text.</email:mailBody>
-					</tal:block>
-				</email:email>
-			</email:collection>
-			<tal:block tal:define="email python:options['result_set'][-1]" 
-				tal:condition="email">
-				<email:sendemail tal:attributes="id python:email['id']" 
-					xmlns:email="http://xwft.net/namespaces/email/0.9/">
-					<email:mailSubject
-						tal:content="python:'Re: %s' % ctct(email['mailSubject'], getattr(email, 'content-type', None))"/>
-					<email:subject
-						tal:content="python:'%s' % ctct(email.getProperty('subject', ''), getattr(email, 'content-type', None))"/>
-				</email:sendemail>
-			</tal:block>
+      tal:define="ztu python:modules['ZTUtils'];
+      mq python:ztu.make_query;
+      uq python:ztu.url_query;
+      xcu python:modules['Products.XWFCore.XWFUtils'];
+      cr python:xcu.createRequestFromRequest;
+      ct python:xcu.convertTextToAscii;
+      ctct python:xcu.convertTextUsingContentType;
+      me python:xcu.markupEmail;
+      previous python:options['previous'];
+      next python:options['next'];
+      showThread python:request.get('show_thread', 0);"
+      tal:attributes="url python:request.URL+'?'+cr(request)">
+      
+      <email:collection metal-fill-slot="maincontent" 
+        xmlns:email="http://xwft.net/namespaces/email/0.9/"
+        tal:attributes="fullthread python:request.get('show_thread', 0)"
+        encoding="UTF-8" >
+        
+        <bulletlist class="topicNavigation">
+          <listitem tal:condition="next">
+            <link 
+              tal:attributes="url python:'view_email?id=%s&amp;show_thread=%s' % (next[0], showThread)">
+              <span class="note">Next topic:
+              <span class="topicName" tal:content="python:next[1]"/>
+              </span>
+            </link>
+          </listitem>
+          <listitem tal:condition="previous">
+            <link 
+              tal:attributes="url python:'view_email?id=%s&amp;show_thread=%s' % (previous[0], showThread)">
+              <span class="note">
+                Previous topic: 
+              <span class="topicName" tal:content="python:previous[1]"/>.
+              </span>
+            </link>
+          </listitem>
+        </bulletlist>
+        
+        <email:email tal:repeat="email python:options['result_set']" 
+          tal:attributes="id python:email['id']">
+          <email:mailFrom
+            tal:content="python:email['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
+          <email:from
+            tal:content="python:email['from'][0]">someaddress@iopen.co.nz</email:from>
+          <span tal:omit-tag="" 
+            tal:define="mailUserId email/mailUserId | nothing; 
+            mailUserExists python:here.Scripts.get.user_exists(mailUserId);
+            mailFromName python:here.Scripts.get.user_realnames(mailUserId);
+            mailUserImage python:here.Scripts.get.user_image(mailUserId)">
+            <email:mailUserId tal:content="mailUserId | nothing" 
+              tal:attributes="exists python:mailUserExists and 1 or 0" />
+          <email:mailFromName tal:content="mailFromName | nothing">Some 
+              Person</email:mailFromName>
+          <email:mailUserImage tal:content="mailUserImage | nothing">Mr
+              Wonderful</email:mailUserImage>
+          </span>
+          <email:mailSubject 
+            tal:content="python:ctct(email['mailSubject'], getattr(email, 'content-type', None))">someaddress@iopen.co.nz</email:mailSubject>
+          <email:subject tal:condition="python:hasattr(email, 'subject')" 
+            tal:content="python:ctct(email['subject'], getattr(email, 'content-type', None))">someaddress@iopen.co.nz</email:subject>
+          <email:mailDate 
+            tal:content="python:email['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">1970-01-01 00:01</email:mailDate>
+          <tal:block 
+            tal:define="fullBody python:email['mailBody'].replace('\r', '');
+            messageLength python:int(getattr(email, 'x-xwfnotification-message-length', len(fullBody)));
+            mailBody python:ctct(fullBody[:messageLength], getattr(email, 'content-type', None));
+            wrapped_email python:me(here.lscripts.wrap_email(mailBody)).strip()">
+            <tal:block
+              tal:define="intro_remainder python:here.lscripts.intro_email(wrapped_email, 12)">
+            <email:mailIntro  
+                tal:content="structure python:intro_remainder[0]">Some 
+                body text.</email:mailIntro>
+            <email:mailRemainder
+                tal:content="structure python:'\n%s' % intro_remainder[1]">Some
+                body text.</email:mailRemainder>
+            </tal:block>
+            <email:fileNotification 
+              tal:condition="python:hasattr(email, 'x-xwfnotification-file-id')"
+              tal:attributes="fileId python:email['x-xwfnotification-file-id']">
+              <tal:block
+                tal:define="groupObj python:here.Scripts.get.group_object();
+                lib python:groupObj.files.get_xwfFileLibrary();
+                fileObj python:groupObj.files.find_files({'id': email['x-xwfnotification-file-id']})[0].getObject()"
+                tal:condition="fileObj">
+              <name tal:content="fileObj/title_or_id"/>
+              <type tal:content="fileObj/content_type"/>
+              <tags>
+                <tag tal:repeat="tag fileObj/tags"
+                    tal:content="tag"/>
+                </tags>
+              <size tal:content="python:'%.2fKB' % (fileObj.size/1024.0)"/>
+              <messageLength 
+                  tal:content="python:email['x-xwfnotification-message-length']"/>
+              </tal:block>
+            </email:fileNotification>
+          <email:fileNotification
+              tal:condition="python:not hasattr(email, 'x-xwfnotification-file-id') and hasattr(email, 'x-xwfnotification')">
+              fileId="unknown"
+            <type>unknown</type>
+            </email:fileNotification>
+          <email:mailBody
+              tal:content="structure wrapped_email">Some body
+              text.</email:mailBody>
+          </tal:block>
+        </email:email>
+      </email:collection>
+    <tal:block tal:define="email python:options['result_set'][-1]" 
+        tal:condition="email">
+      <email:sendemail tal:attributes="id python:email['id']" 
+          xmlns:email="http://xwft.net/namespaces/email/0.9/">
+        <email:mailSubject
+            tal:content="python:'Re: %s' % ctct(email['mailSubject'], getattr(email, 'content-type', None))"/>
+        <email:subject
+            tal:content="python:'%s' % ctct(email.getProperty('subject', ''), getattr(email, 'content-type', None))"/>
+        </email:sendemail>
+      </tal:block>
     </content>
   </output>
 </root>
