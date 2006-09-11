@@ -23,15 +23,15 @@
   <xsl:template name="head" match="xhtml2:head">
   </xsl:template>
 
-  <xsl:include href="block-elements.xsl"/>
-  <xsl:include href="section-elements.xsl"/>
-  <xsl:include href="list-elements.xsl"/>
-  <xsl:include href="text-elements.xsl"/>
-  <xsl:include href="table-elements.xsl"/>
-  <xsl:include href="depricated-elements.xsl"/>
+  <xsl:include href="file://block-elements.xsl"/>
+  <xsl:include href="file://section-elements.xsl"/>
+  <xsl:include href="file://list-elements.xsl"/>
+  <xsl:include href="file://text-elements.xsl"/>
+  <xsl:include href="file://table-elements.xsl"/>
+  <xsl:include href="file://depricated-elements.xsl"/>
   
-  <xsl:include href="attributes.xsl"/>
+  <xsl:include href="file://attributes.xsl"/>
   
-  <xsl:include href="common-contents.xsl"/>
+  <xsl:include href="file://common-contents.xsl"/>
   
 </xsl:stylesheet>
