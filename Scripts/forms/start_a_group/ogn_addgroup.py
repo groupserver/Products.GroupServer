@@ -79,6 +79,12 @@ emailSettings = getattr(site_root.CodeTemplates.group.email_settings,
                         'index.xml')
 group.email_settings.manage_clone(emailSettings, 'index.xml')
 
+# Create the chat interface marker
+if templateId and templateId == 'standard':
+    interfaces = ('Products.XWFChat.interfaces.IGSChat',
+                  'Products.XWFChat.interfaces.IGSGroupFolder')
+    context.add_marker_interfaces(group, interfaces)
+
 # secure the group
 site_root.acl_users.userFolderAddGroup('%s_member' % groupId)
 group.manage_defined_roles('Add Role', {'role':'GroupMember'})

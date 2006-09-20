@@ -8,6 +8,7 @@
 ##title=
 ##
 from Products.XWFCore.XWFUtils import assign_ownership
+from Products.PythonScripts.standard import html_quote
 
 # the group needs to be 'owned' by a top level user, since the Scripts are
 # above the context of the site, and some of them require Manager level
@@ -36,47 +37,69 @@ divisionid = form.get('divisionid')
 
 result = container.check_group_id(groupid)
 if result['error']:
-    return [result['message']]
+    m = '<paragraph>%s</paragraph>' % html_quote(result['message'])
+    return m
 
 if hasattr(groups.aq_explicit, groupid):
-    message.append('<paragraph>Unfortunately group ID %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
+    m = '''<paragraph>Unfortunately group ID %s already exists. 
+      Please choose another ID for your 
+      group.</paragraph>''' % html_quote(groupid)  
+    message.append(m)
     error = 1
 
 if groupid == divisionid:
-    message.append('<paragraph>Unfortunately you may not have a group with the same ID as the division ID. Please choose another ID for your group.</paragraph>' % groupid)
+    m = '''<paragraph>Unfortunately you may not have a group with
+      the same ID as the division ID. Please choose another ID
+      for your group.</paragraph>''' % html_quote(groupid) 
+    message.append(m)
     error = 1
-
+    
 try:
     site_root.acl_users.getGroupById('%s_member' % groupid)
-    message.append('<paragraph>Unfortunately a group corresponding to %s already exists. Please choose another ID for your group.</paragraph>' % groupid)
+    m = '''<paragraph>Unfortunately a group corresponding to %s
+      already exists. Please choose another ID for your
+      group.</paragraph>''' % html_quote(groupid) 
+    message.append(m)
     error = 1
 except KeyError:
     pass
 
 if not title:
-    message.append('<paragraph>The group title is required, but was not specified.</paragraph>')
+    m = '''<paragraph>The group title is required, but was not
+      specified.</paragraph>'''
+    message.append(m)
     error = 1
 
 if not groupid:
-    message.append('<paragraph>The group ID is required, but was not specified.</paragraph>')
+    m = '''<paragraph>The group ID is required, but was not 
+      specified.</paragraph>'''
+    message.append(m)
     error = 1
 
 if not mailto:
-    message.append('<paragraph>The email address is required, but not specified.</paragraph>')
+    m = '''<paragraph>The email address is required, but 
+      not specified.</paragraph>'''
+    message.append(m)
     error = 1
 elif not (mailto.find('@') > 1):
-    message.append('<paragraph>%s is not a valid email address.</paragraph>' % mailto)
+    m = '''<paragraph>%s is not a valid email
+      address.</paragraph>''' % html_quote(mailto)
+    message.append(m)
     error = 1
 
 create_charter = 0
 if templateid and not hasattr(site_root.Templates.groups, templateid):
-    message.append('<paragraph>%s does not exist as a template.</paragraph>' % templateid)
+    m = '''<paragraph>%s does not exist as 
+      a template.</paragraph>''' % html_quote(templateid)
+    message.append(m)
 elif templateid:
     templatedir = getattr(site_root.Templates.groups, templateid)
     if hasattr(templatedir, 'charter'):
         create_charter = 1
     if not hasattr(templatedir, 'home'):
-        message.append('<paragraph>Selected template %s does not have a home page template, which is necessary.</paragraph>')
+        m = '''<paragraph>Selected template %s does not have a home page
+          template, which is necessary.</paragraph>'''
+        message.append(m)
         error = 1
 
 if error:
@@ -120,8 +143,8 @@ assign_ownership(group, 'admin', 1, '/acl_users')
 
 site_root.ListManager.manage_addProduct['XWFMailingListManager'].manage_addXWFMailingList(groupid, mailto, title.lower())
 
-#message.append('<paragraph>Please ask your server administrator to add a mail server mapping for %s</paragraph>' % groupid)
-
-message.append('The group &#8220;%s&#8221 has been created.' % title)
+m = '''<paragraph>The group &#8220;%s&#8221; has been 
+  created.</paragraph>''' % html_quote(title)
+message.append(m)
 
 return '\n'.join(message)

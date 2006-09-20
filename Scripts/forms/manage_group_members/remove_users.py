@@ -15,10 +15,15 @@ assert divisionid != None
 assert userids.append # The userids is a list
 
 site_root = context.site_root()
-group = context.Scripts.get.group_by_id(groupid)
+#group = context.Scripts.get.group_by_id(groupid)
+site = getattr(site_root.Content, divisionid)
+assert(site != None)
+group = getattr(site.groups, groupid)
 assert(group != None)
 
 groupUserIds = map(lambda u: u.getId(), group.Scripts.get.group_members())
+unverifiedGroupUserIds = map(lambda u: u.getId(), 
+                             group.Scripts.get.unverified_group_members()) 
 
 ptnCoachId = group.getProperty('ptn_coach_id', '')
 ptnCoach = site_root.acl_users.getUser(ptnCoachId)
@@ -33,11 +38,19 @@ for userid in userids:
     userName = user.getProperty('preferredName')
     names.append(userName)
     
-    user.del_groupWithNotification('%s_member' % groupid)
-    if notifyPtnCoach:
-        ptnCoach.send_notification('leave_group_admin', groupid,
-                                   n_dict={'joining_user': user,
-                                           'joining_group': group})
+    if userid in unverifiedGroupUserIds:
+        # If the user is unverified, then remove them entirely.
+        #   This may cause issues if the unverified user is queued to join
+        #   more than one group; I know of no way for this to easily
+        #   happen, so I am not too worried.
+        site_root.acl_users.userFolderDelUsers([userId])
+    else:
+        # Otherwise, remove the user from the group.
+        user.del_groupWithNotification('%s_member' % groupid)
+        if notifyPtnCoach:
+            ptnCoach.send_notification('leave_group_admin', groupid,
+                                       n_dict={'joining_user': user,
+                                               'joining_group': group})
     
 userNames = ', '.join(names)
 result['error'] = False
