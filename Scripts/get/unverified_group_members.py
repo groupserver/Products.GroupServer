@@ -18,7 +18,7 @@ unverifiedUsersInGroup = []
 for user in context.Scripts.get.users_from_groups(['unverified_member'], []):
     
     if ((gId_member in user.get_verificationGroups()) 
-        and (gId_member not in unverifiedUsersInGroup)):
+        and (user not in unverifiedUsersInGroup)):
         unverifiedUsersInGroup.append(user)
 
 return unverifiedUsersInGroup
