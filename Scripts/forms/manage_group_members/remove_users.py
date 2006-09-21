@@ -43,7 +43,7 @@ for userid in userids:
         #   This may cause issues if the unverified user is queued to join
         #   more than one group; I know of no way for this to easily
         #   happen, so I am not too worried.
-        site_root.acl_users.userFolderDelUsers([userId])
+        site_root.acl_users.userFolderDelUsers([userid])
     else:
         # Otherwise, remove the user from the group.
         user.del_groupWithNotification('%s_member' % groupid)
