@@ -203,7 +203,7 @@
       <div class="field">
         <xsl:choose>
           <xsl:when test="//metadata/showEmailAddressTo/text() = 'request'">
-            <a href="/contacts/{user[@type=other]/id}/user-request-contact.xml"
+            <a href="/contacts/{id}/user-request-contact.xml"
               title="Request contact with {name/preferredname}">Request
             Contact</a>
           </xsl:when>
