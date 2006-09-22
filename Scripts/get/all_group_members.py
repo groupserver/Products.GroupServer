@@ -14,7 +14,7 @@ def sorter(a,b):
     else:
         return -1
 
-allUsers = context.unverified_members() + context.Scripts.get.group_members() 
+allUsers = context.Scripts.get.unverified_group_members() + context.Scripts.get.group_members() 
 
 u = {}
 for user in allUsers:
