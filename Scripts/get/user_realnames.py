@@ -17,6 +17,6 @@ except:
 if user:
     if preferred_name_only:
         return '%s' % (user.getProperty('preferredName'))
-    return '%s %s' % (user.getProperty('preferredName'), user.getProperty('lastName'))
+    return '%s %s' % (user.getProperty('firstName'), user.getProperty('lastName'))
 
 return '%s (account removed)' % user_id
