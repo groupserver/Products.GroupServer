@@ -110,7 +110,7 @@
   
   <xsl:template name="breadcrumbs">
   <div class="breadcrumb">
-    <xsl:apply-templates select="output/context"/> <xsl:value-of select="//output/metadata/title/text()"/>
+    <xsl:apply-templates select="context"/> <xsl:value-of select="//output/metadata/title/text()"/>
     </div>
   </xsl:template>
   
@@ -118,7 +118,7 @@
     &gt;
   </xsl:variable>
   
-  <xsl:template match="output/context">
+  <xsl:template match="context">
   <xsl:call-template name="breadcrumb">
     <xsl:with-param name="context" select="./contextitem" />
     <xsl:with-param name="separator" select="$separatoricon" />
@@ -128,25 +128,19 @@
   <xsl:template name="breadcrumb">
     <xsl:param name="context"/>
     <xsl:param name="separator"/>
-    
-  <xsl:if test="$context">
-      
-    <xsl:choose>
-        
+    <xsl:if test="$context">
+      <xsl:choose>
         <!-- Current Context Menu Reached -->
-        
-      <xsl:when test="$context/@current='1'">
-        <xsl:value-of select="$context/@name"/>
+        <xsl:when test="$context/@current='1'">
+          <xsl:value-of select="$context/@name"/>
         </xsl:when>
-        
         <!-- Keep going down the chain adding the next context item -->
-        
-      <xsl:otherwise>
-        <a href="{$context/@url}"><xsl:value-of select="$context/@name"/></a>
-        <xsl:value-of select="$separator"/>
-        <xsl:call-template name="breadcrumb">
-          <xsl:with-param name="context" select="$context/contextitem" />
-          <xsl:with-param name="separator" select="$separator" />
+        <xsl:otherwise>
+          <a href="{$context/@url}"><xsl:value-of select="$context/@name"/></a>
+          <xsl:value-of select="$separator"/>
+          <xsl:call-template name="breadcrumb">
+            <xsl:with-param name="context" select="$context/contextitem" />
+            <xsl:with-param name="separator" select="$separator" />
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>

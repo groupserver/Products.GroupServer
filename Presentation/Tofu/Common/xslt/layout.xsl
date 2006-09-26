@@ -1,122 +1,121 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:template match="paragraph | p">
+    
+  <xsl:template match="paragraph | p">
     <p><xsl:apply-templates select="@id | @class"/><xsl:apply-templates /></p>
-</xsl:template>
-
-<xsl:template match="q">
+  </xsl:template>
+  
+  <xsl:template match="q">
     <q><xsl:apply-templates select="@id | @class"/><xsl:apply-templates /></q>
-</xsl:template>
-
-<xsl:template match="img">
+  </xsl:template>
+  
+  <xsl:template match="img">
     <img alt="{@alt}" src="{@src}"><xsl:apply-templates select="@id | @class"/></img>
-</xsl:template>
-
-<xsl:template match="div">
+  </xsl:template>
+  
+  <xsl:template match="div">
     <div>
       <xsl:apply-templates select="@id | @class"/>
       <xsl:apply-templates />
-   </div>
-</xsl:template>
-
-<xsl:template match="heading1 | h1">
-<h1>
-  <xsl:apply-templates select="@id | @class"/>
-  <xsl:apply-templates />
-</h1>
-</xsl:template>
-
-<xsl:template match="pparagraph">
-&#160;
-</xsl:template>
-
-<xsl:template match="pheading1">
-&#160;
-</xsl:template>
-
-<xsl:template match="heading2 | h2">
-<h2>
-  <xsl:apply-templates select="@id | @class"/>
+    </div>
+  </xsl:template>
+  
+  <xsl:template match="heading1 | h1">
+    <h1>
+      <xsl:apply-templates select="@id | @class"/>
     <xsl:apply-templates />
-</h2>
-</xsl:template>
+    </h1>
+  </xsl:template>
 
-<xsl:template match="heading3 | h3">
-<h3>
-  <xsl:apply-templates select="@id | @class"/>
-  <xsl:value-of select="." /></h3>
-</xsl:template>
+  <xsl:template match="heading2 | h2">
+    <h2>
+      <xsl:apply-templates select="@id | @class"/>
+    <xsl:apply-templates />
+    </h2>
+  </xsl:template>
 
-<xsl:template match="heading4 | h4">
-<h4>
-  <xsl:apply-templates select="@id | @class"/>
-  <xsl:value-of select="." /></h4>
-</xsl:template>
+  <xsl:template match="heading3 | h3">
+    <h3>
+    <xsl:apply-templates select="@id | @class"/>
+    <xsl:value-of select="." /></h3>
+  </xsl:template>
 
-<xsl:template match="bold">
-<strong><xsl:value-of select="." /></strong>
-</xsl:template>
+  <xsl:template match="heading4 | h4">
+    <h4>
+    <xsl:apply-templates select="@id | @class"/>
+    <xsl:value-of select="." /></h4>
+  </xsl:template>
 
-<xsl:template match="em">
-<em><xsl:value-of select="." /></em>
-</xsl:template>
+  <xsl:template match="bold">
+    <strong><xsl:value-of select="." /></strong>
+  </xsl:template>
 
-<xsl:template match="br">
-<xsl:value-of select="." /><br/>
-</xsl:template>
+  <xsl:template match="em">
+    <em><xsl:value-of select="." /></em>
+  </xsl:template>
 
-<xsl:template match="bulletlist | ul">
-<ul class="{@class}">
-<xsl:for-each select="listitem | li">
-<li class="{@class}"><xsl:apply-templates /></li>
-</xsl:for-each>
-</ul>
-</xsl:template>
+  <xsl:template match="br">
+    <xsl:value-of select="." /><br/>
+  </xsl:template>
 
-<xsl:template match="numberedlist">
-<ol>
-<xsl:for-each select="listitem">
-<li><xsl:apply-templates /></li>
-</xsl:for-each>
-</ol>
-</xsl:template>
-
-<xsl:template match="link">
-	<a href="{@url}">
-		<xsl:apply-templates select="@id | @class | @title"/>
-		<xsl:apply-templates/>
-	</a>
-</xsl:template>
-
-<xsl:template match="@id">
-	<xsl:attribute name="id">
-		<xsl:value-of select="."/>
-	</xsl:attribute>
-</xsl:template>
-<xsl:template match="@class">
-	<xsl:attribute name="class">
-		<xsl:value-of select="."/>
-	</xsl:attribute>
-</xsl:template>
-<xsl:template match="@title">
-	<xsl:attribute name="title">
-		<xsl:value-of select="."/>
-	</xsl:attribute>
-</xsl:template>
-  
-<xsl:template match="span">
-    <span class="{@class}">
+  <xsl:template match="bulletlist | ul">
+    <ul>
+      <xsl:apply-templates select="@id | @class"/>
       <xsl:apply-templates />
-    </span>
-</xsl:template>
-  
-<xsl:template match="a">
-    <a href="{@href}">
-      <xsl:apply-templates select="@id | @class | @title"/>
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="listitem | li">
+    <li>
+      <xsl:apply-templates select="@id | @class"/>
       <xsl:apply-templates />
+    </li>
+  </xsl:template>
+  
+  <xsl:template match="numberedlist">
+    <ol>
+      <xsl:apply-templates select="@id | @class"/>
+      <xsl:apply-templates />
+    </ol>
+  </xsl:template>
+
+  <xsl:template match="link">
+  <a href="{@url}">
+    <xsl:apply-templates select="@id | @class | @title"/>
+    <xsl:apply-templates/>
     </a>
-</xsl:template>
+  </xsl:template>
+  
+  <xsl:template match="@id">
+  <xsl:attribute name="id">
+    <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+  <xsl:template match="@class">
+  <xsl:attribute name="class">
+    <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+  <xsl:template match="@title">
+  <xsl:attribute name="title">
+    <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+  
+  <xsl:template match="span">
+  <span class="{@class}">
+    <xsl:apply-templates />
+    </span>
+  </xsl:template>
+  
+  <xsl:template match="a">
+  <a href="{@href}">
+    <xsl:apply-templates select="@id | @class | @title"/>
+    <xsl:apply-templates />
+    </a>
+  </xsl:template>
+
 
 <xsl:template match="anchor">
 <a><xsl:attribute name="name"><xsl:value-of select="@name"/></xsl:attribute></a>
