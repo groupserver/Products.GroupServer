@@ -22,5 +22,6 @@ for (group_title, group_id, group_url) in context.Scripts.get.group_memberships_
          results += result
 
 results.sort(sorter)
+results = filter(lambda f: 'hidden' not in f.tags, results)
 
 return results[:limit]
