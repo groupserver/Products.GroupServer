@@ -82,7 +82,7 @@
             </tal:block>
             <tal:block tal:condition="python:hasattr(email, 'x-xwfnotification-file-id')">
             <email:fileNotification
-              tal:repeat="fileId python:email.get('x-xwfnotification-file-id', '').strip().split()" 
+              tal:repeat="fileId python:email.getProperty('x-xwfnotification-file-id', '').strip().split()" 
               tal:attributes="fileId python:fileId">
               <tal:block
                 tal:define="groupObj python:here.Scripts.get.group_object();
