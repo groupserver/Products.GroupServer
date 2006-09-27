@@ -95,8 +95,7 @@
                     tal:content="tag"/>
                 </tags>
               <size tal:content="python:'%.2fKB' % (fileObj.size/1024.0)"/>
-              <messageLength 
-                  tal:content="python:email['x-xwfnotification-message-length']"/>
+              <messageLength tal:content="messageLength"/>
               </tal:block>
             </email:fileNotification>
           <email:fileNotification
