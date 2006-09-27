@@ -80,13 +80,15 @@
                 tal:content="structure python:'\n%s' % intro_remainder[1]">Some
                 body text.</email:mailRemainder>
             </tal:block>
-            <email:fileNotification 
-              tal:condition="python:hasattr(email, 'x-xwfnotification-file-id')"
-              tal:attributes="fileId python:email['x-xwfnotification-file-id']">
+            <tal:block tal:condition="python:hasattr(email, 'x-xwfnotification-file-id')">
+            <email:fileNotification
+              tal:repeat="fileId python:email.get('x-xwfnotification-file-id', '').strip().split()" 
+              tal:attributes="fileId python:fileId">
               <tal:block
                 tal:define="groupObj python:here.Scripts.get.group_object();
                 lib python:groupObj.files.get_xwfFileLibrary();
-                fileObj python:groupObj.files.find_files({'id': email['x-xwfnotification-file-id']})[0].getObject()"
+                fileObjs python:groupObj.files.find_files({'id': fileId});
+                fileObj python:fileObjs and fileObjs[0].getObject() or None"
                 tal:condition="fileObj">
               <name tal:content="fileObj/title_or_id"/>
               <type tal:content="fileObj/content_type"/>
@@ -98,6 +100,7 @@
               <messageLength tal:content="messageLength"/>
               </tal:block>
             </email:fileNotification>
+            </tal:block>
           <email:fileNotification
               tal:condition="python:not hasattr(email, 'x-xwfnotification-file-id') and hasattr(email, 'x-xwfnotification')">
               fileId="unknown"
