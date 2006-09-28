@@ -259,7 +259,7 @@
   <xsl:template name="fileIcon">
     <xsl:param name="type"/>
     <img alt="{type}"
-      src="/Presentation/Tofu/FileLibrary2/images/16x16/mimetypes/{translate(type, '/', '-')}.png"/>    
+      src="/Presentation/Tofu/FileLibrary2/images/16x16/mimetypes/{translate(type, '/+', '--')}.png"/>    
   </xsl:template>
   
   <xsl:template match="email:fileNotification" mode="full">
