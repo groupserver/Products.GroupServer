@@ -284,7 +284,7 @@ form {
 	border-bottom: 1px solid #ccc;
 }
 
-#contextnav dl {
+#contextnav dl, #contextnav ul {
 	margin: 0;
 	padding: 10px;
 	width: 110px;
@@ -293,14 +293,14 @@ form {
 	list-style-position:outside;
 }
 
-#contextnav dd {
+#contextnav dd, #contextnav li {
 	margin: 0;
 	padding: 0 0 6px 0;
 	color:#333399;
 	font-size:11px;
 }
 
-#contextnav dl dl {
+#contextnav dl dl, #contextnav li li {
 	margin: 3px 0 3px 5px;
 	padding: 0;
 	width: 100px;
@@ -309,32 +309,30 @@ form {
 	color:#666699;
 }
 
-#contextnav dd a.current {
+#contextnav dd a.current, #contextnav li a.current {
 	color:#666699;
 	text-decoration:none;
 }
 
-#contextnav dd a.current:visited {
+#contextnav dd a.current:visited, #contextnav li a.current:visited {
 	color:#666699;
 	text-decoration:none;
 }
 
-#contextnav dd a {
+#contextnav dd a, #contextnav li a {
 	color:#660000;
 	text-decoration:none;
 }
 
-#contextnav dd a:visited {
+#contextnav dd a:visited, #contextnav li a:visited {
 	color:#660000;
 	text-decoration:none;
 }
 
-#contextnav dd a:hover {
+#contextnav dd a:hover, #contextnav li a:hover {
 	color:#666699;
 	text-decoration:none;
 }
-
-
 
 /* Main Content Area */
 
