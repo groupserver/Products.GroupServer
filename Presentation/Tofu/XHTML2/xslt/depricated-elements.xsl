@@ -21,6 +21,7 @@
       <xsl:apply-templates 
         select="@href | @hreflang | @hreftype" 
         mode="hypertext"/>
+      <xsl:apply-templates select="@*"/>
       <xsl:apply-templates />
     </a>
   </xsl:template>
