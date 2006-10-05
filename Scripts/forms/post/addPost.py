@@ -15,7 +15,8 @@ def tagProcess(tagsString):
     # --=mpj17=-- Not the most elegant function, but I did not want to
     #   use the regular-expression library.
     retval = []
-
+    
+    tagString = tagString.replace('\n', ' ')
     if len(tagsString) == 0:
         return retval
 
