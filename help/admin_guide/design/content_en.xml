@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      <heading1>
+        Design of Online Groups
+      </heading1>
+      
+      <paragraph>
+        Online Groups are virtual places. They exist in the imaginations 
+        of the participants. When people act on their belief that an
+        online group exists, and post to it, this strengthens the 
+        participants' belief in the existence of the online group. Online
+        groups are more coherent when the participants have a single 
+        shared view of what the online group is. To develop successful 
+        online groups, it is therefore important to clearly communicate 
+        what kind of a place the online group is, both to the participants 
+        and to non-participants. The settings in the software, all actions
+        taken by the owner, participation coach and the administrator, 
+        must be consistent with this. Once the group has been launched,
+        the design should never be changed.
+      </paragraph>
+      
+      <paragraph>
+        The Design defines the purpose of the online group, and its main boundaries:
+      </paragraph>
+      
+      <bulletlist>
+        <listitem>
+        <bold>Membership</bold>. Who can be in the group and what their roles are.
+        </listitem>
+      <listitem>
+        <bold>Participation Protocol</bold>. What is ok in the online group.
+        </listitem>
+      </bulletlist>
+      
+      <paragraph>
+        The Design must be based on an understanding of the nature and requirements of the 
+        (Real Life) group that the Online Group is for. If this understanding is not present, 
+        an Assessment must be carried out. If the OnlineGroups.Net Consultant and Online Group 
+        Owner, together have that understanding, then the documentation of  it that will be 
+        implicit in this Design will be sufficient documentation. It is important that the Design
+        Elements are assessed carefully against the criteria provided for each element as 
+        this will ensure that the design is well-linked to the shared understanding of 
+        the nature and requirements of the group.
+      </paragraph>
+      
+      <heading2>
+        Owner
+      </heading2>
+      
+      <paragraph>
+        Is it important that the participants know who convened
+        the establishment of the Online Group. See 
+      <link url="../roles/index.xml#owner">Roles in Online Groups</link>
+        for more information.
+      </paragraph>
+      
+      
+      <heading2>
+        Real Life Group
+      </heading2>
+      
+      <paragraph>
+        The Real Life Group is the group of people that the Online Group is for. 
+        The group might or might not exist already. It is important to distinguish 
+        the Real Life Group from the Online Group as they are separate entities. 
+        The Real Life Group meets in the Online Group, and may also meet face to face or via other media.
+      </paragraph>
+      <paragraph>
+        The Real Life Group should be named in such a way that it can be used to 
+        complete the statement "[OnlineGroupName] is an Online Group for ...".
+      </paragraph>
+      
+      <heading2>
+        Purpose Statement
+      </heading2>
+      
+      <paragraph>
+        The purpose statement defines the reason for the existence of the Online Group. 
+        The purpose of the Online Group is different to the  purpose of the Real Life group. 
+        purpose of the Online Group is usually to, in some way, enable the Real Life Group to achieve its purpose. 
+        The Purpose Statement must define how the Online Group will enable the Real Life Group to achieve its purpose.
+        It must do so in a straightforward way that is compelling and attractive to the group members.
+      </paragraph>
+      
+      <heading2>
+        Membership Criterion
+      </heading2>
+      
+      <paragraph>
+        The Membership Definition is the most defined boundary that an Online Group has. 
+        It determines who can be in the group. The membership must be defined in such a way that 
+        it can be implemented in an even-handed way in the future.
+      </paragraph>   
+      <paragraph>
+        It is important that group participants know, not just who is in the group at present, 
+        but who might join the group in future. It is also important that participants know 
+        that they may no longer meet the membership criterion in future, for example if the 
+        membership is restricted to current office-holders in a committee.
+      </paragraph>   
+      <paragraph>
+        Membership is conditional on compliance with the Participation Protocol.
+      </paragraph>
+      
+      <heading2>
+        Visibility
+      </heading2>
+      
+      <paragraph>
+        The boundaries of Online Groups are highly variable. Groups can be very public, very private
+        and have a number of levels of privacy in between those. It is important that the level of 
+        privacy is appropriate to the requirements for the group and that it is communicated very clearly to the participants.
+      </paragraph>
+      
+      <heading2>
+        Participation Coach
+      </heading2>
+      
+      <paragraph>
+        Each Online Group has a designated 
+        Participation Coach. See 
+      <link url="../roles/index.xml#participation_coach">Roles in Online Groups</link>
+        for more information.
+      </paragraph>
+      
+      <heading2>
+        Location
+      </heading2>
+      
+      <paragraph>
+        All Online Groups are located in a site. Project Owners with multiple Online Groups often have a site of their own.
+        Where a new site is to be established, a Site Design is required. Where the Online Group is
+        to be located in a site that already exists, or for which a Site Design has been completed, all that is required is to name that site. 
+      </paragraph>
+      
+      <heading2>
+        Name
+      </heading2>
+      
+      <paragraph>
+        The name is the most important design element of an Online Group. It embodies the essence 
+        of the group and, if it works, will become a shared shorthand for all the participants know and value about the group.
+      </paragraph>
+      <paragraph>
+        The key criteria for a name are:
+      </paragraph>
+      <bulletlist>
+      <listitem>
+          Brevity
+        </listitem>
+      <listitem>
+          Potency
+        </listitem>
+      <listitem>
+          Accuracy
+        </listitem>
+      <listitem>
+          Fit
+        </listitem>
+      <listitem>
+          Brevity
+        </listitem>
+        
+        
+      </bulletlist>    
+      <paragraph>    
+        The name should be easy to say and to refer to in email. It should be suitable for use 
+        in a url and an email address (probably all in lower case). The name can have "full" and "short" versions.
+      </paragraph>
+      <heading3>
+        Potency
+      </heading3>
+      <paragraph>
+        The name should be interesting and engaging so that it communicates a lot of meaning. 
+        Double meanings and humour can be useful in generating names that are catchy but not overdone.
+      </paragraph>
+      <heading3>
+        Accuracy
+      </heading3>
+      <paragraph>
+        The name should encapsulate or evoke:
+      </paragraph>
+      <bulletlist>
+      <listitem>
+          the people (the real life group whilst distinguishing the Online Group clearly from the Real Life Group)
+        </listitem>
+      <listitem>
+          the place
+        </listitem>
+      <listitem>
+          the purpose
+        </listitem>
+      <listitem>
+          the participation
+        </listitem>
+      <listitem>
+          the passion
+        </listitem>
+      </bulletlist>
+      
+      <heading3>
+        Fit
+      </heading3>
+      <paragraph>
+        must make room for other linked groups to be named
+      </paragraph>
+      <heading3>
+        Hyphens vs Underscores
+      </heading3>
+      <paragraph>
+        The Internet convention seems to be that underscores are a replacement for spaces 
+        and hyphens are a separator (perhaps between set and member in set-member). For online group names, either makes sense.
+      </paragraph>
+      
+      <heading2>
+        Participation Protocol
+      </heading2>
+      
+      <paragraph>
+        The Participation Protocol defines the secondary boundary for the Online Group. 
+        It defines "what is OK" in the Online Group. The Membership Definition 
+        (the primary boundary) is conditional on compliance with the Participation Protocol.
+      </paragraph>
+      
+      <heading2>
+        Encouraged Participation
+      </heading2>
+      
+      <paragraph>
+        The Encouraged Participation items provide a chance to name the particular kinds 
+        of participation that are expected to achieve the purpose for the Participants and the Owner.
+      </paragraph>
+    </content>
+  </output>
+</root>

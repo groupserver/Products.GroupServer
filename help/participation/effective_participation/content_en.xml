@@ -1,0 +1,189 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      <heading1>
+        Effective Participation
+      </heading1>
+      
+      <paragraph>
+        There are four simple guidelines for Effective Participation
+        in Online Groups:
+      </paragraph>
+      
+      <bulletlist>
+        <listitem>
+          <link url="#1">delete the emails</link>
+        </listitem>
+        <listitem>
+          <link url="#2">use accurate subject lines</link>
+        </listitem>
+        <listitem>
+          <link url="#3">delete the text of the previous messsage</link>
+        </listitem>
+        <listitem>
+          <link url="#4">use the files area for files</link>
+        </listitem>
+      </bulletlist>
+      
+      <heading2 id="1">
+        Delete the Emails
+      </heading2>
+      
+      <paragraph>
+        You may receive a lot of email via your Online Group. 
+        The point of this is to increase communication
+        but to do this effectively. You should be able to tell 
+        whether a post is relevant to you or not just by reading the 
+        subject line. If it isn't, you can get a sense of what is 
+        going on in the group without even reading it. Even if you 
+        do open and skim read it, unless you want to respond or act on 
+        the post, you can delete it. You can always go to the
+        Messages area to find it again.
+      </paragraph>
+      
+      <paragraph>
+        Many people find it useful to keep 
+        all of the posts in an email folder.
+        You can even set up a <link url="http://www.groupsense.co.nz/filtering.html">
+          rule or filter</link> to put
+        them there automatically.
+        If you prefer, you can delete the emails 
+        from your Inbox as you receive them and 
+        read them in the Messages area when you 
+        are ready.
+      </paragraph>
+      
+      <heading2 id="2">
+        Use Accurate Subject Lines
+      </heading2>
+      
+      <paragraph>
+        Stick to the subject described in the subject 
+        line. If you are responding on the same subject, use the 
+        same subject line. If you are starting a new subject, create
+        a new "post" (email) and give it an appropriate subject line.
+        Look at the "Topics" view in the 
+        Messages area of your Online Group now to see
+        how it organises posts into a readable sequence.
+        You can configure some email clients to 
+        support <link url="http://www.groupsense.co.nz/threading.html">
+          threading</link> as well.
+      </paragraph>
+      
+      <heading2 id="3">
+        Delete the Text of the Previous Messsage
+      </heading2>
+      
+      <paragraph>
+        Delete the text of the "post" you are replying to.
+        Keep your post as short and to-the-point as possible.
+        The text is already in the messages area (leaving the 
+        text of the previous message on your post reduces the "signal 
+        to noise" ratio and leads to "false positive" 
+        search results). <link url="http://www.groupsense.co.nz/quoting.html">
+          "Quote"</link> from the previous post minimally
+        and clearly.
+      </paragraph>
+      
+      <heading2 id="4">
+        Use the Files Area for Files
+      </heading2>
+      
+      <paragraph>
+        Use the files area to share files. Use 
+        folders to organise files and the 
+        "description" field to let others know 
+        what is in the file. Keep the web interface open all the 
+        time (use this to read conversations and to 
+        upload and view the group's shared files).
+      </paragraph>
+      
+      <paragraph>
+        Benefits of Sharing Files via Files Area
+      </paragraph>
+      
+      <numberedlist>
+        <listitem>
+          files can easily be organised into into a structured collection
+        </listitem>
+        <listitem>
+          people can choose when they download files (rather than getting them whether they like it or not)
+        </listitem>
+        <listitem>
+          the group can build a single shared collection of files rather than each member having their own set of files that may be different from the shared set
+        </listitem>
+        <listitem>
+          the effort of maintaining an organised collection of files only needs to be done once, rather than by everyone in the group
+        </listitem>
+        
+      </numberedlist>
+      
+      <heading2>Finer Points</heading2>
+      
+      <heading3>
+        Sending Links
+      </heading3>
+      
+      <paragraph>
+        You can copy a link to a file or website
+        and paste it into a post to an Online Group.
+      </paragraph>
+      
+      <paragraph>
+        Some links ("urls") will be broken into two 
+        pieces by some email clients. To make them 
+        work, join them back together by pasting the
+        two parts into the "address" part of your Web browser
+        one after the other.
+      </paragraph>
+      
+      
+      <heading3>eMail Etiquette</heading3>
+      <paragraph>These guidelines apply to emails in Online
+        Groups and to email use in general:</paragraph>
+      
+      <bulletlist>
+        <listitem>
+          never forward an email (or document) you have received to a third 
+          person without the original sender's consent (unless the content 
+          is obviously in the public domain)</listitem>
+        
+        <listitem>
+          never send large file attachments without the recipient's consent
+        </listitem>
+        
+        <listitem>
+          never send a person's email address to others without their consent - 
+          use "bcc:" (blind carbon copy), not "to:" or "cc:" when sending 
+          an email to multiple recipients who don't know each other)
+        </listitem>
+      </bulletlist>
+      
+      <paragraph>Here are some resources on 
+        the effective use of email:</paragraph>
+      
+      <bulletlist>
+        <listitem>
+          Kaitlin Duck Sherwood's classic
+        <link url="http://www.webfoot.com/advice/email.top.html">
+            Beginner&#39;s Guide to Effective Email</link>.
+        </listitem>
+        
+        <listitem>
+          <link url="http://kb.indiana.edu/data/adkc.html"
+            target="_blank">What do BTW, FAQ, FYI, IMHO, RTFM,
+            and other acronyms mean?</link> 
+        </listitem>
+        
+        <listitem>
+        <link url="http://help.mindspring.com/docs/006/emailheaders/emailheaders.php3 "
+            target="_blank">Email Headers explained</link>
+        </listitem>
+        
+      </bulletlist>
+      
+    </content>
+  </output>
+</root>
+

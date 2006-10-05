@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <output>
+    <content>
+      <heading1>Help</heading1>
+
+      <paragraph>You can get help with using this site from
+        <link url="manual">the OnlineGroups.Net
+          manual,</link> while assistance on participating in online
+        groups is available from 
+        <link title="The OnlineGroups.Net User Guide"
+          url="participation">the OnlineGroups.Net User Guide.</link>
+      </paragraph>
+
+      <tal:block
+        tal:define="divisionObject python:here.Scripts.get.division_object();
+        divisionName python:divisionObject and (divisionObject.getId() != 'ogs' and '%s_' % divisionObject.getId()) or '';
+        supportEmail python:'%ssupport@onlinegroups.net' % divisionName"
+        tal:condition="python:'Authenticated' in user.getRolesInContext(divisionObject)">
+        <paragraph>
+          If you have a question that is not answered in this Help section, 
+          please raise it in 
+          <link title="Groups Homepage" 
+            url="/groups">your online groups,</link>
+          or directly with the Participation Coach in the relevant
+          group.
+          If your question is still unanswered, you 
+          can address it to
+          <link class="emaillink" title="Email to the support group"
+            tal:attributes="url string:mailto:${supportEmail}" 
+            tal:content="supportEmail"/>.
+        </paragraph>
+      </tal:block>
+    </content>
+  </output>
+</root>

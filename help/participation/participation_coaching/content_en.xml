@@ -1,0 +1,223 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      <heading1>
+        Participation Coaching
+      </heading1>
+      
+      <paragraph>
+        Each Online Group has a 
+        designated Participation Coach.
+        The Participation Coach initiates and encourages effective 
+        participation in line with the purpose and participation 
+        protocol of the Online Group. The Participation Coach 
+        also manages publishing items to the Documents area.
+      </paragraph>
+      
+      <paragraph>
+        All Members of an Online Group can act as Participation Coach.
+        In fact, the more the role is shared, the better. This section of 
+        the Participation Guide is aimed at designated
+        Participation Coaches and all Online Group
+        Participants who wish to contribute to the success of 
+        their Online Groups.
+      </paragraph>
+      
+      
+      <heading2>
+        The Goals of the Participation Coach
+      </heading2>
+      
+      <paragraph>
+        The goals of the Participation Coach are defined in the 
+        Collaboration Plan for each Online Group.
+      </paragraph>
+      
+      <paragraph>
+        The Collaboration Plan defines targets for each of the following:
+      </paragraph>
+      
+      <bulletlist>
+        
+        <listitem>
+          participation in the Online Group 
+        </listitem>
+        <listitem>
+          knowledge creation and flow
+        </listitem>
+        
+        <listitem>
+          application of that knowledge in the organisation
+        </listitem>
+        
+        <listitem>
+          benefits to participants and the organisation
+        </listitem>
+        
+      </bulletlist>
+      
+      
+      
+      
+      <heading2>
+        The Role of the Participation Coach
+      </heading2>
+      
+      <paragraph>
+        The Participation Coach:
+      </paragraph>
+      
+      <bulletlist>
+        
+        <listitem>
+          is the person who is most comfortable being
+          in the Online Group
+        </listitem>
+        
+        <listitem>
+          assists the other members to become as comfortable
+          in the Online Group as they are
+        </listitem>
+        
+        <listitem>
+          acts as "Keeper of the Faith" and 
+          maintains a vision of an Online Group that
+          successfully achieves its purpose
+        </listitem>
+        
+        <listitem>
+          is not a "Facilitator" of group process 
+          or leader of task-oriented activities 
+          - their focus is limited to effective 
+          participation in the Online Group
+        </listitem>
+        
+      </bulletlist>
+      
+      
+      
+      <heading2>
+        Tasks of the Participation Coach
+      </heading2>
+      
+      
+      <paragraph>
+        When the Online Group is Starting,
+        the Participation Coach:
+      </paragraph>
+      
+      <bulletlist>
+        
+        <listitem>
+          opens the Online Group by posting 
+          the Welcome Message
+        </listitem>
+        
+        <listitem>
+          leads the process of group members making
+          introductions
+        </listitem>
+        
+        <listitem>
+          assists other group members to become familiar
+          with Basic Participation
+        </listitem>
+        
+        <listitem>
+          encourages other group members to complete
+          the Getting Started steps in the 
+          Participation Guide
+        </listitem>
+        
+      </bulletlist>
+      
+      
+      <paragraph>
+        As participation in the Online 
+        Group gains momentum, the Participation 
+        Coach:
+      </paragraph>
+      
+      <bulletlist>
+        
+        
+        <listitem>
+          advocates for participation in the Online Group
+          in line with its Purpose and Participation Protocol
+        </listitem>
+        
+        <listitem>
+          models and encourages effective 
+          participation in the Online Group
+        </listitem>
+        
+        <listitem>
+          does "house-keeping" in the Online Group such as
+          diverging or converging "conversations" where required,
+          summarising conversations 
+        </listitem>
+        
+        
+        <listitem>
+          encourages participants to contribute
+          items to the Documents area
+        </listitem>
+        
+        
+      </bulletlist>
+      
+      
+      <paragraph>
+        When the Online Group is coming to an end,
+        the Participation Coach elicits stories
+        that illustrate the effectiveness
+        with which the Online Group has achieved 
+        its purpose from the Participants.
+      </paragraph>
+      
+      
+      <heading2>
+        Developing as a Participation Coach
+      </heading2>
+      
+      <paragraph>
+        The role of Participation Coach requires some learning.
+        In the first instance, the Participation Coach
+        needs to learn Effective Participation themselves.
+      </paragraph>
+      
+      <paragraph>
+        As the Online Group develops, the Participation 
+        Coach is likely to encounter challenges. 
+      </paragraph>
+      
+      <paragraph>
+        Resources available to Participation 
+        Coaches for learning and support include:
+      </paragraph>
+      
+      <bulletlist>
+        
+        <listitem>
+          the Online Group itself - collaborative exploration 
+          of effective participation is one of the activities
+          encouraged in all Online Groups 
+        </listitem>
+        
+        
+        <listitem>
+          the Collaboration Plan for your Online Group has targets for Participation, 
+          Knowledge Outputs, Applications of 
+          those Outputs and Benefits to 
+          be achieved by the Online Group
+        </listitem>
+        
+        <listitem>
+          <link url="http://onlinegroups.net/groups/coachus">Coachus</link> - 
+          the Participation Coaches' Community of Practice
+        </listitem>
+      </bulletlist>
+    </content>
+  </output>
+</root>

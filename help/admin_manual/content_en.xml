@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>OnlineGroups.Net Administration Manual</title>
+    <meta property="dc:created">June 2006</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Simon Gurnsey</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="groupserver-manual">    
+    <section>
+      <h>Administration Manual</h>
+      <section id="groupserver-intro">
+        <h id="groupserver-intro-t">Introduction</h>
+        
+        <p>
+          This manual is a guide for <cite>OnlineGroup</cite> Administrators. 
+          It provides instructions on how to:
+        </p>
+        <ul>
+          <li href="#groupserver-block-users">Block users</li>,
+          <li href="#groupserver-create-users">Create users</li>,
+          <li href="#groupserver-create-bulk-users">Create users in bulk</li>,
+          <li href="#groupserver-group-admins">Manage group admins</li>,
+          <li href="#groupserver-group-properties">Manage group properties</li>,
+          <li href="#groupserver-group-members">Manage group members</li>, and
+          <li href="#groupserver-group-moderation">Manage group moderation</li>.
+        </ul>
+      </section>
+      
+      <section id="groupserver-block-users">
+        <h id="groupserver-block-users">Block Users</h>
+        <ol>
+          <li>
+            Click <samp class="link">Group Admin</samp>, on your 
+            Group's homepage, to open the 
+            <cite>Group Administration</cite> page.
+          </li>
+          <li>
+            Click on <samp class="link">Block Users</samp>, on the 
+            <cite>Group Administration</cite> page, to open the 
+            <cite>Block Users</cite> page.
+          </li>
+          <li>
+            Select the user/s you want to block and click on
+            <samp class="link">Add Users to Block list</samp> to add the
+            user/s to the blocked user list. 
+            This add the selected user/s to the Members Currently
+            Blocked from Posting.
+          </li>
+          <li>
+            To remove the user from the Block list, click on  
+            <samp class="link">Remove users from Block list</samp> 
+          </li>
+        </ol>
+      </section>
+      <section id="groupserver-create-users">
+        <h id="groupserver-create-users">Create Users</h>
+        <ol>
+          <li>
+            Click on <samp class="link">Group Admin</samp>, on your 
+            Group's homepage, to open the 
+            <cite>Group Administration</cite> page.
+          </li>
+          <li>
+            Click on <samp class="link">Create Users</samp>.
+          </li>
+          <li>
+            Fill out the 
+            <samp class="field">First Name</samp>,
+            <samp class="field">Preferred Name</samp>,
+            <samp class="field">Last Name</samp> and
+            <samp class="field">Email Address</samp> fields.
+            The <samp class="field">User ID</samp> field will
+            default to a combination of your first and last names, but 
+            you may change this now if you wish.
+          </li>
+          <li>
+            You can choose to whether you want to 
+            <samp class="field">Add to the group</samp>.
+          </li>
+          <li>
+            You can choose to whether you want to
+            <samp class="field">Require users to verify?</samp>
+          </li>
+          <li>
+            Click the <samp class="button">Create User</samp> button.
+          </li>
+          <li>If you have left <cite>Require users to verify?</cite> 
+            ticked an email will be sent to the new user requiring them
+            to verify their email address.
+          </li>
+          <li>
+            When the the new user has verified their email address they
+            will be sent an email message by OnlineGroups.Net, which
+            contains your login details.
+          </li> 
+          <li>
+            If you have unticked  <cite>Require users to verify?</cite>
+            the new user will be sent an email message 
+            (a <cite>confirmation request</cite>), by OnlineGroups.Net, which
+            contains your login details.
+          </li>   
+        </ol>
+      </section>
+      
+      <section id="groupserver-create-bulk-users">
+        <h id="groupserver-create-bulk-users">
+          Create Users in Bulk
+        </h>
+        <p>
+          Create Bulk users requires a CSV (Comma Seperated Values) file.
+          The CSV file must contain at least the first name, last name
+          and email address of the user.
+        </p>
+        <p>    
+          The creation of a large users may take a long time, and you
+          may get a timeout.
+          If this occurs, please do not retry until you have confirmed
+          with the groupserver administrator  that the users have not
+          been created, otherwise double the number of users may be
+          created. 
+          To reduce  the chance of this happening, large numbers of
+          users should be created in smaller batches (eg. 100 at a
+          time).
+        </p>
+        <p>
+          Other values can be set at this time. 
+          Most of the roles are self explanatory.
+          See 
+          <cite 
+            href="/help/manual/#groupserver-viewing-your-profile">Viewing 
+            Your Profile</cite> in the 
+          <cite 
+            href="/help/manual/">OnlineGroups.Net User Maunal</cite>.
+        </p>
+        <ol>
+          <li>
+            Click on <samp class="link">Group Admin</samp>, on your 
+            Group's homepage, to open the 
+            <cite>Group Administration</cite> page.
+          </li>
+          <li>
+            Click on <samp class="link">Create Bulk Users</samp>.
+          </li>
+          <li>
+            Fill out the 
+            <samp class="field">First Name</samp>,
+            <samp class="field">Preferred Name</samp>,
+            <samp class="field">Last Name</samp> and
+            <samp class="field">Email Address</samp> fields.
+            The <samp class="field">User ID</samp> field will
+            default to a combination of your first and last names, but 
+            you may change this now if you wish.
+          </li>
+          <li>
+            You can choose to whether you want to 
+            <samp class="field">Add to the group</samp>.
+          </li>
+          <li>
+            You can choose to whether you want to
+            <samp class="field">Require users to verify?</samp>
+          </li>
+          <li>
+            Click the <samp class="button">Create User</samp> button
+          </li>
+          <li>If you have left <cite>Require users to verify?</cite> 
+            ticked an email will be sent to the new users requiring them
+            to verify their email address.
+          </li>
+          <li>
+            When the the new users have verified their email address
+            they will be sent an email message by OnlineGroups.Net,
+            which contains their login details.
+          </li> 
+          <li>
+            If you have unticked  <cite>Require users to verify?</cite>
+            the new user will be sent an email message 
+            (a <cite>confirmation request</cite>), by OnlineGroups.Net, which
+            contains your login details.
+          </li>   
+        </ol>
+        
+      </section>
+      
+      <section id="groupserver-group-admins">
+        <h id="groupserver-group-admins">
+          Manage Group Administrators (Site Administrators only)
+        </h>
+        <p>
+          Group Administrators can be added and changed on this page. 
+        </p>
+        <ol>
+          <li>
+            Click on <samp class="link">Group Admin</samp>, on your 
+            Group's homepage, to open the 
+            <cite>Group Administration</cite> page.
+          </li>
+          <li>
+            Click on <samp class="link">Manage Group Admins</samp>, on the 
+            Group Administration page, to open the 
+            <cite>Manage Group Admins</cite> page.
+          </li>
+          <li>
+            Select the user/s you want to add as Group Administrator and
+            click on <samp class="link">Add Admins to Group</samp> 
+            to add the user/s as Admin of the Current Group.
+          </li>
+          <li>
+            To remove the user/s as Group Admin, click on
+            <samp class="link">Remove Admins from Group</samp> 
+          </li>
+        </ol>
+      </section>
+      <section id="groupserver-group-properties">
+        <h id="groupserver-group-properties">
+          Manage Group Properties (Site Administrators Only)     
+        </h>
+        <p>
+          Group Properties can be added and changed on this page.
+          This is where the 
+          <a href="../help/admin_guide/design">Online Groups Design</a> 
+          is applied to the group.
+        </p>
+        <ol>
+          <li>
+            Click on <samp class="link">Group Admin</samp>, on your 
+            Group's homepage, to open the 
+            <cite>Group Administration</cite> page.
+          </li>
+          <li>
+            Click on <samp class="link">Manage Group Properties</samp>, on the 
+            Group Administration page, to open the 
+            <cite>Manage Group Properties</cite> page.
+          </li>
+        </ol>
+        
+        <table id="groupserver-tab-group-properties">
+          <caption id="groupserver-tab-group-properties-t">
+            Group Properties
+          </caption>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="groupserver-group-title">
+              <td>Title</td>
+              <td>The title of the group</td>
+            </tr>
+            <tr id="groupserver-group-subject">
+              <td>Subject</td>
+              <td>The start of the subject-line for email messages sent 
+                from the group.
+              </td>
+            </tr>
+            <tr id="groupserver-group-coach">
+              <td>Participation Coach ID</td>
+              <td>Participation Coach UserID.</td>
+            </tr>
+            <tr id="groupserver-group-real-life">
+              <td>Real Life Group</td>
+              <td>Text to complete the sentence:
+                "[group_title] is an online group for".</td>
+            </tr>
+            <tr id="groupserver-group-purpose">
+              <td>Purpose</td>
+              <td>Text to complete the sentence: 
+                "The purpose of [group_title] is".</td>
+            </tr>
+            <tr id="groupserver-group-date-open">
+              <td>Date Open</td>
+              <td>The date the group was opened, or will open.</td>
+            </tr>
+            <tr id="groupserver-group-date-closed">
+              <td>Date Closed</td>
+              <td>The date the group will closed, or closed.</td>
+            </tr>
+            <tr id="groupserver-group-membership-definition">
+              <td>Membership Definition</td>
+              <td>What defines the membership of the group, what makes
+                it unique?</td>
+            </tr>
+            <tr id="groupserver-group-required-protocol-items">
+              <td>Required Protocol Items</td>
+              <td>Items to add to the requirements of participants in
+                the Participation Protocol.</td>
+            </tr>
+            <tr id="groupserver-group-required-protocol-items">
+              <td>Encouraged Protocol Items</td>
+              <td>Items to add to the encouraged activites in the
+                Participation Protocol.</td>
+            </tr>
+            <tr id="groupserver-group-post-limit">
+              <td>Post limit</td>
+              <td>The number of posts a user can send in one
+                posting period.</td>
+            </tr>
+            <tr id="groupserver-group-post-period">
+              <td>Post period</td>
+              <td>The length of one posting period, in seconds.</td>
+            </tr>
+            <tr id="groupserver-group-visibility">
+              <td>Visibility</td>
+              <td>Who can see this group.</td>
+            </tr> 
+            <tr id="groupserver-group-joinability">
+              <td>Joinability</td>
+              <td>Who can join this group.</td>
+            </tr>
+            <tr id="groupserver-group_view-files">
+              <td>View Files</td>
+              <td>Who can view the files in this group.</td>
+            </tr>
+            <tr id="groupserver-group-view-messages">
+              <td>View Messages</td>
+              <td>Who can view the messages in this group.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <section>
+          <h>
+            The Group Joinability Options
+          </h>
+          <p>
+            You can set the <cite>Group Joinability</cite> so that the
+            group can be joined by:
+          </p> 
+          <ul>
+            <li>
+              <cite>Anyone, without approval</cite>  &#8212; anyone can join
+            </li>
+            <li>
+              <cite>Anyone, pending approval</cite>  &#8212;  potential group
+              members must apply to join
+            </li>
+            <li>
+              <cite>Only those invited</cite>  &#8212;  potential group
+              members must be invited to joined to the group
+            </li>
+          </ul>
+          <section>
+            <h>
+              Anyone, without approval
+            </h>
+            <p>
+              To allow <cite>Anyone, without approval</cite> to join the
+              the group.
+            </p>
+            <ol>
+              <li>
+                Set <cite>Group Visibility</cite> to either "Only
+                division and group members" or "Everyone".
+              </li>
+              <li>
+                Set <cite>Joinability</cite>  to "Anyone, without approval"
+              </li>
+            </ol>
+
+            <p>
+              This puts the following text on the Groups' Home page.
+            </p>
+            <ul>
+              <li>
+                Logged in, 'Join group'
+              </li>
+              <li>  
+                Logged out, 'Register and Join GroupName: if you already
+                have  an account on this site, please log in before
+                joining (use this reminder to find out if you have one)'
+              </li>
+            </ul>
+            
+          </section>
+          <section>
+            <h> 
+              Anyone, pending approval
+            </h>
+            <p> 
+              To allow <cite>Anyone, pending approval</cite> to join the
+              the group.
+            </p>
+            <ol>
+              <li>
+                Set Group Visibility to either "Only division and group
+                members" or "Everyone".
+              </li>
+              <li>
+                Set Joinability  to "Anyone, pending approval approval".
+              </li>
+            </ol>
+            <p>
+              This puts the following text on the Groups' Home page.
+            </p>
+            <ol><li>
+                Logged in, 'Contact the Participation Coach 'Name'  to
+                request membership'.
+              </li>
+              
+              <li>
+                Logged out, 'Contact the Participation Coach CoachName
+                to request membership (you will have to register before
+                you can see Participation Coach email address)'.
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h>Only those invited</h>
+            <p>
+              Setting Joinability to <cite>Only those invited</cite>
+              puts the following text on the groups' home page,
+              'Visitors to GroupName can:  Not join - membership of this
+              group is by invitation only'.
+            </p>
+          </section>
+        </section>
+      </section>
+      <!-- 
+      * Manage Group Members
+      * Manage Group Moderation -->
+    </section>
+  </body>
+</html>

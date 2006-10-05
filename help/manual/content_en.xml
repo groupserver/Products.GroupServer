@@ -1,0 +1,1753 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>OnlineGroups.Net User Manual</title>
+    <meta property="dc:created">February 2006</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Michael JasonSmith</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="groupserver-manual">
+    <section>
+      <h>User Manual</h>
+      <ul id="contents">
+        <li href="#groupserver-intro">Introduction</li>
+        <li href="#groupserver-registering-as-a-new-user">Registering as 
+          a New User</li>
+        <li>
+          <cite href="#groupserver-log-in-to-groupserver">Logging In to 
+            OnlineGroups.Net</cite>
+          <ul>
+            <li href="#groupserver-resetting-your-password">Resetting Your 
+              Password</li>
+          </ul>
+        </li>
+        <li>
+          <cite href="#groupserver-profiles">Profiles</cite>
+          <ul>
+            <li href="#groupserver-viewing-your-profile">Viewing Your
+              Profile</li>
+            <li>
+              <a href="#groupserver-changing-your-profile-information">Changing
+                Your Profile Information</a>
+              <ul>
+                <li href="#groupserver-profile-changing-your-password">Changing
+                  Your Password</li>
+                <li href="#groupserver-profile-changing-a-text-field">Changing
+                  a Text Field</li>
+                <li>
+                  <cite href="#groupserver-managing-your-email-addresses">Managing
+                    Your Email Address</cite>
+                  <ul>
+                    <li href="#groupserver-profile-adding-an-email-address">Adding
+                      an Email Address</li>
+                    <li href="#groupserver-removing-an-email-address">Removing
+                      an Email Address</li>
+                    <li> 
+                      <cite 
+                        href="#groupserver-profile-adding-an-email-address">Changing
+                        the Default Email Address or Addresses</cite>
+                        <ul>
+                          <li href="#groupserver-adding-a-default-email-address">Adding
+                            a Default Email Address</li>
+                          <li href="#groupserver-removing-a-default-email-address">Removing
+                            a Default Email Address</li>
+                        </ul>
+                    </li>
+                  </ul>
+                </li>  
+              </ul>
+            </li>
+            <li href="#groupserver-viewing-the-profile-of-another-user">Viewing
+              the Profile of Another User</li>
+          </ul>
+        </li>
+        <li>
+          <cite href="#groupserver-managing-groups">Managing Groups</cite>
+          <ul>
+            <li href="#groupserver-joining-a-group">Joining a Group</li>
+            <li href="#groupserver-leaving-a-group">Leaving a Group</li>
+            <li href="#groupserver-viewing-a-group">Viewing a Group</li>
+            <li>
+              <a href="#groupserver-changing-the-message-settings-for-a-group">Changing
+                the Message Settings for a Group</a>
+              <ul>
+                <li href="#groupserver-changing-your-message-notification-settings">Changing
+                  Your Message Notification Settings</li>
+                <li href="#groupserver-changing-message-delivery-settings">Changing
+                  Message Delivery Settings</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <cite href="#groupserver-participating-online">Participating
+            Online</cite>
+          <ul>
+            <li href="#groupserver-contacting-other-users">Contacting
+              Other Users</li>
+            <li>
+              <a href="#groupserver-working-with-messages">Working
+                with Messages</a>
+              <ul>
+                <li>
+                  <a href="#groupserver-reading-messages">Reading Messages</a>
+                  <ul>
+                    <li href="#groupserver-reading-messages-using-the-web">Reading
+                      Messages Using the Web</li>
+                    <li>
+                      <a href="#groupserver-reading-messages-using-email">Reading
+                        Messages Using Email</a>
+                      <ul>
+                        <li href="#groupserver-reading-email-posts">Reading
+                          Email Posts</li>
+                        <li href="#groupserver-reading-message-digests">Reading
+                          Message Digests</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#groupserver-creating-messages">Creating Messages</a>
+                  <ul>
+                    <li>
+                      <a href="#groupserver-posting-a-message">Posting
+                        a Message to An Existing Topic</a>
+                      <ul>
+                        <li href="#groupserver-posting-a-message-using-the-web">Posting 
+                          a Message Using the Web</li>
+                        <li href="#groupserver-posting-a-message-using-email">Posting
+                          a Message Using Email</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#groupserver-starting-a-new-topic">Starting
+                        a New Topic</a>
+                      <ul>
+                        <li href="#groupserver-starting-a-new-topic-using-the-web">Starting
+                          a New Topic Using the Web</li>
+                        <li href="#groupserver-starting-a-new-topic-using-email">Starting
+                          a New Topic Using Email</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li href="#groupserver-linking-messages">Linking
+                  to Messages</li>
+              </ul>
+            </li>
+            <li>
+              <a href="#groupserver-working-with-files">Working with Files</a>
+              <ul>
+                <li>
+                  <a href="#groupserver-viewing-files">Viewing Files</a>
+                  <ul>
+                    <li href="#groupserver-viewing-files-using-the-web">Viewing
+                      Files Using the Web</li>
+                    <li href="#groupserver-viewing-files-using-email">Viewing
+                      Files Using Email</li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#groupserver-post-files">Positing Files</a>
+                  <ul>
+                    <li href="#groupserver-posting-files-using-the-web">Posting
+                      Files Using the Web</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      
+      <section id="groupserver-intro">
+        <h id="groupserver-intro-t">Introduction</h>
+        
+        <p>
+          This manual is a guide to OnlineGroups.Net, the system that runs
+          <cite>OnlineGroups.net</cite>.
+          It covers 
+          <a href="#groupserver-registering-as-a-new-user">Registering
+            as a new user</a>,
+          <a href="#groupserver-log-in-to-groupserver">logging in</a>
+          to OnlineGroups.Net,
+          <a href="#groupserver-profiles">managing profiles</a>,
+        </p>
+      </section>
+      
+      <section id="groupserver-registering-as-a-new-user">
+        <h id="groupserver-registering-as-a-new-user-t">
+          Registering as a New User
+        </h>
+        <p>
+          Some facilities are only accessible to registered users who are
+          logged in.
+          To register as a new user, carry out the following.
+        </p>
+        <ol>
+          <li>
+            Click on <samp class="link">Register</samp>, on the 
+            OnlineGroups.Net homepage, to open the 
+            <cite>Register as a New User</cite> page.
+          </li>
+          <li>
+            Fill out the 
+            <samp class="field">First Name</samp>,
+            <samp class="field">Last Name</samp> and
+            <samp class="field">Email Address</samp> fields.
+            The <samp class="field">User Name</samp> field will
+            default to a combination of your first and last names, but 
+            you may change this now if you wish.
+          </li>
+          <li>
+            Click the <samp class="button">Register</samp> button.
+            You will be sent an email message 
+            (a <cite>confirmation request</cite>), by OnlineGroups.Net, which
+            contains your login details.
+          </li>
+          <li>
+            Browse to the <cite>OnlineGroups.Net Log In</cite> 
+            page, by following the a in the email message that has been
+            sent to you.
+          </li>
+          <li>
+            Fill in the
+            <samp class="field">User Name</samp> and
+            <samp class="field">Password</samp> fields, by copying them out of
+            the email message.
+          </li>
+          <li>
+            Click the <samp class="button">Log In</samp> button.
+          </li>
+        </ol>
+      </section>
+      
+      <section id="groupserver-log-in-to-groupserver">
+        <h id="groupserver-log-in-to-groupserver-t">
+          Logging In to OnlineGroups.Net
+        </h>
+        
+        <p>
+          Registered users must log in to OnlineGroups.Net to use all the
+          facilities.
+          To log in to OnlineGroups.Net, carry out the following.
+        </p>
+        
+        <ol>
+          <li>
+            Click on <samp class="link">Log In</samp>, on the 
+            OnlineGroups.Net homepage.
+            The <cite>Log In</cite> page will open.
+          </li>
+          <li>
+            Type your user name and password into the respective fields.
+          </li>
+          <li>
+            Click the <samp class="button">Log In</samp> button.
+            The homepage will be shown, with your user name at the top-right of
+            the page.
+          </li>
+        </ol>
+        
+        <section class="note">
+          <h>Remembering Your Identity</h>
+          <p>
+            If you select <samp class="button">Remember me</samp>, your
+            identity will be remembered by OnlineGroups.Net, so you will not
+            have to log in next time you visit.
+            However, you should <strong>not</strong> select this if you
+            are using a shared or public computer, such as a computer in
+            an e-cafe or library, as your privacy may be compromised.
+          </p>
+        </section>
+        
+        <section id="groupserver-resetting-your-password">
+          <h id="groupserver-resetting-your-password-t">
+            Resetting Your Password
+          </h>
+          
+          <p>
+            If you forget your password, OnlineGroups.Net can send you a new
+            password.
+            Carry out the following to reset your password.
+          </p>
+          
+          <ol>
+            <li>
+              Click on <samp class="link">Log In</samp>, on the OnlineGroups.Net
+              homepage.
+              The <cite>Log In</cite> page will open.
+            </li>
+            <li>
+              Click <samp class="link">Reset password</samp> to open
+              the <cite>Reset Password</cite> page.
+            </li>
+            <li>
+              Enter your email address, <em>or</em> your user name, into the
+              <samp class="field">Address</samp> field.
+            </li>
+            <li>
+              Click the <samp class="button">Reset</samp> button.
+              A message, containing a new password, will be  sent to all email
+              addresses listed with OnlineGroups.Net.
+            </li>
+            <li>
+              Log in to OnlineGroups.Net using your new password
+              (see <cite href="#groupserver-log-in-to-groupserver">Logging
+                In to OnlineGroups.Net</cite>).
+            </li>
+          </ol>
+        </section>
+      </section>
+      
+      <section id="groupserver-profiles">
+        <h id="groupserver-profiles-t">
+          Profiles
+        </h>
+        
+        <p>
+          A profile is information kept by OnlineGroups.Net about all users,
+          including you.
+          You can
+          <a href="#groupserver-viewing-your-profile">view your
+            profile,</a>
+          <a href="#groupserver-changing-your-profile-information">change
+            the information stored in your profile</a> and
+          <a href="#groupserver-viewing-the-profile-of-another-user">view
+            the profiles of other registered users.</a>
+        </p>
+        
+        <section id="groupserver-viewing-your-profile">
+          <h id="groupserver-viewing-your-profile-t">
+            Viewing Your Profile
+          </h>
+          
+          <p>
+            To view your profile, carry out the following.
+          </p>
+          
+          <ol>
+            <li>
+              Log in to OnlineGroups.Net (see 
+              <cite href="#groupserver-log-in-to-groupserver">Logging In to
+                OnlineGroups.Net</cite>).
+            </li>
+            <li>
+              Click on your user-name, which is displayed at the 
+              top-right of every OnlineGroups.Net page.
+            </li>
+          </ol>
+          
+          <p>
+            Your profile will show the groups that you belong to, the most 
+            recent messages that you have posted, and the profile data listed
+            in 
+            <cite href="#groupserver-tab-profile-information">Profile
+              Information</cite>.
+          </p>
+          
+          <table id="groupserver-tab-profile-information">
+            <caption id="groupserver-tab-profile-information-t">
+              Profile Information
+            </caption>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="groupserver-given-name">
+                <td>Name</td>
+                <td>The name you wish to be known by.</td>
+              </tr>
+              <tr id="groupserver-city">
+                <td>City</td>
+                <td>The city or town where you live.</td>
+              </tr>
+              <tr id="groupserver-country">
+                <td>Country</td>
+                <td>The country where you live.</td>
+              </tr>
+              <tr id="groupserver-biography">
+                <td>Biography</td>
+                <td>A short biography about you.</td>
+              </tr>
+              <tr id="groupserver-email-address">
+                <td>Email Addresses</td>
+                <td>The email addresses that you will use with 
+                  <cite>OnlineGroups.Net</cite>.</td>
+              </tr>
+              <tr id="groupserver-skype">
+                <td><cite>Skype</cite> User ID</td>
+                <td>The ID that you use on the 
+                  <cite>Skype</cite> network</td>
+              </tr>
+              <tr id="groupserver-image">
+                <td>Image</td>
+                <td>A small image (<quote>thumbnail</quote>) that
+                  others will see next to messages that you post and on
+                  your profile page.</td>
+              </tr>
+              <tr id="groupserver-group-memberships">
+                <td>Group Memberships</td>
+                <td>A list of the online groups that you belong
+                  to.</td>
+              </tr>
+              <tr id="groupserver-organisations">
+                <td>Organisations</td>
+                <td>The organisations you belong to.</td>
+              </tr>
+              <tr id="groupserver-organisation-website">
+                <td>Organisation Website</td>
+                <td>The Website for the organisation that you belong
+                  to.</td>
+              </tr>
+              <tr id="groupserver-personal-url">
+                <td>Personal 
+                  <acronm title="Uniform Resource Locator">URL</acronm></td>
+                <td>The address of a Web page about you.</td>
+              </tr>
+              <tr id="groupserver-primary-language">
+                <td>Primary Language</td>
+                <td>The language you speak most often.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section id="groupserver-changing-your-profile-information">
+          <h id="groupserver-changing-your-profile-information-t">
+            Changing Your Profile Information
+          </h>
+          
+          <p>Information listed in your profile
+            (see <cite href="#groupserver-tab-profile-information">Profile
+              Information</cite>) can be
+            changed.
+            How the information is changed depends on the type of data it is:
+            <a href="#groupserver-profile-changing-your-password">password</a>,
+            <a href="#groupserver-profile-changing-a-text-field">text</a>
+            or
+            <a href="#groupserver-profile-changing-your-image">image</a>.
+            You can also
+            <a href="#groupserver-profile-adding-an-email-address">add
+              email addresses</a> to your profile, and
+            <a href="#groupserver-changing-the-visibility-of-your-profile">change
+              the parts of your profile that others can see.</a>
+          </p>
+          
+          <section id="groupserver-profile-changing-your-password">
+            <h id="groupserver-profile-changing-your-password-t">
+              Changing Your Password
+            </h>
+            
+            <p>
+              To change your password, carry out the following.
+            </p>
+            
+            <ol>
+              <li>
+                View your profile (see
+                <cite href="#groupserver-viewing-your-profile">Viewing Your
+                  Profile</cite>).
+              </li>
+              <li>Click <samp class="link">Change Password</samp>.
+                The <cite>Change Password</cite> page will
+                appear.</li>
+              <li>
+                Type the new password in the first entry of the
+                <samp class="field">New Password</samp> field.
+                (For security reasons, asterisk characters
+                <quote class="wordasword">*</quote> will appear
+                rather than the characters you type.)
+              </li>
+              <li>
+                Type the same password in the
+                <samp class="field">Repeat New Password</samp> field.
+              </li>
+              <li>
+                Click the <samp class="button">Change Password</samp>
+                button.              
+              </li>
+            </ol>
+            <p>
+              If the passwords that you typed in do not match, an error
+              message will appear and the password will not be changed.
+            </p>
+          </section>
+          
+          <section id="groupserver-profile-changing-a-text-field">
+            <h id="groupserver-profile-changing-a-text-field-t">
+              Changing a Text Field
+            </h>
+            <p>
+              All fields in your profile, except for the password 
+              and image fields, are text fields.
+              Carry out the following, to change a text-field.
+            </p>
+            
+            <ol>
+              <li>
+                View your profile (see
+                <cite href="#groupserver-viewing-your-profile">Viewing Your
+                  Profile</cite>).              
+              </li>
+              <li>Click <samp class="link">Change Profile</samp>.
+                The <cite>Change Profile</cite> page will appear.</li>
+              <li>
+                Edit the text field, so it reflects the new
+                value.
+              </li>
+              <li>
+                Click the <samp class="button">Change</samp> button at
+                the bottom of the page.
+              </li>
+            </ol>
+          </section>
+          
+          <section id="groupserver-profile-changing-your-image">
+            <h id="groupserver-profile-changing-your-image-t">
+              Changing Your Image
+            </h>
+            
+            <p>
+              Carry out the following, to change the image that is shown on 
+              your profile and placed next to messages you post.
+            </p>
+            
+            <ol>
+              <li>
+                View your profile (see
+                <cite href="#groupserver-viewing-your-profile">Viewing Your
+                  Profile</cite>).
+              </li>
+              <li>Click <samp class="link">Change Image</samp>.
+                The <cite>Change Image</cite> page will appear.</li>
+              <li>
+                Click the <samp class="button">Browse</samp> button,
+                which is next to your image.
+              </li>
+              <li>
+                Select an image in the file-selector dialog.
+              </li>
+              <li>
+                Click the <samp class="button">Change</samp> button at
+                the bottom of the page.
+              </li>
+            </ol>
+            <p>
+              Images should be 125 pixels wide by 156 pixels high.
+            </p>
+          </section>
+          
+          <section id="groupserver-managing-your-email-addresses">
+            <h id="groupserver-managing-your-email-addresses">Managing
+              Your Email Addresses</h>
+            
+            <p>
+              You can use your existing email addresses to
+              <a href="#groupserver-posting-a-message">post messages</a>, and
+              <a href="#groupserver-reading-email-posts">receive messages
+                and summaries of group activities</a>.
+              In addition, a monthly account summary will be sent to your
+              email addresses
+              (see 
+              <cite
+                href="#groupserver-changing-your-nessage-notification-settings">
+                Changing Your Message Notification Settings</cite>).
+            </p>
+            
+            <p>To use your existing email address, you must
+              <a href="#groupserver-profile-adding-an-email-address">add
+                it to the system.</a>
+              You can also
+              <a href="#groupserver-removing-an-email-address">remove
+                an address,</a> and
+              <a href="#groupserver-changing-the-default-email-address">change
+                the list of default email address.</a>
+            </p>
+            
+            <section id="groupserver-profile-adding-an-email-address">
+              <h id="groupserver-profile-adding-an-email-address-t">
+                Adding an Email Address
+              </h>
+              
+              <p>
+                Unlike most fields, you can have multiple email addresses.
+                To add an email address to the list of your addresses, carry out
+                the following.
+              </p>
+              
+              <ol>
+                <li>
+                  View your profile (see
+                  <cite href="#groupserver-viewing-your-profile">Viewing Your
+                    Profile</cite>).
+                </li>
+                <li>Click <samp class="link">Change Email Settings</samp>.
+                  The <cite>Change Email Settings</cite> page will appear.</li>
+                <li>
+                  Type the new email address into the blank 
+                  <samp class="field">New address</samp> entry.
+                </li>
+                <li>
+                  Click the <samp class="button">Add Address</samp>
+                  button below the address.
+                </li>
+              </ol>
+              
+              <p>
+                If the email address is used by another OnlineGroups.Net user, an
+                error message will appear and the email address will not be 
+                added.
+              </p>
+            </section>
+            
+            <section id="groupserver-removing-an-email-address">
+              <h id="groupserver-removing-an-email-address-t">
+                Removing an Email Address
+              </h>
+              
+              <p>
+                To remove an email address from the list of addresses in your
+                profile, carry out the following.
+              </p>
+              <ol>
+                <li>
+                  View your profile (see 
+                  <cite href="#groupserver-viewing-your-profile">Viewing Your
+                    Profile</cite>).
+                </li>
+                <li>Click <samp class="link">Change Email Settings</samp>.
+                  The <cite>Change Email Settings</cite> page will appear.</li>
+                <li>Select the addresses you wish to remove from the list
+                  of email addresses.</li>
+                <li>
+                  Click the <samp class="button">Remove Address</samp>
+                  button.
+                  The address will be removed from the Email Addresses list.
+                </li>
+              </ol>
+              
+              <p>
+                The last address cannot be removed, as you must have at least 
+                one email address.
+              </p>
+            </section>
+            
+            <section id="groupserver-changing-the-default-email-address">
+              <h id="groupserver-changing-the-default-email-address-t">Changing
+                the Default Email Address or Addresses</h>
+              
+              <p>
+                To change where message notifications are sent by default, you
+                can 
+                <a title="Adding a Default Email Address"
+                  href="#groupserver-adding-a-default-email-address">add a 
+                  default email address</a> or 
+                <a title="Removing a Default Email Address"
+                  href="#groupserver-removing-a-default-email-address">remove 
+                  a default email address</a> 
+                from the <samp class="list">Default Email Addresses</samp> list.
+              </p>
+              
+              <section id="groupserver-adding-a-default-email-address">
+                <h id="groupserver-adding-a-default-email-address-t">Adding 
+                  a Default Email Address</h>
+                
+                <p>
+                  To add an address to the list of default addresses, carry
+                  out the following tasks.
+                  (You cannot add an email address to the list of default 
+                  addresses if all your email addresses are in the list of
+                  default addresses.)
+                </p>
+                
+                <ol>
+                  <li>
+                    View your profile (see 
+                    <cite href="#groupserver-viewing-your-profile">Viewing Your
+                      Profile</cite>).
+                  </li>
+                  <li>Click <samp class="link">Change Email Settings</samp>.
+                    The <cite>Change Email Settings</cite> page will
+                    appear.</li>
+                  <li>Select an email address, or email addresses, from the
+                    <samp class="list">Add Default Address</samp> list.</li>
+                  <li>Click <samp class="button">Add to Default</samp>.</li>
+                </ol>
+              </section>
+              
+              <section id="groupserver-removing-a-default-email-address">
+                <h id="groupserver-removing-a-default-email-address-t">Removing
+                  a Default Email Address</h>
+                
+                <p>
+                  To remove an email address from the default list of addresses
+                  that are used to notify you of posts, carry out the following.
+                  (You cannot reduce the list of default email addresses to
+                  fewer than one.)
+                </p>
+                
+                <ol>
+                  <li>
+                    View your profile (see 
+                    <cite href="#groupserver-viewing-your-profile">Viewing Your
+                      Profile</cite>).
+                  </li>
+                  <li>Click <samp class="link">Change Email Settings</samp>.
+                    The <cite>Change Email Settings</cite> page will
+                    appear.</li>
+                  <li>Select the address from the
+                    <samp class="list">Default Email Addresses</samp> 
+                    list.</li>
+                  <li>Click <samp class="button">Remove from Default</samp>.</li>
+                </ol>
+              </section>
+            </section>
+          </section>
+        </section>        
+        <section id="groupserver-viewing-the-profile-of-another-user">
+          <h id="groupserver-viewing-the-profile-of-another-user-t">
+            Viewing the Profile of Another User
+          </h>
+          
+          <p>
+            To view the profile on another OnlineGroups.Net user, carry out
+            the following.
+          </p>
+          
+          <ol>
+            <li>
+              Click on <samp class="link">People</samp>, in the main
+              navigation bar.
+              The <cite>People</cite> page, which lists all
+              users that are visible to you, will be shown.
+            </li>
+            <li>
+              Click on the name of the user whose profile you
+              wish to view.
+              The profile for that user will be shown.
+            </li>
+          </ol>
+          
+          <p>
+            Alternatively, click on a user's name in a message, and the
+            profile for that person will be shown.
+          </p>
+        </section>
+      </section>
+      
+      <section id="groupserver-managing-groups">
+        <h id="groupserver-managing-groups-t">
+          Managing Groups
+        </h>
+        
+        <p>
+          Groups are online areas where people collaborate on
+          OnlineGroups.Net.
+          As a registered user, you can
+          <a href="#groupserver-joining-a-group">join a group</a>,
+          <a href="#groupserver-leaving-a-group">leave a group</a>,
+          <a href="#groupserver-viewing-a-group">view a group</a> or
+          <a href="#groupserver-changing-the-message-settings-for-a-group">
+            change your message settings for the group.</a>
+        </p>
+        
+        <section id="groupserver-joining-a-group">
+          <h id="groupserver-joining-a-group-t">
+            Joining a Group
+          </h>
+          
+          <p>
+            You will need to join a group to post messages to it.
+            To join a group, carry out the following.
+          </p>
+          
+          <ol>
+            <li>
+              Log in to OnlineGroups.Net 
+              (see <cite href="#groupserver-log-in-to-groupserver">Logging
+                In to OnlineGroups.Net</cite>).
+            </li>
+            <li>
+              Click on <samp class="link">Groups</samp> in the main 
+              navigation bar.
+              The <cite>Groups</cite> page will be shown.
+            </li>
+            <li>
+              Click on the name of the group that you wish to join.
+              The home-page for the selected group will be shown.
+            </li>
+            <li>
+              Click on <samp class="link">Join</samp>.
+              A message will be sent to your email account, informing
+              you of your request to join a group: in most cases you
+              will immediately belong to a group, but sometimes your
+              request must be approved.
+            </li>
+          </ol>
+          
+          <p>
+            The <cite>Groups</cite> page and your profile will
+            list all the groups that you belong to
+            (see <cite href="#groupserver-viewing-a-group">Viewing a 
+              Group</cite>
+            and <cite href="#groupserver-viewing-your-profile">Viewing Your
+              Profile</cite>).
+          </p>
+        </section>
+        
+        <section id="groupserver-leaving-a-group">
+          <h id="groupserver-leaving-a-group-t">
+            Leaving a Group
+          </h>
+          
+          <p>
+            To leave a group, carry out the following.
+          </p>
+          
+          <ol>
+            <li>
+              View the group (see 
+              <cite href="#groupserver-viewing-a-group">Viewing a Group</cite>).
+            </li>
+            <li>
+              Click <samp class="link">Leave</samp>.
+              You will receive a email message informing confirming
+              that you have left the group.
+            </li>
+          </ol>
+          
+          <p>
+            Alternatively, follow the instructions that is placed in the
+            footer of all email messages sent from that group.
+          </p>
+        </section>
+        
+        <section id="groupserver-viewing-a-group">
+          <h id="groupserver-viewing-a-group-t">
+            Viewing a Group
+          </h>
+          
+          <p>
+            Viewing a group allows you to see information about the group,
+            including who belongs to the group and the messages that have been
+            sent to the group.
+            (The exact information that is visible can differ from group to
+            group, and will depend on your group membership.)
+            To view a group, carry out the following.
+          </p>
+          
+          <ol>
+            <li>
+              Click <samp class="link">Groups</samp>, in the main
+              navigation bar, to show the <cite>Online Groups</cite>
+              page.
+            </li>
+            <li>
+              Select a group from the <samp class="list">My Groups</samp> or 
+              <samp class="list">Other Groups</samp> lists.
+              The page for the selected group will be shown.
+            </li>
+          </ol>
+          
+          <p>
+            Your profile also displays the <samp class="list">My Groups</samp>
+            list, which can be used to access groups.        
+          </p>
+        </section>
+        
+        <section id="groupserver-changing-the-message-settings-for-a-group">
+          <h id="groupserver-changing-the-message-settings-for-a-group-t">
+            Changing the Message Settings for a Group
+          </h>
+          <p>
+            You can
+            <a href="#groupserver-changing-your-message-notification-settings">
+              change how you are notified of messages posted to a group
+            </a> and
+            <a href="#groupserver-changing-message-delivery-settings">
+              change which email address notifications are sent to.
+            </a>
+          </p>
+          
+          <section id="groupserver-changing-your-message-notification-settings">
+            <h id="groupserver-changing-your-message-notification-settings-t">
+              Changing Your Message Notification Settings
+            </h>
+            
+            <p>
+              Carry out the following, to change how you are informed of
+              messages posted to a group.
+            </p>
+            
+            <ol>
+              <li>
+                Join the group (see
+                <cite href="#groupserver-joining-a-group">Joining
+                  a Group</cite>).
+              </li>
+              <li>
+                View the group (see
+                <cite href="#groupserver-viewing-a-group">Viewing a 
+                  Group</cite>).
+              </li>
+              <li>
+                Click <samp class="link">Change your email settings</samp>, 
+                which is found in the
+                <samp class="field">Members</samp> section of the group 
+                homepage, or <samp class="link">Email settings</samp> in the
+                side-menu for the group.
+                The <cite>Email Delivery Settings</cite> page for the group
+                will be shown.
+              </li>
+              <li>
+                Select the desired notification option from the 
+                <samp class="list">Message Notification</samp> list (see
+                <cite 
+                  href="#groupserver-tab-message-notification-preferences">Message
+                  Notification Preferences</cite>).
+              </li>
+              <li>
+                Click the <samp class="button">Change</samp> button.
+              </li>
+            </ol>
+            
+            <table id="groupserver-tab-message-notification-preferences">
+              <caption id="groupserver-tab-message-notification-preferences-t">
+                Message Notification Preferences
+              </caption>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="groupserver-one-email-per-post">
+                  <td>One email per post</td>
+                  <td>You will receive an email every time there is a post
+                    to the group.</td>
+                </tr>
+                <tr id="groupserver-digest-of-topics">
+                  <td>Digest of Topics</td>
+                  <td>You will receive an email that summarises the 
+                    daily-activity in the group; if there is
+                    no activity for a week, then you will only receive
+                    a message at the end of the week.</td>
+                </tr>
+                <tr id="groupserver-delivery-disabled">
+                  <td>Delivery disabled</td>
+                  <td>You will not receive any email related to the
+                    group.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <p>
+              On the first day of each month, regardless of your message
+              settings, you will be sent an email-reminder by OnlineGroups.Net that
+              lists the groups you belong to, the message settings for each
+              group, and how to leave the groups.
+            </p>
+          </section>
+          
+          <section id="groupserver-changing-message-delivery-settings">
+            <h id="groupserver-changing-message-delivery-settings-t">
+              Choose Your Delivery Address
+            </h>
+            
+            <p>
+              If you have multiple email addresses registered with 
+              OnlineGroups.Net (see
+              <cite href="#groupserver-profile-adding-an-email-address">Adding
+                an Email Address</cite>), then you can change where email
+              messages from a group are sent.
+              To do this, carry out the following.
+            </p>
+            
+            <ol>
+              <li>
+                Join the group (see
+                <cite href="#groupserver-joining-a-group">Joining a
+                  Group</cite>).
+              </li>
+              <li>
+                View the group (see
+                <cite href="#groupserver-viewing-a-group">Viewing a 
+                  Group</cite>).
+              </li>
+              <li>
+                Click <samp class="link">Change your email settings</samp>, 
+                which is found in the
+                <samp class="field">Members</samp> section of the group 
+                homepage, or <samp class="link">Email settings</samp> in the
+                side-menu for the group.
+                The <cite>Email Delivery Settings</cite> page for the group
+                will be shown.
+              </li>
+              <li>
+                Select either of the following options.
+                <dl>
+                  <di>
+                    <dt>Default</dt>
+                    <dd>Messages are sent to the default email addresses or
+                      addresses
+                      (see 
+                      <cite>Setting the Default Email Address</cite>).
+                    </dd>
+                  </di>
+                  <di>
+                    <dt>Specific Address or Addresses</dt>
+                    <dd>Messages are sent to the selected addresses that are 
+                      listed below the 
+                      <samp class="field">Specific Address or Addresses</samp>
+                      option.
+                    </dd>
+                  </di>
+                </dl>
+                (If there is only one email address registered with 
+                OnlineGroups.Net, then the
+                <samp class="list">Email Addresses Used</samp> list will not
+                be shown.)
+              </li>
+              <li>
+                Click the <samp class="button">Change</samp> button.
+              </li>
+            </ol>
+          </section>
+        </section>
+      </section>
+      
+      <section id="groupserver-participating-online">
+        <h id="groupserver-participating-online-t">
+          Participating Online Using OnlineGroups.Net
+        </h>
+        
+        <p>
+          You can participate online using OnlineGroups.Net by
+          <a href="#groupserver-contacting-other-users">contacting
+            other users,</a> by
+          <a href="#groupserver-working-with-messages">working
+            with messages,</a> or by
+          <a href="#groupserver-working-with-files">working with files.</a>
+        </p>
+        
+        <section id="groupserver-contacting-other-users">
+          <h id="groupserver-contacting-other-users-t">
+            Contacting Other OnlineGroups.Net Users
+          </h>
+          <p>
+            Carry out the following tasks to contact other OnlineGroups.Net
+            users.
+          </p>
+          <ol>
+            <li>
+              View the profile of the user that you wish to contact.
+            </li>
+            <li>
+              View the <samp class="field">Email Addresses</samp> field.
+            </li>
+            <li>
+              Contact the user.
+              <ul>
+                <li>
+                  If the email addresses of the user are visible, 
+                  click on an email address of the user and write the
+                  user a message in your normal email client.
+                </li>
+                <li>
+                  If the email addresses of the user are not visible,
+                  click  <samp class="link">Request contact</samp>,
+                  which is also listed in the 
+                  <samp class="field">Email Address</samp> field of the user's
+                  profile.
+                  A message will be sent to the user that contains your
+                  email address and a statement that you wish to contact the 
+                  user.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        
+        <section id="groupserver-working-with-messages">
+          <h id="groupserver-working-with-messages-t">
+            Working with Messages
+          </h>
+          
+          <p>
+            Messages form the basis of participation on OnlineGroups.Net.
+            You can 
+            <a href="#groupserver-reading-messages">read messages that
+              others have posted,</a>
+            <a href="#groupserver-creating-messages">create messages</a>
+            and
+            <a href="#groupserver-linking-messages">link to messages.</a>
+          </p>
+          
+          <section id="groupserver-reading-messages">
+            <h id="groupserver-reading-messages-t">
+              Reading Messages
+            </h>
+            
+            <p>You can read messages that are posted to groups
+              by
+              <a href="#groupserver-reading-messages-using-the-web">using
+                the Web</a>,
+              by
+              <a href="#groupserver-reading-messages-using-email">using
+                email</a>,
+              or by
+              <a href="#groupserver-reading-messages-using-web-feeds">using
+                Web feeds.</a>
+            </p>
+            
+            <section id="groupserver-reading-messages-using-the-web">
+              <h id="groupserver-reading-messages-using-the-web-t">
+                Reading Messages using the Web
+              </h>
+              
+              <p>
+                To read a message that someone else has posted to a group, 
+                carry out the following.
+              </p>
+              
+              <ol>
+                <li>
+                  View the group (see 
+                  <cite href="#groupserver-viewing-a-group">Viewing a
+                    Group</cite>).
+                </li>
+                <li>
+                  Either
+                  <ul>
+                    <li>
+                      Click on the name of a topic in the
+                      <samp class="list">Current Topics</samp> list, which lists
+                      the five most active topics on the main page for the
+                      group, or
+                    </li>
+                    <li>
+                      Click on <samp class="link">View topics</samp>
+                      and click the name of a topic that is listed on the
+                      <cite>Topics</cite> page.
+                    </li>
+                  </ul>
+                  <p>
+                    The page for the selected topic will be displayed.
+                    (If you are not a member of a group, you may not be able
+                    to see any topics.)
+                  </p>
+                </li>
+                <li>
+                  Scroll to view the messages, which are displayed from oldest
+                  (at the top) to newest.
+                  Alternatively, click on 
+                  <samp class="link">Jump to latest</samp>
+                  to view the most recent post, or use the
+                  <samp class="list">Post Index</samp> list to jump to a
+                  particular post.
+                </li>
+              </ol>
+            </section>
+            
+            <section id="groupserver-reading-messages-using-email">
+              <h id="groupserver-reading-messages-using-email-t">
+                Reading Messages using Email
+              </h>
+              <p>
+                Depending on your message settings for a group
+                (see 
+                <cite
+                  href="#groupserver-changing-your-message-notification-settings">
+                  Changing Your Message Notification Settings
+                </cite>)  
+                you will either be sent 
+                <a href="#groupserver-reading-email-posts">an
+                  email whenever a message is posted to the group,</a>
+                <a href="#groupserver-reading-message-digests">a
+                  digest of posts,</a>
+                or no email notification.
+              </p>
+              
+              <section id="groupserver-reading-email-posts">
+                <h id="groupserver-reading-email-posts-t">
+                  Reading Email Posts
+                </h>
+                
+                <p>  
+                  If configured, you will receive an email for each individual
+                  message that is posted to a group.
+                  Messages from OnlineGroups.Net can be identified by the subject
+                  that starts with the name of the group in square brackets,
+                  followed by the name of the topic.
+                  In addition, the message will be sent from an email account
+                  that is named after the group, such as
+                  <email>example_group@onlinegroups.net</email>.
+                </p>
+                
+                <p>
+                  The email message will contain the text of the post, and as
+                  to the relevant group and topic.
+                  You can reply to the email to add a post to the group
+                  (see 
+                  <cite href="#groupserver-posting-a-message">Posting a
+                    Message</cite>).
+                </p>
+              </section>
+              
+              <section id="groupserver-reading-message-digests">
+                <h id="groupserver-reading-message-digests-t">
+                  Reading Topic Digests
+                </h>
+                
+                <p>
+                  If configured, you will receive a message digest once
+                  a day.
+                  The message will be sent shortly after midnight, and 
+                  can be identified by the subject line that will read
+                  <quote>[Example Group] Topic Digest</quote>, where 
+                  <quote>Example Group</quote> will be replaced with the name
+                  of the group.
+                </p>
+                
+                <p>
+                  The message will summarise the postings in each of your 
+                  groups, and provide as that can be followed to view the
+                  postings on OnlineGroups.Net.
+                  If you reply to a message digest you will be sent a summary
+                  of your profile; you cannot create a post from a message 
+                  digest (see 
+                  <cite href="#groupserver-creating-messages">Creating
+                    Messages</cite>).
+                </p>
+              </section>
+            </section>
+            
+            <section id="groupserver-reading-messages-using-web-feeds">
+              <h id="groupserver-reading-messages-using-web-feeds-t">
+                Reading Messages using Web Feeds
+              </h>
+              
+              <p>
+                On OnlineGroups.Net, Web Feeds (often known as
+                <quote>RSS Feeds</quote> and
+                <quote>Live Bookmarks</quote>) provide summaries
+                of the messages that are posted to groups.
+                They can be viewed in an aggregator, such as
+                <cite class="software">Microsoft Internet
+                  Explorer 7</cite>,
+                <cite class="software">Mozilla Firefox</cite> and
+                <cite class="software">Apple Safari</cite>.
+                Links to three feeds are provided, which summarise the
+                notices, files and topics that have been posted, are
+                linked of the homepage for the site.
+                Consult the documentation for your aggregator on how
+                to view a feed.
+              </p>
+            </section>
+          </section>
+          <section id="groupserver-creating-messages">
+            <h id="groupserver-creating-messages-t">
+              Creating Messages
+            </h>
+            
+            <p>
+              Messages can be created by either
+              <a href="#groupserver-posting-a-message">posting
+                a message to an existing topic</a>
+              or by
+              <a href="#groupserver-starting-a-new-topic">creating
+                a new topic.</a>
+            </p>
+            
+            <section id="groupserver-posting-a-message">
+              <h id="groupserver-posting-a-message-t">
+                Posting a Message to an Existing Topic
+              </h>
+              
+              <p>          
+                You can post a message to an existing topic 
+                <a href="#groupserver-posting-a-message-using-the-web">using
+                  the Web</a>
+                or
+                <a href="#groupserver-posting-a-message-using-email">using
+                  email.</a>
+              </p>
+              
+              <section id="groupserver-posting-a-message-using-the-web">
+                <h id="groupserver-posting-a-message-using-the-web-t">
+                  Posting a Message using the Web
+                </h>
+                <p>
+                  Carry out the following, to post a message to a topic using
+                  the Web.
+                </p>
+                <ol>
+                  <li>
+                    Log in to OnlineGroups.Net (see
+                    <cite href="#groupserver-log-in-to-groupserver">Logging In
+                      to OnlineGroups.Net</cite>).
+                  </li>
+                  <li>
+                    View the topic (see 
+                    <cite
+                      href="#groupserver-reading-messages-using-the-web">Reading
+                      Messages Using the Web</cite>).
+                  </li>
+                  <li>
+                    Scroll to the bottom of the page, where the 
+                    <cite>Add to the topic</cite> section is located.
+                  </li>
+                  <li>
+                    Create your message.
+                    <ul>
+                      <li>
+                        Edit the text of your message in the
+                        <samp class="field">Message</samp>
+                        entry.
+                      </li>
+                      <li>
+                        Optionally, add tags to your message by writing them
+                        into the <samp class="field">Tags</samp> entry.
+                        (See <cite href="#groupserver-tag">Tags</cite>.)
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    In addition, you may add a file along with your post 
+                    (see <cite href="#groupserver-posting-files-using-the-web">Posting 
+                    Files using the Web</cite>).
+                  </li>
+                  <li>
+                    Click the <samp class="button">Add</samp> button.
+                    Your message will be shown on the topic page, and will
+                    be sent to all group members who receive one email
+                    notification of posts.
+                  </li>
+                </ol>
+                <p>
+                  (If you do not belong to the group, you cannot
+                  post messages to the group.)
+                </p>
+              </section>
+              
+              <section class="note" id="groupserver-tags">
+                <h>Tags</h>
+                <p>
+                  A tag is a keyword, or category, that is associated with
+                  a post.
+                  You can associate multiple tags with a post
+                  when it is created; this should make the file easier for
+                  others to find 
+                  (see 
+                  <cite href="#groupserver-reading-messages">
+                    Reading Messages</cite>, and 
+                  <cite href="#groupserver-viewing-files">
+                    Viewing Files</cite>).
+                </p>
+                <p>
+                  Currently, tags can only be entered via the Web
+                  (see
+                  <cite href="#groupserver-posting-messages">
+                    Posting Messages</cite>
+                   and
+                  <cite href="#groupserver-post-files">Posting Files</cite>).
+                  When entering a tag, they can be formatted in one of two
+                  ways.
+                </p>
+                <dl>
+                  <di></di>
+                    <dt>Space separated</dt>
+                    <dd>
+                      The tags are separated by spaces, with quote-characters
+                      used to group words together, such as the following four 
+                      tags:
+                      <code>tags "example post" email message</code>
+                    </dd>
+                  <di>
+                    <dt>Comma separated</dt>
+                    <dd>
+                      The tags are separated by commas, which also allow words
+                      to be grouped together, such as the following four tags:
+                      <code>tags, example post, email, message</code>                      
+                    </dd>
+                  </di>
+                </dl>
+              </section>
+              
+              <section id="groupserver-posting-a-message-using-email">
+                <h id="groupserver-posting-a-message-using-email-t">
+                  Posting a Message using Email
+                </h>
+                <p>
+                  To post a message to an existing topic using email, open
+                  a message that was posted to the topic
+                  (see 
+                  <cite href="#groupserver-reading-email-posts">Reading Email
+                    Posts</cite>) 
+                  and reply;
+                  <em>do not</em> change the subject of the email
+                  message, as this will cause OnlineGroups.Net to create a new topic
+                  (see
+                  <cite
+                    href="#groupserver-starting-a-new-topic-using-email">
+                    Starting a New Topic Using Email</cite>).
+                  Once sent, the message will be added to the Topics page for
+                  the group, and be sent to all group members who receive
+                  email notification of posts.
+                </p>
+                
+                <section class="note">
+                  <h>Email Attachments</h>
+                  <p>
+                    Only the plain-text component of the email message will be
+                    used to create the post.
+                  </p>
+                </section>
+              </section>
+            </section>
+            
+            <section id="groupserver-starting-a-new-topic">
+              <h id="groupserver-starting-a-new-topic-t">
+                Starting a New Topic
+              </h>
+              
+              <p>
+                You can create a new topic for discussion, in any group
+                that you are a member of, by
+                <a href="#groupserver-starting-a-new-topic-using-the-web">using
+                  the Web</a>
+                or
+                <a href="#groupserver-starting-a-new-topic-using-email">using
+                  email</a>.
+              </p>
+              
+              <section id="groupserver-starting-a-new-topic-using-the-web">
+                <h id="groupserver-starting-a-new-topic-using-the-web-t">
+                  Starting a New Topic using the Web
+                </h>
+                
+                <p>
+                  To create a new topic using the Web, carry out the following.
+                </p>
+                
+                <ol>
+                  <li>
+                    View the group (see
+                    <cite href="#groupserver-viewing-a-group">Viewing a
+                      Group</cite>).
+                  </li>
+                  <li>
+                    Click <samp class="link">Start a new topic</samp> at the top
+                    of the <samp class="list">Current Topics</samp> list, or at
+                    the top of the <cite>Topics</cite> page.
+                    The <cite>Start a New Topic</cite> page will be
+                    shown.
+                    (If you are not a member of a group you will not be able
+                    to create a new topic.)
+                  </li>
+                  <li>
+                    Create your message.
+                    <ul>
+                      <li>
+                        Edit the text of your message in the
+                        <samp class="field">Message</samp>
+                        entry.
+                      </li>
+                      <li>
+                        Optionally, add tags to your message by writing them
+                        into the <samp class="field">Tags</samp> entry.
+                        (See <cite href="#groupserver-tag">Tags</cite>.)
+                      </li>
+                      <li>
+                        In addition, you may add a file along with your post 
+                        (see <cite href="#groupserver-posting-files-using-the-web">Posting 
+                        Files using the Web</cite>).
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Click <samp class="button">Start</samp>.
+                    The topic page will be created, and messages will be sent
+                    to all group members who wish to receive email notification
+                    of posts.
+                  </li>
+                </ol>
+              </section>
+              
+              <section id="groupserver-starting-a-new-topic-using-email">
+                <h id="groupserver-starting-a-new-topic-using-email-t">
+                  Starting a New Topic using Email
+                </h>
+                
+                <p>
+                  To create a topic using email, send a message to the
+                  email address for the group
+                  (such as 
+                  <code class="email">example_group@onlinegroups.net</code>)
+                  with the message subject set to the name of topic;
+                  do not use the name of an existing topic as this will cause
+                  the message to be added to the existing topic, rather than
+                  creating a new topic.
+                  If you are not a member of a group you cannot create a new
+                  topic, and you will be sent an error message informing you
+                  why you cannot post to the group.
+                  However, people who are not OnlineGroups.Net users will not 
+                  receive error messages.
+                </p>
+              </section>
+            </section>
+          </section>
+          
+          <section id="groupserver-linking-messages">
+            <h id="groupserver-linking-messages-t">
+              Linking to Messages
+            </h>
+            
+            <p>
+              Sometimes it is useful to send someone a link to a post.
+              To create a link, view the message you wish to link to
+              (see 
+              <cite href="#groupserver-reading-messages-using-the-web">Reading
+                Messages Using the Web</cite>)
+              and click <samp class="link">short link</samp>, at the
+              top of the  message; the post will be shown on a single
+              Web page.
+              You can copy the address of the message from
+              the location bar of your Web browser and paste it into any 
+              message you wish to send.
+              If the recipient cannot view the post, because of inadequate 
+              permissions, then an error message will be shown when he or she
+              tries and follow the link.
+            </p>
+          </section>
+        </section>
+        
+        <section id="groupserver-working-with-files">
+          <h id="groupserver-working-with-files-t">
+            Working with Files
+          </h>
+          
+          <p>
+            All documents, which are not messages, that are stored on
+            OnlineGroups.Net are <quote>files</quote>.
+            You can 
+            <a href="#groupserver-viewing-files">view files that others
+              have posted,</a> and 
+            <a href="#groupserver-post-files">post files to groups</a>
+            that you belong to.
+          </p>
+          
+          <section id="groupserver-viewing-files">
+            <h id="groupserver-viewing-files-t">
+              Viewing Files on OnlineGroups.Net
+            </h>
+            
+            <p>
+              Files can be viewed 
+              <a href="#groupserver-viewing-files-using-the-web">using
+                the Web,</a> and linked to 
+              <a href="#groupserver-viewing-files-using-email">using
+                email.</a>
+            </p>
+            
+            <section id="groupserver-viewing-files-using-the-web">
+              <h id="groupserver-viewing-files-using-the-web-t">
+                Viewing Files using the Web
+              </h>
+              
+              <p>
+                To view a file using the Web, either</p>
+              <ul>
+                <li>View the topic that contains the file, or</li>
+                <li>Go to the <cite>Files</cite> area for the group by
+                  carrying out the following.
+                  <ol>
+                    <li>View the group (see 
+                      <cite href="#groupserver-viewing-a-group">Viewing a
+                        Group</cite>).</li>
+                    <li>Click on <samp class="link">Files</samp>.
+                      The <cite>Files Area</cite> for the group will
+                      be shown.</li>
+                    <li>The ten most recently posted files will be
+                      listed.
+                      If the file you want is not listed, use the
+                      <samp class="field">Items to Show</samp>,
+                      <samp class="field">Age of File</samp>,
+                      <samp class="field">Topic</samp>, and
+                      <samp class="field">Tags</samp> fields to limit
+                      what files are shown.</li>
+                  </ol>
+                </li>
+              </ul>
+              <p>
+                Using either technique, when you have found the file,
+                click the link to the file and your Web browser will allow
+                you to view the file.
+              </p>
+              <p>
+                See also 
+                <cite href="#groupserver-reading-messages-using-the-web">Reading
+                  Messages Using the Web</cite>.
+              </p>
+            </section>
+            
+            <section id="groupserver-viewing-files-using-email">
+              <h id="groupserver-viewing-files-using-email-t">
+                Viewing Files from Email Notifications
+              </h>
+              
+              <p>
+                If you have configured OnlineGroups.Net to send you an email whenever 
+                someone posts a message you will also receive an email when a
+                file is posted.
+                The file is not attached to the email, instead a link to the
+                file, and a short description, is sent
+                (see 
+                <cite href="#groupserver-tab-viewing-files-using-email">Viewing
+                  Files Using Email</cite>).
+                To view a file from an email email, click on the link to the
+                file that is contained in the email message, and your Web 
+                browser will allow you to view the file.
+              </p>
+              
+              <table id="groupserver-tab-viewing-files-using-email">
+                <caption id="groupserver-tab-viewing-files-using-email-t">
+                  File Information
+                </caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>URI</td>
+                    <td>The location of the file on OnlineGroups.Net.
+                      When viewed on the Web this becomes the link, which
+                      your browser follows when you click on the 
+                      filename.</td>
+                  </tr>
+                  <tr>
+                    <td>Filename</td>
+                    <td>The name of the file that is posted.</td>
+                  </tr>
+                  <tr>
+                    <td>Topic</td>
+                    <td>The topic to which the file was posted.</td>
+                  </tr>
+                  <tr>
+                    <td>User</td>
+                    <td>The user name of the person who posted the
+                      file.</td>
+                  </tr>
+                  <tr>
+                    <td>Size</td>
+                    <td>The size of the file.</td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td>The 
+                      <abbr 
+                        title="Multipart Internet Mail Extension">MIME</abbr>
+                      type of file.</td>
+                  </tr>
+                  <tr>
+                    <td>Tags</td>
+                    <td>The tags associated with the file by the user who
+                      uploaded the file (see
+                      <cite href="#groupserver-tags">Tags</cite>).</td>
+                  </tr>
+                  <tr>
+                    <td>Date</td>
+                    <td>The date the file was posted, in year-month-day 
+                      format.
+                      (See G. Klyne and C. Newman,
+                      <cite class="weblink"
+                        href="http://www.ietf.org/rfc/rfc3339.txt">Date
+                        and Time on the Internet: Timestamps</cite>,
+                      <abbr title="Internet Engineering Taskforce">IETF</abbr>,
+                      July 2002.)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </section>          
+
+          <section id="groupserver-post-files">
+            <h id="groupserver-post-files-t">
+              Posting Files on OnlineGroups.Net
+            </h>
+            
+            <p>
+              Files can be posted on OnlineGroups.Net 
+              <a href="#groupserver-posting-files-using-the-web">using
+                the Web.</a>
+            </p>
+            
+            <section id="groupserver-posting-files-using-the-web">
+              <h id="groupserver-posting-files-using-the-web-t">
+                Posting Files using the Web
+              </h>
+              
+              <p>
+                Carry out the following, to post files using the Web.
+              </p>
+              
+              <ol>
+                <li>
+                  Either
+                  <ul>
+                    <li>
+                      Reply to a message in an existing topic
+                      (see 
+                      <cite
+                        href="#groupserver-posting-a-message-using-the-web">
+                        Posting a Message Using the Web</cite>),
+                      or
+                    </li>
+                    <li>
+                      Create a new topic
+                      (see 
+                      <cite
+                        href="#groupserver-starting-a-new-topic-using-the-web">
+                        Starting a New Topic Using the Web</cite>).
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Click the <samp class="button">Browse</samp> button and
+                  select a file in the file dialog, instead of (or in
+                  addition to) writing a message.
+                </li>
+                <li>
+                  Click the Post button.
+                  The file will be uploaded to OnlineGroups.Net and
+                  displayed  under the relevant topic, and messages
+                  will be sent  to all group  members who wish to
+                  receive email  notification of posts.
+                  Any tags that are set (see 
+                  <cite href="#groupserver-tags">Tags</cite>) will be
+                  associated with the file, as well as the message that is 
+                  sent.
+                </li>
+              </ol>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </body>
+</html>

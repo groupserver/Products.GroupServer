@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      <heading1>
+        How Online Groups Work
+      </heading1>
+      <paragraph>
+        There are three key things that make Online Groups work:
+      </paragraph>
+      <bulletlist>
+        <listitem>
+          technology &#8212; basic technology that enables email to be 
+          used as a group collaboration medium and files to be shared 
+          online</listitem>
+        <listitem>
+          boundaries &#8212; clearly defined membership and participation 
+          protocols</listitem>
+        <listitem>
+          participation &#8212; the more you use them, the better they 
+          work</listitem>
+      </bulletlist>
+      
+      <heading2>
+        How the Online Groups Technology Works
+      </heading2>
+      <paragraph>
+        Online Groups are based on an Internet eMail List Server.
+        You may have used other List Servers or "Email Groups" such as 
+        Yahoo! Groups.
+      </paragraph>
+      <paragraph>
+        Each Online Group has an email address. The basic functioning 
+        of the Online Group is that all "posts" (emails) sent to
+        the Online Group's email address are emailed to all
+        members of the group.
+      </paragraph>
+      <paragraph>
+        Posts made to Online Groups also appear in the "Messages" section 
+        of the Online Group in this website. Posts can 
+        not be deleted from the Messages area.
+      </paragraph>
+      <paragraph>
+        You can not send file attachments via Online Groups. 
+        This is because the website provides a secure area where Members of
+        an Online Group can easily share files in an organised 
+        way. The files can be downloaded 
+        by each person when they are ready, rather than taking up
+        time on Internet connections that may be slow.
+      </paragraph>
+
+      <heading2>
+        How the Boundaries of Online Groups Work
+      </heading2>
+      <paragraph>
+        Online Groups work best when trust develops in the group.
+        Trust develops best in Online Groups when the purpose, membership
+        and participation protocols are clearly defined and maintained. The 
+        membership and participation protocol must be strictly 
+        maintained by the members and the service provider.
+      </paragraph>
+      <paragraph>
+        In the case of Online Groups, the service provider
+        is GroupSense. GroupSense maintains
+        the privacy of participation in Online Groups.
+      </paragraph>
+      <paragraph>
+        It is also critical that Participants in Online Groups 
+        maintain the boundaries. In particular, in a private 
+        Online Group, the privacy of the other members' posts 
+        must be respected.
+      </paragraph>
+      
+      <heading2>
+        How Participation makes Online Groups Work
+      </heading2>
+      <paragraph>
+        The technology and boundaries create the conditions where 
+        online collaboration can take place. It is only when people
+        actually use it, that the potential can be realised. There 
+        is only any value in posting, if others reply. Participants have 
+        to get the ball rolling and contribute to its momentum.
+      </paragraph>
+      <paragraph>
+        Each post that is made demonstrates to the participants that 
+        the Online Group exists. It communicates to the others
+        that the Online Group is a place where knowledge is shared - 
+        that if they share knowledge, then others will share back.
+      </paragraph>
+    </content>
+  </output>
+</root>

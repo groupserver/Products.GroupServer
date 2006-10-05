@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      <heading1>
+        Getting Started
+      </heading1>
+      <paragraph>When you first join an Online Group, 
+        complete the following steps:</paragraph>
+      
+      <numberedlist>
+        <listitem>
+          visit your <link url="/r/profile">Profile</link> and:
+          <bulletlist>
+            <listitem>
+              create a new password 
+              to secure your access to this website
+              (record your login name and password 
+              in a secure but accessible place)
+            </listitem>
+            <listitem>
+              create a bio for yourself
+            </listitem>
+          <listitem>
+              make sure your email address/es are specified correctly
+            </listitem>
+          </bulletlist>
+        </listitem>
+        
+        <listitem>
+          create a bookmark (favourite) for this site 
+          in your Web browser (so you can easily find your way 
+          back here)
+        </listitem>
+        <listitem>
+          visit your Online Group's Home page - 
+          make sure you are famliar with the Purpose, Membership and 
+          Participation Protocol as they define what the Online Group
+          is for and what is appropriate there
+        </listitem>
+        <listitem>
+          add the Online Group's email address to
+          your email address book (use this to address 
+          emails to the group)
+        </listitem>
+      </numberedlist>
+      <paragraph>
+        Next:
+      </paragraph>
+      <bulletlist>
+        <listitem>
+          read the <link url="../basic_participation">Basic 
+            Participation</link> section in this Participation 
+          Guide
+        </listitem>
+        <listitem>
+          read the <link url="../effective_participation">Effective 
+            Participation</link> section in the Participation Guide 
+        </listitem>
+        <listitem>
+          experiment in your Online Group
+          — make a post just to say hello and see who 
+          replies — if you have any comments or questions, 
+          post them to the Online Group.
+        </listitem>
+      </bulletlist>
+    </content>
+  </output>
+</root>

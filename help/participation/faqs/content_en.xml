@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      
+      <heading1>
+        Frequently Asked Questions
+      </heading1>
+      
+      <faqs>
+        <faq>
+          <question>How do I find the email address for my Online Group?
+          </question>
+          <answer>
+            The email address for your Online Group is on the Online Group's main page on this site.
+            Go to the Groups section and then click the link to your Online Group.
+          </answer>
+        </faq>
+        <faq>
+          <question>
+            I did not receive an email notifying me about my Online Group. What do I do?
+          </question>
+          <answer>
+            If you are reading this, you do not need that email. Please make sure that your email 
+            address(es) is(are) specified correctly on your Participant Details page ("Your Details").
+            Then simply try posting to your Online Group.
+          </answer>
+        </faq>
+        <faq>
+          <question>
+            I sent an email to my Online Group and it hasn't appeared in the 
+            Messages section of my Online Group.
+          </question>
+          <answer>First check that the message was sent to the Online Group. 
+            If it was, you will have received a copy of your own message. 
+            It will have a shortened version of the Online Group name in the
+            subject line (e.g. [groupname]).
+            If you got the message 
+            and it is not in the Online Group's messages folder, contact us.
+            If you did not receive the message, check to make sure the address 
+            you sent it to was correct. 
+            Also check that the email address you sent the message from is 
+            correct by going to your <link tal:attributes="url string:../../contacts/${user/getId}">Participant
+              Details (Your Details)</link> page. 
+            You can change your email address(es) there if neccessary.
+          </answer>
+        </faq>
+        <faq>
+          <question>How do I change my email address?</question>
+          <answer>Go to your <link tal:attributes="url string:../../contacts/${user/getId}">Participant
+              Details page (Your Details)</link>. On this page you can add or remove email address(es). 
+            To add an email address type your new email address in to the 'Add an Email Address' field and click 'Add'. 
+            To remove an email address, tick the 'Remove' box and click 'Update Email'.
+          </answer></faq>
+        
+        
+        <faq>
+          <question>When I post to my Online Group, it tells me
+            I am not a member of the group but I am.</question>
+          
+          <answer>It may be that you have your email settings 
+            configured to your email coming from a different email 
+            address to the one that you use to receive email. The difference
+            may be slight but it will mean that you cannot post (send email to) 
+            Online Groups. If this is the case, go to your 
+          <link tal:attributes="url string:../../contacts/${user/getId}">Participant
+              Details page (Your Details)</link>, add the second email address and 
+            set "send email to this address" off so that you don't get two of every email.
+          </answer>
+        </faq>
+        
+        <faq>
+          
+          <question>On 'Participant Details', what does 'Send email to this Address' mean?</question>
+          
+          <answer>If you tick the 'Send email to this Address' box
+            and click 'Update Email', you will receive all 
+          <link url="../../groups/index.xml">Online Group</link> emails at this address. 
+            Other Candidates in your Online Groups will also be able 
+            to email you at that address from your Participant Details page.
+          </answer>
+        </faq>
+        
+        <faq>
+          
+          <question>On 'Participant Details', why would I switch
+            'Send email to this Address' off?</question>
+          
+          <answer>Some people have their email settings configured 
+            to show their email coming from a different email 
+            address to the one that they use to receive email. The difference
+            may be slight but it will mean that you cannot post (send email to) 
+            Online Groups. If this is the case, add the second email address and 
+            set "send email to this address" off so that you don't get two of every email.
+          </answer>
+        </faq>
+      </faqs>
+    </content>
+  </output>
+</root>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" >
+  <output>
+    <content>
+      <heading1>
+        Roles in Online Groups
+      </heading1>
+      <paragraph>
+        Online Groups require adequate support, if they are to flourish. That support involves a variety of roles, interacting with each other and each attending to a particular aspect of support for the online group.
+        </paragraph>    
+      <paragraph>
+        It is important that all participants in the project know who is in each role and what their responsibilities in that role are.
+        </paragraph>        
+      <paragraph>
+        There are no universally accepted definitions for roles in online groups. The definitions presented here have been developed by OnlineGroups.Net.
+        </paragraph>
+      <paragraph>
+        The roles in an online group are:
+        </paragraph>
+      
+      <bulletlist>
+        <listitem>
+          <link url="#participant">Participant</link>
+          </listitem>
+        <listitem>
+          <link url="#owner">Owner</link>
+          </listitem>
+        <listitem>
+          <link url="#administrator">Administrator</link>
+          </listitem>
+        <listitem>
+          <link url="#participation_coach">Participation Coach</link>
+          </listitem>
+        <listitem>
+          <link url="#consultant">Online Groups Consultant</link>
+          </listitem>
+        
+        </bulletlist>
+      
+      <heading2 id="participant">
+        Participant
+        </heading2>
+      <paragraph>
+        All members of an online group are participants. Participants participate when they perceive some current or future benefit to them in doing so.
+        Some participants merely "be" in the group. Some may not even know that they are in the group. Others pay some higher level of attention to activity in the group.
+        </paragraph>
+      <paragraph>
+        Active participants contribute to the activity in the group. They advance ideas or information, ask and answer questions, add to each other's answers, provide alternative answers and acknowledge each other.
+        </paragraph>
+      <paragraph>
+        Participants may be the staff, students or customers of the Owner or may be members of the public. As well as benefitting the participants themselves, participation benefits the Owner.
+        </paragraph>
+      
+      <heading2 id="owner">
+        Owner
+        </heading2>
+      <paragraph>
+        The Owner is the person or organisation that has commissioned the 
+        establishment of the online group in order to achieve particular benefits.
+        When the owner is an organisation, one person represents the organisation.
+        Along with the Participants, 
+        the Owner is a key stakeholder in the project. 
+        When the participants participate, the Owner benefits and 
+        the participants benefit. 
+        The Owner has the authority to initiate and to terminate the Online Group project.
+        </paragraph>   
+      
+      <paragraph>
+        Online Groups are not and can not be democracies. One person 
+        always has the administrator's password. It is important that 
+        people know who that is and who they are accountable to. 
+        Even if the group itself was, nominally the owner, without a 
+        very clearly defined constitution and decision-making process, 
+        any real process to make major decisions could quickly subsume 
+        getting on with the intended business of the group.
+        </paragraph>
+      
+      <paragraph>
+        The Participation Coach and Administrator are accountable to the Owner.
+        </paragraph>
+      
+      
+      
+      
+      <heading3>
+        Goal
+        </heading3>
+      <paragraph>
+        The goal of the Owner is to ensure that the online groups achieves its purpose, both for the participants and the Owner.
+        </paragraph>
+      
+      
+      
+      <heading3>
+        Tasks
+        </heading3>
+      <paragraph>
+        The tasks of the owner are:
+        </paragraph>
+      <bulletlist>
+        <listitem>           
+          ensure that the Participation Coach is resourced and supported in their role
+          </listitem>
+        <listitem>ensure that the Participation Coach is actively carrying out their role
+          </listitem>
+        <listitem>
+          participate in periodic (at least annual) participation development reviews
+          </listitem>
+        
+        </bulletlist>
+      
+      
+      <heading2 id="administrator">
+        Administrator
+        </heading2>
+      <paragraph>
+        The Administrator carries out moves adds and changes to the membership of the group. The Administrator is accountable to the Owner. The role of Administrator is often taken by the Participation Coach.
+        </paragraph>    
+      
+      <heading2 id="participation_coach">
+        Participation Coach
+        </heading2>
+      
+      <paragraph>
+        All <link url="http://onlinegroups.net">OnlineGroups.Net</link>
+        online groups have a designated Participation Coach.
+        The Participation Coach initiates and encourages effective participation
+        in line with the purpose and participation protocol of the online group.
+        All members of an online group can contribute to participation coaching.
+        </paragraph>
+      <paragraph>
+        The Participation Coach:
+        </paragraph>
+      <bulletlist>
+        <listitem>
+          is the person who is most comfortable being in the Online Group 
+          </listitem>
+        <listitem>    
+          assists the other members to become as comfortable in the Online Group as they are 
+          </listitem>
+        <listitem>    
+          acts as "Keeper of the Faith" and maintains a vision of an Online 
+          Group that successfully achieves its purpose 
+          </listitem>
+        <listitem>    
+          is not a "Facilitator" of group process or leader of task-oriented activities - 
+          their focus is limited to effective participation in the Online Group 
+          </listitem>    
+        </bulletlist> 
+      <heading3>
+        Goal
+        </heading3>
+      <paragraph>
+        The goal of the Participation Coach is for all participants to 
+        participate in line with the purpose of the online group.
+        </paragraph>
+      <heading3>
+        Tasks
+        </heading3>
+      <paragraph>
+        The tasks of the Participation Coach are to:
+        </paragraph>
+      <bulletlist>
+        <listitem>
+          initiate participation
+          </listitem>
+        <listitem>
+          coach participant in effective participation
+          </listitem>
+        <listitem>
+          conduct regular participation development reviews
+          </listitem>
+        </bulletlist> 
+      <paragraph>
+        When recruiting a Participation Coach, 
+        it is important to make sure that they understand the role and the support that will be available to them in it.
+        </paragraph>
+      <heading3>
+        Support for Participation Coaches
+        </heading3> 
+      <paragraph>
+        Participation Coaches in OnlineGroups.Net online groups 
+        <link url="http://onlinegroups.net/onlinegroups/services/participation">can arrange</link>
+        to join <link url="http://onlinegroups.net/groups/coachus">Coachus</link>,
+        the online Community of Practice for Participation Coaches. When recruiting a Participation Coach, 
+        it is important to make sure that they understand the role and the support that will be available to them in it.
+        </paragraph>
+      
+      <heading3>
+        Selection Criteria
+        </heading3>
+      <paragraph>
+        The selection criteria for the role Participation Coach are:
+        </paragraph>        
+      <bulletlist>
+        <listitem>
+          has or is able to develop strong relationships with most 
+          group members
+          </listitem>
+        <listitem>
+          is (or is likely to quickly become) comfortable participating 
+          in the Online Group
+          </listitem>
+        <listitem>
+          is available, willing and resourced to take on the role
+          </listitem>
+        </bulletlist> 
+      
+      <heading2 id="consultant">
+        Online Groups Consultant
+        </heading2>
+      <paragraph>
+        The Online Groups Consultant acts as an assistant and adviser to the Owner and Participation Coach.
+        
+        </paragraph>
+      <heading3>
+        Goal
+        </heading3>
+      <paragraph>
+        The goal of the Online Groups Consultant is the active and effective functioning of the other participants.
+        </paragraph>
+      <heading3>Tasks
+        </heading3>
+      <paragraph>
+        The tasks of the Online Groups Consultant are to:
+        </paragraph>
+      
+      <bulletlist>
+        <listitem>
+          conduct regular participation development reviews with the Participation Coach
+          </listitem>
+        <listitem>
+          conduct periodic participation development reviews with the Owner
+          </listitem>
+        <listitem>
+          provide regular participation reports to the Participation Coach and Owner
+          </listitem>
+        
+        </bulletlist> 
+      <heading2>
+        Other Roles in Online Groups
+        </heading2>
+      <bulletlist>
+        <listitem>
+          Moderator – receives all posts submitted by participants and decides whether or not to distribute the posts via the online group
+          </listitem>
+        <listitem>
+          Subject Matter Expert – shares domain knowledge in the online group
+          </listitem>
+        </bulletlist> 
+      </content>
+    </output>
+</root>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <output>
+    <content>
+      <heading1>User Guide</heading1>
+      <paragraph>
+        This User Guide aims to help you gain 
+        the maximum benefit from Online Groups.
+      </paragraph>
+      <paragraph>
+        This Section contains information about:
+      </paragraph>
+      <bulletlist>
+        <listitem><link url="benefits">Benefits of Online Groups</link></listitem>
+        <listitem><link url="how_ogs_work">How Online Groups Work</link></listitem>
+        <listitem><link url="get_started">Getting Started</link></listitem>
+        <listitem><link url="basic_participation">Basic Participation</link></listitem>
+        <listitem><link url="effective_participation">Effective Participation</link></listitem>
+        <listitem><link url="faqs">Frequently Asked Questions</link></listitem>
+        <listitem><link url="participation_coaching">Participation Coaching</link></listitem>
+      </bulletlist>
+      <paragraph>
+        Please provide <link url="mailto:feedback@onlinegroups.net">
+          feedback to OnlineGroups.Net</link> about 
+        this User Guide and your experience
+        with this Online Groups site.
+      </paragraph>
+    </content>
+  </output>
+</root>
+

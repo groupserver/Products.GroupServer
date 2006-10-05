@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <output>
+    <content>
+      <heading1>
+        Administration Guide
+      </heading1>
+      
+      <paragraph>A guide to establishing and supporting successful online groups.</paragraph>
+      
+      <paragraph>
+        Most online groups fail. Either no participation occurs at all or the 
+        participation that occurs does not achieve the intended purpose of the group.
+        The chances that relevant participation will occur can be increased by 
+        adequate <link url="design">design</link> and support and by having a clear <link url="roles">role</link> for participant 
+        in the project. Even with both of these, participation development is often slow.
+      </paragraph>
+    </content>
+  </output>
+</root>
