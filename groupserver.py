@@ -42,11 +42,26 @@ class GroupserverSite( OrderedFolder ):
         """ Return the default view
         
         """
-        request = self.REQUEST
-        redirect = request.RESPONSE.redirect
+        redirect = self.REQUEST.RESPONSE.redirect
+                
+        redirectFile = ''
+        # ---=mpj17=---
+        # If there is a content_en.xml file, then we are working with a
+        #   Five GSContent folder, so call index.html. Otherwise call
+        #   the ol' Zope 2 index.xml page template
+        if (hasattr(self.aq_explicit, 'content_en.xml') 
+            or hasattr(self.aq_explicit, 'content_en')):
+            redirectFile = 'index.html'
+        else:
+            redirectFile = 'index.xml'
         
-        return redirect(request.URL1+'/index.xml?'+createRequestFromRequest(request),
-                        lock=1)
+        # ---=mpj17=--- Now construct the URL
+        url = '/'.join((self.REQUEST.URL1, redirectFile))
+        request =  createRequestFromRequest(self.REQUEST)
+        if len(request) > 0:
+            url = '?'.join((url, request))
+        
+        return redirect(url, lock=1)
     
     def standard_error_message( self, **kw ):
         """ Override the default standard_error_message.
