@@ -37,6 +37,17 @@ class GroupserverSite( OrderedFolder ):
             resp.setCookie(cookie_name, cookie_value, path=self.cookie_authentication.getCookiePath(), expires=expires)
         else:
             resp.setCookie(cookie_name, cookie_value, path=self.cookie_authentication.getCookiePath())
+
+    def getRealContext(self):
+        request = self.REQUEST
+        path = tuple(filter(None, urlparse.urlsplit(request.URL1)[2].split('/')))
+        virtual_path = request.get('VirtualRootPhysicalPath', ())
+        
+        path = virtual_path + path
+        
+        context = self.unrestrictedTraverse(path)
+        
+        return context
         
     def index_html( self ):
         """ Return the default view
@@ -49,12 +60,14 @@ class GroupserverSite( OrderedFolder ):
         # If there is a content_en.xml file, then we are working with a
         #   Five GSContent folder, so call index.html. Otherwise call
         #   the ol' Zope 2 index.xml page template
-        if (hasattr(self.aq_explicit, 'content_en.xml') 
-            or hasattr(self.aq_explicit, 'content_en')):
+        context = self.getRealContext()
+
+        if (hasattr(context.aq_explicit, 'content_en.xml') 
+            or hasattr(context.aq_explicit, 'content_en')):
             redirectFile = 'index.html'
         else:
             redirectFile = 'index.xml'
-        
+
         # ---=mpj17=--- Now construct the URL
         url = '/'.join((self.REQUEST.URL1, redirectFile))
         request =  createRequestFromRequest(self.REQUEST)
@@ -68,16 +81,10 @@ class GroupserverSite( OrderedFolder ):
         
         """
         request = self.REQUEST
-        path = tuple(filter(None, urlparse.urlsplit(request.URL1)[2].split('/')))
-        virtual_path = request.get('VirtualRootPhysicalPath', ())
-        
-        path = virtual_path + path
-        
-        context = self.unrestrictedTraverse(path)
-        
+        context = self.getRealContext()
         if kw['error_type'] == 'NotFound':
             if hasattr(context, 'notfound_message.xml'):
-                self.REQUEST.RESPONSE.redirect('%s/notfound_message.xml' % request.URL1, lock=1)
+                request.RESPONSE.redirect('%s/notfound_message.xml' % request.URL1, lock=1)
             else:
                 raise
         # ignore these types
@@ -85,7 +92,7 @@ class GroupserverSite( OrderedFolder ):
             pass
         else:
             if hasattr(self, 'unexpected_message.xml'):
-                self.REQUEST.RESPONSE.redirect('%s/unexpected_message.xml' % request.URL1, lock=1)
+                request.RESPONSE.redirect('%s/unexpected_message.xml' % request.URL1, lock=1)
             else:
                 raise
         
