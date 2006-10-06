@@ -16,7 +16,7 @@ def tagProcess(tagsString):
     #   use the regular-expression library.
     retval = []
     
-    tagString = tagString.replace('\n', ' ')
+    tagsString = tagsString.replace('\n', ' ')
     if len(tagsString) == 0:
         return retval
 
