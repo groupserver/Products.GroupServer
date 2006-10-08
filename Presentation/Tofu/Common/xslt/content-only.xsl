@@ -13,7 +13,7 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal">
 
   <xsl:output encoding="UTF-8" method="xml" standalone="no" version="1.0"
-    omit-xml-declaration="no"/>
+    omit-xml-declaration="yes"/>
 
   <xsl:template match="root">
       <xsl:apply-templates />
