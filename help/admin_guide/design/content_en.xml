@@ -22,12 +22,14 @@
       </paragraph>
       
       <paragraph>
-        The Design defines the purpose of the online group, and its main boundaries:
+        The Design defines the purpose of the online group, and its main
+        boundaries:
       </paragraph>
       
       <bulletlist>
         <listitem>
-        <bold>Membership</bold>. Who can be in the group and what their roles are.
+        <bold>Membership</bold>. Who can be in the group and what their 
+          roles are.
         </listitem>
       <listitem>
         <bold>Participation Protocol</bold>. What is ok in the online group.
@@ -35,8 +37,9 @@
       </bulletlist>
       
       <paragraph>
-        The Design must be based on an understanding of the nature and requirements of the 
-        (Real Life) group that the Online Group is for. If this understanding is not present, 
+        The Design must be based on an understanding of the nature and 
+        requirements of the (real life) group that the Online Group is for.
+        If this understanding is not present, 
         an Assessment must be carried out. If the OnlineGroups.Net Consultant and Online Group 
         Owner, together have that understanding, then the documentation of  it that will be 
         implicit in this Design will be sufficient documentation. It is important that the Design
@@ -52,7 +55,7 @@
       <paragraph>
         Is it important that the participants know who convened
         the establishment of the Online Group. See 
-      <link url="../roles/index.xml#owner">Roles in Online Groups</link>
+      <link url="../roles/#owner">Roles in Online Groups</link>
         for more information.
       </paragraph>
       
@@ -69,7 +72,8 @@
       </paragraph>
       <paragraph>
         The Real Life Group should be named in such a way that it can be used to 
-        complete the statement "[OnlineGroupName] is an Online Group for ...".
+        complete the statement "[OnlineGroupName] is an Online Group 
+        for&#8230;".
       </paragraph>
       
       <heading2>
@@ -120,7 +124,7 @@
       <paragraph>
         Each Online Group has a designated 
         Participation Coach. See 
-      <link url="../roles/index.xml#participation_coach">Roles in Online Groups</link>
+      <link url="../roles/#participation_coach">Roles in Online Groups</link>
         for more information.
       </paragraph>
       
