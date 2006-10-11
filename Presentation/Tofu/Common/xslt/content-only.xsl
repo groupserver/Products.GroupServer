@@ -28,5 +28,6 @@
   </xsl:template>
   
   <xsl:include href="file://layout"/>
+  <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
   
 </xsl:stylesheet>
