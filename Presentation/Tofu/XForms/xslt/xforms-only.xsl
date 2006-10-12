@@ -14,7 +14,7 @@
   <xsl:include href="file://xforms"/>  
   
   <xsl:template match="xf:model">
-    <input type="hidden" name="__submit__" value="{@id}" /> 
+    <!--input type="hidden" name="__submit__" value="{@id}" /--> 
     <input type="hidden" name="__models__" value="{@id}" />
     <xsl:apply-templates/>
   </xsl:template>
