@@ -1,37 +1,47 @@
-<?xml version="1.0" ?>
-<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
-  xmlns:metal="http://xml.zope.org/namespaces/metal">
-  <output>
-    <content>
-      <heading1>Help</heading1>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>OnlineGroups.Net Help</title>
+    <meta property="dc:created">October 2006</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Michael JasonSmith</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="groupserver-manual">
+    <section>
+      <h>Help</h>
 
-      <paragraph>You can get help with using this site from
-        <link url="manual">the OnlineGroups.Net
-          manual,</link> while assistance on participating in online
-        groups is available from 
-        <link title="The OnlineGroups.Net User Guide"
-          url="participation">the OnlineGroups.Net User Guide.</link>
-      </paragraph>
-
+      <p>You can get help with using this site from
+        <cite href="manual">The OnlineGroups.Net Manual.</cite>
+        <a href="/help/manual/#groupserver-changing-message-delivery-settings" class="helpLink">I am a fish.</a>
+        In addition, assistance on participating in online groups is
+        available from 
+        <cite href="participation">The OnlineGroups.Net User Guide.</cite>
+      </p>
+      
       <tal:block
         tal:define="divisionObject python:here.Scripts.get.division_object();
         divisionName python:divisionObject and (divisionObject.getId() != 'ogs' and '%s_' % divisionObject.getId()) or '';
         supportEmail python:'%ssupport@onlinegroups.net' % divisionName"
         tal:condition="python:'Authenticated' in user.getRolesInContext(divisionObject)">
-        <paragraph>
+        <p>
           If you have a question that is not answered in this Help section, 
           please raise it in 
-          <link title="Groups Homepage" 
-            url="/groups">your online groups,</link>
+          <a title="Groups Homepage" href="/groups">your online groups,</a>
           or directly with the Participation Coach in the relevant
           group.
           If your question is still unanswered, you 
           can address it to
-          <link class="emaillink" title="Email to the support group"
-            tal:attributes="url string:mailto:${supportEmail}" 
+          <a class="emaillink" title="Email to the support group"
+            tal:attributes="href string:mailto:${supportEmail}" 
             tal:content="supportEmail"/>.
-        </paragraph>
+        </p>
       </tal:block>
-    </content>
-  </output>
-</root>
+    </section>
+  </body>
+</html>
