@@ -18,6 +18,14 @@
       <h>User Manual</h>
       <ul id="contents">
         <li href="#groupserver-intro">Introduction</li>
+        <li><cite href="#groupserver-getting-help">Getting Help</cite>
+          <ul>
+            <li href="#groupserver-getting-help-from-the-manual">Getting 
+              Help from the User Manual</li>
+            <li href="#groupserver-getting-help-from-context">Getting
+              Context-Sensitive Help</li>
+          </ul>
+        </li>
         <li href="#groupserver-registering-as-a-new-user">Registering as 
           a New User</li>
         <li>
@@ -174,12 +182,84 @@
           This manual is a guide to OnlineGroups.Net, the system that runs
           <cite>OnlineGroups.net</cite>.
           It covers 
-          <a href="#groupserver-registering-as-a-new-user">Registering
+          <a href="#groupserver-getting-help">getting help,</a>
+          <a href="#groupserver-registering-as-a-new-user">registering
             as a new user</a>,
           <a href="#groupserver-log-in-to-groupserver">logging in</a>
           to OnlineGroups.Net,
           <a href="#groupserver-profiles">managing profiles</a>,
         </p>
+      </section>
+
+      <section id="groupserver-getting-help">
+        <h id="groupserver-getting-help-t">Getting Help</h>
+        <p>There are four ways of getting help at OnlineGroups.Net:
+          <a title="Getting Help from the User Manual" 
+            href="#groupserver-getting-help-from-the-manual">from the user 
+            manual,</a> and
+          <a title="Getting Context-Sensitive Help" 
+            href="#groupserver-getting-help-from-context">from 
+            context-sensitive help.</a>
+          <!--a title="Getting Help from the Participation Coach" 
+            href="#groupserver-getting-help-from-the-participation-coach">from 
+            the participation coach in a group,</a>
+          and
+          <a title="Getting Help from OnlineGroups.Net Support" 
+            href="groupserver-getting-help-from-onlinegroups-support">from
+             OnlineGroups.Net support.</a-->
+        </p>
+        
+        <section id="groupserver-getting-help-from-the-manual">
+          <h id="groupserver-getting-help-from-the-manual-t">Getting Help
+            from the User Manual</h>
+          
+          <p>You can access the <cite>OnlineGroups.Net User Manual</cite>
+            from any page on OnlineGroups.Net.
+            To access help, carry out the following.</p>
+          <ol>
+            <li>Click on <samp class="link">Help</samp>, in the main 
+              menu-bar at the top of every page.
+              The <cite>Help</cite> page will open.</li>
+            <li>Click on <samp class="link">User Manual</samp>.
+              The <cite>OnlineGroups.Net User Manual</cite> will open.</li>
+          </ol>
+        </section>
+        
+        <section id="groupserver-getting-help-from-context">
+          <h id="groupserver-getting-help-from-context-t">Getting 
+            Context-Sensitive Help</h>
+          
+          <p>Help that relates to a particular situation
+            &#8212; or <span class="wordasword">context</span> &#8212;
+            is avaliable on many pages.
+            To access the context-sensitve help, carry out the following. 
+          </p>
+          <ol>
+            <li>Locate the link to the context-sensitive help, which looks
+              like <span class="helpLink">[?]</span>.
+              The link will be next to the item that the help 
+              applies to.</li>
+            <li>Click on the help-link.
+              A window, containing the contenxt-sensitive help, will appear.
+              This window may be moved, and closed, as needed.</li>
+          </ol>
+          <p>To view the section of the 
+            <cite>OnlineGroups.Net User Manual</cite> that the 
+            context-sensitive help comes from, click on 
+            <samp class="link">Read more</samp> at  the bottom of the 
+            help-window.</p> 
+        </section>
+        
+        <!--section id="groupserver-getting-help-from-the-participation-coach">
+          <h id="groupserver-getting-help-from-the-participation-coach-t">Getting 
+            Help from the Participation Coach</h>
+        </section>
+        
+        <section id="groupserver-getting-help-from-onlinegroups-support">
+          <h id="groupserver-getting-help-from-onlinegroups-support-t">Getting
+            Help from OnlineGroups.Net Support</h>
+          
+        </section-->
       </section>
       
       <section id="groupserver-registering-as-a-new-user">

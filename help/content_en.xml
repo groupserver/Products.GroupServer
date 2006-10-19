@@ -17,8 +17,10 @@
       <h>Help</h>
 
       <p>You can get help with using this site from
-        <cite href="manual">The OnlineGroups.Net Manual.</cite>
-        <a href="/help/manual/#groupserver-changing-message-delivery-settings" class="helpLink">I am a fish.</a>
+        <cite href="manual">The OnlineGroups.Net Manual,</cite>
+        or from the context-sensitive help-links:
+        <a href="/help/manual/#groupserver-getting-help-from-context"
+          class="helpLink">[?]</a>.
         In addition, assistance on participating in online groups is
         available from 
         <cite href="participation">The OnlineGroups.Net User Guide.</cite>
