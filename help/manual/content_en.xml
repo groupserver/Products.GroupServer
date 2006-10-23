@@ -250,16 +250,48 @@
             help-window.</p> 
         </section>
         
-        <!--section id="groupserver-getting-help-from-the-participation-coach">
+        <section id="groupserver-getting-help-from-the-participation-coach">
           <h id="groupserver-getting-help-from-the-participation-coach-t">Getting 
             Help from the Participation Coach</h>
+          
+          <p>The participation coach is the person responsible for 
+            assisting group members with the interaction with 
+            each other and OnlineGroups.Net.
+            To contact the participation coach, carry out the following 
+            tasks.</p>
+          
+          <ol>
+            <li>
+              View the group (see
+              <cite href="#groupserver-viewing-a-group">Viewing a 
+                Group</cite>).
+            </li>
+            <li>View the profile of the participation coach, by clicking
+              on the name of the participation coach, listed
+              in the <cite>Members</cite> section of the group 
+              homepage.</li>
+            <li>Contact the participation coach, by clicking on the link
+              listed in the <cite>Email addresses</cite> section of the
+              coache's profile.</li>
+          </ol>
         </section>
         
         <section id="groupserver-getting-help-from-onlinegroups-support">
           <h id="groupserver-getting-help-from-onlinegroups-support-t">Getting
             Help from OnlineGroups.Net Support</h>
           
-        </section-->
+          <p>You can get help from OnlineGroups.Net by sending an email
+            message, detailing your problem, to 
+            <code href="mailto:support@onlinegroups.net"
+              class="email">support@onlinegroups.net.</code>
+            Your message should contain a description of what is not
+            happening, what you think <em>should</em> happen, and which
+            OnlineGroups.Net site you are using.
+            If possible, supplying the email addresses you use, and your
+            user <acronym title="identifier">ID</acronym>, would be helpful
+            to OnlineGroups.Net.
+          </p>
+        </section>
       </section>
       
       <section id="groupserver-registering-as-a-new-user">

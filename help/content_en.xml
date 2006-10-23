@@ -36,12 +36,17 @@
           please raise it in 
           <a title="Groups Homepage" href="/groups">your online groups,</a>
           or directly with the Participation Coach in the relevant
-          group.
+          group
+          <a href="/help/manual/#groupserver-getting-help-from-the-participation-coach"
+            class="helpLink">[?]</a>.
           If your question is still unanswered, you 
           can address it to
           <a class="emaillink" title="Email to the support group"
             tal:attributes="href string:mailto:${supportEmail}" 
-            tal:content="supportEmail"/>.
+            tal:content="supportEmail"/>, or from 
+          OnlineGroups.Net
+          <a href="/help/manual/#groupserver-getting-help-from-onlinegroups-support"
+          class="helpLink">[?]</a>.
         </p>
       </tal:block>
     </section>
