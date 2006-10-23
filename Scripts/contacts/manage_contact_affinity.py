@@ -7,6 +7,10 @@
 ##parameters=user
 ##title=
 ##
+
+# We can't do contact affinities at the moment, it generates too many writes!
+return 
+
 me = context.REQUEST.AUTHENTICATED_USER
 
 site_root = context.site_root()
