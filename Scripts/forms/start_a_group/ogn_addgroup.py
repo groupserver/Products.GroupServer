@@ -58,15 +58,14 @@ group.manage_addProduct['XWFMailingListManager'].manage_addXWFVirtualMailingList
 group.messages.manage_changeProperties(xwf_mailing_list_manager_path='ListManager',
                                        xwf_mailing_list_ids=[groupId])
 
-if templateId:
-    group.manage_clone(getattr(context.CodeTemplates.group, 'index.xml'),
-                       'index.xml')
-    group.manage_addProperty('group_template', templateId, 'string')
-    if create_charter:
-        group.manage_addFolder('charter', 'Charter')
-        charterIndex = getattr(context.CodeTemplates.group.charter,
-                               'index.xml')
-        group.charter.manage_clone(charterIndex, 'index.xml')
+group.manage_clone(getattr(context.CodeTemplates.group, 'index.xml'),
+                   'index.xml')
+group.manage_addProperty('group_template', templateId, 'string')
+if create_charter:
+    group.manage_addFolder('charter', 'Charter')
+    charterIndex = getattr(context.CodeTemplates.group.charter,
+                           'index.xml')
+    group.charter.manage_clone(charterIndex, 'index.xml')
         
 # create a members folder
 group.manage_addFolder('members', 'Members')
@@ -80,7 +79,7 @@ emailSettings = getattr(site_root.CodeTemplates.group.email_settings,
 group.email_settings.manage_clone(emailSettings, 'index.xml')
 
 # Create the chat interface marker
-if templateId and templateId == 'standard':
+if templateId == 'standard':
     interfaces = ('Products.XWFChat.interfaces.IGSChat',
                   'Products.XWFChat.interfaces.IGSGroupFolder')
     context.add_marker_interfaces(group, interfaces)
@@ -124,8 +123,18 @@ groupList = getattr(site_root.ListManager, group.getId())
 assert groupList
 groupList.manage_addProperty('siteId', division.getId(), 'string')
 
-
 user = context.REQUEST.AUTHENTICATED_USER
+
+# Add the "mailinlist_members" script to the mailing list object, if we
+#    are creating an announcement group.
+if templateId == 'announcement':
+    assert(hasattr(context.CodeTemplates.ListManager, 
+           'mailinlist_members'))
+    groupList.manage_clone(getattr(context.CodeTemplates.ListManager, 
+                                   'mailinlist_members'),
+                           'mailinlist_members') 
+    groupList.manage_addProperty('posting_members', user.getId(), 'lines')
+
 user.add_groupWithNotification('%s_member' % groupId)
 group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
 
