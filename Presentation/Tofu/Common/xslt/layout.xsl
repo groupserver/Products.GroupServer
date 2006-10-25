@@ -21,6 +21,14 @@
     </div>
   </xsl:template>
   
+  <xsl:template match="pparagraph">
+    &#160;
+  </xsl:template>
+
+  <xsl:template match="pheading1">
+    &#160;
+  </xsl:template>
+  
   <xsl:template match="heading1 | h1">
     <h1>
       <xsl:apply-templates select="@id | @class"/>
