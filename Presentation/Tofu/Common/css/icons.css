@@ -103,7 +103,7 @@ background-image: url("/Presentation/Tofu/Common/images/16x16/system-user.gif");
 .group-list {
 list-style-image: url("/Presentation/Tofu/Common/images/16x16/system-users.gif"); 
 }
-.helplink, #Help-menu-link {
+#Help-menu-link {
   background-image: url("/Presentation/Tofu/Common/images/16x16/help-browser.gif");
 }
 .network-waiting {

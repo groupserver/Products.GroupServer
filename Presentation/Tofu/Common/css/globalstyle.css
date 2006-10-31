@@ -103,17 +103,3 @@ p {
   border-left: 1em solid white;
   border-right: 1em solid white;
 }
-
-
-.helpLink {
-  font-size: small;
-  font-weight: medium;
-  color: #aaaaaa;
-  background-color: inherit;
-  text-decoration: underline;
-}
-
-.helpLink:hover {
-  cursor: pointer;
-  font-weight: bold;
-}

@@ -454,10 +454,17 @@ form {
 }
 
 .helpLink {
-  font-size: x-small;
-  font-weight: normal;
+  font-size: small;
+  font-weight: medium;
   color: #aaaaaa;
   background-color: inherit;
+  background-image: none;
+  text-decoration: underline;
+}
+
+.helpLink:hover {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 ul#resultsnav {
