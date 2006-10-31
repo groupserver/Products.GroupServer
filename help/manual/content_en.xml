@@ -240,8 +240,9 @@
               The link will be next to the item that the help 
               applies to.</li>
             <li>Click on the help-link.
-              A window, containing the contenxt-sensitive help, will appear.
-              This window may be moved, and closed, as needed.</li>
+              The context-sensitive help will appear on the right of
+              the page.
+              The help may be closed when no longer needed.</li>
           </ol>
           <p>To view the section of the 
             <cite>OnlineGroups.Net User Manual</cite> that the 
