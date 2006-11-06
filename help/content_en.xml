@@ -12,18 +12,26 @@
     <link rel="stylesheet" type="text/css" 
       href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
   </head>
-  <body id="groupserver-manual">
+  <body id="groupserver-manual"
+    tal:define="siteName python:options['siteName'];">
     <section>
       <h>Help</h>
 
-      <p>You can get help with using this site from
-        <cite href="manual">The OnlineGroups.Net Manual,</cite>
+      <p>You can get help with using 
+        <span class="site" 
+          tal:content="siteName">this site</span> 
+        from
+        <cite href="manual">The 
+          <span class="site" tal:content="siteName">OnlineGroups.Net</span> 
+          User Manual,</cite>
         or from the context-sensitive help-links:
         <a href="/help/manual/#groupserver-getting-help-from-context"
           class="helpLink">[?]</a>.
         In addition, assistance on participating in online groups is
         available from 
-        <cite href="participation">The OnlineGroups.Net User Guide.</cite>
+        <cite href="participation">The
+          <span class="site" tal:content="siteName">OnlineGroups.Net</span>
+          User Guide.</cite>
       </p>
       
       <tal:block

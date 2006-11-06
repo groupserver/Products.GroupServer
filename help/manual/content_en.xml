@@ -13,9 +13,11 @@
     <link rel="stylesheet" type="text/css" 
       href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
   </head>
-  <body id="groupserver-manual">
+  <body id="groupserver-manual"
+    tal:define="siteName python:options['siteName'];">
     <section>
-      <h>User Manual</h>
+      <h><span class="site" tal:content="siteName">OnlineGroups.Net</span> 
+        User Manual</h>
       <ul id="contents">
         <li href="#groupserver-intro">Introduction</li>
         <li><cite href="#groupserver-getting-help">Getting Help</cite>
@@ -26,8 +28,8 @@
               Context-Sensitive Help</li>
           </ul>
         </li>
-        <li href="#groupserver-registering-as-a-new-user">Registering as 
-          a New User</li>
+        <!--li href="#groupserver-registering-as-a-new-user">Registering as 
+          a New User</li-->
         <li>
           <cite href="#groupserver-log-in-to-groupserver">Logging In to 
             OnlineGroups.Net</cite>
@@ -179,49 +181,61 @@
         <h id="groupserver-intro-t">Introduction</h>
         
         <p>
-          This manual is a guide to OnlineGroups.Net, the system that runs
-          <cite>OnlineGroups.net</cite>.
+          This manual is a guide to the system that runs
+          <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
           It covers 
           <a href="#groupserver-getting-help">getting help,</a>
-          <a href="#groupserver-registering-as-a-new-user">registering
-            as a new user</a>,
+          <!--a href="#groupserver-registering-as-a-new-user">registering
+            as a new user,</a-->
           <a href="#groupserver-log-in-to-groupserver">logging in</a>
-          to OnlineGroups.Net,
+          to 
+          <span class="site" tal:content="siteName">OnlineGroups.Net</span>
+          and
           <a href="#groupserver-profiles">managing profiles</a>,
+          <a href="#groupserver-managing-groups">managing groups</a>, and 
+          <a href="#groupserver-participating-online">participating online</a>.
         </p>
       </section>
 
       <section id="groupserver-getting-help">
         <h id="groupserver-getting-help-t">Getting Help</h>
-        <p>There are four ways of getting help at OnlineGroups.Net:
+        <p>There are four ways of getting help at 
+          <span class="site" tal:content="siteName">OnlineGroups.Net</span>:
           <a title="Getting Help from the User Manual" 
             href="#groupserver-getting-help-from-the-manual">from the user 
             manual,</a> and
           <a title="Getting Context-Sensitive Help" 
             href="#groupserver-getting-help-from-context">from 
             context-sensitive help.</a>
-          <!--a title="Getting Help from the Participation Coach" 
+          <a title="Getting Help from the Participation Coach" 
             href="#groupserver-getting-help-from-the-participation-coach">from 
             the participation coach in a group,</a>
           and
           <a title="Getting Help from OnlineGroups.Net Support" 
-            href="groupserver-getting-help-from-onlinegroups-support">from
-             OnlineGroups.Net support.</a-->
+            href="#groupserver-getting-help-from-onlinegroups-support">from
+             OnlineGroups.Net support.</a>
         </p>
         
         <section id="groupserver-getting-help-from-the-manual">
           <h id="groupserver-getting-help-from-the-manual-t">Getting Help
             from the User Manual</h>
           
-          <p>You can access the <cite>OnlineGroups.Net User Manual</cite>
-            from any page on OnlineGroups.Net.
+          <p>You can access
+            <cite>The
+              <span class="site" tal:content="siteName">OnlineGroups.Net</span>
+              User Manual</cite>
+            from any page on 
+            <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
             To access help, carry out the following.</p>
           <ol>
             <li>Click on <samp class="link">Help</samp>, in the main 
               menu-bar at the top of every page.
               The <cite>Help</cite> page will open.</li>
             <li>Click on <samp class="link">User Manual</samp>.
-              The <cite>OnlineGroups.Net User Manual</cite> will open.</li>
+              <cite>The 
+                <span class="site" tal:content="siteName">OnlineGroups.Net</span>
+                User Manual</cite>
+              will open.</li>
           </ol>
         </section>
         
@@ -244,8 +258,8 @@
               the page.
               The help may be closed when no longer needed.</li>
           </ol>
-          <p>To view the section of the 
-            <cite>OnlineGroups.Net User Manual</cite> that the 
+          <p>To view the section of  
+            <cite>The <span class="site" tal:content="siteName">OnlineGroups.Net</span> User Manual</cite> that the 
             context-sensitive help comes from, click on 
             <samp class="link">Read more</samp> at  the bottom of the 
             help-window.</p> 
@@ -257,7 +271,7 @@
           
           <p>The participation coach is the person responsible for 
             assisting group members with the interaction with 
-            each other and OnlineGroups.Net.
+            each other and <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
             To contact the participation coach, carry out the following 
             tasks.</p>
           
@@ -281,8 +295,10 @@
           <h id="groupserver-getting-help-from-onlinegroups-support-t">Getting
             Help from OnlineGroups.Net Support</h>
           
-          <p>You can get help from OnlineGroups.Net by sending an email
-            message, detailing your problem, to 
+          <p>You can get help from OnlineGroups.Net &#8212; the company 
+            that runs 
+            <span class="site" tal:content="siteName">OnlineGroups.Net</span>
+            &#8212; by sending an email message, detailing your problem, to 
             <code href="mailto:support@onlinegroups.net"
               class="email">support@onlinegroups.net.</code>
             Your message should contain a description of what is not
@@ -295,7 +311,7 @@
         </section>
       </section>
       
-      <section id="groupserver-registering-as-a-new-user">
+      <!--section id="groupserver-registering-as-a-new-user">
         <h id="groupserver-registering-as-a-new-user-t">
           Registering as a New User
         </h>
@@ -307,7 +323,7 @@
         <ol>
           <li>
             Click on <samp class="link">Register</samp>, on the 
-            OnlineGroups.Net homepage, to open the 
+            <span class="site" tal:content="siteName">OnlineGroups.Net</span> homepage, to open the 
             <cite>Register as a New User</cite> page.
           </li>
           <li>
@@ -322,11 +338,11 @@
           <li>
             Click the <samp class="button">Register</samp> button.
             You will be sent an email message 
-            (a <cite>confirmation request</cite>), by OnlineGroups.Net, which
+            (a <cite>confirmation request</cite>), by <span class="site" tal:content="siteName">OnlineGroups.Net</span>, which
             contains your login details.
           </li>
           <li>
-            Browse to the <cite>OnlineGroups.Net Log In</cite> 
+            Browse to the <cite><span class="site" tal:content="siteName">OnlineGroups.Net</span> Log In</cite> 
             page, by following the a in the email message that has been
             sent to you.
           </li>
@@ -340,23 +356,23 @@
             Click the <samp class="button">Log In</samp> button.
           </li>
         </ol>
-      </section>
+      </section-->
       
       <section id="groupserver-log-in-to-groupserver">
         <h id="groupserver-log-in-to-groupserver-t">
-          Logging In to OnlineGroups.Net
+          Logging In to <span class="site" tal:content="siteName">OnlineGroups.Net</span>
         </h>
         
         <p>
-          Registered users must log in to OnlineGroups.Net to use all the
+          Registered users must log in to <span class="site" tal:content="siteName">OnlineGroups.Net</span> to use all the
           facilities.
-          To log in to OnlineGroups.Net, carry out the following.
+          To log in to <span class="site" tal:content="siteName">OnlineGroups.Net</span>, carry out the following.
         </p>
         
         <ol>
           <li>
             Click on <samp class="link">Log In</samp>, on the 
-            OnlineGroups.Net homepage.
+            <span class="site" tal:content="siteName">OnlineGroups.Net</span> homepage.
             The <cite>Log In</cite> page will open.
           </li>
           <li>
@@ -373,8 +389,9 @@
           <h>Remembering Your Identity</h>
           <p>
             If you select <samp class="button">Remember me</samp>, your
-            identity will be remembered by OnlineGroups.Net, so you will not
-            have to log in next time you visit.
+            identity will be remembered by 
+            <span class="site" tal:content="siteName">OnlineGroups.Net</span>, 
+            so you will not have to log in next time you visit.
             However, you should <strong>not</strong> select this if you
             are using a shared or public computer, such as a computer in
             an e-cafe or library, as your privacy may be compromised.
@@ -387,14 +404,14 @@
           </h>
           
           <p>
-            If you forget your password, OnlineGroups.Net can send you a new
+            If you forget your password, <span class="site" tal:content="siteName">OnlineGroups.Net</span> can send you a new
             password.
             Carry out the following to reset your password.
           </p>
           
           <ol>
             <li>
-              Click on <samp class="link">Log In</samp>, on the OnlineGroups.Net
+              Click on <samp class="link">Log In</samp>, on the <span class="site" tal:content="siteName">OnlineGroups.Net</span>
               homepage.
               The <cite>Log In</cite> page will open.
             </li>
@@ -409,12 +426,12 @@
             <li>
               Click the <samp class="button">Reset</samp> button.
               A message, containing a new password, will be  sent to all email
-              addresses listed with OnlineGroups.Net.
+              addresses listed with <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
             </li>
             <li>
-              Log in to OnlineGroups.Net using your new password
+              Log in to <span class="site" tal:content="siteName">OnlineGroups.Net</span> using your new password
               (see <cite href="#groupserver-log-in-to-groupserver">Logging
-                In to OnlineGroups.Net</cite>).
+                In to <span class="site" tal:content="siteName">OnlineGroups.Net</span></cite>).
             </li>
           </ol>
         </section>
@@ -426,7 +443,7 @@
         </h>
         
         <p>
-          A profile is information kept by OnlineGroups.Net about all users,
+          A profile is information kept by <span class="site" tal:content="siteName">OnlineGroups.Net</span> about all users,
           including you.
           You can
           <a href="#groupserver-viewing-your-profile">view your
@@ -448,13 +465,16 @@
           
           <ol>
             <li>
-              Log in to OnlineGroups.Net (see 
-              <cite href="#groupserver-log-in-to-groupserver">Logging In to
-                OnlineGroups.Net</cite>).
+              Log in to 
+              <span class="site" tal:content="siteName">OnlineGroups.Net</span> 
+              (see <cite href="#groupserver-log-in-to-groupserver">Logging 
+                In to
+                <span class="site" tal:content="siteName">OnlineGroups.Net</span></cite>).
             </li>
             <li>
               Click on your user-name, which is displayed at the 
-              top-right of every OnlineGroups.Net page.
+              top-right of every page on
+              <span class="site" tal:content="siteName">OnlineGroups.Net</span> .
             </li>
           </ol>
           
@@ -496,7 +516,7 @@
               <tr id="groupserver-email-address">
                 <td>Email Addresses</td>
                 <td>The email addresses that you will use with 
-                  <cite>OnlineGroups.Net</cite>.</td>
+                  <cite><span class="site" tal:content="siteName">OnlineGroups.Net</span></cite>.</td>
               </tr>
               <tr id="groupserver-skype">
                 <td><cite>Skype</cite> User ID</td>
@@ -552,9 +572,10 @@
             <a href="#groupserver-profile-changing-your-image">image</a>.
             You can also
             <a href="#groupserver-profile-adding-an-email-address">add
-              email addresses</a> to your profile, and
+              email addresses</a> to your profile.
+            <!--, and
             <a href="#groupserver-changing-the-visibility-of-your-profile">change
-              the parts of your profile that others can see.</a>
+              the parts of your profile that others can see.</a-->
           </p>
           
           <section id="groupserver-profile-changing-your-password">
@@ -713,12 +734,15 @@
                 </li>
                 <li>
                   Click the <samp class="button">Add Address</samp>
-                  button below the address.
+                  button.
+                  You can now send messages from the newly added address 
+                  to your groups on
+                  <span class="site" tal:content="siteName">OnlineGroups.Net</span>. 
                 </li>
               </ol>
               
               <p>
-                If the email address is used by another OnlineGroups.Net user, an
+                If the email address is used by another user, an
                 error message will appear and the email address will not be 
                 added.
               </p>
@@ -834,21 +858,27 @@
           </h>
           
           <p>
-            To view the profile on another OnlineGroups.Net user, carry out
-            the following.
+            To view the profile on another 
+            user on
+            <span class="site" 
+              tal:content="siteName">OnlineGroups.Net</span>,
+            carry out the following.
           </p>
           
           <ol>
             <li>
-              Click on <samp class="link">People</samp>, in the main
-              navigation bar.
-              The <cite>People</cite> page, which lists all
-              users that are visible to you, will be shown.
+              Click on <samp class="link">Members</samp>, on the homepage
+              of a group
+              (see 
+              <cite 
+                href="#groupserver-viewing-a-group">Viewing a Group</cite>).
+              The <cite>Members</cite> page, which lists all
+              members of the selected group, will be shown.
             </li>
             <li>
               Click on the name of the user whose profile you
               wish to view.
-              The profile for that user will be shown.
+              The profile of that user will be shown.
             </li>
           </ol>
           
@@ -866,7 +896,7 @@
         
         <p>
           Groups are online areas where people collaborate on
-          OnlineGroups.Net.
+          <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
           As a registered user, you can
           <a href="#groupserver-joining-a-group">join a group</a>,
           <a href="#groupserver-leaving-a-group">leave a group</a>,
@@ -887,9 +917,9 @@
           
           <ol>
             <li>
-              Log in to OnlineGroups.Net 
+              Log in to <span class="site" tal:content="siteName">OnlineGroups.Net</span> 
               (see <cite href="#groupserver-log-in-to-groupserver">Logging
-                In to OnlineGroups.Net</cite>).
+                In to <span class="site" tal:content="siteName">OnlineGroups.Net</span></cite>).
             </li>
             <li>
               Click on <samp class="link">Groups</samp> in the main 
@@ -1019,7 +1049,7 @@
                 which is found in the
                 <samp class="field">Members</samp> section of the group 
                 homepage, or <samp class="link">Email settings</samp> in the
-                side-menu for the group.
+                context-menu for the group.
                 The <cite>Email Delivery Settings</cite> page for the group
                 will be shown.
               </li>
@@ -1068,7 +1098,9 @@
             
             <p>
               On the first day of each month, regardless of your message
-              settings, you will be sent an email-reminder by OnlineGroups.Net that
+              settings, you will be sent an email-reminder by
+              <span class="site" 
+                tal:content="siteName">OnlineGroups.Net</span> that
               lists the groups you belong to, the message settings for each
               group, and how to leave the groups.
             </p>
@@ -1081,7 +1113,7 @@
             
             <p>
               If you have multiple email addresses registered with 
-              OnlineGroups.Net (see
+              <span class="site" tal:content="siteName">OnlineGroups.Net</span> (see
               <cite href="#groupserver-profile-adding-an-email-address">Adding
                 an Email Address</cite>), then you can change where email
               messages from a group are sent.
@@ -1129,7 +1161,7 @@
                   </di>
                 </dl>
                 (If there is only one email address registered with 
-                OnlineGroups.Net, then the
+                <span class="site" tal:content="siteName">OnlineGroups.Net</span>, then the
                 <samp class="list">Email Addresses Used</samp> list will not
                 be shown.)
               </li>
@@ -1143,11 +1175,11 @@
       
       <section id="groupserver-participating-online">
         <h id="groupserver-participating-online-t">
-          Participating Online Using OnlineGroups.Net
+          Participating Online Using <span class="site" tal:content="siteName">OnlineGroups.Net</span>
         </h>
         
         <p>
-          You can participate online using OnlineGroups.Net by
+          You can participate online using <span class="site" tal:content="siteName">OnlineGroups.Net</span> by
           <a href="#groupserver-contacting-other-users">contacting
             other users,</a> by
           <a href="#groupserver-working-with-messages">working
@@ -1157,10 +1189,10 @@
         
         <section id="groupserver-contacting-other-users">
           <h id="groupserver-contacting-other-users-t">
-            Contacting Other OnlineGroups.Net Users
+            Contacting Other <span class="site" tal:content="siteName">OnlineGroups.Net</span> Users
           </h>
           <p>
-            Carry out the following tasks to contact other OnlineGroups.Net
+            Carry out the following tasks to contact other <span class="site" tal:content="siteName">OnlineGroups.Net</span>
             users.
           </p>
           <ol>
@@ -1199,7 +1231,7 @@
           </h>
           
           <p>
-            Messages form the basis of participation on OnlineGroups.Net.
+            Messages form the basis of participation on <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
             You can 
             <a href="#groupserver-reading-messages">read messages that
               others have posted,</a>
@@ -1301,7 +1333,7 @@
                 <p>  
                   If configured, you will receive an email for each individual
                   message that is posted to a group.
-                  Messages from OnlineGroups.Net can be identified by the subject
+                  Messages from <span class="site" tal:content="siteName">OnlineGroups.Net</span> can be identified by the subject
                   that starts with the name of the group in square brackets,
                   followed by the name of the topic.
                   In addition, the message will be sent from an email account
@@ -1310,8 +1342,8 @@
                 </p>
                 
                 <p>
-                  The email message will contain the text of the post, and as
-                  to the relevant group and topic.
+                  The email message will contain the text of the post, and
+                  a link  to the relevant group and topic.
                   You can reply to the email to add a post to the group
                   (see 
                   <cite href="#groupserver-posting-a-message">Posting a
@@ -1336,8 +1368,10 @@
                 
                 <p>
                   The message will summarise the postings in each of your 
-                  groups, and provide as that can be followed to view the
-                  postings on OnlineGroups.Net.
+                  groups, and provide links that can be followed to view 
+                  the postings on 
+                  <span class="site" 
+                    tal:content="siteName">OnlineGroups.Net</span>.
                   If you reply to a message digest you will be sent a summary
                   of your profile; you cannot create a post from a message 
                   digest (see 
@@ -1353,7 +1387,7 @@
               </h>
               
               <p>
-                On OnlineGroups.Net, Web Feeds (often known as
+                On <span class="site" tal:content="siteName">OnlineGroups.Net</span>, Web Feeds (often known as
                 <quote>RSS Feeds</quote> and
                 <quote>Live Bookmarks</quote>) provide summaries
                 of the messages that are posted to groups.
@@ -1408,9 +1442,9 @@
                 </p>
                 <ol>
                   <li>
-                    Log in to OnlineGroups.Net (see
+                    Log in to <span class="site" tal:content="siteName">OnlineGroups.Net</span> (see
                     <cite href="#groupserver-log-in-to-groupserver">Logging In
-                      to OnlineGroups.Net</cite>).
+                      to <span class="site" tal:content="siteName">OnlineGroups.Net</span></cite>).
                   </li>
                   <li>
                     View the topic (see 
@@ -1511,7 +1545,7 @@
                     Posts</cite>) 
                   and reply;
                   <em>do not</em> change the subject of the email
-                  message, as this will cause OnlineGroups.Net to create a new topic
+                  message, as this will cause <span class="site" tal:content="siteName">OnlineGroups.Net</span> to create a new topic
                   (see
                   <cite
                     href="#groupserver-starting-a-new-topic-using-email">
@@ -1616,7 +1650,7 @@
                   If you are not a member of a group you cannot create a new
                   topic, and you will be sent an error message informing you
                   why you cannot post to the group.
-                  However, people who are not OnlineGroups.Net users will not 
+                  However, people who are not <span class="site" tal:content="siteName">OnlineGroups.Net</span> users will not 
                   receive error messages.
                 </p>
               </section>
@@ -1654,7 +1688,7 @@
           
           <p>
             All documents, which are not messages, that are stored on
-            OnlineGroups.Net are <quote>files</quote>.
+            <span class="site" tal:content="siteName">OnlineGroups.Net</span> are <quote>files</quote>.
             You can 
             <a href="#groupserver-viewing-files">view files that others
               have posted,</a> and 
@@ -1664,7 +1698,7 @@
           
           <section id="groupserver-viewing-files">
             <h id="groupserver-viewing-files-t">
-              Viewing Files on OnlineGroups.Net
+              Viewing Files on <span class="site" tal:content="siteName">OnlineGroups.Net</span>
             </h>
             
             <p>
@@ -1722,7 +1756,7 @@
               </h>
               
               <p>
-                If you have configured OnlineGroups.Net to send you an email whenever 
+                If you have configured <span class="site" tal:content="siteName">OnlineGroups.Net</span> to send you an email whenever 
                 someone posts a message you will also receive an email when a
                 file is posted.
                 The file is not attached to the email, instead a link to the
@@ -1748,7 +1782,7 @@
                 <tbody>
                   <tr>
                     <td>URI</td>
-                    <td>The location of the file on OnlineGroups.Net.
+                    <td>The location of the file on <span class="site" tal:content="siteName">OnlineGroups.Net</span>.
                       When viewed on the Web this becomes the link, which
                       your browser follows when you click on the 
                       filename.</td>
@@ -1801,11 +1835,11 @@
 
           <section id="groupserver-post-files">
             <h id="groupserver-post-files-t">
-              Posting Files on OnlineGroups.Net
+              Posting Files on <span class="site" tal:content="siteName">OnlineGroups.Net</span>
             </h>
             
             <p>
-              Files can be posted on OnlineGroups.Net 
+              Files can be posted on <span class="site" tal:content="siteName">OnlineGroups.Net</span> 
               <a href="#groupserver-posting-files-using-the-web">using
                 the Web.</a>
             </p>
@@ -1847,7 +1881,7 @@
                 </li>
                 <li>
                   Click the Post button.
-                  The file will be uploaded to OnlineGroups.Net and
+                  The file will be uploaded to <span class="site" tal:content="siteName">OnlineGroups.Net</span> and
                   displayed  under the relevant topic, and messages
                   will be sent  to all group  members who wish to
                   receive email  notification of posts.
