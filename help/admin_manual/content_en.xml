@@ -12,14 +12,17 @@
     <link rel="stylesheet" type="text/css" 
       href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
   </head>
-  <body id="groupserver-manual">    
+  <body id="groupserver-manual"
+    tal:define="baseName string:OnlineGroups.Net;
+    siteName python:options.has_key('siteName') and options['siteName'] or baseName;">    
     <section>
-      <h>Administration Manual</h>
+      <h><span class="site" tal:content="siteName"/> Administration Manual</h>
       <section id="groupserver-intro">
         <h id="groupserver-intro-t">Introduction</h>
         
         <p>
-          This manual is a guide for <cite>OnlineGroup</cite> Administrators. 
+          This manual is a guide for Administrators of 
+          <span class="site" tal:content="siteName"/>. 
           It provides instructions on how to:
         </p>
         <ul>
@@ -96,15 +99,17 @@
             to verify their email address.
           </li>
           <li>
-            When the the new user has verified their email address they
-            will be sent an email message by OnlineGroups.Net, which
-            contains your login details.
+            When the the new user has verified their email address, they
+            will be sent an email message from
+            <span class="site" tal:content="siteName"/> , which
+            contains his or her login details.
           </li> 
           <li>
             If you have unticked  <cite>Require users to verify?</cite>
             the new user will be sent an email message 
-            (a <cite>confirmation request</cite>), by OnlineGroups.Net, which
-            contains your login details.
+            (a <cite>confirmation request</cite>), by 
+            <span class="site" tal:content="siteName"/> , which
+            contains his or her login details.
           </li>   
         </ol>
       </section>
@@ -135,9 +140,9 @@
           See 
           <cite 
             href="/help/manual/#groupserver-viewing-your-profile">Viewing 
-            Your Profile</cite> in the 
-          <cite 
-            href="/help/manual/">OnlineGroups.Net User Maunal</cite>.
+            Your Profile</cite> in 
+          <cite  href="/help/manual/">The 
+            <span class="site" tal:content="siteName"/> User Maunal</cite>.
         </p>
         <ol>
           <li>
@@ -175,13 +180,15 @@
           </li>
           <li>
             When the the new users have verified their email address
-            they will be sent an email message by OnlineGroups.Net,
+            they will be sent an email message by 
+            <span class="site" tal:content="siteName"/> ,
             which contains their login details.
           </li> 
           <li>
             If you have unticked  <cite>Require users to verify?</cite>
             the new user will be sent an email message 
-            (a <cite>confirmation request</cite>), by OnlineGroups.Net, which
+            (a <cite>confirmation request</cite>), by 
+            <span class="site" tal:content="siteName"/> , which
             contains your login details.
           </li>   
         </ol>
