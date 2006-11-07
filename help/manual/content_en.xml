@@ -14,7 +14,8 @@
       href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
   </head>
   <body id="groupserver-manual"
-    tal:define="siteName python:options['siteName'];">
+    tal:define="baseName string:OnlineGroups.Net;
+    siteName python:options.has_key('siteName') and options['siteName'] or baseName;">
     <section>
       <h><span class="site" tal:content="siteName">OnlineGroups.Net</span> 
         User Manual</h>
