@@ -83,7 +83,7 @@
     
     <base href="{//output/metadata/base/@href}" />
   </head>
-  <body onLoad="javascript:LoadStuff()">
+  <body>
     <form method="post"
       enctype="application/x-www-form-urlencoded"
       action=""
