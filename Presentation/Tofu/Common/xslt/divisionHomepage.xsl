@@ -51,21 +51,6 @@
       &#160;
     </script>
 
-    <script type="text/javascript"
-      src="/Presentation/Tofu/XForms/js/calendar.js">
-      &#160;
-    </script>
-    
-    <script type="text/javascript" 
-      src="/Presentation/Tofu/Ajax/js/mochikit/MochiKit.js">
-      &#160;
-    </script>
-    
-    <script type="text/javascript"
-      src="/Presentation/Tofu/Ajax/js/mochikit/dynamic_load.js">
-      &#160;
-    </script>
-
     <script src="http://www.google-analytics.com/urchin.js" 
       type="text/javascript">
     </script>
