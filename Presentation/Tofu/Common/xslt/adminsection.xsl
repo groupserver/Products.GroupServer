@@ -38,11 +38,7 @@
       src="/Presentation/Tofu/XForms/js/xforms.js">
       &#160;
     </script>
-    <script type="text/javascript"
-      src="/Presentation/Tofu/XForms/js/calendar.js">
-      &#160;
-    </script>
-    <script type="text/javascript" src="/Presentation/Tofu/Ajax/js/dojo/dojo.js">
+    <script type="text/javascript" src="/++resource++dojo/dojo.js">
       &#160;
     </script>
     <script type="text/javascript" src="/Presentation/Tofu/Ajax/js/dojo/dynamic_load.js">
