@@ -58,7 +58,8 @@ assert form.has_key('file')
 result['form'] = form
 
 # --=mpj17=-- Do not, under *A*N*Y* circumstances, strip the file.
-for field in ['replyToId', 'topic', 'message', 'tags', 'email']:
+for field in ['groupId', 'siteId', 'replyToId', 'topic', 'message', 
+              'tags', 'email']:
     # No really: do not strip the file.
     try:
         form[field] = form[field].strip()
@@ -143,6 +144,7 @@ if uploadedFile:
 
 # Step 3, Get the templates
 templateDir = site_root.Templates.email.notifications.new_file
+assert hasattr(templateDir, 'message')
 messageTemplate = templateDir.message
 
 for list_id in messages.getProperty('xwf_mailing_list_ids', []):
@@ -162,8 +164,8 @@ for list_id in messages.getProperty('xwf_mailing_list_ids', []):
         groupList.manage_listboxer({'Mail': m})
 
 if groupObj.Scripts.get.option('virtualSitesOnly', False):
-    h = '/groups/%s/messages/' % groupObj.getId()
+    h = '/groups/%s/topics.html' % groupObj.getId()
 else:
-    h = '/%s/groups/%s/messages/' % (siteObj.getId(), groupObj.getId())
+    h = '/%s/groups/%s/topics.html' % (siteObj.getId(), groupObj.getId())
 context.REQUEST.RESPONSE.redirect(h)
 
