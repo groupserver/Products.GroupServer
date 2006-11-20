@@ -163,9 +163,11 @@ for list_id in messages.getProperty('xwf_mailing_list_ids', []):
     else:
         groupList.manage_listboxer({'Mail': m})
 
-if groupObj.Scripts.get.option('virtualSitesOnly', False):
-    h = '/groups/%s/topics.html' % groupObj.getId()
-else:
-    h = '/%s/groups/%s/topics.html' % (siteObj.getId(), groupObj.getId())
-context.REQUEST.RESPONSE.redirect(h)
-
+#if groupObj.Scripts.get.option('virtualSitesOnly', False):
+#    h = '/groups/%s/topics.html' % groupObj.getId()
+#else:
+#    h = '/%s/groups/%s/topics.html' % (siteObj.getId(), groupObj.getId())
+#context.REQUEST.RESPONSE.redirect(h)
+retval = {'error': False,
+          'message': '<p>Your message has been added to this topic.</p>'}
+return retval
