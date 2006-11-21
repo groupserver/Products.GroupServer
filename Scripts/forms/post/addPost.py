@@ -15,8 +15,7 @@ def tagProcess(tagsString):
     # --=mpj17=-- Not the most elegant function, but I did not want to
     #   use the regular-expression library.
     retval = []
-    
-    tagsString = tagsString.replace('\n', ' ')
+
     if len(tagsString) == 0:
         return retval
 
@@ -58,8 +57,7 @@ assert form.has_key('file')
 result['form'] = form
 
 # --=mpj17=-- Do not, under *A*N*Y* circumstances, strip the file.
-for field in ['groupId', 'siteId', 'replyToId', 'topic', 'message', 
-              'tags', 'email']:
+for field in ['replyToId', 'topic', 'message', 'tags', 'email']:
     # No really: do not strip the file.
     try:
         form[field] = form[field].strip()
@@ -70,10 +68,10 @@ groupId = form.get('groupId')
 siteId = form.get('siteId')
 replyToId = form.get('replyToId', '')
 topic = form.get('topic', '')
-message = form.get('message', '').replace('\r', '')
+message = form.get('message', '')
 tags = tagProcess(form.get('tags', ''))
 tagsString = ', '.join(tags)
-email = form.get('email', '').replace('\r', '')
+email = form.get('email', '')
 uploadedFile = form.get('file', '')
 
 site_root = context.site_root()
@@ -144,7 +142,6 @@ if uploadedFile:
 
 # Step 3, Get the templates
 templateDir = site_root.Templates.email.notifications.new_file
-assert hasattr(templateDir, 'message')
 messageTemplate = templateDir.message
 
 for list_id in messages.getProperty('xwf_mailing_list_ids', []):
@@ -158,16 +155,13 @@ for list_id in messages.getProperty('xwf_mailing_list_ids', []):
                         reply_to_id=emailMessageReplyToId,
                         n_type='new_file', n_id=groupObj.getId(),
                         file=fileObj)
-    if via_mailserver:
-        listManager.MailHost.send(m)
-    else:
-        groupList.manage_listboxer({'Mail': m})
+if via_mailserver:
+    listManager.MailHost.send(m)
+else:
+    groupList.manage_listboxer({'Mail': m})
 
-#if groupObj.Scripts.get.option('virtualSitesOnly', False):
-#    h = '/groups/%s/topics.html' % groupObj.getId()
-#else:
-#    h = '/%s/groups/%s/topics.html' % (siteObj.getId(), groupObj.getId())
-#context.REQUEST.RESPONSE.redirect(h)
-retval = {'error': False,
-          'message': '<p>Your message has been added to this topic.</p>'}
-return retval
+if groupObj.Scripts.get.option('virtualSitesOnly', False):
+    h = '/groups/%s/topics.html' % groupObj.getId()
+else:
+    h = '/%s/groups/%s/topics.html' % (siteObj.getId(), groupObj.getId())
+context.REQUEST.RESPONSE.redirect(h)
