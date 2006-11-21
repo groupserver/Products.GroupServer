@@ -454,8 +454,8 @@ form {
 }
 
 .helpLink {
-  font-size: small;
-  font-weight: medium;
+  font-size: smaller;
+  font-weight: normal;
   color: #aaaaaa;
   background-color: inherit;
   background-image: none;
