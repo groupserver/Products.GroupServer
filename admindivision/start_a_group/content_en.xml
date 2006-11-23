@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <output>
+    <content tal:define="division_object context/Scripts/get/division_object">
+      <heading1>Start a Group</heading1>
+
+      <heading2 id="type">Group Type</heading2>
+      <paragraph>What type of group that you wish to start? 
+        There are two type of group on OnlineGroups.Net.
+      </paragraph>
+      
+      <fieldset>
+        <xf:select1 model="start_a_group" ref="groupType" appearance="full">
+          <xf:item>
+            <xf:label>A discussion group</xf:label>
+            <xf:value>standard</xf:value>
+          </xf:item>
+        </xf:select1>
+        <paragraph>
+          A discussion group is used to discuss
+          topics.
+          It allows all the group members to post messages, and
+          files, that can be read by all the other group
+          members.
+          When started, a discussion-group can have up to five
+          members, though more can be added.
+        </paragraph>
+      </fieldset>
+      <fieldset>
+        <xf:select1 model="start_a_group" ref="groupType" appearance="full">
+          <xf:item>
+            <xf:label>An announcement group</xf:label>
+            <xf:value>announcement</xf:value>
+          </xf:item>
+        </xf:select1>
+        <paragraph>
+          An announcement group is used to inform the
+          group members of an event, a happening, or some other item of
+          news.
+          Unlike a discussion group, only a few members can post to
+          the group (up to five).
+          When started, 30 people can receive posts made to an
+          announcement-group, though more can be added.
+        </paragraph>
+      </fieldset>
+
+      <heading2 id="name">Name</heading2>
+      <paragraph>What is the name of the group?
+        The group name will appear on the group homepage and in the
+        subject line of all messages from the group.</paragraph>
+
+      <xf:input model="start_a_group" ref="groupName" class="text">
+        <xf:label>Name</xf:label>
+        <xf:hint>Please enter the name of the group.</xf:hint>
+      </xf:input>
+      
+      <heading2 id="id">Group Identifier</heading2>
+
+      <paragraph>What is the identifier of the group?
+        the group ID is used to form the email address for the group
+        (<span class="email"><bold>exampleid</bold>@onlinegroups.net</span>)
+          and, to form the URL for the group, as
+          follows.</paragraph>
+
+      <paragraph class="locationbar">
+        http://<span tal:content="division_object/getId"/>.onlinegroups.net/groups/<bold>exampleid</bold></paragraph>
+
+      <xf:input model="start_a_group" ref="groupId" class="text">
+        <xf:label>Group ID</xf:label>
+        <xf:hint>Please enter the ID for the group.</xf:hint>
+      </xf:input>
+
+      <heading2 id="real_life_group">Real-Life Group</heading2>
+
+      <paragraph>What type of people will belong to the new
+        online-group?
+        For example, the online group may be for people who collect
+        toys,  people who like to discuss aspects of local
+        politics, or members of a particular project.
+        In essence, the real-life group defines who belongs to the
+        group, and what topics are discussed in the group.
+        For a public group, the real-life group is the second
+        indication on what the group is for, after the group name.
+      </paragraph>
+      <paragraph>
+        The real-life group will be used to complete the sentence
+        &#8220;This group is an online group for&#8230;&#8221;,
+        which will appear on the group homepage.
+      </paragraph>
+
+      <xf:input model="start_a_group" ref="realLifeGroup" class="text">
+        <xf:label>Real-Life Group</xf:label>
+        <xf:hint>Please enter a description of the real-life 
+          group.</xf:hint>
+      </xf:input>
+
+      <heading2 id="privacy">Privacy</heading2>
+
+      <paragraph>Who will be able to see the group, and the messages
+        posted to the group?
+        Tcontext are two basic settings, as follows.
+      </paragraph>
+
+      <xf:select1 appearance="full" model="start_a_group"
+        ref="privacy">
+        <xf:item>
+          <xf:label>Public Group: anyone can see the group, and the
+            messages posted to the group.</xf:label>
+          <xf:value>public</xf:value>
+        </xf:item>
+      </xf:select1>
+      <xf:select1 appearance="full" model="start_a_group"
+        ref="privacy">
+        <xf:item>
+          <xf:label>Private Group: only group members can see the
+            existence of the group, and the messages posted to the
+            group.</xf:label>
+          <xf:value>private</xf:value>
+        </xf:item>
+      </xf:select1>
+
+      <paragraph>
+        <bold>Note</bold> after posts have been made to the group, a
+        private group <em>cannot</em> be made public, as this
+        would violate the privacy of the group members.
+      </paragraph>
+
+      <xf:submit model="start_a_group" submission="next" class="button">
+        <xf:label>Next</xf:label>
+        <xf:hint>Preview the settings.</xf:hint>
+      </xf:submit>
+    </content>
+  </output>
+</root>
