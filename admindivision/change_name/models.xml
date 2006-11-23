@@ -1,0 +1,14 @@
+<xf:model id="siteinfo"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:define="division_object here/Scripts/get/division_object">
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <sitename tal:content="division_object/title_or_id"/>
+      <siteId tal:content="division_object/getId"/>
+    </data>
+  </xf:instance>
+  <xf:submission method="urlencoded-post" id="changeIntroduction"
+    tal:attributes="action request/URL" />
+</xf:model>
