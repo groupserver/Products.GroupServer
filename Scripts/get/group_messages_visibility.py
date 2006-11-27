@@ -7,6 +7,14 @@
 ##parameters=
 ##title=
 ##
+
+#####################
+### W A R N I N G ###
+#####################
+#
+# Multiple returns below
+#
+
 group_object = context.Scripts.get.group_object()
 messages_object = getattr(group_object, 'messages', None)
 
