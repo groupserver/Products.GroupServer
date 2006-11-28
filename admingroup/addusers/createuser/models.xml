@@ -1,0 +1,23 @@
+<xf:model id="createuser"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  tal:define="group_object here/Scripts/get/group_object; 
+  division_object here/Scripts/get/division_object">
+  <xf:instance>
+    <data>
+      <userid></userid>
+      <email></email>
+      <firstname></firstname>
+      <lastname></lastname>
+      <preferredname></preferredname>
+      <groupid tal:content="group_object/getId">ID</groupid>
+      <divisionid tal:content="division_object/getId">ID</divisionid>
+      <addtogroup>yes</addtogroup>
+      <sendVerification>1</sendVerification>
+      </data>
+    </xf:instance>
+  <xf:bind id="lastname" nodeset="lastname" required="true()"/>
+  <xf:bind id="firstname" nodeset="firstname" required="true()"/>
+  <xf:bind id="email" nodeset="email" required="true()"/>
+  <xf:submission action="" method="urlencoded-post" id="next"/>
+</xf:model>

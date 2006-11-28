@@ -12,9 +12,12 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal">
 
-  <xsl:output encoding="UTF-8" method="xml" standalone="no" version="1.0"
-    omit-xml-declaration="yes"/>
+  <xsl:include href="file://layout"/>
+  <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
 
+  <xsl:output encoding="UTF-8" method="xml" indent="yes"
+    standalone="no" version="1.0" omit-xml-declaration="yes"/>
+  
   <xsl:template match="root">
       <xsl:apply-templates />
   </xsl:template>
@@ -26,8 +29,4 @@
       <xsl:apply-templates />
     </div>
   </xsl:template>
-  
-  <xsl:include href="file://layout"/>
-  <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
-  
 </xsl:stylesheet>

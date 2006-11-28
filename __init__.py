@@ -6,6 +6,7 @@ registerDirectory( 'Products/GroupServer/Scripts', instance_home )
 registerDirectory( 'Products/GroupServer/Presentation', instance_home )
 registerDirectory( 'Products/GroupServer/help', instance_home )
 registerDirectory( 'Products/GroupServer/admindivision', instance_home )
+registerDirectory( 'Products/GroupServer/admingroup', instance_home )
 
 import groupserver
 

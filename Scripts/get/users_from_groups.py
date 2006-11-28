@@ -17,11 +17,12 @@ def sorter(a,b):
 
 users = []
 for group_id in group_ids:
-    group = site_root.acl_users.getGroupById(group_id)
-    for user in group.getUsers():
-        auser = site_root.acl_users.getUser(user)
-        if auser and auser.getGroups() not in exclude_groups:
-            users.append(auser)
+    group = site_root.acl_users.getGroupById(group_id, [])
+    if group:
+        for user in group.getUsers():
+            auser = site_root.acl_users.getUser(user)
+            if auser and auser.getGroups() not in exclude_groups:
+                users.append(auser)
 
 users.sort(sorter)
 

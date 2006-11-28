@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <output>
+    <content>
+      <heading1>Group Administration</heading1>
+      
+      <paragraph>
+        As a group administrator, you can perform the following tasks. 
+      </paragraph>
+
+      <bulletlist
+        tal:define="permission python:here.Scripts.check.permission((here.Scripts.get.division_object(), here.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
+        site here/Scripts/get/division_object;
+        group here/Scripts/get/group_object;
+        joinable python:here.LocalScripts.get.usersCanJoinGroup(group.getId(),True);
+        canJoin python:joinable[0];">
+        <listitem tal:condition="canJoin">
+          <link url="addusers"><bold>Add members</bold> to
+            <span class="group" tal:content="group/title_or_id"/></link>
+        </listitem>
+        <listitem tal:condition="python:not canJoin">
+          Normally, you could add members to the group, but
+          <span tal:content="python:joinable[1][1].lower()"/>
+        </listitem>
+        <listitem>
+          <link url="managemembers"><bold>Manage the members</bold> of 
+          <span class="group" tal:content="group/title_or_id"/></link>
+        </listitem>
+        <listitem tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group)">
+          <link url="manageproperties">Manage group <bold>properties</bold></link>
+        </listitem>
+        <listitem>
+          <link url="managemoderation">Manage group <bold>moderation</bold></link>
+        </listitem>
+        <listitem
+          tal:condition="python:site.getProperty('isChargable', False)">
+          <link url="shop">Alter the <bold>size</bold> of 
+          <span class="group" tal:content="group/title_or_id"/></link>
+          </listitem>
+      </bulletlist> 
+    </content>
+  </output>
+</root>

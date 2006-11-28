@@ -1,0 +1,13 @@
+<xf:model id="addusers"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  tal:define="group_object here/Scripts/get/group_object">
+  <xf:instance>
+    <data>
+      <userid>user id</userid>
+      <groupid tal:content="group_object/getId">group id</groupid>
+      </data>
+    </xf:instance>
+  <xf:bind id="userid" nodeset="userid" required="true()"/>
+  <xf:submission action="" method="urlencoded-post" id="next"/>
+</xf:model>

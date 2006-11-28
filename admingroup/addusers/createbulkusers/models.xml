@@ -1,0 +1,30 @@
+<xf:model id="createusercsv"
+  xmlns:xf="http://www.w3.org/2002/xforms" 
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  tal:define="group_object here/Scripts/get/group_object;
+  division_object here/Scripts/get/division_object;">
+  <xf:instance>
+    <data>
+      <csvfile></csvfile>
+      <groupid tal:content="group_object/getId">ID</groupid>
+      <divisionid tal:content="division_object/getId">ID</divisionid>
+      <addtogroup>yes</addtogroup>
+      <tal:block 
+        tal:define="fieldIds python:list(here.UserProperties.objectIds())+['userId']+['nothing']">
+        <tal:block
+          tal:repeat="id python:fieldIds[:2]+['email']"
+          tal:replace="structure
+          string:&lt;field${repeat/id/number}&gt;${id}&lt;/field${repeat/id/number}&gt;"/>
+        <tal:block
+          tal:repeat="id python:fieldIds[2:]">
+          <tal:block
+            tal:define="fieldNumber python:repeat['id'].number()+3"
+            tal:replace="structure
+            string:&lt;field${fieldNumber}&gt;nothing&lt;/field${fieldNumber}&gt;"/>
+          </tal:block>
+        </tal:block>
+      <sendVerification>1</sendVerification>
+      </data>
+    </xf:instance>
+  <xf:submission method="form-data-post" action="" id="next"/>
+</xf:model>
