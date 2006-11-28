@@ -4,7 +4,7 @@
   xmlns:xf="http://www.w3.org/2002/xforms" 
   tal:define="permission python:here.Scripts.check.permission((here.Scripts.get.division_object(), here.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));">
   <data
-    tal:content="structure python:here.models(method='html')"/>
+    tal:content="structure python:here.models(method='xml')"/>
   <output>
     <content
       tal:define="group_object here/Scripts/get/group_object;

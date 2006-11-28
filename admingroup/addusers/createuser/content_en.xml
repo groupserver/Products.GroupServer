@@ -3,7 +3,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:xf="http://www.w3.org/2002/xforms">
   <data
-    tal:content="structure python:here.models(method='html')"/>
+    tal:content="structure python:here.models(method='xml')"/>
   <output>
     <content 
       tal:define="group_object here/Scripts/get/group_object;

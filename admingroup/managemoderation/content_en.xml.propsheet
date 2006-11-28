@@ -1,4 +1,4 @@
-title:string=Change the Site Name
+title:string=Manage Group Moderation
 content_type:string=text/xml
 expand:int=0
 cache_manager:string=

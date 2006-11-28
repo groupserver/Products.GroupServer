@@ -1,0 +1,18 @@
+<xf:model id="moderate_group"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  tal:define="group_object here/Scripts/get/group_object; 
+  division_object here/Scripts/get/division_object">
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <groupid tal:content="group_object/getId">group id</groupid>
+      <divisionid 
+        tal:content="division_object/getId">division id</divisionid>
+    </data>
+  </xf:instance>
+  <xf:submission method="urlencoded-post" id="turn_on_moderation"
+    tal:attributes="action request/URL" />
+  <xf:submission method="urlencoded-post" id="turn_off_moderation"
+    tal:attributes="action request/URL" />
+</xf:model>

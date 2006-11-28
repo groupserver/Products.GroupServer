@@ -1,0 +1,33 @@
+<xf:model id="manageproperties"
+  xmlns:xf="http://www.w3.org/2002/xforms" 
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:define="group_object here/Scripts/get/group_object;
+  division_object here/Scripts/get/division_object;
+  list_object python:getattr(here.ListManager, group_object.getId())">
+  <xf:instance>
+    <data>
+      <grouptitle 
+        tal:content="group_object/title">Group Title</grouptitle>
+      <groupSubject
+        tal:content="list_object/title_or_id">Foo</groupSubject>
+      <tal:block tal:repeat="prop here/GroupProperties/objectValues"
+        tal:replace="structure python:here.generate_tag('model_%s' % prop.getProperty('property_type'),
+        {'tag_id': prop.getId(),
+        'tag_value': getattr(here, prop.getId(), ' ')})"/>
+      <permvisibility tal:content="here/Scripts/get/group_visibility"/>
+      <permjoin tal:content="here/Scripts/get/group_joinability"/>
+      <permviewfiles tal:content="here/Scripts/get/group_files_visibility"/>
+      <permviewmessages tal:content="here/Scripts/get/group_messages_visibility"/>
+      <groupid tal:content="group_object/getId">ID</groupid>
+      <divisionid tal:content="division_object/getId">ID</divisionid>
+      <coach tal:content="group_object/ptn_coach_id | nothing"></coach>
+      <senderlimit tal:content="python:list_object.getValueFor('senderlimit') or nothing" />
+      <senderinterval
+        tal:condition="python:group_object.group_template=='standard'">172800</senderinterval><!--48 hours, in seconds, for a discussion group-->
+      <senderinterval 
+        tal:condition="python:group_object.group_template=='announcement'">864000</senderinterval><!--10 days, in seconds, for a anouncement group-->
+      </data>
+    </xf:instance>
+  <xf:bind nodeset="senderlimit" constraint=". &lt; 21"/>
+  <xf:submission action="" method="urlencoded-post" id="next"/>
+</xf:model>

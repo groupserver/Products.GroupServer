@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:here.models(method='xml')"/>
+  <output>
+    <content 
+			tal:define="group_members here/Scripts/get/group_members">
+      <fieldset>
+        <legend>Group Properties</legend>
+
+        <xf:input model="manageproperties" ref="grouptitle" class="text">
+          <xf:label>Title</xf:label>
+          <xf:hint>Please enter the title of the group</xf:hint>
+        </xf:input>
+
+        <xf:input model="manageproperties" ref="groupSubject"
+          class="text">
+          <xf:label>Subject</xf:label>
+          <xf:hint>Please enter the start of the subject-line for
+            email messages sent from the group</xf:hint>
+        </xf:input>
+
+        <tal:block tal:repeat="prop here/GroupProperties/objectValues"
+          tal:replace="structure python:here.generate_tag(prop.getProperty('property_type'),
+          {'model': 'manageproperties',
+          'ref': prop.getId(),
+          'label': prop.title_or_id(),
+          'hint': prop.getProperty('description','')})" />
+        
+        <xf:input model="manageproperties" ref="senderlimit"
+          class="text">
+          <xf:label>Post limit</xf:label>
+          <xf:hint>The maximum number of posts a user can send in 24 hours.</xf:hint>
+        </xf:input>
+
+        <xf:select1 appearance="minimal" model="manageproperties"
+          ref="permvisibility" class="text">
+          <xf:label>Visibility</xf:label>
+          <xf:hint>Who can see this group</xf:hint>
+          <xf:item>
+            <xf:label>Everyone</xf:label>
+            <xf:value>anyone</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only division and group members</xf:label>
+            <xf:value>division</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only group members</xf:label>
+            <xf:value>group</xf:value>
+          </xf:item>
+        </xf:select1>
+        
+        <xf:select1 appearance="minimal" model="manageproperties"
+          ref="permjoin" class="text">
+          <xf:label>Joinability</xf:label>
+          <xf:hint>Who can join this group</xf:hint>
+          <xf:item>
+            <xf:label>Anyone, without approval</xf:label>
+            <xf:value>anyone</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Anyone, pending approval</xf:label>
+            <xf:value>apply</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only those invited</xf:label>
+            <xf:value>invite</xf:value>
+          </xf:item>
+        </xf:select1>
+        
+        <xf:select1 appearance="minimal" model="manageproperties"
+          ref="permviewfiles" class="text">
+          <xf:label>View files</xf:label>
+          <xf:hint>Who can view the files in this group</xf:hint>
+          <xf:item>
+            <xf:label>Same as group settings</xf:label>
+            <xf:value>default</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Everyone</xf:label>
+            <xf:value>anyone</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only division and group members</xf:label>
+            <xf:value>division</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only group members</xf:label>
+            <xf:value>group</xf:value>
+          </xf:item>
+        </xf:select1>
+        
+        <xf:select1 appearance="minimal" model="manageproperties"
+          ref="permviewmessages" class="text">
+          <xf:label>View messages</xf:label>
+          <xf:hint>Who can view the messages in this group</xf:hint>
+          <xf:item>
+            <xf:label>Same as group settings</xf:label>
+            <xf:value>default</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Everyone</xf:label>
+            <xf:value>anyone</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only division and group members</xf:label>
+            <xf:value>division</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Only group members</xf:label>
+            <xf:value>group</xf:value>
+          </xf:item>
+        </xf:select1>
+
+        <xf:submit model="manageproperties" submission="next"
+          class="button">
+          <xf:label>Modify Properties</xf:label>
+          <xf:hint>Modify the properties of the group</xf:hint>
+        </xf:submit>
+      </fieldset>
+    </content>
+  </output>
+</root>

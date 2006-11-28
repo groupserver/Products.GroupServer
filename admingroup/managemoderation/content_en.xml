@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:here.models(method='xml')"/>
+  <output>
+    <content tal:define="group_object here/Scripts/get/group_object; 
+      group_members here/Scripts/get/group_members;
+      moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);">
+      
+      <heading1>Manage the Moderation of
+        <span class="group"
+          tal:content="group_object/title_or_id"/>
+      </heading1>
+
+      <paragraph>This page is used to toggle moderation for
+        <span class="group"
+          tal:content="group_object/title_or_id"/>.
+        See the 
+        <link url="../managemembers">manage members</link>
+        page to set which members of 
+        <span class="group"
+          tal:content="group_object/title_or_id"/>
+        are moderated, and who the moderator is.
+      </paragraph>
+
+      <fieldset>
+        <paragraph>Group moderation is currently turned 
+          <span tal:replace="python:moderated and 'on' or 'off'"/>.</paragraph>
+        <paragraph>
+          <xf:submit tal:condition="not:moderated" 
+            model="moderate_group" submission="turn_on_moderation"
+            class="button" >
+            <xf:label>Turn Moderation On</xf:label>
+            <xf:hint>This will enable moderation for the
+              group.</xf:hint>
+          </xf:submit>
+
+          <xf:submit tal:condition="moderated"
+            model="moderate_group" submission="turn_off_moderation"
+            class="button">
+            <xf:label>Turn Moderation Off</xf:label>
+            <xf:hint>This will disable the moderation for the
+              group.</xf:hint>
+          </xf:submit>
+        </paragraph>
+      </fieldset>
+    </content>
+  </output>
+</root>

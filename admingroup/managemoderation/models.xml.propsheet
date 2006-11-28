@@ -1,4 +1,4 @@
-title:string=XForms Model for Change Site Name
+title:string=XForms Model for Manage Group Moderation
 content_type:string=text/xml
 expand:int=0
 cache_manager:string=
