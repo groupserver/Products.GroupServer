@@ -9,6 +9,6 @@
       <siteId tal:content="division_object/getId"/>
     </data>
   </xf:instance>
-  <xf:submission method="urlencoded-post" id="changeIntroduction"
+  <xf:submission method="urlencoded-post" id="changeNameStandard"
     tal:attributes="action request/URL" />
 </xf:model>

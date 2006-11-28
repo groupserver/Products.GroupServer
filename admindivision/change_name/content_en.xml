@@ -17,7 +17,7 @@
         <xf:hint>Enter the name of your site here</xf:hint>
       </xf:input>
       <xf:submit class="button" model="siteinfo"
-        submission="changeName">
+        submission="changeNameStandard">
         <xf:label>Change</xf:label>
       </xf:submit>
     </content>
