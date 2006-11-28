@@ -2,6 +2,7 @@
 <root xmlns:tal="http://xml.zope.org/namespaces/tal" 
   xmlns:metal="http://xml.zope.org/namespaces/metal" 
   xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:getattr(context, 'models')(method='xml')" />
   <output>
     <content tal:define="division_object here/Scripts/get/division_object">
 

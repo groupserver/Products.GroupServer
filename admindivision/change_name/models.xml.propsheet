@@ -1,4 +1,4 @@
-title:string=XForms Model for Start a New Group
+title:string=XForms Model for Change Site Name
 content_type:string=text/xml
 expand:int=0
 cache_manager:string=
