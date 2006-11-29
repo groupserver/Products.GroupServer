@@ -58,7 +58,7 @@
             </xf:item>
           </xf:select>
         </tal:block>
-        <xf:submit model="createuser" submission="next" class="button">
+        <xf:submit model="createuser" submission="create" class="button">
           <xf:label>Create Member</xf:label>
         <xf:hint>Create the new member</xf:hint>
         </xf:submit>

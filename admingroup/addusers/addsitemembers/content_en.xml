@@ -45,7 +45,7 @@
               </xf:item>
             </xf:select>
             
-            <xf:submit model="addusers" submission="next" class="button">
+            <xf:submit model="addusers" submission="add" class="button">
               <xf:label>Add</xf:label>
               <xf:hint>Add the selected members to the group
               <span tal:replace="group_object/title_or_id"/>

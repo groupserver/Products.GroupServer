@@ -5,6 +5,7 @@
   division_object here/Scripts/get/division_object;">
   <xf:instance>
     <data>
+      <submitted>1</submitted>
       <csvfile></csvfile>
       <groupid tal:content="group_object/getId">ID</groupid>
       <divisionid tal:content="division_object/getId">ID</divisionid>
@@ -26,5 +27,5 @@
       <sendVerification>1</sendVerification>
       </data>
     </xf:instance>
-  <xf:submission method="form-data-post" action="" id="next"/>
+  <xf:submission method="form-data-post" action="" id="create"/>
 </xf:model>

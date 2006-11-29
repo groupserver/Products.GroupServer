@@ -123,7 +123,7 @@
           and the members associated with each erroneous row will not be
           created.</paragraph>
         
-      <xf:submit model="createusercsv" submission="next" class="button">
+      <xf:submit model="createusercsv" submission="create" class="button">
         <xf:label>Create Members</xf:label>
         <xf:hint>Create the new members</xf:hint>
         </xf:submit>
