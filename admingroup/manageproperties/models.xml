@@ -13,7 +13,7 @@
       <tal:block tal:repeat="prop here/GroupProperties/objectValues"
         tal:replace="structure python:here.generate_tag('model_%s' % prop.getProperty('property_type'),
         {'tag_id': prop.getId(),
-        'tag_value': getattr(here, prop.getId(), ' ')})"/>
+        'tag_value': getattr(here, prop.getId(), '    ')})"/>
       <permvisibility tal:content="here/Scripts/get/group_visibility"/>
       <permjoin tal:content="here/Scripts/get/group_joinability"/>
       <permviewfiles tal:content="here/Scripts/get/group_files_visibility"/>
