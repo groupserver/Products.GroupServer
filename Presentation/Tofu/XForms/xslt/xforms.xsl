@@ -14,6 +14,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xmlns:xf="http://www.w3.org/2002/xforms" 
   exclude-result-prefixes="xf xhtml nav pageinfo dw dc rdf rss slash xml a admin">
+
+  <xsl:output encoding="UTF-8" method="html" standalone="no" 
+    omit-xml-declaration="yes" />
+
   
   <!-- Return true if the passed value (match) matches the value of the specified node (ref) -->
   <xsl:template name="match-single">
