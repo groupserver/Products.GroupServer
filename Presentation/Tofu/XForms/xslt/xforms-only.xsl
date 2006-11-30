@@ -6,7 +6,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   exclude-result-prefixes="xf xhtml">
   
-  <xsl:output encoding="UTF-8" method="xml" standalone="no" version="1.0"
+  <xsl:output encoding="UTF-8" method="html" standalone="no" version="1.0"
     omit-xml-declaration="yes" />
 
   <xsl:preserve-space elements="*"/>
