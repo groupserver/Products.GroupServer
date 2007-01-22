@@ -1,4 +1,4 @@
- ## Script (Python) "ogn_addgroup"
+## Script (Python) "ogn_addgroup"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
@@ -43,6 +43,7 @@ create_charter = hasattr(templatedir, 'charter')
 # Create the group folder, with the right properties set.
 groups.manage_addFolder(groupId)
 group = getattr(groups.aq_explicit, groupId)
+assert group, 'Could not create group folder'
 group.manage_addProperty('is_group', True, 'boolean')
 group.manage_addProperty('short_name', groupName.lower(), 'string')
 group.manage_addProperty('real_life_group', realLifeGroup, 'string')
@@ -138,8 +139,4 @@ if templateId == 'announcement':
 user.add_groupWithNotification('%s_member' % groupId)
 group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
 
-groupPage = '/groups/%s' % groupId
-context.REQUEST.RESPONSE.redirect(groupPage)
-
-# The following should not be reached
-return 'The group &#8220;%s&#8221; has been created.' % groupName
+return group

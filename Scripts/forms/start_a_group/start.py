@@ -7,7 +7,6 @@
 ##parameters=
 ##title=Start a Group Start
 ##
-
 result = {}
 result['error'] = False # --=mpj17=-- uncharastic optimisism
 result['message'] = ''
@@ -66,5 +65,14 @@ if result['error']:
     return result
 
 # No error, start the group
-container.ogn_addgroup(divisionId, groupType, groupId, groupName,
-                       realLifeGroup, privacy)
+group = container.ogn_addgroup(divisionId, groupType, groupId, groupName,
+                               realLifeGroup, privacy)
+
+if group != None:
+    groupPage = '/groups/%s' % groupId
+    context.REQUEST.RESPONSE.redirect(groupPage)
+else:
+    result['message'] = '''The group %s could not be started due to an 
+      unexpected error'''
+    result['error'] = True
+    return result
