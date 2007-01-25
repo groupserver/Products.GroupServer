@@ -136,6 +136,11 @@ if templateId == 'announcement':
                            'mailinlist_members') 
     groupList.manage_addProperty('posting_members', user.getId(), 'lines')
 
+if privacy == 'public':
+    groupList.manage_addProperty('subscribe', 'subscribe', 'string')
+else:
+    groupList.manage_addProperty('subscribe', '', 'string')
+    
 user.add_groupWithNotification('%s_member' % groupId)
 group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
 
