@@ -82,7 +82,7 @@ for property in site_root.GroupProperties.objectValues():
     prop = form.get(property.getId(), None)
     if property.getProperty('property_type') in ('lines', 'ulines'):
         prop = tuple(map(lambda x: x.strip(), prop.split('\n')))
-    else:
+    elif (prop != None):
         prop = prop.strip()
     
     if prop != None and group.getProperty(property.getId()) != prop:
