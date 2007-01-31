@@ -30,6 +30,9 @@
 
       <link rel="stylesheet" type="text/css"
         href="/Presentation/Tofu/Common/css/globalstyle.css" />
+      <link 
+        rel="stylesheet" type="text/css" 
+        href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
       <link rel="stylesheet" type="text/css" media="print"
         href="/Presentation/Tofu/Common/css/print.css" />
       
