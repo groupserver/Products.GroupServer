@@ -16,6 +16,8 @@ p, ul, ol, dl, table, fieldset {
     margin: 1em 0px 1em 0px;
 }
 
+p img {padding: 0px 30px 30px 0px}
+
 /*********/
 /* Forms */
 /*********/
@@ -103,8 +105,7 @@ input, fieldset .hint {
     top: 30px;
     right: 30px;
     width: 40%;
-    height: 30px;
-    padding: 5px 0px 0px 0px;
+    height: 26px;
     z-index: 50;
     text-align: right;
 }
@@ -120,6 +121,8 @@ input, fieldset .hint {
 }
 #sitenavigation ul {
     margin: 0px 0px 0px 30px;
+}
+#sitenavigation ul, #utilitylinks ul {
     padding: 5px 0px 0px 0px;
     line-height: 26px;
 }
@@ -340,9 +343,6 @@ a:hover, a:visited {
 #sitenavigation a, #sitenavigation a:visited, #utilitylinks a, #utilitylinks a:visited {
     color: #d8e6f0;
 }
-#utilitylinks a, #utilitylinks a:visited {
-    font-weight: bold;
-}
 #sitenavigation a.current, #sitenavigation a:hover, #utilitylinks a:hover {
     color: #f0ecd8;
 }
@@ -396,17 +396,6 @@ a:hover, a:visited {
 
 #Help-menu-link {
     background-image: url("/Presentation/Tofu/Common/images/16x16/ABEL/help.png");
-}
-
-/* ABEL Title Bar */
-#titlebar .division {
-    display: none;
-}
-#titlebar .logo {
-    display: block;
-    width: 640px;
-    height: 42px;
-    background: transparent url("/Presentation/Tofu/Common/images/16x16/ABEL/paspce2-logo.png") no-repeat top left;
 }
 
 /** Email Details **/
