@@ -99,7 +99,7 @@ input, fieldset .hint {
     top: 0px;
     right: 30px;
     padding: 0px;
-    margin: 0px;
+    margin: 10px 0px 0px 0px;
     width: auto;
     height: 30px;
 }
