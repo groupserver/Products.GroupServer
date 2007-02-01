@@ -36,12 +36,15 @@
   <head>
     <title>
       <xsl:value-of select="//output/metadata/division/@name" />
-      <xsl:if test="//output/metadata/title">
-  : <xsl:value-of select="//output/metadata/title" />
+      <xsl:if test="//output/metadata/title">:
+      <xsl:value-of select="//output/metadata/title" />
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
       href="/Presentation/Tofu/Common/css/globalstyle.css" />
+    <link 
+        rel="stylesheet" type="text/css" 
+        href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
     <link rel="stylesheet" type="text/css" 
       media="print"
       href="/Presentation/Tofu/Common/css/print.css" />
