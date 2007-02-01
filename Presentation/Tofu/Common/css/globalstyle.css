@@ -277,11 +277,11 @@ ul.contacts li {
 /********************/
 /* Multiple columns */
 /********************/
-#cols h2 {
+.cols h2 {
     margin-top: 0px;
 }
 
-#leftColumn {
+.leftColumn {
     float: left;
     width: 40%;
     margin: 0px 30px 0px 0px;
