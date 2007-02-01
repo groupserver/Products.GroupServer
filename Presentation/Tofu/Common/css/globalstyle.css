@@ -269,6 +269,18 @@ ul.contacts li {
     display: none;
 }
 
+/****************/
+/* Footer Links */
+/****************/
+#footerLinks {
+    position: absolute;
+    left: 30px;
+    bottom: 10px;
+}
+#footerLinks a {
+    margin: 0px 1.5em 0px 0px;
+}
+
 /************************************************************************/
 /*                    ABEL-Specific Style                               */
 /************************************************************************/
