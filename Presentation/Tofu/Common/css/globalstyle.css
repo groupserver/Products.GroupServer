@@ -18,6 +18,11 @@ p, ul, ol, dl, table, fieldset {
 
 p img {padding: 0px 30px 30px 0px}
 
+p#divisionAdminTasks img {
+    padding: 0px;
+    margin: 0px;
+}
+
 /*********/
 /* Forms */
 /*********/
