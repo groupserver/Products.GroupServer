@@ -364,7 +364,7 @@ a {
 }
 a:hover, a:visited {
     color: #41638b;
-    background: transparent;
+    background: transparent none no-repeat;
 }
 
 /* Site Navigation Menu */ 
@@ -411,24 +411,37 @@ a:hover, a:visited {
     background: #839ab8;
 }
 
-/* ABEL Icons */
-#Home-menu-link, #Groups-menu-link, #Help-menu-link {
-    padding-left: 20px;
+#Home-menu-link, #Resources-menu-link, #Groups-menu-link,
+#Feedback-menu-link, #Results-menu-link, #Help-menu-link, 
+#log-out-link, #profile-link {
+    padding: 0px 0px 0px 18px;
     background-repeat: no-repeat;
-    background-color: transparent;
 }
+
 #Home-menu-link {
-    background-image: url("/Presentation/Tofu/Common/images/16x16/ABEL/home.png");
+    background-image: url("/++resource++blueIcons/home.gif");
 }
-
+#Resources-menu-link {
+    background-image: url("/++resource++blueIcons/resources.gif");
+}
 #Groups-menu-link {
-    background-image: url("/Presentation/Tofu/Common/images/16x16/ABEL/groups.png");
+    background-image: url("/++resource++blueIcons/users.gif");
 }
-
+#Feedback-menu-link {
+    background-image: url("/++resource++blueIcons/feedback.gif");
+}
+#Results-menu-link {
+    background-image: url("/++resource++blueIcons/results.gif");
+}
 #Help-menu-link {
-    background-image: url("/Presentation/Tofu/Common/images/16x16/ABEL/help.png");
+    background-image: url("/++resource++blueIcons/help.gif");
 }
-
+#log-out-link {
+    background-image: url("/++resource++blueIcons/log-out.gif");
+}
+#profile-link {
+    background-image: url("/++resource++blueIcons/user.gif");
+}
 /** Email Details **/
 .emaildetails-odd {
     background-color: #a8afb8;
