@@ -132,6 +132,15 @@ input, fieldset .hint {
     line-height: 26px;
 }
 
+/* Site Navigation Menu Icons */
+
+#Home-menu-link, #Resources-menu-link, #Groups-menu-link,
+#Feedback-menu-link, #Results-menu-link, #Help-menu-link, 
+#log-out-link, #profile-link, #About-menu-link {
+    padding: 0px 0px 0px 18px;
+    background-repeat: no-repeat;
+}
+
 /* Context Menu */
 #contextnav {
     position: absolute;
@@ -203,6 +212,13 @@ input, fieldset .hint {
     left: 30px;
 }
 
+/* Icons for in the pge */
+.ziplink, .pdflink, .excellink, .imagelink, .powerpoint,
+.textlink, .wordlink, .weblink {
+    padding: 0px 0px 0px 18px;
+    background-repeat: no-repeat;
+}
+
 /***************/
 /* Site Search */
 /***************/
@@ -245,7 +261,7 @@ input, fieldset .hint {
 ul.contacts li {
     list-style-type: none;
     padding-left: 30px;
-    background-image: url("/Presentation/Tofu/Common/images/16x16/ABEL/user.png");
+    background-image: url("++resource++whiteIcons/user.gif");
     background-repeat: no-repeat;
 }
 
@@ -369,7 +385,8 @@ a:hover, a:visited {
 
 /* Site Navigation Menu */ 
 #sitenavigation {
-    background: #839ab8 url("/Presentation/Tofu/Common/images/16x16/ABEL/menu-background.png") repeat-x scroll top left; 
+    background: #839ab8;
+    /*url("/Presentation/Tofu/Common/images/16x16/ABEL/menu-background.png") repeat-x scroll top left; */
 }
 #sitenavigation a, #sitenavigation a:visited, #utilitylinks a, #utilitylinks a:visited {
     color: #d8e6f0;
@@ -411,12 +428,7 @@ a:hover, a:visited {
     background: #839ab8;
 }
 
-#Home-menu-link, #Resources-menu-link, #Groups-menu-link,
-#Feedback-menu-link, #Results-menu-link, #Help-menu-link, 
-#log-out-link, #profile-link {
-    padding: 0px 0px 0px 18px;
-    background-repeat: no-repeat;
-}
+/* Site Navigation Menu Icons */
 
 #Home-menu-link {
     background-image: url("/++resource++blueIcons/home.gif");
@@ -442,6 +454,36 @@ a:hover, a:visited {
 #profile-link {
     background-image: url("/++resource++blueIcons/user.gif");
 }
+#About-menu-link {
+    background-image: url("/++resource++blueIcons/user.gif");
+}
+
+/* Icons for in the pge */
+.ziplink {
+    background-image: url("/++resource++whiteIcons/compressed.gif");
+}
+.pdflink {
+    background-image: url("/++resource++whiteIcons/acrobat.gif");
+}
+.excellink {
+    background-image: url("/++resource++whiteIcons/excel.gif");
+}
+.imagelink {
+    background-image: url("/++resource++whiteIcons/picture.gif");
+}
+.powerpoint {
+    background-image: url("/++resource++whiteIcons/powerpoint.gif");
+}
+.textlink {
+    background-image: url("/++resource++whiteIcons/text.gif");
+}
+.wordlink {
+    background-image: url("/++resource++whiteIcons/word.gif");
+}
+.weblink {
+    background-image: url("/++resource++whiteIcons/world.gif");
+}
+
 /** Email Details **/
 .emaildetails-odd {
     background-color: #a8afb8;
