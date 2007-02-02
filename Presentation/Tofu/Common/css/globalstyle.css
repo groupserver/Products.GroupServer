@@ -212,9 +212,9 @@ input, fieldset .hint {
     left: 30px;
 }
 
-/* Icons for in the pge */
+/* Icons in the page */
 .ziplink, .pdflink, .excellink, .imagelink, .powerpoint,
-.textlink, .wordlink, .weblink {
+.textlink, .wordlink, .weblink, .rsslink, .atomlink, .alternateATOM {
     padding: 0px 0px 0px 18px;
     background-repeat: no-repeat;
 }
@@ -482,6 +482,9 @@ a:hover, a:visited {
 }
 .weblink {
     background-image: url("/++resource++whiteIcons/world.gif");
+}
+.rsslink, .atomlink, .alternateATOM {
+    background-image: url("/++resource++whiteIcons/feed.gif");
 }
 
 /** Email Details **/
