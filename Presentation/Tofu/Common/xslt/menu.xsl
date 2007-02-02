@@ -220,7 +220,7 @@
           </xsl:when>
         <xsl:otherwise>
           <li><a id="log-out-link" href="/cookie_authentication/logout">Log Out</a></li>
-          <li><a id="profile-link" href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"><xsl:value-of select="output/user[@type='self']/name/preferredname"/>&#160;<xsl:value-of select="output/user[@type='self']/name/lastname"/> (profile)</a></li>
+          <li><a id="profile-link" href="{output/user[@type='self']/@url}" title="Profile for {output/user[@type='self']/name/preferredname} {output/user[@type='self']/name/lastname}"><xsl:value-of select="output/user[@type='self']/name/preferredname"/> (profile)</a></li>
           </xsl:otherwise>
         </xsl:choose>
       </ul>
