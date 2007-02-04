@@ -9,8 +9,7 @@
 ##
 site_root = context.site_root()
 
-#user = site_root.acl_users.getUser(user_id)
-user = getattr(site_root.contacts, user_id, None)
+user = site_root.acl_users.getUser(user_id)
 
 if user:
     return user.get_image()
