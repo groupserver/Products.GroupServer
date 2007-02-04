@@ -308,9 +308,8 @@ ul.contacts li {
 /* Footer Links */
 /****************/
 #footerLinks {
-    position: absolute;
-    left: 30px;
-    bottom: 10px;
+    margin: 30px 0px 30px 0px;
+    padding: 0px;
 }
 #footerLinks a {
     margin: 0px 1.5em 0px 0px;
