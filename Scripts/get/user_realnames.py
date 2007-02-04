@@ -4,9 +4,14 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=user_id, preferred_name_only=0
+##parameters=user_id, preferred_name_only=1
 ##title=
 ##
+#
+# Previously took a preferred_name_only parameter, defaulting to 0,
+# Now the behaviour is to lways return preferred name, so this parameter
+# exists, but defaults to 1, and is meaningless :)
+#
 site_root = context.site_root()
 
 try:
@@ -15,8 +20,6 @@ except:
     user = None
 
 if user:
-    if preferred_name_only:
-        return '%s' % (user.getProperty('preferredName'))
-    return '%s %s' % (user.getProperty('firstName'), user.getProperty('lastName'))
+    return '%s' % (user.getProperty('preferredName'))
 
 return '%s (account removed)' % user_id
