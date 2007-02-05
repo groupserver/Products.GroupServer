@@ -319,6 +319,16 @@ ul.contacts li {
 /* Email */
 /*********/
 
+.emaildetails-odd, .emaildetails-even {
+    padding: 10px 10px 10px 10px;
+}
+.email-body {
+    font-family: monospace;
+    font-size: 0.9em; /* To allow the text to fit */
+}
+.emailintro {
+    display: block;
+}
 .emailwrap .userimage {
     float: left;
     margin: 0px 30px 30px 10px;
