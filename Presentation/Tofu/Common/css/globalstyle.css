@@ -31,8 +31,12 @@ input {
     margin: 0px 10px 30px 0px;
 }
 
-select, input, textarea {
+select, input {
     width: 30em;   
+}
+
+textarea {
+    height: 10em;
 }
 
 .formelementbutton input, .checkgroup input {
