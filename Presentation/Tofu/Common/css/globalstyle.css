@@ -27,16 +27,39 @@ p#divisionAdminTasks img {
 /* Forms */
 /*********/
 
-input {
-    margin: 0px 10px 30px 0px;
-}
-
-select, input {
+select, input, textarea {
     width: 30em;   
 }
 
 textarea {
     height: 10em;
+}
+
+input {
+    margin: 0px 10px 30px 0px;
+}
+
+fieldset {
+    padding: 0px 0px 0px 30px;
+}
+
+
+label, input {
+    vertical-align: top;
+    display: block;
+}
+
+label {
+    margin: 0px 10px 10px 0px;
+}
+
+input, fieldset .hint {
+    margin: 10px 0px 10px 10px;
+}
+
+fieldset legend {
+    margin: 0px 0px 30px -30px;
+    font-size: 1.6em;
 }
 
 .formelementbutton input, .checkgroup input {
@@ -54,31 +77,9 @@ textarea {
     margin: 0px 0px 0px 10px;
 }
 
-fieldset {
-    padding: 0px 0px 0px 30px;
-}
-
-fieldset legend {
-    margin: 0px 0px 30px -30px;
-    font-size: 1.6em;
-}
-
 .formelementtext {
     margin: 30px 0px 30px 0px;
     display: block;
-}
-
-label, input {
-    vertical-align: top;
-    display: block;
-}
-
-label {
-    margin: 0px 10px 10px 0px;
-}
-
-input, fieldset .hint {
-    margin: 10px 0px 10px 10px;
 }
 
 /***************/
