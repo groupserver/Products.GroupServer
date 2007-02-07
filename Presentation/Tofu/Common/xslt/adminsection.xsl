@@ -40,10 +40,10 @@
       src="/Presentation/Tofu/XForms/js/xforms.js">
       &#160;
     </script>
-    <script type="text/javascript" src="/++resource++dojo/dojo.js">
+    <script type="text/javascript" src="/++resource++prototype/prototype.js">
       &#160;
     </script>
-    <script type="text/javascript" src="/Presentation/Tofu/Ajax/js/dojo/dynamic_load.js">
+    <script type="text/javascript" src="/++resource++pane/dynamic_load.js">
       &#160;
     </script>
 
