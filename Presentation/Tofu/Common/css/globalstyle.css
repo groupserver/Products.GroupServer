@@ -16,6 +16,10 @@ p, ul, ol, dl, table, fieldset {
     margin: 1em 0px 1em 0px;
 }
 
+dt {
+    font-weight: bold;
+}
+
 p img {padding: 0px 30px 30px 0px}
 
 p#divisionAdminTasks img {
