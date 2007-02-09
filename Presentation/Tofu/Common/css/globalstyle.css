@@ -327,16 +327,15 @@ ul.contacts li {
     margin: 0px 1.5em 0px 0px;
 }
 
-/*********/
-/* Email */
-/*********/
+/**********************/
+/* Email [Depricated] */
+/**********************/
 
 .emaildetails-odd, .emaildetails-even {
     padding: 10px 10px 10px 10px;
 }
 .email-body {
     font-family: monospace;
-    font-size: 0.9em; /* To allow the text to fit */
 }
 .emailintro {
     display: block;
@@ -345,11 +344,9 @@ ul.contacts li {
     float: left;
     margin: 0px 30px 30px 10px;
 }
-
 .emailremainder {
     display: none;
 }
-
 .email-navlink {
     padding: 10px 0px 10px 10px; clear: both;
 }
@@ -530,7 +527,7 @@ a:hover, a:visited {
     background-color: #a8afb8;
 }
 .emaildetails-self-odd {
-    background-color: #b1c7d6;
+    background-color: #c5cfd6;
 }
 .emaildetails-even {
     background-color: transparent;
