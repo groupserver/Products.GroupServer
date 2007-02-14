@@ -86,6 +86,13 @@ fieldset legend {
     display: block;
 }
 
+/* Feedback Messages */
+.message-result, .message-error {
+    margin: 10px 0px 10px 0px;
+    padding: 10px 10px 10px 10px;
+    font-size: larger;
+}
+
 /***************/
 /* Menu Styles */
 /***************/
@@ -536,9 +543,20 @@ a:hover, a:visited {
     background-color: #cdd2d6;
 }
 
+/*********/
 /* Forms */
-
+/*********/
 .hint {
     font-size: small;
     font-style: italic;
+}
+/* Feedback Messages */
+.message-result {
+    background-color: #839ab8;
+    color: #f0ecd8;
+}
+.message-error {
+    background-color: #d86464;
+    color: white;
+    font-weight: bold;
 }
