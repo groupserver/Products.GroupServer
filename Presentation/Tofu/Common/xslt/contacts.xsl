@@ -74,16 +74,6 @@
       </div>
     </xsl:if>
     <table class="userother">
-      <tr>
-        <th valign="top">Name:</th>
-        <td>
-          <xsl:value-of select="name/preferredname"/> 
-          (<xsl:value-of select="name/firstname"/> 
-          <xsl:value-of select="name/lastname"/>)
-          <xsl:if test="type"> &#160;( <xsl:value-of select="type/text()"/> )
-        </xsl:if>
-      </td>
-    </tr>
     <xsl:if test="groupmemberships/groupmembership">
       <tr>
         <th valign="top">Group Memberships:</th>
@@ -169,18 +159,6 @@
       </xsl:if>
       <fieldset>
         <legend>Your Profile as it Appears to Others</legend>
-        <div class="row">
-          <div class="label">Name:</div>
-          <div class="field">
-            <span class="firstname">
-              <xsl:value-of select="name/preferredname"/>
-            </span>&#160;<span class="lastname">
-            <xsl:value-of select="name/lastname"/>
-          </span>
-          <xsl:if test="type">&#160;( <xsl:value-of select="type/text()"/> )
-        </xsl:if>
-      </div>
-    </div>
     <xsl:if test="groupmemberships/groupmembership">
       <div class="row">
         <div class="label">Group Memberships:</div>
