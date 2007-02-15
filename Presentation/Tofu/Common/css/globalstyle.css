@@ -22,7 +22,7 @@ dt {
 
 p img {padding: 0px 30px 30px 0px}
 
-p#divisionAdminTasks img {
+p#divisionAdminTasks img,  p.divisionAdminTasks img{
     padding: 0px;
     margin: 0px;
 }
@@ -554,6 +554,7 @@ a:hover, a:visited {
 .message-result {
     background-color: #839ab8;
     color: #f0ecd8;
+    border-left: 10px solid #41638b; 
 }
 .message-error {
     background-color: #d86464;
