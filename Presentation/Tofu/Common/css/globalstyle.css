@@ -537,7 +537,7 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
 .emaildetails-odd {
     background-color: #a8afb8;
 }
-.emaildetails-self-odd {
+.emaildetails-self-odd, .odd, .oddStickyTopic  {
     background-color: #c5cfd6;
 }
 .emaildetails-even {
