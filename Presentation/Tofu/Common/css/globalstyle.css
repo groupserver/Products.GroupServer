@@ -591,6 +591,7 @@ textarea, input.text {
   padding: 0px 30px 0px 30px;
 }
 .feedbackresults input {
+  margin: 0px;
   padding-left: 0px;
   padding-right: 0px;
 }
