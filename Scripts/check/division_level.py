@@ -28,18 +28,22 @@ if canonicalHost:
         new_url = URL.replace(base_host, canonicalHost)+'?'+QUERY
         return RESPONSE.redirect(new_url, lock=1)
 
-user = request.AUTHENTICATED_USER
-if user.getUserName() != 'Anonymous User':
-    if getattr(context, 'is_division', False):
-         div_object = context.Scripts.get.division_object()
-         div_id = div_object.getId()
-         if user.getProperty('currentDivision') != div_id:
-             user.manage_changeProperties(currentDivision=div_id)
-         return True
-    else:
-         division = user.getProperty('currentDivision')
-         nurl = division+request.URLPATH0
-         nurl = '/'+'/'.join(filter(None, nurl.split('/')))
-         return RESPONSE.redirect(nurl, lock=1)
+#
+# Switched off, 2007-02-21 - richard@iopen.net
+#
+
+#user = request.AUTHENTICATED_USER
+#if user.getUserName() != 'Anonymous User':
+#    if getattr(context, 'is_division', False):
+#         div_object = context.Scripts.get.division_object()
+#         div_id = div_object.getId()
+#         if user.getProperty('currentDivision') != div_id:
+#             user.manage_changeProperties(currentDivision=div_id)
+#         return True
+#    else:
+#         division = user.getProperty('currentDivision')
+#         nurl = division+request.URLPATH0
+#         nurl = '/'+'/'.join(filter(None, nurl.split('/')))
+#         return RESPONSE.redirect(nurl, lock=1)
 
 return True
