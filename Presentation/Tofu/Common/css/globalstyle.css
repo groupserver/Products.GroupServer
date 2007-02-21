@@ -40,7 +40,7 @@ ol {
 ul {
   list-style-type: disc;
 }
-dt, strong {
+dt, strong, th {
     font-weight: bold;
 }
 cite, em {
