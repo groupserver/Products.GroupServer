@@ -30,11 +30,11 @@ division_objects = context.Scripts.get_division_objects()
 division_ids = map(lambda x: x.getId(), division_objects)
 
 division = ''
-if not id:
-    tid = user.getProperty('currentDivision', '')
-    # check we actually have access to the division still
-    if tid in division_ids:
-        id = tid
+#if not id:
+#    tid = user.getProperty('currentDivision', '')
+#    # check we actually have access to the division still
+#    if tid in division_ids:
+#        id = tid
 
 # if we don't have an id, look to see if we're in a system group that corresponds to
 # a particular division
@@ -68,18 +68,18 @@ if not division and len(division_objects) >= 1:
 if division and set_password:
     return context.REQUEST.RESPONSE.redirect('%s/set_password.xml' % division, lock=1)
 
-if id and id != 'unverified' and user.getProperty('currentDivision', '') != id:
-    # adjust the user object so that it points to the current division
-    try:
-        user.manage_changeProperties(currentDivision=id)
-    except:
-        pass
+#if id and id != 'unverified' and user.getProperty('currentDivision', '') != id:
+#    # adjust the user object so that it points to the current division
+#    try:
+#        user.manage_changeProperties(currentDivision=id)
+#    except:
+#        pass
 
 if not division:
     division = '/nodivision_message'
-    try:
-        user.manage_changeProperties(currentDivision='')
-    except:
-        pass
+    #try:
+    #    user.manage_changeProperties(currentDivision='')
+    #except:
+    #    pass
 
 return context.REQUEST.RESPONSE.redirect(division, lock=1)
