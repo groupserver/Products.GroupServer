@@ -1,11 +1,12 @@
-<xf:model id="manageproperties"
+<xf:model id="group_properties"
   xmlns:xf="http://www.w3.org/2002/xforms" 
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   tal:define="group_object here/Scripts/get/group_object;
-  division_object here/Scripts/get/division_object;
+  site_object here/Scripts/get/division_object;
   list_object python:getattr(here.ListManager, group_object.getId())">
   <xf:instance>
     <data>
+      <submitted>1</submitted>
       <grouptitle 
         tal:content="group_object/title">Group Title</grouptitle>
       <groupSubject
@@ -19,7 +20,7 @@
       <permviewfiles tal:content="here/Scripts/get/group_files_visibility"/>
       <permviewmessages tal:content="here/Scripts/get/group_messages_visibility"/>
       <groupid tal:content="group_object/getId">ID</groupid>
-      <divisionid tal:content="division_object/getId">ID</divisionid>
+      <siteid tal:content="site_object/getId">ID</siteid>
       <coach tal:content="group_object/ptn_coach_id | nothing"></coach>
       <senderlimit tal:content="python:list_object.getValueFor('senderlimit') or nothing" />
       <senderinterval
@@ -29,5 +30,5 @@
       </data>
     </xf:instance>
   <xf:bind nodeset="senderlimit" constraint=". &lt; 21"/>
-  <xf:submission action="" method="urlencoded-post" id="next"/>
+  <xf:submission action="" method="urlencoded-post" id="change"/>
 </xf:model>
