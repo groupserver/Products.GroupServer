@@ -36,18 +36,8 @@ body {
 
 /* Reformat the title-bar text, which is not the page title.*/
 #titlebar {
-  margin: 0cm;
-  padding: 0cm;
-  font-size: medium;
-  position: static;
+  display: none;
 }
-#titlebar span.division {
-  margin: 0px;
-  padding: 0px;
-  font-size: large;
-  display: block;
-}
-
 
 /* Reformat the links:                        */
 /* - No underlining,                          */
