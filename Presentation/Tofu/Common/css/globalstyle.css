@@ -478,7 +478,7 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
     font-weight: bold;
     color: #f0ecd8;
 }
-#contextnav .current {
+#contextnav .current,  #contextnav .current a, #contextnav a.current{
     text-decoration: none;
     font-weight: bold;
 }
