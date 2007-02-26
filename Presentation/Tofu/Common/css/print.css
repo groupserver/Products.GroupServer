@@ -8,13 +8,13 @@
 body {
   color: black;
   background-color: white;
-  font-family: serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   margin: 0px;
   padding: 0px;
 }
 
 p, ul, ol, dl, table {
-  font-size: 77%;
+  font-size: 85%;
 }
 
 /* Do not display any of the navigation elements. */
