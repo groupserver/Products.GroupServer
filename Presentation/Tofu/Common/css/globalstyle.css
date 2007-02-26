@@ -478,9 +478,9 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
     font-weight: bold;
     color: #f0ecd8;
 }
-#contextnav a.current {
+#contextnav .current {
     text-decoration: none;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 /** Borders */
