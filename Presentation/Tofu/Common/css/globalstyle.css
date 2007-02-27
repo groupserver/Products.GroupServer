@@ -47,6 +47,15 @@ cite, em {
     font-style: italic;
 }
 
+q:before {
+  content: open-quote;
+}
+
+q:after {
+  content: close-quote;
+}
+
+
 p img {padding: 0px 30px 30px 0px}
 
 abbr {
