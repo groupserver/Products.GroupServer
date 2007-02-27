@@ -14,11 +14,12 @@ body {
 }
 
 p, ul, ol, dl, table {
-  font-size: 100%;
+  font-size: 120%;
 }
 
 h1,h2,h3,h4, h5,h6,caption,legend,th,label,.label,#titlebar .division,.row .label {
   font-family: Trebuchet,'Trebuchet MS',arial,helvetica,clean,sans-serif;
+  color: black;
 }
 
 /* Do not display any of the navigation elements. */
@@ -55,12 +56,4 @@ a, a:visited {
   color: inherit;
   background-color: inherit;
   text-decoration: none;
-}
-a:after {
-  font-size: xx-small;
-  content: " (URI: " attr(href) ")";
-}
-
-.breadcrumb a:after {
-    content: normal;
 }
