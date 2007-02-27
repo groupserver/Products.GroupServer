@@ -22,7 +22,7 @@
           <link url="#3">delete the text of the previous messsage</link>
         </listitem>
         <listitem>
-          <link url="#4">use the files area for files</link>
+          <link url="#4">use the group to share files</link>
         </listitem>
       </bulletlist>
       
@@ -45,8 +45,7 @@
       <paragraph>
         Many people find it useful to keep 
         all of the posts in an email folder.
-        You can even set up a <link url="http://www.groupsense.co.nz/filtering.html">
-          rule or filter</link> to put
+        You can even set up a rule or filter to put
         them there automatically.
         If you prefer, you can delete the emails 
         from your Inbox as you receive them and 
@@ -67,8 +66,7 @@
         Messages area of your Online Group now to see
         how it organises posts into a readable sequence.
         You can configure some email clients to 
-        support <link url="http://www.groupsense.co.nz/threading.html">
-          threading</link> as well.
+        support threading as well.
       </paragraph>
       
       <heading2 id="3">
@@ -81,32 +79,41 @@
         The text is already in the messages area (leaving the 
         text of the previous message on your post reduces the "signal 
         to noise" ratio and leads to "false positive" 
-        search results). <link url="http://www.groupsense.co.nz/quoting.html">
-          "Quote"</link> from the previous post minimally
+        search results). "Quote" from the previous post minimally
         and clearly.
       </paragraph>
       
       <heading2 id="4">
-        Use the Files Area for Files
+        Use the Group to Share Files
       </heading2>
       
       <paragraph>
-        Use the files area to share files. Use 
-        folders to organise files and the 
-        "description" field to let others know 
-        what is in the file. Keep the web interface open all the 
-        time (use this to read conversations and to 
-        upload and view the group's shared files).
+        You can share files with an Online Group in two ways:
       </paragraph>
+
+      <bulletlist>
+	<listitem>
+	    when sending an email to the group, add one or more files 
+	    to your email as attachments
+	</listitem>
+	<listitem>
+	    when posting a message from this website, click the "Browse" 
+            button under the "File" heading and choose one single file to 
+	    share with the group
+	</listitem>
+       </bulletlist>
+
+       <paragraph>
+	The files will be added to your post as links, and a list of posts 
+	with files is clearly displayed at the top of the page when viewing 
+	a topic.
+       </paragraph>
       
       <paragraph>
-        Benefits of Sharing Files via Files Area
+        Benefits of Sharing Files with the Group
       </paragraph>
       
       <numberedlist>
-        <listitem>
-          files can easily be organised into into a structured collection
-        </listitem>
         <listitem>
           people can choose when they download files (rather than getting them whether they like it or not)
         </listitem>

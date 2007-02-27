@@ -41,12 +41,9 @@
         not be deleted from the Messages area.
       </paragraph>
       <paragraph>
-        You can not send file attachments via Online Groups. 
-        This is because the website provides a secure area where Members of
-        an Online Group can easily share files in an organised 
-        way. The files can be downloaded 
-        by each person when they are ready, rather than taking up
-        time on Internet connections that may be slow.
+        You can send file attachments to Online Groups. The files will 
+        be added to your post as links. Members of the group can retrieve
+	the files through these links if they choose.
       </paragraph>
 
       <heading2>
@@ -61,7 +58,7 @@
       </paragraph>
       <paragraph>
         In the case of Online Groups, the service provider
-        is GroupSense. GroupSense maintains
+        is OnlineGroups.Net. OnlineGroups.Net maintains
         the privacy of participation in Online Groups.
       </paragraph>
       <paragraph>

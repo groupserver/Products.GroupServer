@@ -22,7 +22,7 @@
           </question>
           <answer>
             If you are reading this, you do not need that email. Please make sure that your email 
-            address(es) is(are) specified correctly on your Participant Details page ("Your Details").
+            address(es) is(are) specified correctly on your profile page.
             Then simply try posting to your Online Group.
           </answer>
         </faq>
@@ -33,24 +33,24 @@
           </question>
           <answer>First check that the message was sent to the Online Group. 
             If it was, you will have received a copy of your own message. 
-            It will have a shortened version of the Online Group name in the
+            It will have a shortened version of the Ofacil' nline Group name in the
             subject line (e.g. [groupname]).
             If you got the message 
-            and it is not in the Online Group's messages folder, contact us.
+            and it is not in the Online Group's Messages section, contact us.
             If you did not receive the message, check to make sure the address 
             you sent it to was correct. 
             Also check that the email address you sent the message from is 
-            correct by going to your <link tal:attributes="url string:../../contacts/${user/getId}">Participant
-              Details (Your Details)</link> page. 
+            correct by going to your <link tal:attributes="url string:../../contacts/${user/getId}">profile</link> page. 
             You can change your email address(es) there if neccessary.
           </answer>
         </faq>
         <faq>
           <question>How do I change my email address?</question>
-          <answer>Go to your <link tal:attributes="url string:../../contacts/${user/getId}">Participant
-              Details page (Your Details)</link>. On this page you can add or remove email address(es). 
-            To add an email address type your new email address in to the 'Add an Email Address' field and click 'Add'. 
-            To remove an email address, tick the 'Remove' box and click 'Update Email'.
+          <answer>Go to your <link tal:attributes="url string:../../contacts/${user/getId}">profile</link> 
+	    page. Click the Change Email Settings link in the menu. 
+	    On this page you can add or remove email address(es).
+            To add an email address type your new email address into the 'New Address' field and click 'Add Address'. 
+            To remove an email address, click the button to the left of it and click 'Remove Address'.
           </answer></faq>
         
         
@@ -62,20 +62,16 @@
             configured to your email coming from a different email 
             address to the one that you use to receive email. The difference
             may be slight but it will mean that you cannot post (send email to) 
-            Online Groups. If this is the case, go to your 
-          <link tal:attributes="url string:../../contacts/${user/getId}">Participant
-              Details page (Your Details)</link>, add the second email address and 
+            Online Groups. If this is the case, go to your profile page and click Change Email Settings. 
             set "send email to this address" off so that you don't get two of every email.
           </answer>
         </faq>
         
         <faq>
           
-          <question>On 'Participant Details', what does 'Send email to this Address' mean?</question>
+          <question>On my profile page, what does 'Default Email Delivery' mean?</question>
           
-          <answer>If you tick the 'Send email to this Address' box
-            and click 'Update Email', you will receive all 
-          <link url="../../groups/index.xml">Online Group</link> emails at this address. 
+          <answer>If you tick the box next to one of your email addresses and click 'Add to Default', you will emails at this address. 
             Other Candidates in your Online Groups will also be able 
             to email you at that address from your Participant Details page.
           </answer>
@@ -83,8 +79,7 @@
         
         <faq>
           
-          <question>On 'Participant Details', why would I switch
-            'Send email to this Address' off?</question>
+          <question>Under Email Settings on my profile page, why would I switch 'Send email to this Address' off?</question>
           
           <answer>Some people have their email settings configured 
             to show their email coming from a different email 
