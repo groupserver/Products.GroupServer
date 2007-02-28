@@ -9,13 +9,15 @@
       
       <faqs>
         <faq>
-          <question>How do I find the email address for my Online Group?
+          <question>
+	    How do I find the email address for my Online Group?
           </question>
           <answer>
             The email address for your Online Group is on the Online Group's main page on this site.
-            Go to the Groups section and then click the link to your Online Group.
+            Go to the 'Groups' section and then click the link to your Online Group.
           </answer>
         </faq>
+
         <faq>
           <question>
             I did not receive an email notifying me about my Online Group. What do I do?
@@ -26,69 +28,67 @@
             Then simply try posting to your Online Group.
           </answer>
         </faq>
+
         <faq>
           <question>
             I sent an email to my Online Group and it hasn't appeared in the 
-            Messages section of my Online Group.
+            'Messages' section of my Online Group.
           </question>
-          <answer>First check that the message was sent to the Online Group. 
+          <answer>
+	    First check that the message was sent to the Online Group. 
             If it was, you will have received a copy of your own message. 
-            It will have a shortened version of the Ofacil' nline Group name in the
+            It will have a shortened version of the Online Group name in the
             subject line (e.g. [groupname]).
-            If you got the message 
-            and it is not in the Online Group's Messages section, contact us.
+            If you got the message and it is not in the 'Messages' section of the Online Group, please contact us.
             If you did not receive the message, check to make sure the address 
             you sent it to was correct. 
             Also check that the email address you sent the message from is 
-            correct by going to your <link tal:attributes="url string:../../contacts/${user/getId}">profile</link> page. 
+            correct by going to your profile page. 
             You can change your email address(es) there if neccessary.
           </answer>
         </faq>
+
         <faq>
-          <question>How do I change my email address?</question>
-          <answer>Go to your <link tal:attributes="url string:../../contacts/${user/getId}">profile</link> 
-	    page. Click the Change Email Settings link in the menu. 
+          <question>
+	    How do I change my email address?
+	  </question>
+          <answer>
+	    Go to your profile page.
+	    Click the Change Email Settings link in the menu. 
 	    On this page you can add or remove email address(es).
-            To add an email address type your new email address into the 'New Address' field and click 'Add Address'. 
-            To remove an email address, click the button to the left of it and click 'Remove Address'.
-          </answer></faq>
-        
+            To add an email address, type your email address into the 'New Address' field and click 'Add Address'. 
+            To remove an email address, click the button to the left of it and then click 'Remove Address'.
+          </answer>
+	</faq>
         
         <faq>
-          <question>When I post to my Online Group, it tells me
-            I am not a member of the group but I am.</question>
-          
-          <answer>It may be that you have your email settings 
-            configured to your email coming from a different email 
-            address to the one that you use to receive email. The difference
-            may be slight but it will mean that you cannot post (send email to) 
-            Online Groups. If this is the case, go to your profile page and click Change Email Settings. 
-            set "send email to this address" off so that you don't get two of every email.
+          <question>
+	    When I post to my Online Group, it tells me
+            I am not a member of the group but I am.
+	  </question>
+          <answer>
+	    It may be that your email is configured such that your outgoing messages are sent from a different email address to the one that you use to receive incoming messages. The difference may be slight but it will mean that you cannot post (send email to) Online Groups. If this is the case, go to your profile page and click 'Change Email Settings'. From there, you can add the email address that you use for sending messages.
           </answer>
         </faq>
         
         <faq>
-          
-          <question>On my profile page, what does 'Default Email Delivery' mean?</question>
-          
-          <answer>If you tick the box next to one of your email addresses and click 'Add to Default', you will emails at this address. 
-            Other Candidates in your Online Groups will also be able 
-            to email you at that address from your Participant Details page.
+          <question>
+	    On my 'Change Email Settings' page, what does 'Default Email Delivery' mean?
+	  </question>
+          <answer>
+	    If you tick the box next to one of your email addresses and click 'Add to Default', you will receive posts from all your online groups at that address unless you specify otherwise.
+	  </answer>
+	</faq>
+
+	<faq>
+	  <question>
+	    How do I change my settings so that messages from one or more particular groups are delivered to an email address that is not in my list of default addresses?
+	  </question>
+	  <answer>
+	    View your profile page and click 'Change Email Settings'. Under the heading 'Group Email Delivery Settings', find the group(s) for which that you wish to change delivery settings and click 'Change' next to 'Email Setting'. Choose the 'Specific Address or Addresses' option and check the box next to the email address(es) at which you wish to receive the messages from this group.
           </answer>
         </faq>
         
-        <faq>
-          
-          <question>Under Email Settings on my profile page, why would I switch 'Send email to this Address' off?</question>
-          
-          <answer>Some people have their email settings configured 
-            to show their email coming from a different email 
-            address to the one that they use to receive email. The difference
-            may be slight but it will mean that you cannot post (send email to) 
-            Online Groups. If this is the case, add the second email address and 
-            set "send email to this address" off so that you don't get two of every email.
-          </answer>
-        </faq>
       </faqs>
     </content>
   </output>
