@@ -1,0 +1,57 @@
+/* Handheld Medium Style Sheet         */
+/* Michael JasonSmith               */
+/* Copyright OnlineGroups.Net, 2006 */
+
+/* Set up the default colours and font. Serif is easier to read on */
+/*   paper, as is back on white text. (Besides, colour is rare and */
+/*   expensive.) */
+body {
+  color: black;
+  background-color: white;
+  font-family: sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+h1,h2,h3,h4, h5,h6,caption,legend,th,label,.label,#titlebar .division,.row .label {
+  font-family: inherit;
+}
+/* Do not display any of the navigation elements. */
+#externallinks, #sitenavigation, #contextnav, #titlebar {
+  display: none;
+}
+#utilities,#utilitylinks {
+  display: block;
+  position: static;
+  width: auto;
+  height: auto;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  float: none;
+}
+#utilitylinks li {
+  display: list-item;
+  padding: 0px;
+}
+#utilitylinks a, #utilitylinks a:visited, #utilitylinks a:hover{
+  color: inherit;
+  background: inherit;
+}
+#searcharea {
+  display: block;
+  position: static;
+  width: 100%;
+  height: auto;
+  float: none;
+}
+#content {
+  margin: 0px;
+  padding: 0px;
+  position: static
+  width: 100%;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+}
