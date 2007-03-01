@@ -47,7 +47,7 @@
           <email:mailFrom
             tal:content="python:email['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
           <email:from
-            tal:content="python:email['from'][0]">someaddress@iopen.co.nz</email:from>
+            tal:content="python:email.getProperty('from', [None])[0] or email.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from>
           <span tal:omit-tag="" 
             tal:define="mailUserId email/mailUserId | nothing; 
             mailUserExists python:here.Scripts.get.user_exists(mailUserId);
