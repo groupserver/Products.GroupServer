@@ -24,7 +24,8 @@
               <email:mailUserId tal:content="mailUserId | nothing"/>
               <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
             </span>
-            <email:from tal:content="python:result.getProperty('from', [None])][0] or result.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from>
+            <email:from tal:content="python:result.getProperty('from', [None])[0] or result.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from>
+
             <email:mailSubject tal:content="python:ctct(result['mailSubject'], getattr(result, 'content-type', None))">someaddress@iopen.co.nz</email:mailSubject>
             <email:subject tal:condition="python:hasattr(result, 'subject')" tal:content="python:ctct(result['subject'], getattr(result, 'content-type', None))">someaddress@iopen.co.nz</email:subject>
             <email:mailDate tal:content="python:result['mailDate'].toZone(here.GlobalConfiguration.getProperty('timezone','GMT')).strftime('%d %b %Y %R')">2003/04/09 12:00pm</email:mailDate>
