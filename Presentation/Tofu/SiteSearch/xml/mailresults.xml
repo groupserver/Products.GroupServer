@@ -40,7 +40,7 @@
       <result tal:define="object result/getObject" tal:omit-tag="">
         <title tal:content="object/mailSubject"></title>      
         <email:mailFrom tal:content="python:object['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
-        <email:from tal:content="python:object['from'][0]">someaddress@iopen.co.nz</email:from>
+        <email:from tal:content="python:object.getProperty('from', [None])[0] or object.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from>
         <span tal:omit-tag="" tal:define="mailUserId object/mailUserId | nothing;
                                       mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
             <email:mailUserId tal:content="mailUserId | nothing"/>
