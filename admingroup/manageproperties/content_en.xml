@@ -6,14 +6,15 @@
   <output>
     <content 
 			tal:define="group_members here/Scripts/get/group_members">
-      <fieldset>
-        <legend>Group Properties</legend>
-
+			
+			<heading1>Group Properties</heading1>
+			
+      <fieldset id="generalproperties">
+        <legend>General Properties</legend>
         <xf:input model="group_properties" ref="grouptitle" class="text">
           <xf:label>Title</xf:label>
           <xf:hint>Please enter the title of the group</xf:hint>
         </xf:input>
-
         <xf:input model="group_properties" ref="groupSubject"
           class="text">
           <xf:label>Subject</xf:label>
@@ -27,13 +28,30 @@
           'ref': prop.getId(),
           'label': prop.title_or_id(),
           'hint': prop.getProperty('description','')})" />
-        
+      </fieldset><!--generalproperties-->
+      
+      <fieldset id="postinglimits"
+        tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)">
+        <legend>Posting Limits</legend>
+        <!-- -=mpj17=- Ouch! I need to really work on the wording here. -->
+        <paragraph>The number of posts can a group member make in a
+          particular interval.</paragraph>
         <xf:input model="group_properties" ref="senderlimit"
           class="text">
           <xf:label>Post limit</xf:label>
-          <xf:hint>The maximum number of posts a user can send in 24 hours.</xf:hint>
+          <xf:hint>The maximum number of posts a user can send in the 
+            posting interval.</xf:hint>
         </xf:input>
-
+        <xf:input model="group_properties" ref="senderinterval"
+          class="text">
+          <xf:label>Posting Interval</xf:label>
+          <xf:hint>The number of hours that the post limit applies 
+            to.</xf:hint>
+        </xf:input>
+      </fieldset><!--postinglimits-->
+      
+      <fieldset id="security">
+        <legend>Group Security</legend>
         <xf:select1 appearance="minimal" model="group_properties"
           ref="permvisibility" class="text">
           <xf:label>Visibility</xf:label>
@@ -113,13 +131,12 @@
             <xf:value>group</xf:value>
           </xf:item>
         </xf:select1>
-
-        <xf:submit model="group_properties" submission="change"
-          class="button">
-          <xf:label>Change Properties</xf:label>
-          <xf:hint>Change the properties of the group</xf:hint>
-        </xf:submit>
-      </fieldset>
+      </fieldset><!-- security -->
+      <xf:submit model="group_properties" submission="change"
+        class="button">
+        <xf:label>Change Properties</xf:label>
+        <xf:hint>Change the properties of the group</xf:hint>
+      </xf:submit>
     </content>
   </output>
 </root>

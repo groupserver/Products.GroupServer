@@ -22,11 +22,21 @@
       <groupid tal:content="group_object/getId">ID</groupid>
       <siteid tal:content="site_object/getId">ID</siteid>
       <coach tal:content="group_object/ptn_coach_id | nothing"></coach>
-      <senderlimit tal:content="python:list_object.getValueFor('senderlimit') or nothing" />
-      <senderinterval
-        tal:condition="python:group_object.group_template=='standard'">172800</senderinterval><!--48 hours, in seconds, for a discussion group-->
-      <senderinterval 
-        tal:condition="python:group_object.group_template=='announcement'">864000</senderinterval><!--10 days, in seconds, for a anouncement group-->
+      <tal:block tal:condition="python:not(context.Scripts.get.option('admin_can_set_posting_limit', True))">
+        <!-- OGN Specific -->
+        <senderlimit tal:content="python:list_object.getValueFor('senderlimit') or nothing" />
+        <senderinterval
+          tal:condition="python:group_object.group_template=='standard'">48</senderinterval><!--48 hours, in seconds, for a discussion group-->
+        <senderinterval 
+          tal:condition="python:group_object.group_template=='announcement'">240</senderinterval><!--10 days, in seconds, for a anouncement group-->
+        </tal:block>
+      <tal:block tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)"
+        tal:define="gid group_object/getId">
+        <senderlimit
+          tal:content="python:context.Scripts.get.list_property(gid, 'senderlimit')"/>
+        <senderinterval
+          tal:content="python:context.Scripts.get.list_property(gid, 'senderinterval')/3600"/>
+      </tal:block>
       </data>
     </xf:instance>
   <xf:bind nodeset="senderlimit" constraint=". &lt; 21"/>
