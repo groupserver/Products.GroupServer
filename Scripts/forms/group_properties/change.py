@@ -57,41 +57,64 @@ except:
     error = True
     message.append('<li>The posting limit must be an integer</li>')
 
-senderinterval = form.get('senderinterval', 0)
+secInHour = 3600
+origSenderinterval = form.get('senderinterval', 0)
 try:
-    senderinterval = int(senderinterval)
+    senderinterval = int(origSenderinterval) * secInHour
 except:
     error = True
     message.append('<li>The posting interval must be an integer</li>')
 
 if error:
     retval = {'error': error, 'message': "<ul>%s</ul>" % '\n'.join(message)}
+    return retval
     
+senderLimitChanged = False
+senderIntervalChanged = False
 if getattr(grouplist, 'senderlimit', 0) != senderlimit:
     if grouplist.hasProperty('senderlimit'):
         grouplist.manage_changeProperties(senderlimit=senderlimit)
     else:
         grouplist.manage_addProperty('senderlimit', senderlimit, 'int')
-    message.append('<li>Updated sender limit</li>')
+    message.append('<li>Set sender limit to %d posts.</li>' % senderlimit)
+    senderLimitChanged = True
 
 if getattr(grouplist, 'senderinterval', 0) != senderinterval:
     if grouplist.hasProperty('senderinterval'):
         grouplist.manage_changeProperties(senderinterval=senderinterval)
     else:
         grouplist.manage_addProperty('senderinterval', senderinterval, 'int')
-    message.append('<li>Updated sender interval</li>')
+    m = '<li>Set sender interval to %s hours.</li>' % origSenderinterval
+    message.append(m)
+    senderIntervalChanged = True
+
+if senderIntervalChanged or senderLimitChanged:
+    sI = context.Scripts.get.list_property(grouplist.getId(), 
+                                           'senderinterval')
+    sL = context.Scripts.get.list_property(grouplist.getId(),
+                                           'senderlimit')
+    secInHour = 3600
+    duration = sI/ secInHour
+    plural = duration > 1
+    if plural:
+      interval = '%d hours' % duration
+    else:
+      interval = 'hour'
+        
+    m = '<li>Posting limit is now %d posts every %s.</li>' % (sL,interval)
+    message.append(m)
 
 group_title = form.get('grouptitle', None)
 if group_title:
     if group.getProperty('title') != group_title:
         group.manage_changeProperties(title=group_title)
-        message.append('<li>Updated group title</li>')
+        message.append('<li>Updated group title.</li>')
 
 coach_id = form.get('coach', None)
 if coach_id:
     if group.getProperty('ptn_coach_id') != coach_id:
         group.manage_changeProperties(ptn_coach_id=coach_id)
-        message.append('<li>Updated participation coach</li>')
+        message.append('<li>Updated participation coach.</li>')
 
 for property in site_root.GroupProperties.objectValues():
     prop = form.get(property.getId(), None)
@@ -105,7 +128,7 @@ for property in site_root.GroupProperties.objectValues():
             group.manage_changeProperties({property.getId(): prop})
         else:
             group.manage_addProperty(property.getId(), prop, property.getProperty('property_type'))
-        message.append('<li>Set %s to <q>%s</q></li>' % (html_quote(property.title_or_id()), html_quote(prop)))
+        message.append('<li>Set %s to <q>%s</q>.</li>' % (html_quote(property.title_or_id()), html_quote(prop)))
 
 visibility = context.Scripts.get.group_visibility()
 permvisibility = form.get('permvisibility', 'group')
