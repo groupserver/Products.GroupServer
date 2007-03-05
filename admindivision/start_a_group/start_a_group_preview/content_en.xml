@@ -28,7 +28,7 @@
           <span class="email"
 						tal:content="python:user.get_emailAddresses()[0]">example_user@example.site</span><br/>
           <bold>To:</bold>
-          <span class="email"><span tal:replace="python:request.get('groupId', '')"/>@onlinegroups.net</span><br/>
+          <span class="email"><span tal:replace="python:request.get('groupId', '')"/>@<span tal:replace="python:context.Scripts.get.option('canonicalHost', 'localhost.localdomain')"/></span><br/>
           <bold>Subject:</bold>
           [<span tal:replace="python:request.get('groupName', '')"/>]
           An Email Preview<br/>
@@ -40,7 +40,7 @@ form the email address for the group, while the group name is used in<br/>
 the subject-line of the group.<br/>
 
 					<span
-						tal:replace="structure python:here.fake_footer(request.get('groupId', ''), request.get('groupName', ''), here.Scripts.get.option('canonical_host', 'onlinegroups.net'))"/>
+						tal:replace="structure python:here.fake_footer(request.get('groupId', ''), request.get('groupName', ''), here.Scripts.get.option('canonicalHost', 'onlinegroups.net'))"/>
         </paragraph>
       </div>
 
@@ -70,7 +70,6 @@ the subject-line of the group.<br/>
         <div class="titlebar">
           <span class="division">
             <span tal:content="division_object/title_or_id"/>
-            Online Groups
           </span>
         </div>
         <div class="exampleContent">

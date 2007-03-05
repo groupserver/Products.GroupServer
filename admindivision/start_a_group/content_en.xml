@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <root xmlns:tal="http://xml.zope.org/namespaces/tal" 
   xmlns:metal="http://xml.zope.org/namespaces/metal" 
   xmlns:xf="http://www.w3.org/2002/xforms">
@@ -9,7 +9,9 @@
 
       <heading2 id="type">Group Type</heading2>
       <paragraph>What type of group that you wish to start? 
-        There are two type of group on OnlineGroups.Net.
+        There are two type of group on 
+        <span class="site" 
+          tal:content="python:context.Scripts.get.option('siteName','GroupServer')" />.
       </paragraph>
       
       <fieldset>
@@ -61,7 +63,7 @@
 
       <paragraph>What is the identifier of the group?
         the group ID is used to form the email address for the group
-        (<span class="email"><bold>exampleid</bold>@onlinegroups.net</span>)
+        (<span class="email"><bold>exampleid</bold>@<span tal:replace="python:context.Scripts.get.option('canonicalHost', 'localhost.localdomain')"/></span>)
           and, to form the URL for the group, as
           follows.</paragraph>
 
