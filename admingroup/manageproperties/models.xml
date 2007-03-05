@@ -30,7 +30,7 @@
           <senderlimit
             tal:content="python:context.ListManager.getProperty('%s_senderlimit' % groupTemplate, 10)" />
           <senderinterval 
-            tal:condition="python:context.ListManager.getProperty('%s_senderinterval' % groupTemplate, 10)/3600"/>
+            tal:content="python:context.ListManager.getProperty('%s_senderinterval' % groupTemplate, 3600)/3600"/>
         </tal:block>
         <tal:block tal:condition="canSetPostingLimit"
           tal:define="gid group_object/getId">
