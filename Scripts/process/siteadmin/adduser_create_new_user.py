@@ -16,7 +16,7 @@ result = {}
 if preferredname:
     userproperties = {'preferredName': preferredname}
 else:
-    userproperties = {'preferredName': firstname}
+    userproperties = {'preferredName': '%s %s' % (firstname, lastname)}
 
 try:
     user = context.Scripts.registration.register_user(firstname, lastname,
