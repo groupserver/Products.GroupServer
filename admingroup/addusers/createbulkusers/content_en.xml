@@ -21,8 +21,21 @@
         
         
         <heading2>Step 1: Create the CSV File</heading2>
+
+        <paragraph>Create the CSV (comma-separated value) file
+          &#8212; which  will contain a list of all the members you wish
+          to create &#8212; in a spreadsheet program, such as
+          Microsoft Excel, NeoOffice Calc, or OpenOffice Calc.
+          The file should contain at least two rows: a header, and
+          a row for each member that you wish to add.
+          There needs to be three columns for each member: first name, 
+          last name and email address.
+          However, <emph>all members</emph> need to have a
+          first name, last name and email address.
+        </paragraph>
+
         
-        <paragraph>To create the CSV (comma-separated value) file
+        <!--paragraph>To create the CSV (comma-separated value) file
           &#8212; which  will contain a list of all the members you wish
           to create  &#8212; download
           <link title="Sample Create Members in Bulk CSV File"
@@ -40,12 +53,13 @@
           like.
           However, <emph>all members</emph> need to have a
           first name, last name and email address.
-        </paragraph>
+        </paragraph-->
         
         <paragraph>Expert administrators can also add extra columns,
           but this is not necessary.
           Experts should also note that you <emph>should not</emph>
-          create more than 100 members at any one time.</paragraph>
+          create more than 100 members at any one time, as
+          strange timeout issues occur.</paragraph>
         
         <heading2>Step 2: Select the CSV File</heading2>
         
