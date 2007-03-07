@@ -7,7 +7,7 @@
     <data>
       <submitted>1</submitted>
 
-      <userid tal:content="python:request.get('userId','') or (request.result and request.result['form']['userid'])"/>
+      <userid tal:content="python:request.get('userId','') or (request.get('form', '') and request['form']['userid'])"/>
             
       <groupid tal:content="group_object/getId">group id</groupid>
       <siteid

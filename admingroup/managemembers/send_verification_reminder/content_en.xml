@@ -10,7 +10,7 @@
       siteName python:here.Scripts.get.option('siteName') or site.title_or_id();
       site_root here/site_root;
       group_object here/Scripts/get/group_object;
-      userId python:request.get('userId','') or (request.result and request.result['form']['userid']);
+      userId python:request.get('userId','') or (request.get('form', '') and request['form']['userid']);
       userName python:here.Scripts.get.user_realnames(userId, True);">
       
       <tal:block tal:condition="userId"
