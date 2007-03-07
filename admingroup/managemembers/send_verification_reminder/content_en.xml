@@ -46,9 +46,9 @@
           <xf:label>Send</xf:label>
         </xf:submit>
       </tal:block>
-      <tal:block tal:condition="not:userId">
+      <!--tal:block tal:condition="not:userId">
         <pagraph>User ID not specified.</pagraph>
-      </tal:block>
+      </tal:block-->
     </content>
   </output>
 </root>
