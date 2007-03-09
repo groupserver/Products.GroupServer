@@ -458,7 +458,7 @@ a {
 }
 a:hover, a:visited {
     color: #41638b;
-    background: transparent none no-repeat;
+    /*background: transparent none no-repeat;*/
 }
 
 p#divisionAdminTasks img,  p.divisionAdminTasks img{
