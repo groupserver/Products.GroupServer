@@ -57,6 +57,8 @@ elif (moderation_level == 'specified_and_new'):
     assert site_root.CodeTemplates.ListManager
     mailinlist_members = getattr(site_root.CodeTemplates.ListManager,
                                  'moderated-mailinlist_members')
+    assert mailinlist_members
+    grouplist.manage_clone(mailinlist_members, 'mailinlist_members')
     message = '''Moderation has been turned on: posts from specified
     members will be moderated, and any new members will automatically
     be moderated.'''
@@ -69,6 +71,8 @@ elif (moderation_level == 'specified_only'):
     assert site_root.CodeTemplates.ListManager
     mailinlist_members = getattr(site_root.CodeTemplates.ListManager,
                                  'moderated-mailinlist_members')
+    assert mailinlist_members
+    grouplist.manage_clone(mailinlist_members, 'mailinlist_members')
     message = '''Moderation has been turned on: posts from specified
     members will be moderated.'''
 
