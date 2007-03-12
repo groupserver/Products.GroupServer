@@ -46,6 +46,9 @@ if grouplist.hasProperty('moderated'):
 else:
     grouplist.manage_addProperty('moderated', 0, 'boolean')
 
+if hasattr(grouplist, 'mailinlist_members'):
+    grouplist.manage_delObjects(['mailinlist_members'])
+
 result['error'] = False
 result['message'] = '''<paragraph>Moderation is <em>off.</em></paragraph>'''
 return result

@@ -45,6 +45,18 @@ if grouplist.hasProperty('moderated'):
 else:
     grouplist.manage_addProperty('moderated', 1, 'boolean')
 
+# Place the mailinlist_members script into the group
+if hasattr(grouplist, 'mailinlist_members'):
+  try:
+    grouplist.manage_delObjects(['mailinlist_members'])
+  except:
+    pass
+assert site_root.CodeTemplates.ListManager
+mailinlist_members = getattr(site_root.CodeTemplates.ListManager,
+                             'moderated-mailinlist_members')
+assert mailinlist_members
+grouplist.manage_clone(mailinlist_members, 'mailinlist_members')
+
 result['error'] = False
 result['message'] = '''<paragraph>Moderation is
     <em>on.</em></paragraph>'''
