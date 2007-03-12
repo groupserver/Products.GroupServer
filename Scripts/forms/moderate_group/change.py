@@ -45,16 +45,30 @@ moderation_level = form['moderation_level']
 if (moderation_level == 'none'):
     grouplist.manage_changeProperties(moderated=0)
     grouplist.manage_changeProperties(moderate_new_members=0)
+    if hasattr(grouplist, 'mailinlist_members'):
+        grouplist.manage_delObjects(['mailinlist_members'])
     message = "Moderation has been turned off: no posts will be moderated."
 elif (moderation_level == 'specified_and_new'):
     grouplist.manage_changeProperties(moderated=1)
     grouplist.manage_changeProperties(moderate_new_members=1)
+    # Place the mailinlist_members script into the group
+    if hasattr(grouplist, 'mailinlist_members'):
+        grouplist.manage_delObjects(['mailinlist_members'])
+    assert site_root.CodeTemplates.ListManager
+    mailinlist_members = getattr(site_root.CodeTemplates.ListManager,
+                                 'moderated-mailinlist_members')
     message = '''Moderation has been turned on: posts from specified
     members will be moderated, and any new members will automatically
     be moderated.'''
 elif (moderation_level == 'specified_only'):
     grouplist.manage_changeProperties(moderated=1)
     grouplist.manage_changeProperties(moderate_new_members=0)
+    # Place the mailinlist_members script into the group
+    if hasattr(grouplist, 'mailinlist_members'):
+        grouplist.manage_delObjects(['mailinlist_members'])
+    assert site_root.CodeTemplates.ListManager
+    mailinlist_members = getattr(site_root.CodeTemplates.ListManager,
+                                 'moderated-mailinlist_members')
     message = '''Moderation has been turned on: posts from specified
     members will be moderated.'''
 
