@@ -7,18 +7,17 @@
 ##parameters=
 ##title=Start a Group Next
 ##
-
 result = {}
 result['error'] = False # --=mpj17=-- uncharastic optimisism
 result['message'] = ''
 
 form = context.REQUEST.form
-assert form.has_key('divisionId')
-assert form.has_key('groupType')
-assert form.has_key('groupName')
-assert form.has_key('groupId')
-assert form.has_key('realLifeGroup')
-assert form.has_key('privacy')
+assert form.has_key('siteId'), 'No site ID'
+assert form.has_key('groupType'), 'No group type'
+assert form.has_key('groupName'), 'No group name'
+assert form.has_key('groupId'), 'No group id'
+assert form.has_key('realLifeGroup'), 'No real-life-group'
+assert form.has_key('privacy'), 'No privacy'
 result['form'] = form
 
 for field in form:
@@ -27,7 +26,7 @@ for field in form:
     except AttributeError:
         pass
 
-divisionId = form['divisionId']
+siteId = form['siteId']
 groupType = form['groupType']
 groupName = form['groupName']
 groupId = form['groupId'].lower()
