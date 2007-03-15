@@ -4,7 +4,7 @@
   xmlns:xf="http://www.w3.org/2002/xforms">
   <data tal:content="structure python:getattr(context, 'models')(method='xml')" />
   <output>
-    <content tal:define="division_object context/Scripts/get/division_object">
+    <content tal:define="site_object context/Scripts/get/division_object">
       <heading1>Start a Group</heading1>
 
       <heading2 id="type">Group Type</heading2>
@@ -68,7 +68,7 @@
           follows.</paragraph>
 
       <paragraph class="locationbar">
-        http://<span tal:content="division_object/getId"/>.onlinegroups.net/groups/<bold>exampleid</bold></paragraph>
+        http://<span tal:content="site_object/getId"/>.onlinegroups.net/groups/<bold>exampleid</bold></paragraph>
 
       <xf:input model="start_a_group" ref="groupId" class="text">
         <xf:label>Group ID</xf:label>

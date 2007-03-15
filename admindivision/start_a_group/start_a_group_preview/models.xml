@@ -1,11 +1,11 @@
 <xf:model id="start_a_group"
   xmlns:xf="http://www.w3.org/2002/xforms"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
-  tal:define="division_object here/Scripts/get/division_object">
+  tal:define="site_object here/Scripts/get/division_object">
   <xf:instance>
     <data>
       <submitted>1</submitted>
-      <divisionId tal:content="division_object/getId"/>
+      <siteId tal:content="site_object/getId"/>
       <groupType 
         tal:content="python:request.get('groupType', '')"/>
       <groupName 

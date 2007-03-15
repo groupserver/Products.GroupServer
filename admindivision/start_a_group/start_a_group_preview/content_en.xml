@@ -4,7 +4,7 @@
   xmlns:xf="http://www.w3.org/2002/xforms">
   <data tal:content="structure python:getattr(context, 'models')(method='xml')" />
   <output>
-    <content tal:define="division_object here/Scripts/get/division_object">
+    <content tal:define="site_object here/Scripts/get/division_object">
 
       <heading1>Start a New Group: Preview</heading1>
       
@@ -57,7 +57,7 @@ the subject-line of the group.<br/>
       </paragraph>
 
       <paragraph class="locationbar">
-        http://<span tal:replace="division_object/getId"/>.onlinegroups.net/groups/<span tal:replace="python:request.get('groupId', '')"/>
+        http://<span tal:replace="site_object/getId"/>.onlinegroups.net/groups/<span tal:replace="python:request.get('groupId', '')"/>
       </paragraph>
       <div class="example">
         <div class="sitenavigation">
@@ -69,7 +69,7 @@ the subject-line of the group.<br/>
         </div>
         <div class="titlebar">
           <span class="division">
-            <span tal:content="division_object/title_or_id"/>
+            <span tal:content="site_object/title_or_id"/>
           </span>
         </div>
         <div class="exampleContent">
