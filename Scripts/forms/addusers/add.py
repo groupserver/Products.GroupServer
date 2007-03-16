@@ -32,7 +32,7 @@ else:
         names.append('%s %s' % (getattr(user, 'firstName', ''),
                                 getattr(user, 'lastName', '')))
     if (len(userids) > 1):
-        namesStr = ' and '.join(', '.join(names[:-1]), names[-1])
+        namesStr = '%s and %s' % (', '.join(names[:-1]), names[-1])
         result['message'] = """<p>Added %d existing site-members (%s) to 
         the group.</p>""" % (len(userids), namesStr)
     else:
