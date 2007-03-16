@@ -13,7 +13,7 @@ result['error'] = False # --=mpj17=-- uncharastic optimisism
 result['message'] = ''
 
 form = context.REQUEST.form
-assert form.has_key('divisionId')
+assert form.has_key('siteId')
 assert form.has_key('groupType')
 assert form.has_key('groupName')
 assert form.has_key('groupId')
@@ -27,7 +27,7 @@ for field in form:
     except AttributeError:
         pass
 
-divisionId = form['divisionId']
+siteId = form['siteId']
 groupType = form['groupType']
 groupName = form['groupName']
 groupId = form['groupId'].lower()
