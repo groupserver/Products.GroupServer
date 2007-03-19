@@ -49,8 +49,7 @@ if result['error']:
 
 nextURL = form.get('nextURL', 'sitereview.xml')
 nextURL = '%s?sitename=%s&subdomain=%s&introduction=%s' % (nextURL, 
-                                                           form['sitename'], 
-                                                           form['subdomain'],
-                                                           form['introduction'])
-nextURL = url_quote(nextURL)
+                                                           url_quote(form['sitename']), 
+                                                           url_quote(form['subdomain']),
+                                                           url_quote(form['introduction']))
 context.REQUEST.RESPONSE.redirect(nextURL)
