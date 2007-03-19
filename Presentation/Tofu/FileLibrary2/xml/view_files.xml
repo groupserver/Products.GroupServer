@@ -29,7 +29,7 @@
     
     <content metal:fill-slot="maincontent">
       <h1>Files</h1>
-
+      <paragraph><link url="view_add_file">Add files</link></paragraph>
       <xf:select1 appearance="minimal"
           model="find_file" ref="b_size"
           class="text">
