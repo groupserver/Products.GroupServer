@@ -21,6 +21,7 @@ if result['error']:
     return result
 
 # No error, redirect
-context.REQUEST.RESPONSE.redirect('siteintroduction.xml?sitename=%s&subdomain=%s' %
-                                  (form['sitename'], subdomain))
- 
+nextURL = form.get('nextURL', 'siteintroduction.xml')
+nextURL = '%s?sitename=%s&subdomain=%s' % (nextURL, form['sitename'],
+                                           subdomain)
+context.REQUEST.RESPONSE.redirect(nextURL)
