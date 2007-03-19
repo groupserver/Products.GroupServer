@@ -7,7 +7,7 @@
 ##parameters=
 ##title=Site Review Review
 ##
-
+from Products.PythonScripts.standard import url_quote
 result = {}
 
 form = context.REQUEST.form
@@ -47,7 +47,10 @@ result = container.check_introduction(form['introduction'])
 if result['error']:
     return result
 
-
-context.REQUEST.RESPONSE.redirect('sitereview.xml?sitename=%s&subdomain=%s&introduction=%s' %
-                                  (form['sitename'], form['subdomain'],
-                                   form['introduction']))
+nextURL = form.get('nextURL', 'sitereview.xml')
+nextURL = '%s?sitename=%s&subdomain=%s&introduction=%s' % (nextURL, 
+                                                           form['sitename'], 
+                                                           form['subdomain'],
+                                                           form['introduction'])
+nextURL = url_quote(nextURL)
+context.REQUEST.RESPONSE.redirect(nextURL)

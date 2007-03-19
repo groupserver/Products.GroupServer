@@ -7,7 +7,7 @@
 ##parameters=
 ##title=Site Name Next
 ##
-
+from Products.PythonScripts.standard import url_quote
 result = {}
 
 form = context.REQUEST.form
@@ -32,4 +32,5 @@ if result['error']:
 # No error, redirect
 nextURL = form.get('nextURL', 'sitedomain.xml')
 nextURL = '%s?sitename=%s' % (nextURL, form['sitename'])
+nextURL = url_quote(nextURL)
 context.REQUEST.RESPONSE.redirect(nextURL)

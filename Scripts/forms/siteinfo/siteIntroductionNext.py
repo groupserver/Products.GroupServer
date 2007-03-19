@@ -7,6 +7,7 @@
 ##parameters=
 ##title=Site Introduction Next
 ##
+from Products.PythonScripts.standard import url_quote
 
 result = {}
 
@@ -32,4 +33,5 @@ nextURL = '%s?sitename=%s&subdomain=%s&introduction=%s' % (nextURL,
                                                            form['sitename'], 
                                                            form['subdomain'],
                                                            form['introduction'])
+nextURL = url_quote(nextURL)
 context.REQUEST.RESPONSE.redirect(nextURL)

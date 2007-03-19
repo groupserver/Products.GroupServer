@@ -1,3 +1,13 @@
+## Script (Python) "siteDomainNext"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=Site Domain Next
+##
+from Products.PythonScripts.standard import url_quote
 import string
 result = {}
 
@@ -24,4 +34,5 @@ if result['error']:
 nextURL = form.get('nextURL', 'siteintroduction.xml')
 nextURL = '%s?sitename=%s&subdomain=%s' % (nextURL, form['sitename'],
                                            subdomain)
+nextURL = url_quote(nextURL)
 context.REQUEST.RESPONSE.redirect(nextURL)
