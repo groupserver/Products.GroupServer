@@ -38,4 +38,5 @@ if not accept:
     return result
 else:
     # The user has accepted the conditions, so return
-    context.REQUEST.RESPONSE.redirect('sitename.xml')
+    nextURL = form.get('nextURL', 'sitename.xml')
+    context.REQUEST.RESPONSE.redirect(nextURL)
