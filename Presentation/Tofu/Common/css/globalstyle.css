@@ -311,7 +311,7 @@ fieldset legend {
 /* Breadcrumb trail */
 
 .breadcrumb {
-    margin: 0px;
+    margin: 0 0 5px 0;
     padding: 0px;
 }
 
@@ -570,19 +570,28 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
 }
 
 /** Email Details **/
-.emaildetails-odd {
-    background-color: #a8afb8;
+
+.emaildetails-odd, .emaildetails-self-odd, .emaildetails-even, .emaildetails-self-even, .odd, .oddStickyTopic, .evenStickyTopic, .even
+{
+    border: 1px solid darkgrey;
 }
-.emaildetails-self-odd, .odd, .oddStickyTopic  {
-    background-color: #c5cfd6;
+.emaildetails-odd, .odd, .oddStickyTopic {
+	background-color: #dcdcdf;	
 }
 .emaildetails-even {
-    background-color: transparent;
+	background-color: #fcfcff;	
 }
 .emaildetails-self-even {
     background-color: #cdd2d6;
 }
+.email-remainder {
+    clear: both;
+}
 
+#topicsSummary td.posts {
+	border-left: 1px solid darkgrey;
+	border-right: 1px solid darkgrey;	
+}
 /*********/
 /* Forms */
 /*********/
