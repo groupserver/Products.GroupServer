@@ -26,7 +26,7 @@
                 url="addsitemembers">Select existing site
                 members,</link></listitem>
             <listitem><link title="Add a new member"
-                url="createuser">Enter the details of a new member,</link>
+                url="create_single_user">Enter the details of a new member,</link>
               or</listitem>
           <listitem>Advanced users can 
               <link title="Add bulk members in bulk"
