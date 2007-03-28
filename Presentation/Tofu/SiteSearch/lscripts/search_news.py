@@ -17,11 +17,14 @@ division = context.Scripts.get.division_object()
 if not query.strip():
     return createBatch([], start, size)
 
-results = context.Catalog.searchResults(meta_type='XWF News Item',
+try:
+    results = context.Catalog.searchResults(meta_type='XWF News Item',
                                         path=division.getPhysicalPath(),
                                         dc_valid={'query': DateTime.DateTime(),
                                                   'range': 'max'},
                                         sort_order='descending',
                                         dc_description=query)
+except:
+    return createBatch([], start, size)
 
 return createBatch(results, start, size)
