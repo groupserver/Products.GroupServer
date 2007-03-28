@@ -570,13 +570,8 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
 }
 
 /** Email Details **/
-
-.emaildetails-odd, .emaildetails-self-odd, .emaildetails-even, .emaildetails-self-even, .odd, .oddStickyTopic, .evenStickyTopic, .even
-{
-    border: 1px solid darkgrey;
-}
 .emaildetails-odd, .odd, .oddStickyTopic {
-	background-color: #dcdcdf;	
+	background-color: #dcdcdf;
 }
 .emaildetails-even {
 	background-color: #fcfcff;	
@@ -588,9 +583,12 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
     clear: both;
 }
 
-#topicsSummary td.posts {
-	border-left: 1px solid darkgrey;
-	border-right: 1px solid darkgrey;	
+.postList, .emaildetails-odd, .emaildetails-even, .emaildetails-self-even, .emaildetails-self-odd {
+    border-top: thin solid #41638B;
+    border-bottom: thin solid #41638B;
+}
+.postList {
+    border-bottom: thick solid #41638B;
 }
 /*********/
 /* Forms */
