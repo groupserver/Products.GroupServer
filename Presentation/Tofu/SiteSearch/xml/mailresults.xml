@@ -50,7 +50,7 @@
         <dc:date tal:content="python:DateTime(result['last_post_date'].isoformat())">2003/04/09 12:00pm</dc:date>
         <!--<description tal:content="python:ct(object['mailBody'])">Some body text.</description> -->
         <email:listId tal:content="result/group_id">list id</email:listId>
-        <email:id tal:content="result/post_id">email id</email:id>
+        <email:id tal:content="result/last_post_id">email id</email:id>
 
       </result> 
 
