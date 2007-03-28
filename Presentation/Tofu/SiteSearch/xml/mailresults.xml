@@ -28,33 +28,32 @@
     <items>
       <rdf:Seq>
         <!-- An ordered list of URLs -->
-        <rdf:li tal:repeat="result python:b_results[4]" tal:attributes="rdf:resource python:result.getObject().absolute_url()"/>
+        <rdf:li tal:repeat="result python:b_results[4]" tal:attributes="rdf:resource python:result['url']"/>
       </rdf:Seq>
     </items>
     </channel>
 
     <textinput rdf:resource="http://search.xml.com" />
 
-    <item tal:repeat="result python:b_results[4]" tal:attributes="rdf:about python:result.getObject().absolute_url()">
+    <item tal:repeat="result python:b_results[4]" tal:attributes="rdf:about python:result['url']">
 
-      <result tal:define="object result/getObject" tal:omit-tag="">
-        <title tal:content="object/mailSubject"></title>      
-        <email:mailFrom tal:content="python:object['mailFrom']">someaddress@iopen.co.nz</email:mailFrom>
-        <email:from tal:content="python:object.getProperty('from', [None])[0] or object.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from>
-        <span tal:omit-tag="" tal:define="mailUserId object/mailUserId | nothing;
+      <result tal:omit-tag="">
+        <title tal:content="object/subject"></title>      
+        <!-- <email:mailFrom tal:content="python:object['mailFrom']">someaddress@iopen.co.nz</email:mailFrom> 
+        <email:from tal:content="python:object.getProperty('from', [None])[0] or object.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from> -->
+        <!--<span tal:omit-tag="" tal:define="mailUserId object/mailUserId | nothing;
                                       mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
             <email:mailUserId tal:content="mailUserId | nothing"/>
             <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
-        </span>
-        <email:subject tal:condition="python:hasattr(object, 'subject')" tal:content="python:object['subject']">someaddress@iopen.co.nz</email:subject>
-        <dc:date tal:content="python:object['mailDate'].ISO()">2003/04/09 12:00pm</dc:date>
-        <description tal:content="python:ct(object['mailBody'])">Some body text.</description>
-        <email:listId tal:content="python:ct(object.listId())">list id</email:listId>
-        <email:id tal:content="python:ct(object.getId())">email id</email:id>
+        </span> -->
+        <email:subject tal:content="result/subject">Some Subject</email:subject>
+        <dc:date tal:content="python:DateTime(object['date'].isoformat())">2003/04/09 12:00pm</dc:date>
+        <!--<description tal:content="python:ct(object['mailBody'])">Some body text.</description> -->
+        <email:listId tal:content="object/group_id">list id</email:listId>
+        <email:id tal:content="object/post_id">email id</email:id>
 
       </result> 
 
-      <search:relevance tal:content="result/data_record_normalized_score_">100</search:relevance>
     </item> 
 
 </rdf:RDF>

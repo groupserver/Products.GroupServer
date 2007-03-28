@@ -7,24 +7,35 @@
 ##parameters=groups, search_term
 ##title=
 ##
-queries = [{'mailSubject': search_term},
-           {'mailBody': search_term},
-           {'mailFrom': '*%s*' % search_term}]
+from Products.XWFMailingListManager.queries import MessageQuery
 
-results = []
+m = MessageQuery(context, context.zsqlalchemy)
+
+#queries = [{'mailSubject': search_term},
+#           {'mailBody': search_term},
+#           {'mailFrom': '*%s*' % search_term}]
+
+division_object = context.Scripts.get.division_object()
+
+groups = context.Scripts.get.groups()
+
+group_id_titles = {}
 for group in groups:
-    for query in queries:
-        try:
-            results.append(group.messages.find_email(query))
-        except:
-            pass
+    try:
+        group.messages.getId()
+    except:
+        continue
 
-results = filter(None, results)
-fresults = []
-if results:
-    # we need to do this because reduce isn't available to us
-    fresults = results.pop()
-    for result in results:
-        fresults += result
+    group_id_titles[group.getId()] = group.title_or_id()
 
-return fresults
+if not group_id_titles:
+    return []
+
+group_ids = group_id_titles.keys()
+
+results = m.topic_search(search_term, division_object.getId(), group_ids=group_ids)
+for result in results:
+    result['group_title'] = group_id_titles[result['group_id']]
+    result['url'] = '/groups/%s/messages/topic/%s' % (result['group_id'], result['last_post_id'])
+    
+return results
