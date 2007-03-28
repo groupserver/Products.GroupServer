@@ -38,7 +38,7 @@
     <item tal:repeat="result python:b_results[4]" tal:attributes="rdf:about python:result['url']">
 
       <result tal:omit-tag="">
-        <title tal:content="object/subject"></title>      
+        <title tal:content="result/subject"></title>      
         <!-- <email:mailFrom tal:content="python:object['mailFrom']">someaddress@iopen.co.nz</email:mailFrom> 
         <email:from tal:content="python:object.getProperty('from', [None])[0] or object.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from> -->
         <!--<span tal:omit-tag="" tal:define="mailUserId object/mailUserId | nothing;
@@ -47,10 +47,10 @@
             <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
         </span> -->
         <email:subject tal:content="result/subject">Some Subject</email:subject>
-        <dc:date tal:content="python:DateTime(object['date'].isoformat())">2003/04/09 12:00pm</dc:date>
+        <dc:date tal:content="python:DateTime(result['date'].isoformat())">2003/04/09 12:00pm</dc:date>
         <!--<description tal:content="python:ct(object['mailBody'])">Some body text.</description> -->
-        <email:listId tal:content="object/group_id">list id</email:listId>
-        <email:id tal:content="object/post_id">email id</email:id>
+        <email:listId tal:content="result/group_id">list id</email:listId>
+        <email:id tal:content="result/post_id">email id</email:id>
 
       </result> 
 
