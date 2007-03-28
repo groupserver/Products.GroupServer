@@ -40,6 +40,7 @@ assert hasattr(listManager.aq_explicit, group.getId()), \
 
 groupList = getattr(site_root.ListManager.aq_explicit, group.getId())
 groupList.manage_addProperty('siteId', siteId, 'string')
+groupList.manage_addProperty('use_rdb', True, 'boolean')
 
 if privacy == 'public':
     groupList.manage_addProperty('subscribe', 'subscribe', 'string')
