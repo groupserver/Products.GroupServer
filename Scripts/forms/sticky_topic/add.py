@@ -23,7 +23,8 @@ for field in form.keys():
     except AttributeError:
         pass
 topicId = form['topicId']
-assert topicId != None
+assert topicId
+
 groupId = form['groupId']
 assert groupId != None
 siteId = form['siteId']
@@ -37,10 +38,13 @@ assert group
 
 if group.hasProperty('sticky_topics'):
     topics = filter(None, group.getProperty('sticky_topics'))
-    topics.append(topicId)
-    group.manage_changeProperties(sticky_topics=topics)
+    if topicId not in topics:
+        topics.append(topicId)
+        group.manage_changeProperties(sticky_topics=topics)
 else:
     group.manage_addProperty('sticky_topics', [topicId], 'lines')
+
+assert group.hasProperty('sticky_topics')
 
 result['message'] = '''<p>The topic is now sticky.</p>'''
 result['error'] = False

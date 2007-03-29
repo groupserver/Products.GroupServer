@@ -23,11 +23,11 @@ for field in form.keys():
     except AttributeError:
         pass
 topicId = form['topicId']
-assert topicId != None
+assert topicId
 groupId = form['groupId']
-assert groupId != None
+assert groupId
 siteId = form['siteId']
-assert siteId != None
+assert siteId
 
 site_root = context.site_root()
 site = getattr(site_root.Content, siteId)
@@ -36,8 +36,9 @@ group = getattr(site.groups, groupId)
 assert group
 
 if group.hasProperty('sticky_topics'):
-    topics = filter(None, group.getProperty('sticky_topics'))
-    topics.remove(topicId)
+    topics = list(group.getProperty('sticky_topics'))
+    if topicId in topics:
+        topics.remove(topicId)
     group.manage_changeProperties(sticky_topics=topics)
 else:
     group.manage_addProperty('sticky_topics', [], 'lines')
