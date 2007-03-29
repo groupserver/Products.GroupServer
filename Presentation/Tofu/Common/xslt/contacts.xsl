@@ -81,10 +81,8 @@
           <ul class="groups">
             <xsl:for-each select="groupmemberships/groupmembership">
               <xsl:sort select="@divisionUrl"/>
-              <li>
-                <a href="{@url}">
-                  <xsl:value-of select="@title"/>
-                </a> (<xsl:value-of select="@divisionName"/>)
+              <li><xsl:value-of select="@title"/>
+                (<xsl:value-of select="@divisionName"/>)
               </li>
             </xsl:for-each>
           </ul>
@@ -166,10 +164,8 @@
           <ul class="emails">
             <xsl:for-each select="groupmemberships/groupmembership">
               <xsl:sort select="@divisionUrl"/>
-              <li>
-                <a href="{@url}">
-                  <xsl:value-of select="@title"/>
-                </a> (<xsl:value-of select="@divisionName"/>)
+              <li><xsl:value-of select="@title"/>
+                (<xsl:value-of select="@divisionName"/>)
               </li>
             </xsl:for-each>
           </ul>
