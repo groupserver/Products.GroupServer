@@ -28,5 +28,6 @@ r = site_root.ListManager.email_footer(group_properties=groupPropD,
                                        list_object=listObjD,
                                        user_object=user,
                                        getValueFor=getValueFor,
+                                       post_id="AAAAAAAAAAAAAAAAAAAAAA"
                                       files = [])
 return r.replace('\n', '<br/>')
