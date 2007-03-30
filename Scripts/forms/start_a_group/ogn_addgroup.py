@@ -16,8 +16,8 @@ assert privacy in ('public', 'private'),\
   'Privacy must be "public" or "private"'
 
 site_root = context.site_root()
-site = context.Scripts.get.division_object()
-assert site, 'No site object found'
+assert hasattr(site_root.Content, siteId), 'No site with ID %s found' % siteId
+site = getattr(site_root.Content, siteId)
 groups = getattr(site, 'groups')
 assert not hasattr(groups, groupId), 'The group "%s" already exists'
 

@@ -2,7 +2,7 @@
 ##bind container=container
 ##bind context=context
 ##bind namespace=
-##bind script=script
+##bind script=scriptarc
 ##bind subpath=traverse_subpath
 ##parameters=group=None,mailhost='',siteId='',privacy=''
 ##title=Create a mailing list instance
@@ -41,6 +41,12 @@ assert hasattr(listManager.aq_explicit, group.getId()), \
 groupList = getattr(site_root.ListManager.aq_explicit, group.getId())
 groupList.manage_addProperty('siteId', siteId, 'string')
 groupList.manage_addProperty('use_rdb', True, 'boolean')
+# Delete the GroupServer 0.9 "archive", as it is now handled by the 
+#   relational database.
+try:
+    groupList.manage_delObjects(['archive'])
+except:
+    pass
 
 if privacy == 'public':
     groupList.manage_addProperty('subscribe', 'subscribe', 'string')
