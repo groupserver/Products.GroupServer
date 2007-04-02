@@ -19,10 +19,10 @@
         <listitem><link url="change_name">Change the <bold>name</bold> 
             of the site</link></listitem>
         <listitem tal:condition="isChargable">
-          <link url="shop">Alter the site <bold>subscription</bold></link>
+          <link url="/siteshop">Alter the site <bold>subscription</bold></link>
         </listitem>
         <listitem tal:condition="isChargable">
-          <link url="shop/current_charges.xml">View the
+          <link url="/siteshop/current_charges.xml">View the
             <bold>current charges</bold></link>
         </listitem>
       </bulletlist> 
