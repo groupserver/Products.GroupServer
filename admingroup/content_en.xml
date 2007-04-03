@@ -35,7 +35,7 @@
         </listitem>
         <listitem
           tal:condition="python:site.getProperty('isChargable', False)">
-          <link url="shop">Alter the <bold>size</bold> of 
+          <link url="../groupshop">Alter the <bold>size</bold> of 
           <span class="group" tal:content="group/title_or_id"/></link>
           </listitem>
       </bulletlist> 
