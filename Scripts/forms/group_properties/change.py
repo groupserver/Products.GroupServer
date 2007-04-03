@@ -130,7 +130,7 @@ for property in site_root.GroupProperties.objectValues():
             group.manage_addProperty(property.getId(), prop, property.getProperty('property_type'))
         message.append('<li>Set %s to <q>%s</q>.</li>' % (html_quote(property.title_or_id()), html_quote(prop)))
 
-visibility = context.Scripts.get.group_visibility()
+visibility = group.Scripts.get.group_visibility()
 permvisibility = form.get('permvisibility', 'group')
 if visibility != permvisibility:
     if permvisibility == 'anyone':
@@ -146,7 +146,7 @@ if visibility != permvisibility:
         group.manage_permission('Access contents information', ['DivisionAdmin','GroupAdmin','GroupMember','Manager', 'Owner'])
         message.append('<li>Updated group permissions to make the group visible to only group members</li>')
 
-joinability = context.Scripts.get.group_joinability()
+joinability = group.Scripts.get.group_joinability()
 permjoinability = form.get('permjoin', 'group')
 if joinability != permjoinability:
     if group.hasProperty('join_condition'):
@@ -161,7 +161,7 @@ if joinability != permjoinability:
     
     message.append('<li>Updated group joinability</li>')
 
-filesvisibility = context.Scripts.get.group_files_visibility()
+filesvisibility = group.Scripts.get.group_files_visibility()
 permviewfiles = form.get('permviewfiles', 'group')
 if filesvisibility != permviewfiles:
     if permviewfiles == 'default':
@@ -181,7 +181,7 @@ if filesvisibility != permviewfiles:
         group.files.manage_permission('Access contents information', ['DivisionAdmin','GroupAdmin','GroupMember','Manager', 'Owner'])
         message.append('<li>Updated file area permissions to make the files visible to only group members</li>')
 
-messagevisibility = context.Scripts.get.group_messages_visibility()
+messagevisibility = group.Scripts.get.group_messages_visibility()
 permviewmessages = form.get('permviewmessages', 'group')
 if messagevisibility != permviewmessages:
     if permviewmessages == 'default':
