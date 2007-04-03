@@ -18,11 +18,11 @@
               text</bold></link></listitem>
         <listitem><link url="change_name">Change the <bold>name</bold> 
             of the site</link></listitem>
-        <listitem tal:condition="isChargable">
+        <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
           <link url="/siteshop">Alter the site <bold>subscription</bold></link>
         </listitem>
-        <listitem tal:condition="isChargable">
-          <link url="/siteshop/current_charges.xml">View the
+        <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
+          <link url="/siteshop/current_charges">View the
             <bold>current charges</bold></link>
         </listitem>
       </bulletlist> 
