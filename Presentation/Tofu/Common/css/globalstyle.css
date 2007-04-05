@@ -34,9 +34,9 @@ p, ul, ol, dl, table, fieldset {
 ul, ol, dd {
   margin-left: 2em;
 }
-ol {
+/*ol {
   list-style: decimal outside;
-}
+}*/
 ul {
   list-style: disc outside;
 }
