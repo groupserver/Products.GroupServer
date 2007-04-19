@@ -20,7 +20,6 @@
   <xsl:include href="file://Presentation/Tofu/Common/xslt/news" />
   <xsl:include href="file://Presentation/Tofu/Common/xslt/contacts" />
   <xsl:include href="file://Presentation/Tofu/Common/xslt/layout" />
-  <xsl:include href="file://Presentation/Tofu/MailingListManager/xslt/email" />
   <xsl:include href="file://Presentation/Tofu/FileLibrary/xslt/files" />
   <xsl:include href="file://Presentation/Tofu/FileLibrary2/xslt/files" />
   <xsl:include href="file://Presentation/Tofu/SiteSearch/xslt/results" />
