@@ -568,12 +568,6 @@
     </xsl:if>
 </xsl:template>
 
-<xsl:template name="searcharea">
-	<h3>Site Search</h3>
-	<input type="text" class="text" name="sitesearch+query"/>
-	<input type="submit" name="__submit+sitesearch+search" onclick="submitButtonHandler(this)" value="Go" class="button"/>
-</xsl:template>
-
 <xsl:template match="parenttitle">
       <tr>
          <td colspan="3"><img src="/images/layout/spacer.gif" width="10" height="1"/></td>

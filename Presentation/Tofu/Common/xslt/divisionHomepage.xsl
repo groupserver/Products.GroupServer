@@ -129,13 +129,6 @@
       <!-- Site Navigation Bar Starts -->
       <xsl:apply-templates select="output/menus/menu[@id='main']" />
       <!-- Site Navigation Bar Ends -->
-
-      <!-- Search Starts -->
-      <xsl:if test="//user[@type='self']/id/text()!='Anonymous User'">
-  <div id="searcharea">
-    <xsl:call-template name="searcharea" />
-  </div><!--searcharea-->
-      </xsl:if><!-- Search Ends -->
     </div><!--toparea-->
     
     <!-- Main Content Area Starts -->

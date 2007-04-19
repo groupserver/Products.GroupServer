@@ -128,14 +128,6 @@
     <xsl:apply-templates select="output/menus/menu[@id='main']" />
     <!-- Navigation Bar Ends -->
 
-    <!-- Search Starts -->
-    <xsl:if test="//user[@type='self']/id/text()!='Anonymous User'">
-      <div id="searcharea">
-        <xsl:call-template name="searcharea" />
-      </div>
-    </xsl:if>
-    <!-- Search Ends -->
-
   </div>
   <!-- Top Area Starts -->
 
