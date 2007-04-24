@@ -14,7 +14,7 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 group = listManager.get_list(group_object.getId())
 
 try:
-    memberlist = group.lowerList(group.getValueFor('mailinlist'))
+    memberlist = filter(lambda a: a.lower(), group.getValueFor('mailinlist'))
 except:
     return 'no'
 
