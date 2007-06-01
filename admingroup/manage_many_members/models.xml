@@ -1,0 +1,19 @@
+<xf:model id="manage_many_members"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  tal:define="group here/Scripts/get/group_object; 
+  site here/Scripts/get/division_object">
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      
+      <member_ids/>
+      
+      <groupid tal:content="group/getId">group id</groupid>
+      <divisionid
+        tal:content="site/getId">site id</divisionid>
+      </data>
+    </xf:instance>
+  <xf:submission method="urlencoded-post" id="manage"
+    tal:attributes="action request/URL" />
+</xf:model>
