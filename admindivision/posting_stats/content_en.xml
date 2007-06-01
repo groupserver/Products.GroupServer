@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>Provider Test</title>
+    <meta property="dc:created">May 2007</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">GroupSense</meta>
+    <meta property="dc:creator">Michael JasonSmith</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="postingStats">
+    <section>
+      <h>Posting Statistics</h>
+      <table id="stats"
+        tal:define="groupId string:team;
+          da here/zsqlalchemy;
+          mq python:modules['Products.GSParticipationStats'].queries.MessageQuery(context, da);
+          site context/Scripts/get/division_object;
+          stats python:mq.site_posting_stats(site.getId())">
+        <thead>
+          <tr>
+            <th style="padding: 5px 10px 5px 10px;" class="year">Year</th>
+            <th style="padding: 5px 10px 5px 10px;" class="month">Month</th>
+            <th style="padding: 5px 10px 5px 10px;" class="group">Group</th>
+            <th style="padding: 5px 10px 5px 10px;" class="postCount">Post Count</th>
+            <th style="padding: 5px 10px 5px 10px;" class="userCount">User Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tal:block tal:repeat="stat stats">
+            <tr tal:define="n repeat/stat/number; odd python:n%2"
+              tal:attributes="class python:odd and 'odd' or 'even';">
+              <td style="padding: 5px 10px 5px 10px;;text-align:right;" 
+                class="year" tal:content="stat/year"/>
+              <td style="padding: 5px 10px 5px 10px;text-align:right;" 
+                class="month" tal:content="stat/month"/>
+              <td style="padding: 5px 10px 5px 10px;" 
+                class="group" tal:content="stat/group_id"/>
+              <td style="padding: 5px 10px 5px 10px;text-align:right;" 
+                class="postCount" tal:content="stat/post_count"/>
+              <td style="padding: 5px 10px 5px 10px;text-align:right;" 
+                class="userCount" tal:content="stat/user_count"/>
+            </tr>
+          </tal:block>
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>
+
+
