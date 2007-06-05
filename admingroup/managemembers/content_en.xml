@@ -14,6 +14,7 @@
       list python:getattr(here.ListManager, group_object.getId(), None);
       moderator_ids python:here.Scripts.get.group_moderators(ids_only=True);
       showMembers python:request.get('show', 'all');
+      editIds python:request.get('userIds', '').split();
       member_count here/Scripts/get/group_member_count;
       groupType python:group_object.getProperty('group_template');
       isGroupAnnouncement python:groupType == 'announcement';
@@ -112,7 +113,7 @@
             isPoster python:(not isGroupAnnouncement) or (userobj.getId() in postingMembers);
             isUnverified python:userobj in unverifiedUsers;
             isNormal python:not (isSiteAdmin or isGroupAdmin or isPtnCoach or isModerator or isModerated or isUnverified) and ((not isPoster and isGroupAnnouncement) or (isPoster and not isGroupAnnouncement));"
-            tal:condition="python:(showMembers=='all') or (isModerated and (showMembers=='moderated')) or ((isGroupAdmin or isSiteAdmin) and (showMembers=='managers')) or ((isGroupAnnouncement and isPoster) and (showMembers=='posting')) or (isUnverified and (showMembers=='unverified'))">
+            tal:condition="python:((not editIds) or userobj.getId() in editIds ) and (showMembers=='all') or (isModerated and (showMembers=='moderated')) or ((isGroupAdmin or isSiteAdmin) and (showMembers=='managers')) or ((isGroupAnnouncement and isPoster) and (showMembers=='posting')) or (isUnverified and (showMembers=='unverified'))">
             <listitem>
               <link class="name"
                 tal:attributes="url string:/contacts/${userobj/getId};
