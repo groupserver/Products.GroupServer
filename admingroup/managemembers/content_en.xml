@@ -39,8 +39,14 @@
           —
         </span>
         in this group.
-        <span tal:condition="canJoin">(
-          <link title="Add new members to the group"
+        <span tal:condition="editIds">Currently, 
+          <span class="cardinal" tal:content="python:len(editIds)"/>
+          member<span tal:condition="python:len(editIds)&gt;1">s are</span>
+          <span tal:condition="python:len(editIds)==1"> is</span>
+          shown below.
+        </span>	
+        <span tal:condition="canJoin">
+          (<link title="Add new members to the group"
             url="../addusers">Add new members.</link>)</span>
       </paragraph>
       

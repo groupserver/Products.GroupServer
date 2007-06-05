@@ -14,7 +14,11 @@
         site here/Scripts/get/division_object;
         group here/Scripts/get/group_object;
         joinable python:here.LocalScripts.get.usersCanJoinGroup(group.getId(),True);
-        canJoin python:joinable[0];">
+        canJoin python:joinable[0];
+        member_count here/Scripts/get/group_member_count;
+        groupType python:group.getProperty('group_template');
+        isGroupAnnouncement python:groupType == 'announcement';
+        isGroupModerated python:here.Scripts.get.list_property(group.getId(), 'moderated', False);">
         <listitem tal:condition="canJoin">
           <link url="addusers"><bold>Add members</bold> to
             <span class="group" tal:content="group/title_or_id"/></link>
@@ -23,9 +27,26 @@
           Normally, you could add members to the group, but
           <span tal:content="python:joinable[1][1].lower()"/>
         </listitem>
-        <listitem>
+        <listitem tal:condition="python:member_count &lt;= 127">
           <link url="managemembers"><bold>Manage the members</bold> of 
           <span class="group" tal:content="group/title_or_id"/></link>
+        </listitem>
+        <listitem tal:condition="python:member_count &gt; 127">
+          <link url="manage_many_members"><bold>Manage the many members</bold> of 
+          <span class="group" tal:content="group/title_or_id"/></link>
+          <bulletlist>
+            <listitem tal:condition="isGroupModerated">
+              <link url="managemembers/?show=moderated">Manage 
+                the moderated members</link></listitem>
+            <listitem>
+              <link url="managemembers/?show=unverified">Manage 
+                the unverified members</link></listitem>
+            <listitem tal:condition="isGroupAnnouncement">
+              <link url="managemembers/?show=posting">Manage
+                the posting members</link></listitem>
+            <listitem><link url="managemembers/?show=managers">Manage 
+              the managers</link></listitem>
+          </bulletlist>
         </listitem>
         <listitem tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group)">
           <link url="manageproperties">Manage group <bold>properties</bold></link>
