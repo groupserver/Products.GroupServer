@@ -14,7 +14,8 @@
       list python:getattr(here.ListManager, group_object.getId(), None);
       moderator_ids python:here.Scripts.get.group_moderators(ids_only=True);
       showMembers python:request.get('show', 'all');
-      editIds python:request.get('userIds', '').split();
+      uIds python:request.get('userIds', '');
+      editIds python:hasattr(uIds, 'split') and uIds.split() or uIds;
       member_count here/Scripts/get/group_member_count;
       groupType python:group_object.getProperty('group_template');
       isGroupAnnouncement python:groupType == 'announcement';
@@ -28,6 +29,8 @@
         <span class="group"
           tal:content="group_object/title_or_id"/>
       </heading1>
+
+      <paragraph tal:content="editIds"/>
 
       <paragraph>
         There 

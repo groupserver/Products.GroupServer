@@ -6,6 +6,9 @@
   <xf:instance>
     <data>
       <submitted>1</submitted>
+
+      <show tal:content="python:request.get('show', 'all')"/>
+      <userIds tal:content="python:request.get('userIds', '')"/>
       
       <moderate_add_userid/>
       <moderate_remove_userid/>

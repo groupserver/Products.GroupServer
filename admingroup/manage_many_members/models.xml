@@ -6,7 +6,7 @@
   <xf:instance>
     <data>
       <submitted>1</submitted>
-      
+            
       <member_ids/>
       
       <groupid tal:content="group/getId">group id</groupid>
