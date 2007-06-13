@@ -18,9 +18,10 @@ site_root = context.site_root()
 group = context.Scripts.get.group_by_id(groupid)
 assert(group != None)
 
-site_root = context.site_root()
-group = context.Scripts.get.group_by_id(groupid)
-assert(group != None)
+listManager = site_root.objectValues('XWF Mailing List Manager')[0]
+assert (listManager != None), "List manager not found"
+groupList = listManager.get_list(groupid)
+assert groupList != None, "Email list %s not found" % groupid
 
 userName = group.Scripts.get.user_realnames(userid,
                                             preferred_name_only=True)
@@ -47,6 +48,11 @@ if group.hasProperty('ptn_coach_id'):
    group.manage_changeProperties(ptn_coach_id=userid)
 else:
    group.manage_addProperty('ptn_coach_id', userid, 'string')
+# ...and for the mailing list
+if groupList.hasProperty('ptn_coach_id'):
+   groupList.manage_changeProperties(ptn_coach_id=userid)
+else:
+   groupList.manage_addProperty('ptn_coach_id', userid, 'string')
 
 result['error'] = False
 result['message'] = '''<paragraph>%s is now the participation
