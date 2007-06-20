@@ -30,8 +30,6 @@
           tal:content="group_object/title_or_id"/>
       </heading1>
 
-      <paragraph tal:content="editIds"/>
-
       <paragraph>
         There 
         <span tal:replace="python:member_count == 1 and 'is %s member' % member_count or 'are %s members' % member_count"/>
