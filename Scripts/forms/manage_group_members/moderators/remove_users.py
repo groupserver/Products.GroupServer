@@ -22,7 +22,7 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 grouplist = getattr(listManager, groupid)
 assert(grouplist != None)
 
-mmembers = group.Scripts.get.group_moderators(ids_only=True)
+mmembers = list(grouplist.getProperty('moderator_members', []))
 
 for member in userids:
    if member in mmembers:

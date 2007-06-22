@@ -28,7 +28,7 @@ for userId in userids:
    userObj = site_root.acl_users.getUser(userId)
    userEmail = userObj.get_defaultDeliveryEmailAddresses()
    if ((userId not in mmemberIds) and userEmail):
-      mmemberIds.append(userObj)
+      mmemberIds.append(userId)
 
 if grouplist.hasProperty('moderator_members'):
     grouplist.manage_changeProperties(moderator_members=mmemberIds)
