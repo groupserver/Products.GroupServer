@@ -27,18 +27,11 @@ mmembers = group.Scripts.get.group_moderators(ids_only=True)
 for member in userids:
    if member in mmembers:
       mmembers.remove(member)
-
-moderatorEmailAddresses = []
-for memberId in mmembers:
-   member = site_root.acl_users.getUser(memberId)
-   email = member.get_defaultDeliveryEmailAddresses()[0]
-   moderatorEmailAddresses.append(email)
       
-if grouplist.hasProperty('moderator'):
-    grouplist.manage_changeProperties(moderator=moderatorEmailAddresses)
+if grouplist.hasProperty('moderator_members'):
+    grouplist.manage_changeProperties(moderator_members=mmembers)
 else:
-    grouplist.manage_addProperty('moderator', moderatorEmailAddresses,
-                                 'lines')
+    grouplist.manage_addProperty('moderator_members', mmembers, 'lines')
 
 userNames = ', '.join(map(lambda m: group.Scripts.get.user_realnames(m),
                           userids))

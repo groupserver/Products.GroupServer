@@ -22,34 +22,30 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 grouplist = getattr(listManager, groupid)
 assert(grouplist != None)
 
-mmembers = group.Scripts.get.group_moderators(ids_only=False)
-mmemberIds = map(lambda m: m.getId(), mmembers)
+mmemberIds = grouplist.getProperty('moderator_members', [])
 
 for userId in userids:
    userObj = site_root.acl_users.getUser(userId)
-   if ((userId not in mmemberIds)
-       and (userObj.get_defaultDeliveryEmailAddresses())):
-      mmembers.append(userObj)
+   userEmail = userObj.get_defaultDeliveryEmailAddresses()
+   if ((userId not in mmemberIds) and userEmail):
+      mmemberIds.append(userObj)
 
-mea = map(lambda u: u.get_defaultDeliveryEmailAddresses()[0],
-          mmembers)
-
-if grouplist.hasProperty('moderator'):
-    grouplist.manage_changeProperties(moderator=mea)
+if grouplist.hasProperty('moderator_members'):
+    grouplist.manage_changeProperties(moderator_members=mmemberIds)
 else:
-    grouplist.manage_addProperty('moderator', mea, 'lines')
+    grouplist.manage_addProperty('moderator_members', mmemberIds, 'lines')
 
 userNames = ', '.join(map(lambda m: group.Scripts.get.user_realnames(m),
                           userids))
 result['error'] = False
 m = (len(userids) == 1) and ('member you selected (%s)' % userNames) \
     or ('%d members you selected (%s)' % (len(userids), userNames))
-isOrAre = ((len(mea) == 1) and 'is') or 'are'
-sOrNul =  ((len(mea) != 1) and 's') or ''
+isOrAre = ((len(mmemberIds) == 1) and 'is') or 'are'
+sOrNul =  ((len(mmemberIds) != 1) and 's') or ''
 result['message'] = '''<paragraph>The %s can now <em>moderate</em> messages
   for %s.
   There %s now %d moderator%s for
-  this group.</paragraph>''' % (m, group.title_or_id(), isOrAre, len(mea),
+  this group.</paragraph>''' % (m, group.title_or_id(), isOrAre, len(mmemberIds),
                                 sOrNul)
 
 return result
