@@ -22,7 +22,7 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 grouplist = getattr(listManager, groupid)
 assert(grouplist != None)
 
-mmemberIds = grouplist.getProperty('moderator_members', [])
+mmemberIds = list(grouplist.getProperty('moderator_members', []))
 
 for userId in userids:
    userObj = site_root.acl_users.getUser(userId)
