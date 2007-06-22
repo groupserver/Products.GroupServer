@@ -12,7 +12,7 @@
       moderated_members_ids python:map(lambda m: m.getId(), moderated_members);
       isGroupModerated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);
       list python:getattr(here.ListManager, group_object.getId(), None);
-      moderator_ids python:here.Scripts.get.group_moderators(ids_only=True);
+      moderator_ids python:list.getProperty('moderator_members', []);
       showMembers python:request.get('show', 'all');
       uIds python:request.get('userIds', '');
       editIds python:hasattr(uIds, 'split') and uIds.split() or uIds;
