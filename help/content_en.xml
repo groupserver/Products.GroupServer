@@ -37,8 +37,7 @@
       
       <tal:block
         tal:define="divisionObject python:here.Scripts.get.division_object();
-        divisionName python:divisionObject and (divisionObject.getId() != 'ogs' and '%s_' % divisionObject.getId()) or '';
-        supportEmail python:'%ssupport@onlinegroups.net' % divisionName"
+                    supportEmail python:(divisionObject.getId() == 'ogs' and 'support@onlinegroups.net') or '%s_support@onlinegroups.net' % divisionObject.getId()"
         tal:condition="python:'Authenticated' in user.getRolesInContext(divisionObject)">
         <p>
           If you have a question that is not answered in this Help section, 
