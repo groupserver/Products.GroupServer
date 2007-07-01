@@ -8,8 +8,8 @@
       <heading1>Start a Group</heading1>
 
       <heading2 id="type">Group Type</heading2>
-      <paragraph>What type of group that you wish to start? 
-        There are two type of group on 
+      <paragraph>What type of group do you wish to start? 
+        There are two types of group on 
         <span class="site" 
           tal:content="python:context.Scripts.get.option('siteName','GroupServer')" />.
       </paragraph>
@@ -103,7 +103,7 @@
 
       <paragraph>Who will be able to see the group, and the messages
         posted to the group?
-        Tcontext are two basic settings, as follows.
+        There are two basic settings, as follows.
       </paragraph>
 
       <xf:select1 appearance="full" model="start_a_group"
