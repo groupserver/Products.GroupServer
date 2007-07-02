@@ -27,7 +27,7 @@ version: 2.2.0
 /* GroupServer Standard Layout */
 /*******************************/
 
-p, ul, ol, dl, table, fieldset {
+p, ul, ol, dl, table, fieldset, .xhtml2-address {
     margin: 1em 0px 1em 0px;
 }
 
