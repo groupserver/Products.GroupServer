@@ -36,9 +36,12 @@
       </p>
       
       <tal:block
-        tal:define="divisionObject python:here.Scripts.get.division_object();
-                    canonical python:getattr(divisionObject, 'DivisionConfiguraton').getProperty('canonicalHost');
-                    supportEmail python:(divisionObject.getId() == 'ogs' and 'support@onlinegroups.net') or '%s_support@%s' % (divisionObject.getId(), canonical)"
+        tal:define="divisionObject context/Scripts/get/division_object;
+                    siteId divisionObject/getId;
+                    canonical python:getattr(divisionObject, 'DivisionConfiguration').getProperty('canonicalHost', 'onlinegroups.net');
+                    supportEmail python: (canonical == 'onlinegroups.net' and 'support@onlinegroups.net') or
+                                         (canonical == '%s.onlinegroups.net' % siteId and '%s_support@onlinegroups.net' % siteId) or
+                                         '%s_support@%s' % (siteId, canonical)"
         tal:condition="python:'Authenticated' in user.getRolesInContext(divisionObject)">
         <p>
           If you have a question that is not answered in this Help section, 
