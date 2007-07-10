@@ -14,10 +14,11 @@
 result = {}
 
 form = context.REQUEST.form
-assert form.has_key('group_id')
-assert form.has_key('group_title')
-assert form.has_key('emailAddressDelivery')
-assert form.has_key('emailAddresses')
+assert form.has_key('group_id'), 'No group_id in form'
+assert form.has_key('group_title'), 'No group_title in form'
+assert form.has_key('emailAddressDelivery'), 'No emailAddressDelivery'\
+  'in form'
+assert form.has_key('emailAddresses'), 'No emailAddresses in form'
 result['form'] = form
 user =  context.REQUEST.AUTHENTICATED_USER
 for field in form:
@@ -27,13 +28,14 @@ for field in form:
         pass
 
 group_id = form.get('group_id')
-assert group_id != ''
+assert group_id != '', 'group_id is empty'
 group_title = form.get('group_title')
-assert group_id != ''
+assert group_id != '', 'site_id is empty'
 user = context.REQUEST.AUTHENTICATED_USER
-assert user != None
+assert user != None, 'user is %s' % user
 email_addressess_delivery = form.get('emailAddressDelivery')
-assert email_addressess_delivery in 'sd'
+assert email_addressess_delivery in 'sd', 'email_address_delivery is %s,'\
+  'not "s" or "d"' % email_addressess_delivery
 email_addresses = form.get('emailAddresses')
 
 # crude, really crude, way of telling if we're a list
