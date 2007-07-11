@@ -101,7 +101,7 @@ input, fieldset .hint {
 }
 
 fieldset legend {
-    margin: 0px 0px 30px -30px;
+    margin: 0px 0px 0px -30px;
 }
 
 .formelementbutton input, .checkgroup input, .radiogroup input {
