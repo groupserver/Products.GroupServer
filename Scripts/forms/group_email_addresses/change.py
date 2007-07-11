@@ -43,9 +43,11 @@ try:
     email_addresses.append
 except:
     email_addresses = [email_addresses]
-    
+
 if email_addressess_delivery == 's':
     # Specific address delivery
+    for address in user.get_specificEmailAddressesByKey(group_id):
+        user.remove_deliveryEmailAddressByKey(group_id, address)
     for address in email_addresses:
         user.add_deliveryEmailAddressByKey(group_id, address)
     e = email_addresses
