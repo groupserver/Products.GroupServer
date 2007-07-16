@@ -7,7 +7,7 @@
       <heading1>Current News</heading1>
 
       <div class="newsitems"
-        tal:define="tz python:here.Scripts.get.option('timezone');">
+        tal:define="munge_date python:module['Products.XWFCore.XWFUtils'].munge_date">
         <tal:block
           tal:repeat="result python:map(lambda x: x.getObject(), options['results'])">
           <div class="newsitem" 
@@ -22,7 +22,7 @@
               id string:newsitem-${result/getId}">
             <heading2>
               <span 
-              	tal:replace="python:pubDate.toZone(tz).strftime('%d %b %Y')"/>
+              	tal:replace="python:munge_date(here, pubDate)"/>
               <bold tal:condition="not published">[Unpublished]</bold>
               <span tal:replace="structure result/title"/>
             </heading2>
