@@ -15,8 +15,12 @@ if not groups_object:
 for id in groups_object.objectIds(('Folder', 'Folder (Ordered)')):
     try:
         object = getattr(groups_object, id)
-        groups.append(object)
+        groups.append((object.title_or_id().lower(), object))
     except:
         pass
+
+# quickly sort alphabetically -- we do this to avoid
+# fetching the title_or_id multiple times
+groups = map(lambda x: x[1], groups.sort())
 
 return groups
