@@ -309,13 +309,33 @@ fieldset legend {
 }
 
 /* Keywords associated with search results */
-.keywords {
-  margin: 0.5em 0px 0.5em 0px;
+#latestTopics ul {
+  margin: 0px 0px 20px 0px;
 }
-.keywords li, .navigation li {
+
+#latestTopics ul li {
   list-style: none;
-  display: inline;
+  margin-top: 10px;
+}
+
+.tags, .metadata, #latestTopics .groupInfo {
+  padding-left: 20px;
+}
+
+#latestTopics .topic {
+  font-size: 122%;
   margin-right: 10px;
+}
+
+.tags p, .tags ul, .tags li {
+  display: inline;
+}
+.tags p {
+  margin-right: 20px;
+}
+.tags ul li {
+  list-style: none;
+  padding: 0px 20px 0px 0px;
 }
 
 /* Breadcrumb trail */
