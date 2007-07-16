@@ -65,8 +65,12 @@ if result['error']:
     return result
 
 # No error, start the group
-group = container.ogn_addgroup(siteId, groupType, groupId, groupName,
-                               realLifeGroup, privacy)
+if groupType == 'announcement':
+    group = container.ogn_add_announcement_group(siteId, groupType, groupId, groupName,
+                                                 realLifeGroup, privacy)
+else:
+    group = container.ogn_add_discussion_group(siteId, groupType, groupId, groupName,
+                                                 realLifeGroup, privacy)
 
 if group != None:
     groupPage = '/groups/%s' % groupId
