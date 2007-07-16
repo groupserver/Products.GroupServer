@@ -21,6 +21,7 @@ for id in groups_object.objectIds(('Folder', 'Folder (Ordered)')):
 
 # quickly sort alphabetically -- we do this to avoid
 # fetching the title_or_id multiple times
-groups = map(lambda x: x[1], groups.sort())
+groups.sort()
+groups = map(lambda x: x[1], groups)
 
 return groups
