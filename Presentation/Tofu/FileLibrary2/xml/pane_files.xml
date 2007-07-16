@@ -5,6 +5,7 @@
   <output>
     <content metal:fill-slot="maincontent" tal:define="xcu
       python:modules['Products.XWFCore.XWFUtils']; rfr python:xcu.createRequestFromRequest;
+      munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;
       durl python:here.Scripts.get.division_url()">
       <div class="batchcount" tal:condition="options/result_size"><span tal:replace="options/b_start"/> to <span tal:replace="options/b_end"/> of <span tal:replace="options/result_size"/></div>
       <div class="batchnavigation">
@@ -32,7 +33,7 @@
 	    tal:content="python:user">Username</a>
 	  on
           <span class="searchtime"
-	    tal:content="python:result['modification_time'].toZone(here.Scripts.get.option('timezone')).ISO()">
+	    tal:content="python:munge_date(here, result['modification_time'])">
 		1977-01-01
 	  </span> <span tal:condition="python:user.getId()"><a tal:condition="python:'hidden' not in result['tags']" class="taghidden" tal:attributes="href python:'hide_file?id=%s' % result.id">hide file</a>
 	          <a tal:condition="python:'hidden' in result['tags']" class="tagshow" tal:attributes="href python:'show_file?id=%s' % result.id">show file</a></span>
