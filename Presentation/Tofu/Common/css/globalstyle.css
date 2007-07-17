@@ -308,21 +308,23 @@ fieldset legend {
     display: inline;
 }
 
-/* Keywords associated with search results */
-#latestTopics ul {
+/* Search Results */
+
+#latestTopics ul, #topics ul, #posts ul {
   margin: 0px 0px 20px 0px;
 }
 
-#latestTopics ul li {
+
+#latestTopics ul li, #topics ul li, #posts ul li {
   list-style: none;
   margin-top: 10px;
 }
 
-.tags, .metadata, #latestTopics .groupInfo {
+.tags, .metadata, .groupInfo, #posts .email-summary {
   padding-left: 20px;
 }
 
-#latestTopics .topic {
+#latestTopics .topic, #topics .topic, #posts .topic {
   font-size: 122%;
   margin-right: 10px;
 }
@@ -338,7 +340,9 @@ fieldset legend {
   padding: 0px 20px 0px 0px;
 }
 
+/*********************/
 /* Breadcrumb trail */
+/*********************/
 
 .breadcrumb {
     margin: 0 0 5px 0;
