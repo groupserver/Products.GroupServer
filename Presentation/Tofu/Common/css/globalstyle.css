@@ -320,7 +320,7 @@ fieldset legend {
   margin-top: 10px;
 }
 
-.tags, .metadata, .groupInfo, #posts .email-summary {
+.tags, .metadata, .groupInfo, #posts .email-summary, #latestTopics .disclosureWidget, #topics .disclosureWidget, #posts .disclosureWidget {
   padding-left: 20px;
 }
 
