@@ -26,6 +26,7 @@ group = container.create.group_folder(groups, groupId, groupName,
 
 # Create everything except a members area and chat
 container.create.group_index(group)
+container.create.javascript(group)
 container.create.files_area(group)
 container.create.messages_area(group)
 container.create.charter(group, templateId)
