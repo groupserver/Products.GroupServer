@@ -314,7 +314,6 @@ fieldset legend {
   margin: 0px 0px 20px 0px;
 }
 
-
 #latestTopics ul li, #topics ul li, #posts ul li {
   list-style: none;
   margin-top: 10px;
@@ -338,6 +337,22 @@ fieldset legend {
 .tags ul li {
   list-style: none;
   padding: 0px 20px 0px 0px;
+}
+
+#searchInput {
+  margin: 20px 0px 0px 0px;
+}
+
+#widenSearch {
+  margin: 10px 0px 40px 0px;
+  padding-left: 40px;
+}
+
+#searchInput input {
+  display: inline;
+}
+#searchInput .text {
+  width: 40em;
 }
 
 /*********************/
@@ -382,6 +397,7 @@ ul.contacts li {
 /**********************/
 
 .disclosureButton {
+    display: block;
     text-decoration: none;
 }
 
