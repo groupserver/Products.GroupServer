@@ -48,14 +48,14 @@
               the managers</link></listitem>
           </bulletlist>
         </listitem>
-        <listitem tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group)">
+        <listitem tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group) and groupType != 'support'">
           <link url="manageproperties">Manage group <bold>properties</bold></link>
         </listitem>
-        <listitem>
+        <listitem tal:condition="python:groupType != 'support'">
           <link url="managemoderation">Manage group <bold>moderation</bold></link>
         </listitem>
         <listitem
-          tal:condition="python:site.getProperty('isChargable', False)">
+          tal:condition="python:site.getProperty('isChargable', False) and groupType != 'support'">
           <link url="../groupshop">Alter the <bold>size</bold> of 
           <span class="group" tal:content="group/title_or_id"/></link>
           </listitem>
