@@ -24,7 +24,7 @@ realLife = groupName
 group = container.create.group_folder(groups, groupId, groupName,
                                        realLife, templateId)
 
-# Add everything except members, chat, groupadmin and charter
+# Add everything except members, chat and charter
 container.create.group_index(group)
 container.create.javascript(group)
 container.create.files_area(group)
@@ -32,6 +32,7 @@ container.create.messages_area(group)
 container.create.email_settings(group)
 groupList = container.create.list_instance(group, 'onlinegroups.net', siteId,
                                            'private')
+container.create.administration(group)
 container.create.default_administrator(group)
 
 # Set the permissions for the group.
