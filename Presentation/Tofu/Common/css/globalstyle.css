@@ -630,6 +630,12 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
     background-image: url("/++resource++whiteIcons/feed.gif");
 }
 
+/* Tags */
+
+.tags {
+  font-family: monospace;
+}
+
 /** Email Details **/
 .emaildetails-odd, .odd, .oddStickyTopic {
 	background-color: #dcdcdf;
