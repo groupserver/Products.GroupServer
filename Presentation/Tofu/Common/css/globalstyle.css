@@ -574,60 +574,60 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
 /* Site Navigation Menu Icons */
 
 #Home-menu-link {
-    background-image: url("/++resource++blueIcons/home.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px 0px;
 }
 #Resources-menu-link {
-    background-image: url("/++resource++blueIcons/resources.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px 64px;
 }
 #Groups-menu-link {
-    background-image: url("/++resource++blueIcons/users.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -128px;
 }
 #Feedback-menu-link {
-    background-image: url("/++resource++blueIcons/feedback.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -256px;
 }
 #Results-menu-link {
-    background-image: url("/++resource++blueIcons/results.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -224px;
 }
 #Help-menu-link {
-    background-image: url("/++resource++blueIcons/help.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -96px;
 }
 #log-out-link {
-    background-image: url("/++resource++blueIcons/log-out.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -192px;
 }
 #profile-link {
-    background-image: url("/++resource++blueIcons/user.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -160px;
 }
 #About-menu-link {
-    background-image: url("/++resource++blueIcons/user.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -32px;
 }
 
 /* Icons for in the pge */
 .ziplink {
-    background-image: url("/++resource++whiteIcons/compressed.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -400px;
 }
 .pdflink {
-    background-image: url("/++resource++whiteIcons/acrobat.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -560px;
 }
 .excellink {
-    background-image: url("/++resource++whiteIcons/excel.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -304px;
 }
 .imagelink {
-    background-image: url("/++resource++whiteIcons/picture.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -528px;
 }
 .powerpoint {
-    background-image: url("/++resource++whiteIcons/powerpoint.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -432px;
 }
 .textlink {
-    background-image: url("/++resource++whiteIcons/text.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -368px;
 }
 .wordlink {
-    background-image: url("/++resource++whiteIcons/word.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -464px;
 }
 .weblink {
-    background-image: url("/++resource++whiteIcons/world.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -496px;
 }
 .rsslink, .atomlink, .alternateATOM {
-    background-image: url("/++resource++whiteIcons/feed.gif");
+    background: url("/++resource++blueSprites.gif") no-repeat 0px -336px;
 }
 
 /* Tags */
