@@ -43,7 +43,8 @@
             <cite>Group Administration</cite> page.
           </li>
           <li>
-            Click on <samp class="link">Add members to [Group Name]</samp>.
+            Click on <samp class="link">Add members to [Group Name]</samp>
+            to open the <cite>Add Members</cite> page.
           </li>
         </ol>
 
@@ -70,7 +71,7 @@
               Click on <samp class="link">Enter the details of a new member</samp>.
             </li>
             <li>
-              Fill out the 
+              Fill out at least the 
               <samp class="field">Email</samp>,
               <samp class="field">First Name</samp> and
               <samp class="field">Last Name</samp> fields. The
@@ -186,15 +187,15 @@
           <li>Choose
             <ul>
               <li>
-                <cite>No moderation</cite> to allow all members of the group
+                <samp class="link">No moderation</samp> to allow all members of the group
                 to post without approval.
               </li>
               <li>
-                <cite>Moderate specified members only</cite> to select
+                <samp class="link">Moderate specified members only</samp> to select
                 specific members of the group to moderate.
               </li>
               <li>
-                <cite>Moderate specified members, and all new members that join [Group Name]</cite>
+                <samp class="link">Moderate specified members, and all new members that join [Group Name]</samp>
                 to moderate all new members and any other members that you may specify.
               </li>
             </ul>
@@ -210,20 +211,28 @@
           Manage Group Members
         </h>
         <p>
-          On this page, you can remove members from the group,
-          set the participation coach, and set the group administrator.
+          On this page, you can:
+          <ul>
+            <li>remove members from the group</li>
+            <li>set the participation coach</li>
+            <li>set the group administrator</li>
+            <li>send verification reminders to unverified members (Site Administrators only)</li>
+          </ul>
         </p>
         <p>
           If moderation has been turned on for the group, you may
-          also set moderators and moderated members. To toggle moderation on
+          also:
+          <ul>
+            <li>set moderators</li>
+            <li>set moderated members</li>
+          </ul>
+        </p>
+        <p>
+          To toggle moderation on
           and off, see the
           <cite 
             href="#groupserver-group-moderation">Manage Moderation</cite>
           section.
-        </p>
-        <p>
-          Site administrators may also send verification
-          reminders to unverified members from this page.
         </p>
         <ol>
           <li>
