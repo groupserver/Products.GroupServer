@@ -41,9 +41,13 @@ listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 grouplist = getattr(listManager, groupid)
 
 # Change the title of the list manager object for the group.
-groupSubject = form.get('groupSubject')
-grouplist.manage_changeProperties(title=groupSubject)
+groupSubject = form.get('groupSubject', None)
+if groupSubject:
+    if grouplist.getProperty('title') != groupSubject:
+        grouplist.manage_changeProperties(title=groupSubject)
+        message.append('<li>Updated subject line.</li>')
 
+# Change the title of the group.
 group_title = form.get('grouptitle', None)
 if group_title:
     if group.getProperty('title') != group_title:
