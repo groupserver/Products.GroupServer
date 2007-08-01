@@ -1,0 +1,34 @@
+<xf:model id="change_group_postinglimit"
+  xmlns:xf="http://www.w3.org/2002/xforms" 
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:define="group_object here/Scripts/get/group_object;
+  site_object here/Scripts/get/division_object;
+  list_object python:getattr(here.ListManager, group_object.getId())">
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <groupid tal:content="group_object/getId">ID</groupid>
+      <siteid tal:content="site_object/getId">ID</siteid>
+      <tal:block
+        tal:define="canSetPostingLimit python:context.Scripts.get.option('admin_can_set_posting_limit', True)">
+        <tal:block tal:condition="not:canSetPostingLimit"
+          tal:define="groupTemplate python:group_object.getProperty('group_template', 'standard');">
+          <!-- OGN Specific -->
+          <senderlimit
+            tal:content="python:context.ListManager.getProperty('%s_senderlimit' % groupTemplate, 10)" />
+          <senderinterval 
+            tal:content="python:context.ListManager.getProperty('%s_senderinterval' % groupTemplate, 3600)/3600"/>
+        </tal:block>
+        <tal:block tal:condition="canSetPostingLimit"
+          tal:define="gid group_object/getId">
+          <senderlimit
+            tal:content="python:context.Scripts.get.list_property(gid, 'senderlimit')"/>
+          <senderinterval
+            tal:content="python:context.Scripts.get.list_property(gid, 'senderinterval')/3600"/>
+        </tal:block>
+      </tal:block>
+    </data>
+  </xf:instance>
+  <xf:bind nodeset="senderlimit" constraint=". &lt; 21"/>
+  <xf:submission action="" method="urlencoded-post" id="change"/>
+</xf:model>

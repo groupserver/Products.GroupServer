@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:here.models(method='xml')"/>
+  <output>
+    <content tal:define="group_object here/Scripts/get/group_object; 
+      group_members here/Scripts/get/group_members;
+      moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);">
+      
+      <heading1>Change the Moderation of
+        <span class="group"
+          tal:content="group_object/title_or_id"/>
+      </heading1>
+
+      <paragraph>This page is used to toggle moderation for
+        <span class="group"
+          tal:content="group_object/title_or_id"/>.
+        See the 
+        <link url="../managemembers">manage members</link>
+        page to specify the members of 
+        <span class="group"
+          tal:content="group_object/title_or_id"/> that
+        are moderated, and who the moderator is.
+      </paragraph>
+
+      <fieldset>
+        <xf:select1 appearance="full" model="moderate_group"
+          ref="moderation_level">
+          <xf:item>
+            <xf:label>No moderation.</xf:label>
+            <xf:value>none</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Moderate specified members only.</xf:label>
+            <xf:value>specified_only</xf:value>
+          </xf:item>
+          <xf:item>
+            <xf:label>Moderate specified members, and all new members
+              that join
+              <span tal:replace="group_object/title_or_id"/>.</xf:label>
+            <xf:value>specified_and_new</xf:value>
+          </xf:item>
+        </xf:select1>
+        
+        <xf:submit model="moderate_group" submission="change"
+          class="button" >
+          <xf:label>Change</xf:label>
+          <xf:hint>Change the moderation for this group</xf:hint>
+        </xf:submit>
+      </fieldset>
+    </content>
+  </output>
+</root>

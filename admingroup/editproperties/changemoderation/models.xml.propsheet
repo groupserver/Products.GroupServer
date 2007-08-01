@@ -1,0 +1,11 @@
+title:string=XForms Model for Manage Group Moderation
+content_type:string=text/xml
+expand:int=0
+cache_manager:string=
+default_render_method:string=html
+transform_paths:lines=Presentation/Tofu/XForms/xslt/
+schema_paths:lines=
+transform_xml:string=
+transform_html:string=xforms-only
+transform_pdf:string=
+xml_schema:string=

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:here.models(method='xml')"/>
+  <output>
+    <content>
+			
+			<heading1>Edit General Group Properties</heading1>
+			
+      <fieldset id="generalproperties">
+        <legend>General Properties</legend>
+        <xf:input model="change_group_properties" ref="grouptitle" class="text">
+          <xf:label>Title</xf:label>
+          <xf:hint>Please enter the title of the group</xf:hint>
+        </xf:input>
+        <xf:input model="change_group_properties" ref="groupSubject"
+          class="text">
+          <xf:label>Subject</xf:label>
+          <xf:hint>Please enter the start of the subject-line for
+            email messages sent from the group</xf:hint>
+        </xf:input>
+
+        <tal:block tal:repeat="prop here/GroupProperties/objectValues"
+          tal:replace="structure python:here.generate_tag(prop.getProperty('property_type'),
+          {'model': 'change_group_properties',
+          'ref': prop.getId(),
+          'label': prop.title_or_id(),
+          'hint': prop.getProperty('description','')})" />
+      </fieldset><!--generalproperties-->
+     
+      <xf:submit model="change_group_properties" submission="change"
+        class="button">
+        <xf:label>Change Properties</xf:label>
+        <xf:hint>Change the properties of the group</xf:hint>
+      </xf:submit>
+    </content>
+  </output>
+</root>
