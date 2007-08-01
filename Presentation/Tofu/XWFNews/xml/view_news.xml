@@ -23,7 +23,7 @@
             <heading2>
               <span 
               	tal:replace="python:munge_date(here, pubDate)"/>
-              <bold tal:condition="not published">[Unpublished]</bold>
+              <bold tal:condition="python:not published">[Unpublished]</bold>
               <span tal:replace="structure result/title"/>
             </heading2>
             <p>Posted By 
