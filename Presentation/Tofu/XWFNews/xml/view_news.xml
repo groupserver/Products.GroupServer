@@ -1,13 +1,12 @@
 <?xml version="1.0" ?>
 <root xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
-  metal:use-macro="here/Templates/page.xml/macros/page">
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
   <output>
-    <content metal:fill-slot="maincontent">
+    <content>
       <heading1>Current News</heading1>
 
       <div class="newsitems"
-        tal:define="munge_date python:module['Products.XWFCore.XWFUtils'].munge_date">
+        tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date">
         <tal:block
           tal:repeat="result python:map(lambda x: x.getObject(), options['results'])">
           <div class="newsitem" 
