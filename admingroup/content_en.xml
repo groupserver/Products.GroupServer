@@ -1,15 +1,25 @@
-<?xml version="1.0" ?>
-<root xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal">
-  <output>
-    <content>
-      <heading1>Group Administration</heading1>
-      
-      <paragraph>
-        As a group administrator, you can perform the following tasks. 
-      </paragraph>
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>OnlineGroups.Net Group Administration</title>
+    <meta property="dc:created">August 2007</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Alice Murphy</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="group-admin">
+    <section id="group-admin">
+      <h>Group Administration</h>
+      <p>
+        As a group administrator, you can perform the following tasks:
+      </p>
 
-      <bulletlist
+      <ul
         tal:define="permission python:here.Scripts.check.permission((here.Scripts.get.division_object(), here.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
         site here/Scripts/get/division_object;
         group here/Scripts/get/group_object;
@@ -19,47 +29,61 @@
         groupType python:group.getProperty('group_template');
         isGroupAnnouncement python:groupType == 'announcement';
         isGroupModerated python:here.Scripts.get.list_property(group.getId(), 'moderated', False);">
-        <listitem tal:condition="canJoin">
-          <link url="addusers"><bold>Add members</bold> to
-            <span class="group" tal:content="group/title_or_id"/></link>
-        </listitem>
-        <listitem tal:condition="python:not canJoin">
+        <li tal:condition="canJoin" href="addusers">
+          <strong>Add members</strong> to
+          <span class="group" tal:content="group/title_or_id"/>
+        </li>
+        <li tal:condition="python:not canJoin">
           Normally, you could add members to the group, but
           <span tal:content="python:joinable[1][1].lower()"/>
-        </listitem>
-        <listitem tal:condition="python:member_count &lt;= 127">
-          <link url="managemembers"><bold>Manage the members</bold> of 
-          <span class="group" tal:content="group/title_or_id"/></link>
-        </listitem>
-        <listitem tal:condition="python:member_count &gt; 127">
-          <link url="manage_many_members"><bold>Manage the many members</bold> of 
-          <span class="group" tal:content="group/title_or_id"/></link>
-          <bulletlist>
-            <listitem tal:condition="isGroupModerated">
-              <link url="managemembers/?show=moderated">Manage 
-                the moderated members</link></listitem>
-            <listitem>
-              <link url="managemembers/?show=unverified">Manage 
-                the unverified members</link></listitem>
-            <listitem tal:condition="isGroupAnnouncement">
-              <link url="managemembers/?show=posting">Manage
-                the posting members</link></listitem>
-            <listitem><link url="managemembers/?show=managers">Manage 
-              the managers</link></listitem>
-          </bulletlist>
-        </listitem>
-        <listitem tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group) and groupType != 'support'">
-          <link url="manageproperties">Manage group <bold>properties</bold></link>
-        </listitem>
-        <listitem tal:condition="python:groupType != 'support'">
-          <link url="managemoderation">Manage group <bold>moderation</bold></link>
-        </listitem>
-        <listitem
+        </li>
+        <li tal:condition="python:member_count &lt;= 127" href="managemembers">
+          <strong>Manage the members</strong> of 
+          <span class="group" tal:content="group/title_or_id"/>
+        </li>
+        <li tal:condition="python:member_count &gt; 127" href="manage_many_members">
+          <strong>Manage the many members</strong> of 
+          <span class="group" tal:content="group/title_or_id"/>
+          <ul>
+            <li tal:condition="isGroupModerated" href="managemembers/?show=moderated">
+                Manage the moderated members
+            </li>
+            <li href="managemembers/?show=unverified">
+              Manage the unverified members
+            </li>
+            <li tal:condition="isGroupAnnouncement" href="managemembers/?show=posting">
+              Manage the posting members
+            </li>
+            <li href="managemembers/?show=managers">
+              Manage the managers</li>
+          </ul>
+        </li>
+        <li tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group) and groupType != 'support'"
+          href="editproperties">Edit group <strong>properties</strong>
+          <ul>
+            <li href="editproperties/generalproperties">
+              Edit the <strong>general</strong> properties of 
+                <span class="group" tal:content="group/title_or_id"/>
+            </li>
+            <li href="editproperties/securityproperties">
+              Edit the <strong>security</strong> properties of 
+                <span class="group" tal:content="group/title_or_id"/>
+            </li>
+            <li tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)"
+              href="editproperties/postinglimit">
+              Edit the group <strong>posting limit</strong>
+            </li>
+            <li tal:condition="python:groupType != 'support'" href="editproperties/changemoderation">
+              Change group <strong>moderation</strong>
+            </li>
+          </ul>
+        </li>
+        <li
           tal:condition="python:site.getProperty('isChargable', False) and groupType != 'support'">
-          <link url="../groupshop">Alter the <bold>size</bold> of 
-          <span class="group" tal:content="group/title_or_id"/></link>
-          </listitem>
-      </bulletlist> 
-    </content>
-  </output>
-</root>
+          href="../groupshop">Alter the <strong>size</strong> of 
+          <span class="group" tal:content="group/title_or_id"/>
+          </li>
+      </ul> 
+    </section>
+  </body>
+</html>
