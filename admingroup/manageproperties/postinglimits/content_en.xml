@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+	xmlns:metal="http://xml.zope.org/namespaces/metal" 
+	xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:here.models(method='xml')"/>
+  <output>
+    <content>
+			<heading1>Manage Group Posting Limits</heading1>
+			    
+      <fieldset id="postinglimits"
+        tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)">
+        <legend>Posting Limits</legend>
+        <!-- -=mpj17=- Ouch! I need to really work on the wording here. -->
+        <paragraph>The number of posts a group member may make within a
+          specified period of time.</paragraph>
+        <xf:input model="change_group_postinglimit" ref="senderlimit"
+          class="text">
+          <xf:label>Post Limit</xf:label>
+          <xf:hint>The maximum number of posts a group member may submit in the 
+            posting interval.</xf:hint>
+        </xf:input>
+        <xf:input model="change_group_postinglimit" ref="senderinterval"
+          class="text">
+          <xf:label>Posting Interval</xf:label>
+          <xf:hint>The span of time, in hours, within which a group member 
+            is constrained by the posting limit.</xf:hint>
+        </xf:input>
+      </fieldset><!--postinglimits-->
+      
+      <xf:submit model="change_group_postinglimit" submission="change"
+        class="button">
+        <xf:label>Change Properties</xf:label>
+        <xf:hint>Change the properties of the group</xf:hint>
+      </xf:submit>
+    </content>
+  </output>
+</root>
