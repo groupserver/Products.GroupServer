@@ -1,0 +1,18 @@
+<xf:model id="change_group_security"
+  xmlns:xf="http://www.w3.org/2002/xforms" 
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  tal:define="group_object here/Scripts/get/group_object;
+  site_object here/Scripts/get/division_object">
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <permvisibility tal:content="here/Scripts/get/group_visibility"/>
+      <permjoin tal:content="here/Scripts/get/group_joinability"/>
+      <permviewfiles tal:content="here/Scripts/get/group_files_visibility"/>
+      <permviewmessages tal:content="here/Scripts/get/group_messages_visibility"/>
+      <groupid tal:content="group_object/getId">ID</groupid>
+      <siteid tal:content="site_object/getId">ID</siteid>
+    </data>
+  </xf:instance>
+  <xf:submission action="" method="urlencoded-post" id="change"/>
+</xf:model>

@@ -1,4 +1,4 @@
-title:string=Change the Group Properties
+title:string=Change the Site Name
 content_type:string=text/xml
 expand:int=0
 cache_manager:string=
