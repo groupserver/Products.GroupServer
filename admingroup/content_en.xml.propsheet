@@ -1,11 +1,11 @@
-title:string=Change the Site Name
+title:string=Group Administration
 content_type:string=text/xml
 expand:int=0
 cache_manager:string=
 default_render_method:string=html
-transform_paths:lines=Presentation/Tofu/Common/xslt/
+transform_paths:lines=Presentation/Tofu/XHTML2/xslt
 schema_paths:lines=
 transform_xml:string=
-transform_html:string=content-only
+transform_html:string=xhtml2-transform_body-content-only
 transform_pdf:string=
 xml_schema:string=
