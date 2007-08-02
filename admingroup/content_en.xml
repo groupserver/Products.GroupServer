@@ -46,7 +46,7 @@
           <span class="group" tal:content="group/title_or_id"/>
           <ul>
             <li tal:condition="isGroupModerated" href="managemembers/?show=moderated">
-                Manage the moderated members
+              Manage the moderated members
             </li>
             <li href="managemembers/?show=unverified">
               Manage the unverified members
@@ -78,8 +78,8 @@
             </li>
           </ul>
         </li>
-        <li
-          tal:condition="python:site.getProperty('isChargable', False) and groupType != 'support'">
+        <li tal:condition="python:('DivisionAdmin' in user.getRolesInContext(group)) and 
+            (site.getProperty('isChargable', False)) and (groupType != 'support')">
           href="../groupshop">Alter the <strong>size</strong> of 
           <span class="group" tal:content="group/title_or_id"/>
           </li>
