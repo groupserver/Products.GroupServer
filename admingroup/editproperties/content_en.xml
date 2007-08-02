@@ -14,16 +14,17 @@
   </head>
   <body>
     <section id="group-properties-main"
-      tal:define="group_object here/Scripts/get/group_object">
+      tal:define="group here/Scripts/get/group_object;
+        groupType python:group.getProperty('group_template')">
       <h>Edit Group Properties</h>
       <ul>
         <li href="generalproperties">
           Edit the <strong>general</strong> properties of 
-          <span class="group" tal:content="group_object/title_or_id"/>
+          <span class="group" tal:content="group/title_or_id"/>
         </li>
         <li href="securityproperties">
           Edit the <strong>security</strong> properties of 
-          <span class="group" tal:content="group_object/title_or_id"/>
+          <span class="group" tal:content="group/title_or_id"/>
         </li>
         <li tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)"
           href="postinglimit">
