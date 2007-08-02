@@ -79,7 +79,7 @@
           </ul>
         </li>
         <li tal:condition="python:('DivisionAdmin' in user.getRolesInContext(group)) and 
-            (site.getProperty('isChargable', False)) and (groupType != 'support')">
+            (site.getProperty('isChargable', False)) and (groupType != 'support')"
           href="../groupshop">Alter the <strong>size</strong> of 
           <span class="group" tal:content="group/title_or_id"/>
           </li>
