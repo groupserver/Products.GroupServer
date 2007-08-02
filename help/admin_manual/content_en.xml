@@ -28,9 +28,15 @@
         </p>
         <ul>
           <li href="#groupserver-add-members">Add members to a group</li>,
-          <li href="#groupserver-group-moderation">Manage group moderation</li>,
-          <li href="#groupserver-group-members">Manage group members</li>, and
-          <li href="#groupserver-group-properties">Manage group properties</li>.
+          <li href="#groupserver-group-members">Manage group members</li>, 
+          <li><a href="#groupserver-group-properties">Edit group properties</a> (site administrators only), including:
+            <ul>
+              <li href="#groupserver-general-group-properties">the <strong>general</strong> properties of the group</li>
+              <li href="#groupserver-security-group-properties">the <strong>security</strong> properties of the group</li>
+              <li href="#groupserver-moderation-group-properties">the <strong>moderation</strong> of the group</li>
+            </ul>
+          </li>
+          <li><a href="#groupserver-group-size">Alter the group size</a> (site administrators only)</li>
         </ul>
       </section>
 
@@ -47,12 +53,26 @@
             to open the <cite>Add Members</cite> page.
           </li>
         </ol>
+        <p>From this page, you may add members to a group in one of three ways:</p>
+        <ul>
+          <li href="#groupserver-add-existing-site-members">
+            Add existing site members to a group
+          </li>
+          <li href="#groupserver-create-new-group-member">
+            Create a new group member to add to a group
+          </li>
+          <li href="#groupserver-create-bulk-members">
+            Create multiple members to add to a group
+          </li>
+        </ul>
 
         <section id="groupserver-add-existing-site-members">
           <h id="groupserver-add-existing-site-members">Add existing site members to a group</h>
           <ol>
             <li>
-              Click on <samp class="link">Select existing site members</samp>.
+              Click on <samp class="link">Select existing site members</samp>
+              to open the <cite>Add Members of <span class="site" tal:content="siteName"/>
+              to [Group Name]</cite> page.
             </li>
             <li>
               Choose one or more members from the list. Use the
@@ -68,7 +88,8 @@
           <h id="groupserver-create-new-group-member">Create a New Group Member</h>
           <ol>
             <li>
-              Click on <samp class="link">Enter the details of a new member</samp>.
+              Click on <samp class="link">Enter the details of a new member</samp>
+              to open the <cite>Create a New Group Member</cite> page.
             </li>
             <li>
               Fill out at least the 
@@ -131,7 +152,8 @@
           </p>
           <ol>
             <li>
-              Click on <samp class="link">upload the details of multiple members using a CSV file</samp>.
+              Click on <samp class="link">upload the details of multiple members using a CSV file</samp>
+              to open the <cite>Create Members in Bulk</cite> page.
             </li>
             <li>
               Browse to the location of the CSV file on your local computer.
@@ -160,80 +182,12 @@
             </tal:block>
           </ol>
         </section>
-      </section>
-
-      <section id="groupserver-group-moderation">
-        <h id="groupserver-group-moderation">
-          Manage Moderation
-        </h>
-        <p>
-          This page allows you to toggle moderation for the group. To
-          specify moderators and moderated members, see the
-          <cite 
-            href="#groupserver-group-members">Manage Group Members</cite>
-          section.
-        </p>
-        <ol>
-          <li>
-            Click on <samp class="link">Group Admin</samp>, on your 
-            Group's homepage, to open the 
-            <cite>Group Administration</cite> page.
-          </li>
-          <li>
-            Click on <samp class="link">Manage group moderation</samp>, on the 
-            Group Administration page, to open the 
-            <cite>Manage Moderation</cite> page.
-          </li>
-          <li>Choose
-            <ul>
-              <li>
-                <samp class="link">No moderation</samp> to allow all members of the group
-                to post without approval.
-              </li>
-              <li>
-                <samp class="link">Moderate specified members only</samp> to select
-                specific members of the group to moderate.
-              </li>
-              <li>
-                <samp class="link">Moderate specified members, and all new members that join [Group Name]</samp>
-                to moderate all new members and any other members that you may specify.
-              </li>
-            </ul>
-          </li>
-          <li>
-            Click the <samp class="button">Change</samp> button.
-          </li>
-        </ol>
-      </section>
-      
+      </section><!-- add members -->
+     
       <section id="groupserver-group-members">
         <h id="groupserver-group-members">
           Manage Group Members
         </h>
-        <p>
-          On this page, you can:
-          <ul>
-            <li>remove members from the group</li>
-            <li>set the participation coach</li>
-            <li>set the group administrator</li>
-            <li>send verification reminders to unverified members (Site Administrators only)</li>
-          </ul>
-        </p>
-        <p>
-          If moderation has been turned on for the group, you may
-          also:
-          <ul>
-            <li>set moderators</li>
-            <li>set moderated members</li>
-          </ul>
-        </p>
-        <p>
-          To toggle moderation on
-          and off, see the
-          <cite 
-            href="#groupserver-group-moderation">Manage Moderation</cite>
-          section.
-        </p>
         <ol>
           <li>
             Click on <samp class="link">Group Admin</samp>, on your 
@@ -246,13 +200,42 @@
             <cite>Manage Members</cite> page.
           </li>
           <li>
-            If you wish, you may then click on either
-            <samp class="link">List only the managers of [Group Name]</samp>
-            to list only the Managers of the group, or if moderation has been turned on,
-            <samp class="link">List only the moderated members of [Group Name]</samp>
-            to list only the moderated members of the group.
+            If you wish, you may then click on either:
+            <ul>
+              <li>
+                <samp class="link">List only the managers of [Group Name]</samp>
+                to list only the Managers of the group, or
+              </li>
+              <li>
+                <samp class="link">List only the unverified members of [Group Name]</samp>
+                to list only the unverified members of the group (only if there are unverified members).
+              </li>
+              <li>
+                <samp class="link">List only the moderated members of [Group Name]</samp>
+                to list only the moderated members of the group (if moderation has been
+                turned on), or
+              </li>
+              <li>
+                <samp class="link">List all posting members</samp>
+                to list only the posting members of the group (announcement groups only).
+              </li>
+            </ul>
           </li>
         </ol>
+        <p>
+          From this page, you can:
+          <ul>
+            <li href="#groupserver-participation-coach">set the participation coach</li>
+            <li href="#groupserver-group-admin">set group administrators</li>
+            <li><a href="#groupserver-set-moderators">set moderators</a> (moderated groups only &#8212; see
+              <cite href="#groupserver-moderation-group-properties">Change Moderation</cite>)</li>
+            <li><a href="#groupserver-set-moderated-members">set moderated members</a> (moderated groups only &#8212; see
+              <cite href="#groupserver-moderation-group-properties">Change Moderation</cite>)</li>
+            <li><a href="#groupserver-posting-members">set posting members</a> (announcement groups only)</li>
+            <li href="#groupserver-verification-reminder">send verification reminders to unverified members</li>
+            <li href="#groupserver-remove-members">remove members from the group</li>
+          </ul>
+        </p>
 
         <section id="groupserver-participation-coach">
           <h id="groupserver-participation-coach">
@@ -275,19 +258,100 @@
 
         <section id="groupserver-group-admin">
           <h id="groupserver-group-admin">
-            Set a Group Administrator
+            Set Group Administrators
           </h>
           <ol>
             <li>
-              To set a member as a Group Administrator, check the box
-              labelled <cite>Make [Member Name] a group administrator</cite>.
+              To set a member as a Group Administrator, check the box labelled
+              <cite>Make [Member Name] a group administrator</cite>.
             </li>
             <li>
-              To remove a current Group Administrator, check the box
-              labelled <cite>Revoke the administrator privilages from [Member Name]</cite>.
+              To remove a current Group Administrator, check the box labelled
+              <cite>Revoke the administrator privilages from [Member Name]</cite>.
             </li>
             <li>
               Click the <samp class="button">Change</samp> button.
+            </li>
+          </ol>
+        </section>
+
+        <section id="groupserver-set-moderators">
+          <h id="groupserver-set-moderators">
+            Set Moderators (Moderated Groups Only)
+          </h>
+          <p>
+            In order to set the moderators for a group, moderation must first be turned on.
+            See <cite href="#groupserver-moderation-group-properties">Manage Moderation</cite>.
+          </p>
+          <ol>
+            <li>
+              To make a member a moderator, check the box labelled 
+              <cite>Make [Member Name] a moderator for this group</cite>.
+            </li>
+            <li>
+              To remove a moderator, check the box labelled 
+              <cite>Revoke moderator status from [Member Name]</cite>.
+            </li>
+            <li>
+              Click the <samp class="button">Change</samp> button.
+            </li>
+          </ol>
+        </section>
+
+        <section id="groupserver-set-moderated-members">
+          <h id="groupserver-set-moderated-members">
+            Set Moderated Members (Moderated Groups Only)
+          </h>
+          <p>
+            In order to set the moderated members for a group, moderation must first be turned on.
+            See <cite href="#groupserver-moderation-group-properties">Manage Moderation</cite>.
+          </p>
+          <ol>
+            <li>
+              To moderate a member, check the box labelled
+              <cite>Start moderating messages from [Member Name]</cite>.
+            </li>
+            <li>
+              To stop moderating a member, check the box labelled
+              <cite>Stop moderating messages from [Member Name]</cite>.
+            </li>
+            <li>
+              Click the <samp class="button">Change</samp> button.
+            </li>
+          </ol>
+        </section>
+
+        <section id="groupserver-posting-members">
+          <h id="groupserver-posting-members">
+            Set Posting Members (Announcement Groups Only)
+          </h>
+          <ol>
+            <li>
+              To set a member as a posting member, check the box labelled
+              <cite>Make [Member Name] a posting member</cite>.
+            </li>
+            <li>
+              To remove a posting member, check the box labelled
+              <cite>Revoke the ability to post from [Member Name]</cite>.
+            </li>
+            <li>
+              Click the <samp class="button">Change</samp> button.
+            </li>
+          </ol>
+        </section>
+
+        <section id="groupserver-verification-reminder">
+          <h id="groupserver-verification-reminder">
+            Send Verification Reminder to Unverified Members
+          </h>
+          <ol>
+            <li>
+              Click the link labelled
+              <samp class="link">Send a verification reminder to [Member Name]</samp>
+              to open the <cite>Send a verification reminder to [Member Name]</cite> page.
+            </li>
+            <li>
+              Click the <samp class="button">Send</samp> button.
             </li>
           </ol>
         </section>
@@ -306,55 +370,372 @@
             </li>
           </ol>
         </section>
-
-        <section id="groupserver-set-moderators">
-          <h id="groupserver-set-moderators">
-            Set Moderators
-          </h>
-          <ol>
-            <li>
-              With moderation turned on, check the box 
-              labelled <cite>Make [Member Name] a moderator for this group</cite>.
-            </li>
-            <li>
-              With moderation turned on, check the box 
-              labelled <cite>Revoke moderator status from [Member Name]</cite>.
-            </li>
-            <li>
-              Click the <samp class="button">Change</samp> button.
-            </li>
-          </ol>
-        </section>
-
-        <section id="groupserver-set-moderated-members">
-          <h id="groupserver-set-moderated-members">
-            Set Moderated Members
-          </h>
-          <ol>
-            <li>
-              With moderation turned on, check the box 
-              labelled <cite>Start moderating messages from [Member Name]</cite>.
-            </li>
-            <li>
-              With moderation turned on, check the box 
-              labelled <cite>Stop moderating messages from [Member Name]</cite>.
-            </li>
-            <li>
-              Click the <samp class="button">Change</samp> button.
-            </li>
-          </ol>
-        </section>
-      </section>
+      </section><!-- managemembers -->
 
       <section id="groupserver-group-properties">
         <h id="groupserver-group-properties">
-          Manage Group Properties (Site Administrators Only)     
+          Edit Group Properties (Site Administrators Only)
         </h>
+        <ol>
+          <li>
+            Click on <samp class="link">Group Admin</samp>, on your 
+            Group's homepage, to open the 
+            <cite>Group Administration</cite> page.
+          </li>
+          <li>
+            Click on <samp class="link">Edit Group Properties</samp>, on the 
+            Group Administration page, to open the 
+            <cite>Edit Group Properties</cite> page.
+          </li>
+        </ol>
         <p>
-          Group Properties can be added and changed on this page.
-          This is where the 
-          <a href="../help/admin_guide/design/">Online Groups Design</a> 
-          is applied to the group.
+          From this page, you can edit:
+        </p>
+        <ul>
+          <li href="#groupserver-general-group-properties">
+            the <strong>general</strong> properties of the group
+          </li>
+          <li href="#groupserver-security-group-properties">
+            the <strong>security</strong> properties of the group
+          </li>
+          <li href="#groupserver-moderation-group-properties">
+            the <strong>moderation</strong> of the group
+          </li>
+        </ul>
+
+        <section id="groupserver-general-group-properties">
+          <h id="groupserver-general-group-properties">Edit General Group Properties</h>
+          <p>
+            This is where the 
+            <a href="../help/admin_guide/design/">Online Groups Design</a> 
+            is applied to the group.
+          </p>
+          <ol>
+            <li>
+              Click on <samp class="link">Edit the general properties of the group</samp>
+              to open the <cite>Edit General Group Properties</cite> page.
+            </li>
+          </ol>
+          <table id="groupserver-tab-group-properties">
+            <caption id="groupserver-tab-group-properties-t">
+              General Group Properties
+            </caption>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="groupserver-group-title">
+                <td>Title</td>
+                <td>The title of the group.</td>
+              </tr>
+              <tr id="groupserver-group-subject">
+                <td>Subject</td>
+                <td>The start of the subject line for email messages sent 
+                  from the group.
+                </td>
+              </tr>
+              <tr id="groupserver-group-owner">
+                <td>Owner</td>
+                <td>Person or organisation that commissioned the establishment of the group.</td>
+              </tr>
+              <tr id="groupserver-group-coach">
+                <td>Participation Coach ID</td>
+                <td>The user ID of the Participation Coach.</td>
+              </tr>
+              <tr id="groupserver-group-real-life">
+                <td>Real Life Group</td>
+                <td>Text to complete the sentence:
+                  "[group_title] is an Online Group for ..."</td>
+              </tr>
+              <tr id="groupserver-group-purpose">
+                <td>Purpose</td>
+                <td>Text to complete the sentence: 
+                  "The purpose of [group_title] is..."</td>
+              </tr>
+              <tr id="groupserver-group-date-open">
+                <td>Date Open</td>
+                <td>The date the group was opened, or will open. Will only
+                  be listed on the Charter if Date Closed is also specified.</td>
+              </tr>
+              <tr id="groupserver-group-date-closed">
+                <td>Date Closed</td>
+                <td>The date the group will closed, or closed. If left blank,
+                  the open and close dates will not be mentioned in the Charter.</td>
+              </tr>
+              <tr id="groupserver-group-membership-definition">
+                <td>Membership Definition</td>
+                <td>What defines the membership of the group, what makes
+                  it unique? Text to complete the sentence: "Membership of
+                  [group_title] is open to ..."</td>
+              </tr>
+              <tr id="groupserver-group-required-protocol-items">
+                <td>Required Protocol Items</td>
+                <td>Items to add to the requirements of participants in
+                  the Participation Protocol.</td>
+              </tr>
+              <tr id="groupserver-group-required-protocol-items">
+                <td>Encouraged Protocol Items</td>
+                <td>Items to add to the encouraged activites in the
+                  Participation Protocol.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section><!--groupserver-general-group-properties-->
+
+        <section id="groupserver-security-group-properties">
+          <h id="groupserver-security-group-properties">Edit Group Security Properties</h>
+          <ol>
+            <li>
+              Click on <samp class="link">Edit the security properties of the group</samp>
+              to open the <cite>Edit Group Security Properties</cite> page.
+            </li>
+          </ol>
+
+          <p>On this page, you can specify:</p>
+          <ul>
+            <li>
+              the group <cite href="#groupserver-security-group-visibility">Visibility</cite>
+              (who can see this group)
+            </li>
+            <li>
+              the group <cite href="#groupserver-security-group-joinability">Joinability</cite>
+              (who can join this group)
+            </li>
+            <li>
+              who can <cite href="#groupserver-security-group-viewfiles">View files</cite>
+            </li>
+            <li>
+              who can <cite href="#groupserver-security-group-viewmessages">View messages</cite>
+            </li>
+          </ul>
+
+          <section id="groupserver-security-group-visibility">
+            <h id="groupserver-security-group-visibility">Visibility</h>
+            <p>
+              You can set the <cite>Visibility</cite> so that the existence
+              of the group may be seen by:
+            </p>
+            <ul>
+              <li>
+                <cite>Everyone</cite>
+              </li>
+              <li>
+                <cite>Only site and group members</cite>
+              </li>
+              <li>
+                <cite>Only group members</cite>
+              </li>
+            </ul>
+          </section><!-- groupserver-security-group-visibility -->
+
+          <section id="groupserver-security-group-joinability">
+            <h id="groupserver-security-group-joinability">Joinability</h>
+            <p>
+              You can set the <cite>Joinability</cite> so that the
+              group can be joined by:
+            </p>
+            <ul>
+              <li>
+                <cite>Anyone, without approval</cite>  &#8212; anyone can join
+              </li>
+              <li>
+                <cite>Anyone, pending approval</cite>  &#8212;  potential group
+                members must apply to join
+              </li>
+              <li>
+                <cite>Only those invited</cite>  &#8212;  potential group
+                members must be invited to joined to the group
+              </li>
+            </ul>
+
+            <section id="groupserver-security-group-joinability-anyone">
+              <h id="groupserver-security-group-joinability-anyone">
+                Anyone, without approval
+              </h>
+              <p>
+                To allow <cite>Anyone, without approval</cite> to join the
+                the group.
+              </p>
+              <ol>
+                <li>
+                  Set <cite>Visibility</cite> to either "Only
+                  site and group members" or "Everyone".
+                </li>
+                <li>
+                  Set <cite>Joinability</cite> to "Anyone, without approval"
+                </li>
+              </ol>
+              <p>
+                This puts the following text on the group homepage:
+              </p>
+              <ul>
+                <li>
+                  Logged in: "You are not a member of [Group Name]; you can join [Group Name]."
+                </li>
+                <li>  
+                  Logged out: "You can register and join [Group Name]."
+                </li>
+              </ul>
+            </section><!--groupserver-security-group-joinability-anyone -->
+
+            <section id="groupserver-security-group-joinability-approval">
+              <h id="groupserver-security-group-joinability-approval"> 
+                Anyone, pending approval
+              </h>
+              <p> 
+                To allow <cite>Anyone, pending approval</cite> to join the
+                the group.
+              </p>
+              <ol>
+                <li>
+                  Set Group Visibility to either "Only site and group
+                  members" or "Everyone".
+                </li>
+                <li>
+                  Set Joinability  to "Anyone, pending approval".
+                </li>
+              </ol>
+              <p>
+                This puts the following text on the group homepage:
+              </p>
+              <ol>
+                <li>
+                  Logged in: "You are not a member of [Group Name]; you can contact the
+                  Participation Coach ([Name]) to request membership.
+                </li>
+                <li>
+                  Logged out:
+                  <ul>
+                    <li>
+                      If you are a member of <span class="site" tal:content="siteName"/>, log in.
+                      Then, contact the Participation Coach [Name] to request membership. 
+                    </li>
+                    <li>
+                      If you are not a member, register. Then, contact the Participation Coach
+                      [Name] to request membership.
+                    </li>
+                  </ul> 
+                </li>
+              </ol>
+            </section><!-- groupserver-security-group-joinability-approval -->
+
+            <section id="groupserver-security-group-joinability-invited">
+              <h id="groupserver-security-group-joinability-invited">Only those invited</h>
+              <p>
+                Setting Joinability to <cite>Only those invited</cite>
+                puts the following text on the group homepage:
+              </p>
+              <ol>
+                <li>
+                  Logged in: "You are not a member of [Group Name]; membership is by invitation only."
+                </li> 
+                <li>
+                  Logged out: "You are not a member, and you cannot join,
+                  as membership of this group is by invitation only."
+                </li>
+              </ol>
+            </section><!--groupserver-security-group-joinability-invited -->
+          </section><!--groupserver-security-group-joinability -->
+
+          <section id="groupserver-security-group-viewfiles">
+            <h id="groupserver-security-group-viewfiles">View Files</h>
+            <p>
+              You can set <cite>View Files</cite> so that files
+              uploaded to the group may be seen by:
+            </p>
+            <ul>
+              <li>
+                <cite>Everyone</cite>
+              </li>
+              <li>
+                <cite>Only site and group members</cite>
+              </li>
+              <li>
+                <cite>Only group members</cite>
+              </li>
+              <li>
+                or <cite>Same as group settings</cite> to set the visibility of the files
+                to be the same as the visibility settings of the group
+              </li>
+            </ul>
+          </section><!-- groupserver-security-group-viewfiles -->
+
+          <section id="groupserver-security-group-viewmessages">
+            <h id="groupserver-security-group-viewmessages">View Messages</h>
+            <p>
+              You can set <cite>View Messages</cite> so that messages
+              sent to the group may be seen by:
+            </p>
+            <ul>
+              <li>
+                <cite>Everyone</cite>
+              </li>
+              <li>
+                <cite>Only site and group members</cite>
+              </li>
+              <li>
+                <cite>Only group members</cite>
+              </li>
+              <li>
+                or <cite>Same as group settings</cite> to set the visibility of the messages
+                to be the same as the visibility settings of the group
+              </li>
+            </ul>
+          </section><!-- groupserver-security-group-viewfiles -->
+        </section><!--groupserver-security-group-properties-->
+
+        <section id="groupserver-moderation-group-properties">
+          <h id="groupserver-moderation-group-properties">
+            Change Moderation
+          </h>
+          <p>
+            This page allows you to toggle moderation for the group. To
+            specify moderators and moderated members, see the
+            <cite 
+              href="#groupserver-group-members">Manage Group Members</cite>
+            section.
+          </p>
+          <ol>
+            <li>
+              Click on <samp class="link">Group Admin</samp>, on your 
+              Group's homepage, to open the 
+              <cite>Group Administration</cite> page.
+            </li>
+            <li>
+              Click on <samp class="link">Change group moderation</samp>, on the 
+              Group Administration page, to open the 
+              <cite>Change Moderation</cite> page.
+            </li>
+            <li>Choose one of
+              <ul>
+                <li>
+                  <samp class="link">No moderation</samp> to allow all members of the group
+                  to post without approval, or
+                </li>
+                <li>
+                  <samp class="link">Moderate specified members only</samp> to select
+                  specific members of the group to moderate, or
+                </li>
+                <li>
+                  <samp class="link">Moderate specified members, and all new members that join [Group Name]</samp>
+                  to moderate all new members and any other members that you may specify.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Click the <samp class="button">Change</samp> button.
+            </li>
+          </ol>
+        </section><!-- groupserver-moderation-group-properties -->
+      </section><!-- groupserver-group-properties -->
+
+      <section id="groupserver-group-size">
+        <h id="groupserver-group-size">Change Group Size (Site Administrators Only)</h>
+        <p>
+          This page allows you to change the size of the group.
         </p>
         <ol>
           <li>
@@ -363,200 +744,26 @@
             <cite>Group Administration</cite> page.
           </li>
           <li>
-            Click on <samp class="link">Manage Group Properties</samp>, on the 
-            Group Administration page, to open the 
-            <cite>Manage Group Properties</cite> page.
+            Click on <samp class="link">Alter the size of [Group Name]</samp>
+            on the Group Administration page, to open the 
+            <cite>Change the Size of [Group Name]</cite> page.
+          </li>
+          <li>
+            Select your preferred group size.
+          </li>
+          <li>
+            Click the <samp class="button">Checkout</samp> button to go
+            to the confirmation page.
+          </li>
+          <li>
+            Review the summary of changes and cost.
+          </li>
+          <li>
+            Click the <samp class="button">Confirm</samp> button to go
+            to Paypal and pay for your new subscription.
           </li>
         </ol>
-        
-        <table id="groupserver-tab-group-properties">
-          <caption id="groupserver-tab-group-properties-t">
-            Group Properties
-          </caption>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="groupserver-group-title">
-              <td>Title</td>
-              <td>The title of the group</td>
-            </tr>
-            <tr id="groupserver-group-subject">
-              <td>Subject</td>
-              <td>The start of the subject-line for email messages sent 
-                from the group.
-              </td>
-            </tr>
-            <tr id="groupserver-group-owner">
-              <td>Owner</td>
-              <td>Person or organisation that commissioned the establishment of the group</td>
-            </tr>
-            <tr id="groupserver-group-coach">
-              <td>Participation Coach ID</td>
-              <td>Participation Coach UserID.</td>
-            </tr>
-            <tr id="groupserver-group-real-life">
-              <td>Real Life Group</td>
-              <td>Text to complete the sentence:
-                "[group_title] is an online group for".</td>
-            </tr>
-            <tr id="groupserver-group-purpose">
-              <td>Purpose</td>
-              <td>Text to complete the sentence: 
-                "The purpose of [group_title] is".</td>
-            </tr>
-            <tr id="groupserver-group-date-open">
-              <td>Date Open</td>
-              <td>The date the group was opened, or will open.</td>
-            </tr>
-            <tr id="groupserver-group-date-closed">
-              <td>Date Closed</td>
-              <td>The date the group will closed, or closed.</td>
-            </tr>
-            <tr id="groupserver-group-membership-definition">
-              <td>Membership Definition</td>
-              <td>What defines the membership of the group, what makes
-                it unique?</td>
-            </tr>
-            <tr id="groupserver-group-required-protocol-items">
-              <td>Required Protocol Items</td>
-              <td>Items to add to the requirements of participants in
-                the Participation Protocol.</td>
-            </tr>
-            <tr id="groupserver-group-required-protocol-items">
-              <td>Encouraged Protocol Items</td>
-              <td>Items to add to the encouraged activites in the
-                Participation Protocol.</td>
-            </tr>
-            <tr id="groupserver-group-post-limit">
-              <td>Post limit</td>
-              <td>The number of posts a user can send in one
-                posting period.</td>
-            </tr>
-            <tr id="groupserver-group-post-period">
-              <td>Post period</td>
-              <td>The length of one posting period, in seconds.</td>
-            </tr>
-            <tr id="groupserver-group-visibility">
-              <td>Visibility</td>
-              <td>Who can see this group.</td>
-            </tr> 
-            <tr id="groupserver-group-joinability">
-              <td>Joinability</td>
-              <td>Who can join this group.</td>
-            </tr>
-            <tr id="groupserver-group_view-files">
-              <td>View Files</td>
-              <td>Who can view the files in this group.</td>
-            </tr>
-            <tr id="groupserver-group-view-messages">
-              <td>View Messages</td>
-              <td>Who can view the messages in this group.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <section>
-          <h>
-            The Group Joinability Options
-          </h>
-          <p>
-            You can set the <cite>Group Joinability</cite> so that the
-            group can be joined by:
-          </p> 
-          <ul>
-            <li>
-              <cite>Anyone, without approval</cite>  &#8212; anyone can join
-            </li>
-            <li>
-              <cite>Anyone, pending approval</cite>  &#8212;  potential group
-              members must apply to join
-            </li>
-            <li>
-              <cite>Only those invited</cite>  &#8212;  potential group
-              members must be invited to joined to the group
-            </li>
-          </ul>
-          <section>
-            <h>
-              Anyone, without approval
-            </h>
-            <p>
-              To allow <cite>Anyone, without approval</cite> to join the
-              the group.
-            </p>
-            <ol>
-              <li>
-                Set <cite>Group Visibility</cite> to either "Only
-                division and group members" or "Everyone".
-              </li>
-              <li>
-                Set <cite>Joinability</cite>  to "Anyone, without approval"
-              </li>
-            </ol>
-
-            <p>
-              This puts the following text on the Groups' Home page.
-            </p>
-            <ul>
-              <li>
-                Logged in, 'Join group'
-              </li>
-              <li>  
-                Logged out, 'Register and Join GroupName: if you already
-                have  an account on this site, please log in before
-                joining (use this reminder to find out if you have one)'
-              </li>
-            </ul>
-            
-          </section>
-          <section>
-            <h> 
-              Anyone, pending approval
-            </h>
-            <p> 
-              To allow <cite>Anyone, pending approval</cite> to join the
-              the group.
-            </p>
-            <ol>
-              <li>
-                Set Group Visibility to either "Only division and group
-                members" or "Everyone".
-              </li>
-              <li>
-                Set Joinability  to "Anyone, pending approval approval".
-              </li>
-            </ol>
-            <p>
-              This puts the following text on the Groups' Home page.
-            </p>
-            <ol><li>
-                Logged in, 'Contact the Participation Coach 'Name'  to
-                request membership'.
-              </li>
-              
-              <li>
-                Logged out, 'Contact the Participation Coach CoachName
-                to request membership (you will have to register before
-                you can see Participation Coach email address)'.
-              </li>
-            </ol>
-          </section>
-          <section>
-            <h>Only those invited</h>
-            <p>
-              Setting Joinability to <cite>Only those invited</cite>
-              puts the following text on the groups' home page,
-              'Visitors to GroupName can:  Not join - membership of this
-              group is by invitation only'.
-            </p>
-          </section>
-        </section>
-      </section>
-
+      </section><!-- groupserver-group-size -->
     </section>
   </body>
 </html>
