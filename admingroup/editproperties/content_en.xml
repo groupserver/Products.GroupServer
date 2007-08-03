@@ -14,24 +14,34 @@
   </head>
   <body>
     <section id="group-properties-main"
-      tal:define="group here/Scripts/get/group_object;
+      tal:define="site here/Scripts/get/division_object;
+        siteName site/title_or_id;
+        group here/Scripts/get/group_object;
+        groupName group/title_or_id;
         groupType python:group.getProperty('group_template')">
       <h>Edit Group Properties</h>
+      <p>
+        As site administrator of <span class="site" tal:content="siteName"/>,
+        you may edit the following properties of <span class="group" tal:content="groupName"/>:
+      </p>
       <ul>
-        <li href="generalproperties">
-          Edit the <strong>general</strong> properties of 
-          <span class="group" tal:content="group/title_or_id"/>
+        <li>
+          <a href="generalproperties">Edit the <strong>general</strong> properties of 
+            <span class="group" tal:content="groupName"/></a> &#8212; define the group
+          <a class="helpLink" href="../help/admin_manual/#groupserver-general-group-properties">[?]</a>
         </li>
-        <li href="securityproperties">
-          Edit the <strong>security</strong> properties of 
-          <span class="group" tal:content="group/title_or_id"/>
+        <li>
+          <a href="securityproperties">Edit the <strong>security</strong> properties of   
+            <span class="group" tal:content="groupName"/></a> &#8212; decide who may view and join the group
+          <a class="helpLink" href="../help/admin_manual/#groupserver-security-group-properties">[?]</a>
         </li>
-        <li tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)"
-          href="postinglimit">
-          Edit the group <strong>posting limit</strong>
+        <li tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)">
+          <a href="postinglimit">
+            Edit the group <strong>posting limit</strong></a> &#8212; limit how often members may post to the group
         </li>
-        <li tal:condition="python:groupType != 'support'" href="changemoderation">
-          Change group <strong>moderation</strong>
+        <li tal:condition="python:groupType != 'support'">
+          <a href="changemoderation">Change group <strong>moderation</strong></a> &#8212; set the level of moderation for the group
+          <a class="helpLink" href="../help/admin_manual/#groupserver-moderation-group-properties">[?]</a>
         </li>
       </ul>
     </section>
