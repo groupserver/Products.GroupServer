@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:getattr(context, 'models')(method='xml')" />
+  <output>
+    <content
+      tal:define="site here/Scripts/get/division_object;
+        siteName site/title_or_id;
+        timezones context/LocalScripts/get/timezones;
+        current_tz python:context.Scripts.get.option('timezone','UTC')">
+      <heading1>Set Site Timezone</heading1>
+      <paragraph>
+        The timezone of <span tal:content="siteName" /> is currently set to <span tal:content="current_tz" />.
+      </paragraph>
+      <paragraph>
+        Please select your location:
+      </paragraph>
+      <fieldset>
+        <xf:select model="set_site_timezone" ref="zone" appearance="compact">
+          <xf:item tal:repeat="timezone timezones">
+            <xf:label tal:content="timezone">UTC</xf:label>
+            <xf:value tal:content="timezone">UTC</xf:value>
+          </xf:item>
+        </xf:select>
+      </fieldset>
+      <xf:submit model="set_site_timezone" submission="change" class="button">
+        <xf:label>Change</xf:label>
+        <xf:hint>Change to the selected timezone</xf:hint>
+      </xf:submit>
+    </content>
+  </output>
+</root>
+

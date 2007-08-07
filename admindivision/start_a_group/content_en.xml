@@ -4,14 +4,16 @@
   xmlns:xf="http://www.w3.org/2002/xforms">
   <data tal:content="structure python:getattr(context, 'models')(method='xml')" />
   <output>
-    <content tal:define="site_object context/Scripts/get/division_object">
+    <content
+      tal:define="site_object context/Scripts/get/division_object;
+        siteName site_object/title_or_id">
       <heading1>Start a Group</heading1>
 
       <heading2 id="type">Group Type</heading2>
       <paragraph>What type of group do you wish to start? 
         There are two types of group on 
         <span class="site" 
-          tal:content="python:context.Scripts.get.option('siteName','GroupServer')" />.
+          tal:content="siteName" />.
       </paragraph>
       
       <fieldset>
