@@ -18,6 +18,8 @@
               text</bold></link></listitem>
         <listitem><link url="change_name">Change the <bold>name</bold> 
             of the site</link></listitem>
+        <listitem><link url="set_site_timezone">Set the <bold>timezone</bold>
+            for the site</link></listitem>
         <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
           <link url="/siteshop">Alter the site <bold>subscription</bold></link>
         </listitem>
@@ -44,3 +46,4 @@
     </content>
   </output>
 </root>
+
