@@ -7,7 +7,7 @@
     <content
       tal:define="site here/Scripts/get/division_object;
         siteName site/title_or_id;
-        timezones context/LocalScripts/get/timezones;
+        timezones python:modules['Products.XWFCore.XWFUtils'].all_timezones();
         current_tz python:context.Scripts.get.option('timezone','UTC')">
       <heading1>Set Site Timezone</heading1>
       <paragraph>
