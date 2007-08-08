@@ -283,21 +283,14 @@ fieldset legend {
 /***************/
 /* Site Search */
 /***************/
-/* The positioning of the search area makes little sense, until you realise
- * that it is structually within the Content-section, which is why it
- * needs a negative number for the top. */
-#searcharea {
-    position: absolute;
-    top: -90px;
-    right: 0px;
-    margin: 0px;
-    padding: 10px 0px 0px 0px;
+div#searcharea {
+  display: none;
 }
-#searcharea h3 {
-    margin: 0px;
-    padding: 0px;
+form#searcharea {
+  position: absolute;
+  top: 75px;
+  right: 60px;
 }
-
 #searcharea input.text {
     width: 20em;
     display: inline;
@@ -324,8 +317,24 @@ fieldset legend {
 }
 
 #latestTopics .topic, #topics .topic, #posts .topic {
-  font-size: 122%;
+  display: block;
+  float: left;
   margin-right: 10px;
+}
+
+.fileIcon {
+  display: block;
+  float: left;
+  min-width: 16px;
+  width: 16px;
+  min-height: 16px;
+  height: 16px;
+  margin: 0px 10px 0px 0px;
+}
+
+.groupInfo, .tags, .email-summary {
+  display: block;
+  clear: both;
 }
 
 .tags p, .tags ul, .tags li {
@@ -416,15 +425,14 @@ ul.contacts li {
 }
 
 .leftColumn {
-    float: left;
-    width: 40%;
     height: 100%;
     min-height: 30em;
-    margin: 0px 30px 0px 0px;
 }
 
 .rightColumn {
-    padding-left: 45%;
+    padding-left: 5%;
+    width: 55%;
+    float: right;
 }
 
 .noFloat {
@@ -630,8 +638,164 @@ p#divisionAdminTasks img,  p.divisionAdminTasks img{
     background: url("/++resource++blueSprites.gif") no-repeat 0px -336px;
 }
 
-/* Tags */
+/**********/
+/* Search */
+/**********/
+#latestTopics .topic, #topics .topic, #posts .topic {
+  font-size: 122%;
+}
 
+/**************/
+/* File Icons */
+/**************/
+.fileIcon {
+  background-image: url("/++resource++whiteFileIconSprites.gif");
+  background-repeat: no-repeat;
+  text-decoration: none;
+  border: none;
+}
+
+/*application-octet-stream binary contents2 empty document misc text-css
+*/
+
+/* Plain text */
+.ascii, .text, .text-richtext, .text-x-generic, .text-x-generic-template,
+.text-x-log {
+  background-position: 32px 0px;
+}
+
+/* Web */
+.text-html, .application-xhtml-xml, .application-xml, .html, .text-html,
+.text-vnd-wap-wml, .text-xml  {
+  background-position: -64px 0px;
+}
+
+/* Images */
+.image-png, .application-vnd-oasis-opendocument-image, .image-bmp,
+.image-gif, .image-jpeg, .image-pjpeg, .image, .image, .image-svg-xml,
+.image-svg+xml, .image-tiff, .image-x-generic, .image-x, .image-x-xpixmap {
+  background-position: -288px 0px;
+}
+
+.application-certificate {
+  background-position: -96px -96px;
+}
+
+/* Presentation */
+.application-magicpoint, .application-vnd-ms-powerpoint, 
+.application-vnd-oasis-opendocument-presentation, 
+.application-vnd-oasis-opendocument-presentation-template,
+.application-vnd-oasis-opendocument-text-web, 
+.application-vnd-stardivision-impress, .application-x-kpresenter {
+  background-position: 0px -64px;
+}
+
+/* Spreadsheet*/
+.application-msexcel, .application-vnd-lotus-1-2-3, .application-vnd-ms-excel,
+.application-vnd-oasis-opendocument-spreadsheet, 
+.application-vnd-oasis-opendocument-spreadsheet-template, 
+.application-vnd-openxmlformats-officedocument-spreadsheetml-sheet, 
+.application-vnd-stardivision-calc, .application-vnd-sun-xml-calc,
+.application-vnd-sun-xml-calc-template, .application-vnd-sun-xml-calc,
+.application-vnd-sun-xml-calc-template, .application-x-applix-spreadsheet,
+.application-x-applix-spreadsheet, .application-x-gnumeric, 
+.application-x-msexcel, .application-x-kspread, 
+.text-x-comma-separated-values, .x-office-spreadsheet, 
+.x-office-spreadsheet-template
+ {
+  background-position: -32px -64px;
+}
+
+.x-office-document, .application-ms-tnef, .x-office-document-template {
+  background-position: -96px -64px;
+}
+
+/* Wordprocessor */
+.application-msword, .application-rtf, .application-vnd-lotus-wordpro, 
+.application-vnd-ms-word-document-macroEnabled-12, 
+.application-vnd-oasis-opendocument-text, 
+.application-vnd-oasis-opendocument-text-template, 
+.application-vnd-openxmlformats-officedocument-wordprocessingml-document,
+.application-vnd-sun-xml-impress, .application-vnd-sun-xml-impress-template
+.application-vnd-stardivision-writer, .application-vnd-sun-xml-writer,
+.application-vnd-sun-xml-writer-template, .application-wordperfect,
+.application-x-abiword, application-x-applix-word, .application-x-abiword,
+.application-x-applix-word, .application-x-kword {
+  background-position: -192px -64px;
+}
+
+
+.application-ogg, .audio, .audio-x-generic {
+  background-position: -224px 0px;
+}
+.application-pdf {
+  background-position: -64px -96px;
+}
+
+.application-postscript, .application-x-dvi {
+  background-position: -128px -96px;
+}
+
+/* Drawing and publishing */
+.application-vnd-ms-publisher, .application-vnd-oasis-opendocument-graphics,
+.application-vnd-oasis-opendocument-graphics-template, .application-vnd-sun-xml-draw,
+.application-vnd-sun-xml-draw-template, .application-x-killustrator,
+.x-office-drawing, .x-office-drawing-template, .x-office-presentation,
+.x-office-presentation-template {
+  background-position: -256px -64px;
+}
+/* Compressed */
+.application-x-7z-compressed, .application-x-archive,
+.application-x-arj, .application-x-bzip-compressed-tar,
+.application-x-bzip, .application-x-compressed-tar, .application-x-compress,
+.application-x-cpio-compressed, .application-x-cpio, .application-x-deb,
+.application-x-gzip, .application-x-jar, .application-x-lha, 
+.application-x-lhz, application-x-stuffit, .application-x-tar,
+.application-x-tarz, .application-x-zip-compressed, .application-zip,
+.application-x-rar, .application-x-rpm, .deb, .folder_tar, .gnome-package,
+.plan, .package_editors, .package, .package_wordprocessing, 
+.package-x-generic, .rpm, .tar {
+  background-position: -192px 0px;
+}
+
+/* Executable */
+.application-x-executable, .application-x-ms-dos-executable, .exec, 
+.gnome-fs-executable  {
+  background-position: -320px 0px;
+}
+
+/* Font */
+.application-x-font-afm, .application-x-font-bdf, 
+.application-x-font-linux-psf, .application-x-font-pcf, 
+.application-x-font-sunos-news, .application-x-font-ttf, .font-x-generic,
+.x-font-afm {
+  background-position: 0px -96px;
+}
+
+/* TeX */
+.application-x-tex, .text-x-bibtex, .text-x-tex {
+  background-position: -160px 0px;
+}
+
+/* Script */
+.application-x-perl, .application-x-php, .application-x-python-bytecode,
+.application-x-shellscript, .application-x-shockwave-flash,
+.application-xslt-xml, .application-xslt+xml, .shellscript, .text-x-csh,
+.text-x-python, .text-x-script, .text-x-sh, .text-x-zsh
+ {
+  background-position: -128px 0px;
+}
+
+/* VCard and Calendar */
+.text-x-vcalendar, .text-x-vcard, .x-office-address-book, 
+.x-office-calendar {
+  background-position: -224px -64px;
+}
+.video-x-generic {
+  background-position: -96px 0px;
+}
+
+/* Tags */
 .tags {
   font-family: monospace;
 }
