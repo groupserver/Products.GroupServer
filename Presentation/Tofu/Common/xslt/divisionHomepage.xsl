@@ -40,13 +40,14 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/Presentation/Tofu/Common/css/globalstyle-20070809.css" />
+      href="/++resource++globalstyle-20070809.css" />
     <link 
         rel="stylesheet" type="text/css" 
         href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
-    <link rel="stylesheet" type="text/css" 
-      media="print"
-      href="/Presentation/Tofu/Common/css/print.css" />
+    <link rel="stylesheet" type="text/css" media="print"
+      href="/++resource++print-20070809.css" />
+    <link rel="stylesheet" type="text/css" media="handheld"
+      href="/++resource++handheld-20070809.css" />
 
     <script type="text/javascript"
       src="/Presentation/Tofu/XForms/js/xforms.js">
