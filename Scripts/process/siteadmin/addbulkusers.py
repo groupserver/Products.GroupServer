@@ -81,17 +81,6 @@ for group in joingroups:
 if form.get('addtogroup', 'no') == 'yes' and groupid:
     groups.append('%s_member' % groupid)
 
-# --=mpj17=--
-# Get the list of all the users on the system. This is used later to
-#   check if the user exists on the sytem or not.
-usersByEmail = {}
-for user in site_root.acl_users.getUsers():
-    emailAddresses = map(lambda x: x.lower(), user.get_emailAddresses())
-    for emailAddress in emailAddresses:
-        assert same_type(usersByEmail, {})
-        usersByEmail[emailAddress.lower()] = user
-allEmailAddresses = usersByEmail.keys()
-
 msg = ''
 rowcount = 2
 errors = 0
@@ -111,10 +100,9 @@ for row in results.mainData:
     email = fieldmap.get('email','').lower()
     userId = fieldmap.get('userId', '')
 
-    if email in allEmailAddresses:
-        # The user already exists, so just add them to the groups.
-        assert same_type(usersByEmail, {})
-        user = usersByEmail[email]
+    user = site_root.acl_users.get_userByEmail(email)
+
+    if user:
         result = container.adduser_add_user(user,groups)
         assert same_type(result, {})
         if result['error']:

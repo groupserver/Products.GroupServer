@@ -39,14 +39,9 @@ for group in joingroups:
 if form.get('addtogroup', 'no') == 'yes' and groupid:
     groups.append('%s_member' % groupid)
 
-usersByEmail = {}
-for user in site_root.acl_users.getUsers():
-    emailAddresses = map(lambda x: x.lower(), user.get_emailAddresses())
-    for emailAddress in emailAddresses:
-        usersByEmail[emailAddress] = user
+user = site_root.acl_users.get_userByEmail(email)
 
-if email in usersByEmail.keys():
-    user = usersByEmail[email]
+if user:
     result = container.adduser_add_user(user,groups)
     return '<bulletlist>%s</bulletlist>' % result['message']
 else:
