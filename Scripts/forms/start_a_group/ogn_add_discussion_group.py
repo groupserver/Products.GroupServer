@@ -56,5 +56,8 @@ group.files.manage_permission('View', [], 1)
 group.files.manage_permission('Access contents information', [], 1)
 group.messages.manage_permission('View', [], 1)
 group.messages.manage_permission('Access contents information', [], 1)
+
+# Add the shop to the group
+context.LocalScripts.process.add_shop_to_group(siteId, groupId)
     
 return group
