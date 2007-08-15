@@ -53,6 +53,13 @@
       
       <bulletlist tal:condition="python:member_count &gt; 1">
         <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/${here/getId}/"
+            tal:condition="python:showMembers!='all'">List all the
+            members of 
+            <span class="group"
+              tal:content="group_object/title_or_id"/>.
+          </link>
           <span tal:condition="python:showMembers=='all'">Listing 
             <bold>all members.</bold></span>
         </listitem>
