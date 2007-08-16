@@ -14,9 +14,9 @@ assert not site_root.acl_users.get_userByEmail(email)
 result = {}
 
 if preferredname:
-    userproperties = {'preferredName': preferredname}
+    userproperties['preferredName'] = preferredname
 else:
-    userproperties = {'preferredName': '%s %s' % (firstname, lastname)}
+    userproperties['preferredName'] = '%s %s' % (firstname, lastname)
 
 try:
     user = context.Scripts.registration.register_user(firstname, lastname,
@@ -26,21 +26,21 @@ try:
                                                       sendVerification)
 except 'Bad Request', x:
     msg = str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&lt;')
-    result['message'] = '''<listitem>An exception occured creating user
+    result['message'] = '''<listitem>An exception occurred creating user
     with the email address %s: %s. Please report this as a
     bug.</listitem>''' % (email, msg)
     result['error'] = True
     return result
 except Exception, x:
     msg = str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&lt;')
-    result['message'] = '''<listitem>An exception occured creating user
+    result['message'] = '''<listitem>An exception occurred creating user
     with the email address %s: %s.</listitem>''' % (email, msg)
     result['error'] = True
     return result
 
 if not user:
     result['error'] = True
-    result['message'] = '''<listitem>An unexpected error occured
+    result['message'] = '''<listitem>An unexpected error occurred
     while creating the user with the email address %s, please report
     this as a bug.</listitem>''' % email
 else:
@@ -51,3 +51,4 @@ else:
     to %s.</listitem>''' % (user.getId(), email, textGroups)
 
 return result
+

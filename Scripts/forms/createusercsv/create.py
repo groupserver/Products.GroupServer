@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=
-##title=Create a New Group Memeber
+##title=Create Members in Bulk
 ##
 from Products.XWFCore.CSV import CSVFile
 
@@ -137,7 +137,7 @@ for row in results.mainData:
             result = container.process.siteadmin.adduser_create_new_user(firstName, lastName,
                                                        preferredName, email,
                                                        userId, groups, 
-                                                       sendVerification)
+                                                       sendVerification,fieldmap)
 
             if result['error']:
                 errors += 1
@@ -177,13 +177,14 @@ else:
 retval = '''%s</ul>''' % retval
 if errors > 0:
     errorOrErrors = (errors > 1 and 'errors') or 'error'
+    wereOrWas = (errors > 1 and 'were') or 'was'
     isOrAre = (errors > 1 and 'are') or 'is'
     rowOrRows = (errors > 1 and 'rows') or 'row'
-    retval = """%s\n<p>Thre were also %d %s, which %s
+    retval = """%s\n<p>There %s also %d %s, which %s
     detailed as  follows.</p>
     <ul>
     %s
-    </ul>"""% (retval, errors, errorOrErrors, isOrAre,
+    </ul>"""% (retval, wereOrWas, errors, errorOrErrors, isOrAre,
                msg)
 retval = """%s
   <p>(The top row was treated as a
