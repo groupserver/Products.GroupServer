@@ -27,14 +27,10 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/++resource++globalstyle-20070816.css" />
+      href="/++resource++globalstyle-20070817.css" />
     <link 
         rel="stylesheet" type="text/css" 
         href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
-    <link rel="stylesheet" type="text/css" media="print"
-      href="/++resource++print-20070809.css" />
-    <link rel="stylesheet" type="text/css" media="handheld"
-      href="/++resource++handheld-20070809.css" />
 
     <script type="text/javascript" src="/Presentation/Tofu/XForms/js/xforms.js">&#160;</script>
     <script type="text/javascript" src="/++resource++protoculous-20070809.js">&#160;</script>
