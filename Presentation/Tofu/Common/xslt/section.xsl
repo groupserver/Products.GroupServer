@@ -28,7 +28,7 @@
       </title>
 
       <link rel="stylesheet" type="text/css"
-        href="/++resource++globalstyle-20070817.css" />
+        href="/++resource++globalstyle-20070817a.css" />
       <link 
         rel="stylesheet" type="text/css" 
         href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
