@@ -131,7 +131,7 @@ for row in results.mainData:
             result = container.adduser_create_new_user(firstName, lastName,
                                                        preferredName, email,
                                                        userId, groups, 
-                                                       sendVerification)
+                                                       sendVerification, fieldmap)
 
             if result['error']:
                 errors += 1

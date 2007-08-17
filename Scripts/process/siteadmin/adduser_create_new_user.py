@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=firstname=None, lastname=None, preferredname=None,email=None, userid=None, groups=None, sendVerification=None
+##parameters=firstname=None, lastname=None, preferredname=None,email=None, userid=None, groups=None, sendVerification=None, userproperties={}
 ##title="Add User: Create New User"
 ##
 site_root = context.site_root()
