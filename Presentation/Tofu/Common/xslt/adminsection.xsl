@@ -27,7 +27,7 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/++resource++globalstyle-20070817a.css" />
+      href="/++resource++globalstyle-20070821.css" />
     <link 
         rel="stylesheet" type="text/css" 
         href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
