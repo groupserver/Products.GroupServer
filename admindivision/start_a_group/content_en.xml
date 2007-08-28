@@ -6,7 +6,8 @@
   <output>
     <content
       tal:define="site_object context/Scripts/get/division_object;
-        siteName site_object/title_or_id">
+        siteName site_object/title_or_id;
+        canonicalHost python:context.Scripts.get.option('canonicalHost', 'localhost.localdomain')">
       <heading1>Start a Group</heading1>
 
       <heading2 id="type">Group Type</heading2>
@@ -65,12 +66,12 @@
 
       <paragraph>What is the identifier of the group?
         the group ID is used to form the email address for the group
-        (<span class="email"><bold>exampleid</bold>@<span tal:replace="python:context.Scripts.get.option('canonicalHost', 'localhost.localdomain')"/></span>)
+        (<span class="email"><bold>exampleid</bold>@<span tal:replace="canonicalHost"/></span>)
           and, to form the URL for the group, as
           follows.</paragraph>
 
       <paragraph class="locationbar">
-        http://<span tal:content="site_object/getId"/>.onlinegroups.net/groups/<bold>exampleid</bold></paragraph>
+        http://<span tal:replace="canonicalHost"/>/groups/<bold>exampleid</bold></paragraph>
 
       <xf:input model="start_a_group" ref="groupId" class="text">
         <xf:label>Group ID</xf:label>
