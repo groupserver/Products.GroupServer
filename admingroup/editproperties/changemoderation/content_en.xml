@@ -4,9 +4,12 @@
   xmlns:xf="http://www.w3.org/2002/xforms">
   <data tal:content="structure python:here.models(method='xml')"/>
   <output>
-    <content tal:define="group_object here/Scripts/get/group_object; 
-      group_members here/Scripts/get/group_members;
-      moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);">
+    <content
+      tal:define="group_object here/Scripts/get/group_object; 
+        group_members here/Scripts/get/group_members;
+        groupType python:group.getProperty('group_template');
+        moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False)"
+      tal:condition="groupType == 'standard'">
       
       <heading1>Change the Moderation of
         <span class="group"

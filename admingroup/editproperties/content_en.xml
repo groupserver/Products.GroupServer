@@ -39,7 +39,7 @@
           <a href="postinglimit">
             Edit the group <strong>posting limit</strong></a> &#8212; limit how often members may post to the group
         </li>
-        <li tal:condition="python:groupType != 'support'">
+        <li tal:condition="python:groupType == 'standard'">
           <a href="changemoderation">Change group <strong>moderation</strong></a> &#8212; set the level of moderation for the group
           <a class="helpLink" href="../help/admin_manual/#groupserver-moderation-group-properties">[?]</a>
         </li>
