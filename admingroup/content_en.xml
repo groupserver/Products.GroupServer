@@ -27,6 +27,7 @@
         canJoin python:joinable[0];
         member_count here/Scripts/get/group_member_count;
         groupType python:group.getProperty('group_template');
+        isGroupDiscussion python:groupType == 'standard';
         isGroupAnnouncement python:groupType == 'announcement';
         isGroupModerated python:here.Scripts.get.list_property(group.getId(), 'moderated', False);">
         <li tal:condition="canJoin" href="addusers">
@@ -73,7 +74,7 @@
               href="editproperties/postinglimit">
               Edit the group <strong>posting limit</strong>
             </li>
-            <li tal:condition="python:groupType != 'support'" href="editproperties/changemoderation">
+            <li tal:condition="python:isGroupDiscussion" href="editproperties/changemoderation">
               Change group <strong>moderation</strong>
             </li>
           </ul>

@@ -18,7 +18,8 @@
         siteName site/title_or_id;
         group here/Scripts/get/group_object;
         groupName group/title_or_id;
-        groupType python:group.getProperty('group_template')">
+        groupType python:group.getProperty('group_template');
+        isGroupDiscussion python:groupType == 'standard'">
       <h>Edit Group Properties</h>
       <p>
         As site administrator of <span class="site" tal:content="siteName"/>,
@@ -39,7 +40,7 @@
           <a href="postinglimit">
             Edit the group <strong>posting limit</strong></a> &#8212; limit how often members may post to the group
         </li>
-        <li tal:condition="python:groupType == 'standard'">
+        <li tal:condition="python:isGroupDiscussion">
           <a href="changemoderation">Change group <strong>moderation</strong></a> &#8212; set the level of moderation for the group
           <a class="helpLink" href="../help/admin_manual/#groupserver-moderation-group-properties">[?]</a>
         </li>
