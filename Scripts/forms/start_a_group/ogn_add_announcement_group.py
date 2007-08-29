@@ -32,8 +32,15 @@ container.create.messages_area(group)
 container.create.charter(group, templateId)
 container.create.email_settings(group)
 container.create.administration(group)
-groupList = container.create.list_instance(group, 'onlinegroups.net', siteId,
-                                           privacy)
+
+
+canonicalHost = getOption(site, 'canonicalHost', 'onlinegroups.net')
+if ('onlinegroups.net' in canonicalHost):
+    mailHost = 'onlinegroups.net'
+else:
+    mailHost = canonicalHost
+groupList = container.create.list_instance(group, mailHost, siteId,
+  privacy)
 container.create.default_administrator(group)
 
 # Set the permissions for the group.

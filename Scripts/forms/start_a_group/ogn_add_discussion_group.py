@@ -7,6 +7,9 @@
 ##parameters=siteId='',templateId='',groupId='',groupName='',realLifeGroup='',privacy=''
 ##title=OnlineGroups.Net Add Discussion Group
 ##
+
+from Products.XWFCore.XWFUtils import getOption
+
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'
 assert groupId != '', 'No group ID set'
@@ -32,8 +35,14 @@ container.create.members_area(group)
 container.create.email_settings(group)
 container.create.administration(group)
 container.create.chat(group)
-groupList = container.create.list_instance(group, 'onlinegroups.net', siteId,
-                                           privacy)
+
+canonicalHost = getOption(site, 'canonicalHost', 'onlinegroups.net')
+if ('onlinegroups.net' in canonicalHost):
+    mailHost = 'onlinegroups.net'
+else:
+    mailHost = canonicalHost
+groupList = container.create.list_instance(group, mailHost, siteId, 
+  privacy)
 container.create.default_administrator(group)
 
 # Set the permissions for the group.

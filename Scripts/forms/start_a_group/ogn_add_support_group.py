@@ -30,8 +30,15 @@ container.create.javascript(group)
 container.create.files_area(group)
 container.create.messages_area(group)
 container.create.email_settings(group)
-groupList = container.create.list_instance(group, 'onlinegroups.net', siteId,
-                                           'private')
+
+
+canonicalHost = getOption(site, 'canonicalHost', 'onlinegroups.net')
+if ('onlinegroups.net' in canonicalHost):
+    mailHost = 'onlinegroups.net'
+else:
+    mailHost = canonicalHost
+groupList = container.create.list_instance(group, mailHost, siteId,
+  'private')
 container.create.administration(group)
 container.create.default_administrator(group)
 
