@@ -7,7 +7,7 @@
     <content
       tal:define="group_object here/Scripts/get/group_object; 
         group_members here/Scripts/get/group_members;
-        groupType python:group.getProperty('group_template');
+        groupType python:group_object.getProperty('group_template');
         isGroupDiscussion python:groupType == 'standard';
         moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False)"
       tal:condition="python:isGroupDiscussion">
