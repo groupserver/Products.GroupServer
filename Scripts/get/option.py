@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=key, default=None
+##parameters=key, default=None, include_user_setting=True
 ##title=
 ##
 site_root = context.site_root()
@@ -14,7 +14,11 @@ global_config = getattr(context, 'GlobalConfiguration', None)
 division_config = getattr(context, 'DivisionConfiguration', None)
 
 retval = None
-for config in [user, division_config]:
+setting_locations = [division_config]
+if include_user_setting:
+    setting_locations.insert(0, user)
+
+for config in setting_locations:
     try:
         value = config.getProperty(key, None)
         if value != None:
