@@ -17,6 +17,10 @@ site_root = context.site_root()
 user = context.REQUEST.AUTHENTICATED_USER
 groups = user.getGroups()
 
+if user and 'unverified_member' in user.getGroups():
+    division_object = getattr(context.Content, 'unverified')
+    return context.REQUEST.RESPONSE.redirect('/%s' % division_object.absolute_url(1), lock=1)
+
 virtualSitesOnly = context.Scripts.get.option('virtualSitesOnly')
 if virtualSitesOnly:
     division_object = context.Scripts.get.division_object()
