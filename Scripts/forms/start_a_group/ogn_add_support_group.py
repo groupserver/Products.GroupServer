@@ -7,6 +7,8 @@
 ##parameters=siteId='',templateId=''
 ##title=OnlineGroups.Net Add Support Group
 ##
+from Products.XWFCore.XWFUtils import getOption
+
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'
 

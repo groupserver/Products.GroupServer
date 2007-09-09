@@ -7,6 +7,8 @@
 ##parameters=siteId='',templateId='',groupId='',groupName='',realLifeGroup='',privacy=''
 ##title=OnlineGroups.Net Add Announcement Group
 ##
+from Products.XWFCore.XWFUtils import getOption
+
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'
 assert groupId != '', 'No group ID set'
