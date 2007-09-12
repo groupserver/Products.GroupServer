@@ -49,7 +49,7 @@ for userid in userids:
         #   member. Try and remove them from posting members
         #   so that they don't stay on the list of posting
         #   members after they've been removed from the group.
-        container.posting.remove_users(userid, groupid, divisionid)
+        container.posting.remove_users([userid], groupid, divisionid)
     
         # Otherwise, remove the user from the group.
         user.del_groupWithNotification('%s_member' % groupid)
