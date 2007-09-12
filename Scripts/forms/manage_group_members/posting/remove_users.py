@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=userids=[],groupid=None,divisionid=None
-##title=Remove Users from Group Moderation
+##title=Remove Users from the list of Posting Members
 ##
 from Products.PythonScripts.standard import html_quote
 
