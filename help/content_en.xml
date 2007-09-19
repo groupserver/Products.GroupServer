@@ -48,16 +48,16 @@
           group
           <a href="/help/manual/#groupserver-getting-help-from-the-participation-coach"
             class="helpLink">[?]</a>.
-          If your question is still unanswered, you 
-          can address it to
-          <a class="emaillink" title="Email to the support group"
-            tal:attributes="href string:mailto:${supportEmail}" 
-            tal:content="supportEmail"/>, or from 
-          OnlineGroups.Net
-          <a href="/help/manual/#groupserver-getting-help-from-onlinegroups-support"
-          class="helpLink">[?]</a>.
         </p>
       </tal:block>
+      
+      <p>
+        If your question is still unanswered, you 
+        can address it to
+        <a class="emaillink" title="Email to the support group"
+          tal:attributes="href string:mailto:${supportEmail}" 
+          tal:content="supportEmail"/>.
+      </p>
     </section>
   </body>
 </html>
