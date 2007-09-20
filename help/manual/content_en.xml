@@ -171,6 +171,8 @@
                   <ul>
                     <li href="#groupserver-posting-files-using-the-web">Posting
                       Files Using the Web</li>
+                    <li href="#groupserver-posting-files-using-email">Posting
+                      Files Using Email</li>
                   </ul>
                 </li>
               </ul>
@@ -1766,7 +1768,7 @@
                 a link to the file and a short description
                 (see 
                 <cite href="#groupserver-tab-viewing-files-using-email">Viewing
-                  File Information Using Email</cite>).
+                  File Information</cite>).
                 To view a file from an email, click on the link to the
                 file that is contained in the email message, and your Web 
                 browser will allow you to view the file.
@@ -1774,7 +1776,7 @@
               
               <table id="groupserver-tab-viewing-files-using-email">
                 <caption id="groupserver-tab-viewing-files-using-email-t">
-                  Viewing File Information Using Email
+                  Viewing File Information
                 </caption>
                 <thead>
                   <tr>
