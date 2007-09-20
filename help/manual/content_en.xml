@@ -1560,8 +1560,9 @@
                 <section class="note">
                   <h>Email Attachments</h>
                   <p>
-                    Only the plain-text component of the email message will be
-                    used to create the post.
+                    Email attachments will be uploaded to the site. See the
+                    <cite href="#groupserver-posting-files-using-email">Posting Files Using Email</cite>
+                    section.
                   </p>
                 </section>
               </section>
@@ -1759,21 +1760,21 @@
               
               <p>
                 If you have configured <span class="site" tal:content="siteName">OnlineGroups.Net</span> to send you an email whenever 
-                someone posts a message you will also receive an email when a
+                someone posts a message, you will also receive an email when a
                 file is posted.
-                The file is not attached to the email, instead a link to the
-                file, and a short description, is sent
+                The file is not attached to the email. Instead, you will receive
+                a link to the file and a short description
                 (see 
                 <cite href="#groupserver-tab-viewing-files-using-email">Viewing
-                  Files Using Email</cite>).
-                To view a file from an email email, click on the link to the
+                  File Information Using Email</cite>).
+                To view a file from an email, click on the link to the
                 file that is contained in the email message, and your Web 
                 browser will allow you to view the file.
               </p>
               
               <table id="groupserver-tab-viewing-files-using-email">
                 <caption id="groupserver-tab-viewing-files-using-email-t">
-                  File Information
+                  Viewing File Information Using Email
                 </caption>
                 <thead>
                   <tr>
@@ -1842,8 +1843,8 @@
             
             <p>
               Files can be posted on <span class="site" tal:content="siteName">OnlineGroups.Net</span> 
-              <a href="#groupserver-posting-files-using-the-web">using
-                the Web.</a>
+              <a href="#groupserver-posting-files-using-the-web">using the Web</a> or
+              <a href="#groupserver-posting-files-using-email">using email</a>.
             </p>
             
             <section id="groupserver-posting-files-using-the-web">
@@ -1852,7 +1853,7 @@
               </h>
               
               <p>
-                Carry out the following, to post files using the Web.
+                To post files using the Web, carry out the following:
               </p>
               
               <ol>
@@ -1883,16 +1884,62 @@
                 </li>
                 <li>
                   Click the Post button.
-                  The file will be uploaded to <span class="site" tal:content="siteName">OnlineGroups.Net</span> and
-                  displayed  under the relevant topic, and messages
-                  will be sent  to all group  members who wish to
-                  receive email  notification of posts.
-                  Any tags that are set (see 
-                  <cite href="#groupserver-tags">Tags</cite>) will be
-                  associated with the file, as well as the message that is 
-                  sent.
                 </li>
               </ol>
+              <p>
+                The file will be uploaded to <span class="site" tal:content="siteName">OnlineGroups.Net</span> and
+                displayed  under the relevant topic, and messages
+                will be sent  to all group  members who wish to
+                receive email notification of posts.
+                Any tags that are set (see 
+                <cite href="#groupserver-tags">Tags</cite>) will be
+                associated with the file, as well as the message that is 
+                sent.
+              </p>
+            </section>
+            
+            <section id="groupserver-posting-files-using-email">
+              <h id="groupserver-posting-files-using-email-t">
+                Posting Files using Email
+              </h>
+              
+              <p>
+                To post files using email:
+              </p>
+              
+              <ol>
+                <li>
+                  Either
+                  <ul>
+                    <li>
+                      Compose a reply to an email message without modifying the subject line
+                      (see 
+                      <cite
+                        href="#groupserver-posting-a-message-using-email">
+                        Posting a Message Using Email</cite>),
+                      or
+                    </li>
+                    <li>
+                      Compose a new email message with a new subject line
+                      (see 
+                      <cite
+                        href="#groupserver-starting-a-new-topic-using-email">
+                        Starting a New Topic Using Email</cite>).
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Attach one or more files to your email message.
+                </li>
+                <li>
+                  Send your email message.
+                </li>
+              </ol>
+              <p>
+                The file/s will be uploaded to <span class="site" tal:content="siteName">OnlineGroups.Net</span> and
+                displayed under the relevant topic. A link to each file will be included at the end of your email
+                along with a <cite href="#groupserver-tab-viewing-files-using-email">short description</a>.
+              </p>
             </section>
           </section>
         </section>
