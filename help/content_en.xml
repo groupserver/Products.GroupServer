@@ -25,16 +25,16 @@
         <span class="site" 
           tal:content="siteName">this site</span> 
         from
-        <cite href="manual">The 
-          <span class="site" tal:content="siteName">OnlineGroups.Net</span> 
+        <cite href="manual"><span tal:condition="includeThe" tal:content="The"/> 
+          <span class="site" tal:content="siteName"/> 
           User Manual,</cite>
         or from the context-sensitive help-links:
         <a href="/help/manual/#groupserver-getting-help-from-context"
           class="helpLink">[?]</a>.
         In addition, assistance on participating in online groups is
         available from 
-        <cite href="participation">The
-          <span class="site" tal:content="siteName">OnlineGroups.Net</span>
+        <cite href="participation"><span tal:condition="includeThe" tal:content="The"/>
+          <span class="site" tal:content="siteName"/>
           User Guide.</cite>
       </p>
       
