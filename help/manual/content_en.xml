@@ -1940,7 +1940,7 @@
               <p>
                 The file/s will be uploaded to <span class="site" tal:content="siteName">OnlineGroups.Net</span> and
                 displayed under the relevant topic. A link to each file will be included at the end of your email
-                along with a <cite href="#groupserver-tab-viewing-files-using-email">short description</a>.
+                along with a <cite href="#groupserver-tab-viewing-files-using-email">short description</cite>.
               </p>
             </section>
           </section>
