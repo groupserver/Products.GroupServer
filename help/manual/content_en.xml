@@ -223,7 +223,7 @@
           and
           <a title="Getting Help from Support" 
             href="#groupserver-getting-help-from-support">from
-            <span class="site" tal:content="siteName"> Support.</a>
+            <span class="site" tal:content="siteName"/> Support.</a>
         </p>
         
         <section id="groupserver-getting-help-from-the-manual">
