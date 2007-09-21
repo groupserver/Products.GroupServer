@@ -15,25 +15,45 @@ assert division_config, 'Division Config set to %s' % division_config
 global_config = getattr(context, 'GlobalConfiguration', None)
 assert global_config, 'Global Config set to %s' % global_config
 
+# Find out the GlobalConfig supportEmail and the DivisionConfig canonicalHost
 global_support_email = global_config.getProperty('supportEmail', 'support@onlinegroups.net')
 canonical = division_config.getProperty('canonicalHost', 'onlinegroups.net')
 
-if global_support_email != 'support@onlinegroups.net':    # if we're on an instance other than onlinegroups.net
+print 'global_support_email: %s' % global_support_email
+print 'canonical: %s' % canonical
+
+# First, check if we're on an instance other than OGN
+#  If so, just take the Global supportEmail
+if global_support_email != 'support@onlinegroups.net':
     retval = global_config.supportEmail
-else:                                                     # if we're on the onlinegroups.net instance
-    if canonical == '%s.onlinegroups.net' % siteId:       # if the site uses a subdomain of onlinegroups.net
-        if hasattr(site.groups, '%s_support' % siteId):
-            retval = '%s_support@onlinegroups.net' % siteId   # and if the site has a support group
-        else:
-            retval = 'support@onlinegroups.net'               # otherwise support@onlinegroups.net
-    elif canonical != 'onlinegroups.net':                 # if the site is has a custom domain
-        if hasattr(site.groups, '%s_support' % siteId):
-            retval = '%s_support@%s' % (siteId, canonical)    # and if the site has a support group
-        else:
-            retval = 'support@onlinegroups.net'               # otherwise support@onlinegroups.net
+    print 'We\'re not on OGN: %s' % retval
+
+# If not, we must be on the onlinegroups.net instance
+else:
+    # First, check if the site uses a subdomain of OGN
+    if canonical == '%s.onlinegroups.net' % siteId:
+        # Assume the site has a support group: we can't
+        #   check because support groups are private and
+        #   therefore inaccessible to anyone who wants to
+        #   obtain help from them
+        retval = '%s_support@onlinegroups.net' % siteId
+        print 'We\'re on an OGN subdomain: %s' % retval
+
+    # If not, check if the site has a custom domain
+    elif canonical != 'onlinegroups.net':
+        # Assume the site has a support group: we can't
+        #   check because support groups are private and
+        #   therefore inaccessible to anyone who wants to
+        #   obtain help from them
+        retval = '%s_support@%s' % (siteId, canonical)
+        print 'We\'re on an a custom domain: %s' % retval
+
+    # Otherwise, we must be on ogs
     else:
         retval = 'support@onlinegroups.net'
+        print 'We\'re on ogs: %s' % retval
 
+#return printed
 assert retval
 assert '@' in retval
 return retval
