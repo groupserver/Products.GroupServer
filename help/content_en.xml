@@ -14,7 +14,10 @@
   </head>
   <body id="groupserver-manual"
     tal:define="baseName string:OnlineGroups.Net;
-    siteName python:options.has_key('siteName') and options['siteName'] or baseName;">
+      siteName python:options.has_key('siteName') and options['siteName'] or baseName;
+      divisionObject context/Scripts/get/division_object;
+      siteId divisionObject/getId;
+      supportEmail python:context.Scripts.get.support_email(siteId)">
     <section>
       <h>Help</h>
 
@@ -36,9 +39,6 @@
       </p>
       
       <tal:block
-        tal:define="divisionObject context/Scripts/get/division_object;
-                    siteId divisionObject/getId;
-                    supportEmail python: context.Scripts.get.support_email(siteId)"
         tal:condition="python:'Authenticated' in user.getRolesInContext(divisionObject)">
         <p>
           If you have a question that is not answered in this Help section, 
