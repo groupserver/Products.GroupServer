@@ -15,6 +15,7 @@
   <body id="groupserver-manual"
     tal:define="baseName string:OnlineGroups.Net;
       siteName python:options.has_key('siteName') and options['siteName'] or baseName;
+      includeThe python:siteName.split(' ')[0].lower() != 'the';
       divisionObject context/Scripts/get/division_object;
       siteId divisionObject/getId;
       supportEmail python:context.Scripts.get.support_email(siteId)">

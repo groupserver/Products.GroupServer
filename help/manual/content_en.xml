@@ -34,7 +34,7 @@
             <li href="#groupserver-getting-help-from-the-participation-coach">Getting
               Help from the Participation Coach in a Group</li>
             <li href="#groupserver-getting-help-from-support">Getting
-              Help from <span class="site" tal:content="siteName"> Support</li>
+              Help from <span class="site" tal:content="siteName"/> Support</li>
           </ul>
         </li>
         <li>
