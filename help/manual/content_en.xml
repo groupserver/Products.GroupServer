@@ -231,7 +231,7 @@
             from the User Manual</h>
           
           <p>You can access
-            <cite><span tal:condition="includeThe" tal:content="The"/>
+            <cite><span tal:condition="includeThe" tal:content="string:The"/>
               <span class="site" tal:content="siteName"/>
               User Manual</cite>
             from any page on 
@@ -242,7 +242,7 @@
               menu-bar at the top of every page.
               The <cite>Help</cite> page will open.</li>
             <li>Click on <samp class="link">User Manual</samp>.
-              <cite><span tal:condition="includeThe" tal:content="The"/> 
+              <cite><span tal:condition="includeThe" tal:content="string:The"/> 
                 <span class="site" tal:content="siteName"/>
                 User Manual</cite>
               will open.</li>
@@ -269,7 +269,7 @@
               The help may be closed when no longer needed.</li>
           </ol>
           <p>To view the section of  
-            <cite><span tal:condition="includeThe" tal:content="The"/>
+            <cite><span tal:condition="includeThe" tal:content="string:The"/>
             <span class="site" tal:content="siteName"/> User Manual</cite> that the 
             context-sensitive help comes from, click on 
             <samp class="link">Read more</samp> at  the bottom of the 
@@ -334,7 +334,7 @@
         <ol>
           <li>
             Click on <samp class="link">Log In</samp>, on
-            <span tal:condition="includeThe" tal:content="the"/> 
+            <span tal:condition="includeThe" tal:content="string:the"/> 
             <span class="site" tal:content="siteName"/> homepage.
             The <cite>Log In</cite> page will open.
           </li>
@@ -375,7 +375,7 @@
           <ol>
             <li>
               Click on <samp class="link">Log In</samp>, on 
-              <span tal:condition="includeThe" tal:content="the"/>
+              <span tal:condition="includeThe" tal:content="string:the"/>
               <span class="site" tal:content="siteName"/>
               homepage.
               The <cite>Log In</cite> page will open.
