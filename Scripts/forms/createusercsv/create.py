@@ -137,7 +137,7 @@ for row in results.mainData:
             result = container.process.siteadmin.adduser_create_new_user(firstName, lastName,
                                                        preferredName, email,
                                                        userId, groups, 
-                                                       sendVerification,fieldmap)
+                                                       sendVerification, fieldmap)
 
             if result['error']:
                 errors += 1
