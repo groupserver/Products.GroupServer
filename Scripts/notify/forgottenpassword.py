@@ -28,7 +28,9 @@ if user:
     password = user.reset_password()
     n_dict = {'server': context.REQUEST.SERVER_URL,
               'password': password}
-    user.send_notification('forgotten_password', 'default', n_dict)
+    addresses = user.get_emailAddresses()
+    user.send_notification('forgotten_password', 'default', n_dict, 
+      addresses)
         
 #    return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
 #else:
