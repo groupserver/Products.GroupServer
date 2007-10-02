@@ -1,9 +1,9 @@
 <xf:model id="change_group_properties"
   xmlns:xf="http://www.w3.org/2002/xforms" 
   xmlns:tal="http://xml.zope.org/namespaces/tal"
-  tal:define="group_object here/Scripts/get/group_object;
-  site_object here/Scripts/get/division_object;
-  list_object python:getattr(here.ListManager, group_object.getId())">
+  tal:define="group_object context/Scripts/get/group_object;
+    site_object context/Scripts/get/division_object;
+    list_object python:getattr(context.ListManager, group_object.getId())">
   <xf:instance>
     <data>
       <submitted>1</submitted>
@@ -11,10 +11,10 @@
         tal:content="group_object/title">Group Title</grouptitle>
       <groupSubject
         tal:content="list_object/title_or_id">Foo</groupSubject>
-      <tal:block tal:repeat="prop here/GroupProperties/objectValues"
-        tal:replace="structure python:here.generate_tag('model_%s' % prop.getProperty('property_type'),
-        {'tag_id': prop.getId(),
-        'tag_value': getattr(here, prop.getId(), '    ')})"/>
+      <tal:block tal:repeat="prop context/GroupProperties/objectValues"
+        tal:replace="structure python:context.generate_tag('model_%s' % prop.getProperty('property_type'),
+          {'tag_id': prop.getId(),
+          'tag_value': getattr(context.aq_explicit, prop.getId(), '')})"/>
       <groupid tal:content="group_object/getId">ID</groupid>
       <siteid tal:content="site_object/getId">ID</siteid>
       <coach tal:content="group_object/ptn_coach_id | nothing"></coach>
