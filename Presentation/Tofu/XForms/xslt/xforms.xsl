@@ -334,6 +334,16 @@
         <xsl:with-param name="bind" select="@bind" />
         <xsl:with-param name="ref" select="@ref" />
         </xsl:call-template></textarea>
+
+	<!-- If this is a WYMEditor instance, we need to also include the WYMEditor support scripts. -->
+	<xsl:if test="@class = 'wymeditor'">
+	</xsl:if>
+		<link rel="stylesheet" type="text/css" media="screen" href="/++resource++wymeditor/skins/default/screen.css" />
+		<script type="text/javascript" src="/++resource++jquery-1.2.1.min.js">&#160;</script>
+		<script type="text/javascript" src="/++resource++wymeditor/jquery.wymeditor.js">&#160;</script>
+		<script type="text/javascript" src="/++resource++wymeditor/plugins/hovertools/jquery.wymeditor.hovertools.js">&#160;</script>
+		<script type="text/javascript" src="/++resource++wymeditor/plugins/tidy/jquery.wymeditor.tidy.js">&#160;</script>
+		<script type="text/javascript" src="/++resource++wymeditor/init.js">&#160;</script>
     </div>
     
   </xsl:template>
@@ -569,7 +579,7 @@
     </xsl:variable>
     
   <!-- Build the label -->
-  <label for="{$model}-{$ref}" class="{$class}">
+  <label for="{$model}-{$ref}" class="{$class}-label">
     <xsl:if
         test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
       <xsl:attribute name="class">required</xsl:attribute>
