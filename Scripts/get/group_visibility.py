@@ -12,8 +12,12 @@ group_object = context.Scripts.get.group_object()
 view_roles = filter(None, map(lambda x: x['selected'] and x['name'] or None, group_object.rolesOfPermission('View')))
 
 if 'Anonymous' in view_roles and 'Authenticated' in view_roles:
-    return 'anyone'
+    retval = 'anyone'
 elif 'DivisionMember' in view_roles:
-    return 'division'
+    retval = 'division'
 elif 'GroupMember' in view_roles:
-    return 'group'
+    retval = 'group'
+    
+assert retval, 'Could not establish permissions for group %s' % group_object.getId()
+
+return retval
