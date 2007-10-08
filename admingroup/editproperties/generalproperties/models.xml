@@ -14,7 +14,7 @@
       <tal:block tal:repeat="prop context/GroupProperties/objectValues"
         tal:replace="structure python:context.generate_tag('model_%s' % prop.getProperty('property_type'),
           {'tag_id': prop.getId(),
-          'tag_value': getattr(context.aq_explicit, prop.getId(), '')})"/>
+          'tag_value': getattr(group_object.aq_explicit, prop.getId(), '')})"/>
       <groupid tal:content="group_object/getId">ID</groupid>
       <siteid tal:content="site_object/getId">ID</siteid>
       <coach tal:content="group_object/ptn_coach_id | nothing"></coach>
