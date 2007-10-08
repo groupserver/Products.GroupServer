@@ -12,7 +12,7 @@
       <fieldset id="securityproperties">
         <legend>Group Security</legend>
 
-        <xf:select1 appearance="minimal" model="change_group_security"
+        <xf:select1 appearance="full" model="change_group_security"
           ref="permjoin" class="text">
           <xf:label>Group Joinability</xf:label>
           <xf:hint>Who can join this group</xf:hint>
@@ -30,7 +30,7 @@
           </xf:item>
         </xf:select1>
 
-        <xf:select1 appearance="minimal" model="change_group_security"
+        <xf:select1 appearance="full" model="change_group_security"
           ref="permvisibility" class="text">
           <xf:label>Group Visibility</xf:label>
           <xf:hint>Who can see this group</xf:hint>
@@ -48,7 +48,7 @@
           </xf:item>
         </xf:select1>
        
-        <xf:select1 appearance="minimal" model="change_group_security"
+        <xf:select1 appearance="full" model="change_group_security"
           ref="permviewmessages" class="text">
           <xf:label>Messages and Files Visibility</xf:label>
           <xf:hint>Who can view the messages and files in this group</xf:hint>
