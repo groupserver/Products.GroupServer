@@ -5,10 +5,10 @@
   <output>
     <content>
       <tal:block      
-        tal:define="permission python:here.Scripts.check.permission((here.Scripts.get.division_object(), here.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
-        group_object here/Scripts/get/group_object; 
-        division_object here/Scripts/get/division_object;
-        joinable python:here.LocalScripts.get.usersCanJoinGroup(group_object.getId(),True);
+        tal:define="permission python:context.Scripts.check.permission((context.Scripts.get.division_object(), context.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
+        group_object context/Scripts/get/group_object; 
+        division_object context/Scripts/get/division_object;
+        joinable python:context.LocalScripts.get.usersCanJoinGroup(group_object.getId(),True);
         canJoin python:joinable[0];">
 
         <heading1>Add Members to
@@ -21,17 +21,22 @@
               tal:content="group_object/title_or_id"/>:</paragraph>
           
           <numberedlist>
-            <listitem>
-              <link title="Select an existing member"
+            <listitem
+              tal:define="group_members context/Scripts/get/group_members;
+                potential_members python:filter(lambda x:x not in group_members, context.Scripts.get.division_users(division_object.getId()))">
+              <link tal:omit-tag="python: not(potential_members)"
+                title="Select an existing member"
                 url="addsitemembers">Select existing site
-                members,</link></listitem>
+                members</link><span tal:condition="python: not(potential_members)"
+                  tal:content="string: (all site members are members of this group)"/>,
+              </listitem>
             <listitem><link title="Add a new member"
-                url="create_single_user">Enter the details of a new member,</link>
+                url="create_single_user">Enter the details of a new member</link>,
               or</listitem>
           <listitem>Advanced users can 
               <link title="Add bulk members in bulk"
                 url="createbulkusers">upload the details of multiple
-                members using a CSV file.</link>
+                members using a CSV file</link>.
             </listitem>
           </numberedlist>
         </tal:block><!--canJoin-->
