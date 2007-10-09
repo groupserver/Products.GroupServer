@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=siteId='',templateId='',groupId='',groupName='',realLifeGroup='',privacy=''
-##title=OnlineGroups.Net Add Group
+##title=OnlineGroups.Net Add Group - Deprecated
 ##
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'

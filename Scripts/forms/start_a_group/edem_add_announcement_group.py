@@ -53,11 +53,16 @@ group.manage_changeProperties(join_condition=joinCondition)
 group.manage_permission('View', userGroups)
 group.manage_permission('Access contents information', userGroups)
 
-# Set the rest to default, following the group.
+# Set the messages and files to default, following the group.
 group.files.manage_permission('View', [], 1)
 group.files.manage_permission('Access contents information', [], 1)
 group.messages.manage_permission('View', [], 1)
 group.messages.manage_permission('Access contents information', [], 1)
+
+# Set the administration interface to site and group admins only
+adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']
+group.admingroup.manage_permission('View', adminGroups)
+group.admingroup.manage_permission('Access contents information', adminGroups)
 
 # Add the "mailinlist_members" script to the mailing list object
 assert(hasattr(context.CodeTemplates.ListManager, 
