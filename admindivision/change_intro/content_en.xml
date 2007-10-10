@@ -12,7 +12,7 @@
         Currently the introduction reads as follows.
       </paragraph>
       <xf:textarea model="siteinfo" ref="introduction" 
-        class="text">
+        class="wymeditor">
         <xf:label>Introduction Text</xf:label>
         <xf:hint>Enter the text used to introduce your site here
           (some HTML ok.)</xf:hint>
