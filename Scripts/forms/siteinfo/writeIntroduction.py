@@ -11,25 +11,25 @@
 # We do not care if the introduction is empty
 assert siteId != ''
 
+site_root = context.site_root()
+assert site_root
+assert hasattr(site_root, 'Content')
+
 result= {}
 
-introXML = '''<?xml version="1.0" encoding="utf-8"?>
-<div
+introXML = """<div 
   xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal" 
-  metal:define-macro="division_introduction" 
   class="introduction">
+  %s
+</div>""" % introduction
+division = getattr(site_root.Content, siteId)
 
-  <paragraph>
-    %s
-	</paragraph> 
-</div>''' % introduction
+if hasattr(division, 'introduction'):
+    division.manage_changeProperties({'introduction': introXML})
+else:
+    division.manage_addProperty('introduction', introXML, 'text')
 
-introFile = 'Content/%s/division_introduction.xml' % siteId
-divIntro = context.restrictedTraverse(introFile)
-
-divIntro.write(introXML)
-
+assert hasattr(division, 'introduction')
 # No error
 result['error'] = False
 result['message'] = 'The site introduction has been changed.'
