@@ -17,17 +17,12 @@ assert hasattr(site_root, 'Content')
 
 result= {}
 
-introXML = """<div 
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  class="introduction">
-  %s
-</div>""" % introduction
 division = getattr(site_root.Content, siteId)
 
 if hasattr(division, 'introduction'):
-    division.manage_changeProperties({'introduction': introXML})
+    division.manage_changeProperties({'introduction': introduction})
 else:
-    division.manage_addProperty('introduction', introXML, 'text')
+    division.manage_addProperty('introduction', introduction, 'text')
 
 assert hasattr(division, 'introduction')
 # No error
