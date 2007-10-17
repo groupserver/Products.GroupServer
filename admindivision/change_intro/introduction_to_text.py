@@ -7,15 +7,12 @@
 ##parameters=siteId=None
 ##title=Convert the Introduction Object to Plain Text
 ##
-introduction = context.restrictedTraverse('Content/%s/division_introduction.xml' % siteId)
-#site = getattr(context.Content, siteId)
-#introduction = getattr(site.aq_explicit, 'division_introduction.xml')
 
-txt = introduction.document_src()
+site_root = context.site_root()
+assert site_root
+assert hasattr(site_root, 'Content')
+division = getattr(site_root.Content, siteId)
 
-firstParStartIndex = txt.find('<paragraph>')+len('<paragraph>')
-firstParEndIndex = txt.find('</paragraph>')
-
-retval = txt[firstParStartIndex:firstParEndIndex].strip()
-
+retval = getattr(division, 'introduction', '').strip()
 return retval
+
