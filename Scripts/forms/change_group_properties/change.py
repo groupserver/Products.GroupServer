@@ -67,8 +67,8 @@ for property in site_root.GroupProperties.objectValues():
     elif (prop != None):
         prop = prop.strip()
     
-    if prop != None and group.getProperty(property.getId()) != prop:
-        if hasattr(group, property.getId()):
+    if prop != None and getattr(group.aq_explicit, property.getId(), '') != prop:
+        if hasattr(group.aq_explicit, property.getId()):
             group.manage_changeProperties({property.getId(): prop})
         else:
             group.manage_addProperty(property.getId(), prop, property.getProperty('property_type'))
