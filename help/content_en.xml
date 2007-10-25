@@ -16,9 +16,9 @@
     tal:define="baseName string:OnlineGroups.Net;
       siteName python:options.has_key('siteName') and options['siteName'] or baseName;
       includeThe python:siteName.split(' ')[0].lower() != 'the';
-      divisionObject context/Scripts/get/division_object;
-      siteId divisionObject/getId;
-      supportEmail python:context.Scripts.get.support_email(siteId)">
+      site context/Scripts/get/division_object;
+      siteId site/getId;
+      get_support_email python:modules['Products.XWFCore.XWFUtils'].get_support_email">
     <section>
       <h>Help</h>
 
@@ -40,7 +40,7 @@
       </p>
       
       <tal:block
-        tal:condition="python:'Authenticated' in user.getRolesInContext(divisionObject)">
+        tal:condition="python:'Authenticated' in user.getRolesInContext(site)">
         <p>
           If you have a question that is not answered in this Help section, 
           please raise it in 
@@ -55,7 +55,8 @@
       <p>
         If your question is still unanswered, you 
         can address it to
-        <a class="emaillink" title="Email to the support group"
+        <a class="emaillink" title="Email address for support"
+          tal:define="supportEmail python:get_support_email(context, siteId)"
           tal:attributes="href string:mailto:${supportEmail}" 
           tal:content="supportEmail"/>.
       </p>
