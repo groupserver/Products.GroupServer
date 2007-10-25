@@ -39,7 +39,7 @@ if ptnCoach:
                 'groupName'    : group.title_or_id(),
                 'siteName'     : site.title_or_id(),
                 'canonical'    : getOption(group, 'canonicalHost'),
-                'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail')
+                'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail'),
                 'memberId'     : user_id,
                 'memberName'   : user.getProperty('preferredName'),
                 'joining_user' : user,
