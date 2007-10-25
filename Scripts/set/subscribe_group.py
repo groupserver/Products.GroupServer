@@ -7,6 +7,7 @@
 ##parameters=division_id, group_id, unsubscribe=0
 ##title=
 ##
+from Products.XWFCore.XWFUtils import getOption
 user = context.REQUEST.AUTHENTICATED_USER
 user_id = user.getUserName()
 site_root = context.site_root()
@@ -22,23 +23,39 @@ if subscribe and not joinable:
 if unsubscribe and not leaveable:
     raise 'Forbidden', 'You cannot unsubscribe from this list'
 
-division = getattr(site_root.Content, division_id)
-group = getattr(division.groups, group_id)
+site = getattr(site_root.Content, division_id)
+group = getattr(site.groups, group_id)
 
 # Get the participation-coach for the group
 ptnCoachId = group.getProperty('ptn_coach_id', '')
 ptnCoach = site_root.acl_users.getUser(ptnCoachId)
 
+# The dictionary of values for the admin notifications.
+#  The last two keys are superfluous on OGN, but included
+#  for backwards-compatibility (for eDem, effectively).
+if ptnCoach:
+    n_dict = {
+                'groupId'      : group_id,
+                'groupName'    : group.title_or_id(),
+                'siteName'     : site.title_or_id(),
+                'canonical'    : getOption(group, 'canonicalHost'),
+                'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail')
+                'memberId'     : user_id
+                'memberName'   : user.getProperty('preferredName'),
+                'joining_user' : user,
+                'joining_group': group
+              }
+
 if int(unsubscribe):
     user.del_groupWithNotification('%s_member' % group_id)
     if ptnCoach:
-        ptnCoach.send_notification('leave_group_admin', group_id, n_dict={'joining_user': user, 'joining_group': group})
+        ptnCoach.send_notification('leave_group_admin', group_id, n_dict)
     return context.REQUEST.RESPONSE.redirect('/%s/groups/' % (division_id))
 
 if joinable:
     user.add_groupWithNotification('%s_member' % group_id)
     if ptnCoach:
-        ptnCoach.send_notification('join_group_admin', group_id, n_dict={'joining_user': user, 'joining_group': group})
+        ptnCoach.send_notification('join_group_admin', group_id, n_dict)
 
     return context.REQUEST.RESPONSE.redirect('/%s/groups/%s/' % (division_id, group_id))
 
