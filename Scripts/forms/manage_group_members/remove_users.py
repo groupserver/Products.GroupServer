@@ -54,9 +54,19 @@ for userid in userids:
         # Otherwise, remove the user from the group.
         user.del_groupWithNotification('%s_member' % groupid)
         if notifyPtnCoach:
-            ptnCoach.send_notification('leave_group_admin', groupid,
-                                       n_dict={'joining_user': user,
-                                               'joining_group': group})
+            n_dict = {
+                        'groupId'      : groupid,
+                        'groupName'    : group.title_or_id(),
+                        'siteName'     : site.title_or_id(),
+                        'canonical'    : getOption(group, 'canonicalHost'),
+                        'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail'),
+                        'memberId'     : userid,
+                        'memberName'   : user.getProperty('preferredName'),
+                        'joining_user' : user,
+                        'joining_group': group
+                      }
+
+            ptnCoach.send_notification('leave_group_admin', groupid, n_dict=n_dict)
     
 userNames = ', '.join(names)
 result['error'] = False
