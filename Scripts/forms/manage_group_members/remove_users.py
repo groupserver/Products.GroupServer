@@ -8,6 +8,7 @@
 ##title=Remove Users from the Group
 ##
 from Products.PythonScripts.standard import html_quote
+from Products.XWFCore.XWFUtils import getOption
 
 result = {}
 assert groupid != None
