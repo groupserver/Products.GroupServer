@@ -8,6 +8,8 @@
 ##title=Request Contact from User
 ##
 
+from Products.XWFCore.XWFUtils import get_support_email
+
 result = {}
 
 form = context.REQUEST.form
@@ -22,20 +24,28 @@ for field in form:
     except AttributeError:
         pass
 
-
+requestingUser = context.REQUEST.AUTHENTICATED_USER
 site_root = context.site_root()
-division_object = context.Scripts.get.division_object() #?
-user = site_root.acl_users.getUser(form['contactedUser'])
+site = context.Scripts.get.division_object()
+contactedUser = site_root.acl_users.getUser(form['contactedUser'])
+canonical = form['site']
 
-email_addresses = user.get_defaultDeliveryEmailAddresses()
+email_addresses = contactedUser.get_defaultDeliveryEmailAddresses()
 if email_addresses:
-    n_dict = {'requesting_user': context.REQUEST.AUTHENTICATED_USER,
-              'site': form['site'],
-              'siteName': form['siteName'],}
-    user.send_notification('request_contact',
-                           'default',
-                           n_dict=n_dict,
-                           email_only=email_addresses)
+    n_dict = {
+        'siteName'            : form['siteName'],
+        'supportEmail'        : get_support_email(context, site.getId()),
+        'requestingPreferredName' : requestingUser.getProperty('preferredName'),
+        'requestingEmail'     : requestingUser.get_defaultDeliveryEmailAddresses()[0],
+        'requestingFirstName' : requestingUser.getProperty('firstName'),
+        'requestingLastName'  : requestingUser.getProperty('lastName'),
+        'canonical'           : canonical,
+        'requestingId'        : requestingUser.getId(),
+        'site'                : canonical,
+        'requesting_user'     : requestingUser
+    } # last two are for backwards-compatibility
+  
+    contactedUser.send_notification('request_contact', 'default', n_dict=n_dict)
 
 result['error'] = False
 result['message'] = '''The contact request has been sent.'''
