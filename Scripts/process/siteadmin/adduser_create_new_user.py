@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=firstname=None, lastname=None, preferredname=None,email=None, userid=None, groups=None, sendVerification=None, userproperties={}
+##parameters=firstname=None,lastname=None,preferredname=None,email=None,userid=None,siteid=None,groups=None,sendVerification=None,userproperties={}
 ##title="Add User: Create New User"
 ##
 site_root = context.site_root()
@@ -20,7 +20,7 @@ else:
 
 try:
     user = context.Scripts.registration.register_user(firstname, lastname,
-                                                      email, userid,
+                                                      email, userid, siteid,
                                                       groups, 0,
                                                       userproperties,
                                                       sendVerification)
