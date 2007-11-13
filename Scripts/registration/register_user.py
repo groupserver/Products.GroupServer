@@ -4,10 +4,11 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=first_name='', last_name='', email='', user_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
+##parameters=first_name='', last_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
 ##title=
 ##
-from Products.XWFCore.XWFUtils import createRequestFromRequest
+from Products.XWFCore.XWFUtils import createRequestFromRequest, getOption
+from Products.XWFCore.XWFUtils import get_support_email, get_site_by_id
 
 redirect = context.REQUEST.RESPONSE.redirect
 form = context.REQUEST.form
@@ -89,14 +90,18 @@ else:
 	#   SOB. This creates a hole for spammers.
 	verificationCode = user.get_verificationCode()
 	user.verify_user(verificationCode)
+	
+	site = get_site_by_id(context, site_id)
+	canonical = getOption(site, 'canonicalHost', 'onlinegroups.net')
 
 	# Send an "Administrator-Verified Join" message
-	n_dict={'first_name': first_name,
-		'last_name': last_name,
-		'user_id': user_id,
-		'password': password,
-		'site': context.REQUEST.SERVER_URL,
-		}
+	n_dict = {
+		'user_id'       : user_id,
+		'password'      : password,
+		'canonical'     : canonical,
+    'siteName'      : site.title_or_id(),
+    'supportEmail'  : get_support_email(context, site_id)
+	}
 	user.send_notification(n_type='admin_verified_join', 
 		n_id='default', n_dict=n_dict)
 
