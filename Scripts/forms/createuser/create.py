@@ -22,7 +22,7 @@ for field in form.keys():
         pass
 
 groupid = form['groupid']
-divisionid = form['divisionid']
+siteid = form['divisionid']
 joingroups = form.get('groups', [])
 userid = form.get('userid','')
 firstname = form.get('firstname','')
@@ -31,7 +31,7 @@ email = form.get('email','').lower()
 sendVerification = form.get('sendVerification', '')
 preferredname = form.get('preferredname', '')
 
-groups = ['%s_member' % divisionid]
+groups = ['%s_member' % siteid]
 try: # check for string/list ness, the hard way
     joingroups.split
     joingroups = [joingroups]
@@ -57,7 +57,7 @@ else:
     else:
         retval = container.process.siteadmin.adduser_create_new_user(firstname, lastname,
                                                    preferredname, email,
-                                                   userid, groups, 
+                                                   userid, siteid, groups, 
                                                    sendVerification)
         result['message'] = '<ul>%s</ul>' % retval['message']
         result['error'] = retval['error']
