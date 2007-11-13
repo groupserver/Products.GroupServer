@@ -40,7 +40,7 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/++resource++globalstyle-20071113a.css" />
+      href="/++resource++globalstyle-20071113b.css" />
     <link 
         rel="stylesheet" type="text/css" 
         href="/PresentationCustom/Tofu/Common/css/globalstyle.css" />
