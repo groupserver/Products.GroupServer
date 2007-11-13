@@ -41,9 +41,7 @@ if email_addresses:
         'requestingLastName'  : requestingUser.getProperty('lastName'),
         'canonical'           : canonical,
         'requestingId'        : requestingUser.getId(),
-        'site'                : canonical,
-        'requesting_user'     : requestingUser
-    } # last two are for backwards-compatibility
+    }
   
     contactedUser.send_notification('request_contact', 'default', n_dict=n_dict)
 
