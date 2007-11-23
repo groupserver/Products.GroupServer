@@ -28,7 +28,7 @@
       </title>
 
       <link rel="stylesheet" type="text/css"
-        href="/++resource++globalstyle-20071115.css" />
+        href="/++resource++globalstyle-20071123.css" />
       <link rel="stylesheet" type="text/css" 
         href="/++resource++site-20071114.css" />
       <link 
