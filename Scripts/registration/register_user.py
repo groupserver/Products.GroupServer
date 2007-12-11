@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=first_name='', last_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
+##parameters=preferred_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
 ##title=
 ##
 from Products.XWFCore.XWFUtils import createRequestFromRequest, getOption
@@ -15,16 +15,14 @@ form = context.REQUEST.form
 
 site_root = context.site_root()
 error = []
-if not first_name:
-    error.append('error:list=fname')
-if not last_name:
-    error.append('error:list=lname')
+if not preferred_name:
+    error.append('error:list=pname')
 if not email:
     error.append('error:list=email')
 
 if manual:
     for prop_def in context.UserProperties.objectValues():
-        if prop_def and prop_def.getId() not in ['email', 'first_name', 'last_name', 'user_id']:
+        if prop_def and prop_def.getId() not in ['email', 'preferred_name', 'user_id']:
             if prop_def.getProperty('required', 0) and not form.get(prop_def.getId(), None):
                 error.append('error:list=required')
 
@@ -33,12 +31,12 @@ group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], 
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('/login/register.xml?%s&%s&%s' % (error_string, createRequestFromRequest(context.REQUEST, first_name=first_name, last_name=last_name, email=email, user_id=user_id), group_string))
+        rstring = str('/login/register.xml?%s&%s&%s' % (error_string, createRequestFromRequest(context.REQUEST, preferred_name=preferred_name, email=email, user_id=user_id), group_string))
         return redirect(rstring)
     return 0
 
 try:
-    user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, first_name, last_name)
+    user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name)
 except Exception, x:
     exception_string = str(x)
     
@@ -54,7 +52,7 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        return redirect('/login/register.xml?%s&came_from=%s&first_name=%s&last_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, first_name, last_name, email, user_id, group_string))
+        return redirect('/login/register.xml?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string))
     return 0
     
 user = site_root.acl_users.getUser(user_id)
@@ -73,7 +71,7 @@ for prop in form:
     except:
         continue
     
-    if prop_def and getattr(prop_def, 'property_type', None) and prop not in ['email', 'first_name', 'last_name', 'user_id']:
+    if prop_def and getattr(prop_def, 'property_type', None) and prop not in ['email', 'preferred_name', 'user_id']:
         if user.hasProperty(prop):
             user.manage_changeProperties({prop: form[prop]})
         else:
@@ -92,7 +90,7 @@ else:
 	user.verify_user(verificationCode)
 	
 	site = get_site_by_id(context, site_id)
-	canonical = getOption(site, 'canonicalHost', 'onlinegroups.net')
+	canonical = getOption(site, 'canonicalHost')
 
 	# Send an "Administrator-Verified Join" message
 	n_dict = {
@@ -102,8 +100,7 @@ else:
     'siteName'      : site.title_or_id(),
     'supportEmail'  : get_support_email(context, site_id)
 	}
-	user.send_notification(n_type='admin_verified_join', 
-		n_id='default', n_dict=n_dict)
+	user.send_notification(n_type='admin_verified_join', n_id='default', n_dict=n_dict)
 
 if manual:
     if came_from:
