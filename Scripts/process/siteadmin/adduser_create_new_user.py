@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=firstname=None,lastname=None,preferredname=None,email=None,userid=None,siteid=None,groups=None,sendVerification=None,userproperties={}
+##parameters=preferredname=None,email=None,userid=None,siteid=None,groups=None,sendVerification=None,userproperties={}
 ##title="Add User: Create New User"
 ##
 site_root = context.site_root()
@@ -13,13 +13,10 @@ assert not site_root.acl_users.get_userByEmail(email)
 
 result = {}
 
-if preferredname:
-    userproperties['preferredName'] = preferredname
-else:
-    userproperties['preferredName'] = '%s %s' % (firstname, lastname)
+userproperties['preferredName'] = preferredname
 
 try:
-    user = context.Scripts.registration.register_user(firstname, lastname,
+    user = context.Scripts.registration.register_user(preferredname,
                                                       email, userid, siteid,
                                                       groups, 0,
                                                       userproperties,

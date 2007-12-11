@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=firstname=None, lastname=None, userid=None, email=None
+##parameters=preferredname=None, userid=None, email=None
 ##title=
 ##
 site_root = context.site_root()
@@ -13,13 +13,9 @@ if userid and site_root.acl_users.getUser(userid):
     error = 1
     message.append('<listitem>The user ID %s is already taken</listitem>' % userid)
 
-if not firstname:
+if not preferredname:
     error = 1
-    message.append("<listitem>The user's first name was not specified</listitem>")
-
-if not lastname:
-    error = 1
-    message.append("<listitem>The user's last name was not specified</listitem>")
+    message.append("<listitem>The user's name was not specified</listitem>")
 
 if not email:
     error = 1
