@@ -31,7 +31,7 @@ divisionid = form.get('divisionid')
 csvfile = form.get('csvfile')
 fields = {}
 num_fields = 0
-key_fields = ['email','firstName','lastName']
+key_fields = ['email','preferredName']
 for key in form:
     parts = key.split('field')
     if len(parts) == 2:
@@ -99,8 +99,6 @@ for row in results.mainData:
         fieldmap[fieldId] = col
         field += 1
 
-    firstName = fieldmap.get('firstName', '')
-    lastName = fieldmap.get('lastName', '')
     preferredName = fieldmap.get('preferredName', '')
     email = fieldmap.get('email','').lower()
     userId = fieldmap.get('userId', '')
@@ -122,7 +120,7 @@ for row in results.mainData:
             added += 1
     else:
         # The user does not exist, so create the user
-        result = context.process.siteadmin.verifyuserdata(firstName, lastName,
+        result = context.process.siteadmin.verifyuserdata(preferredName,
                                         userId, email)
         if result:
             errors += 1
@@ -134,8 +132,7 @@ for row in results.mainData:
             </ul>
             </li>""" % (msg, rowcount, result, rowcount)
         else:
-            result = container.process.siteadmin.adduser_create_new_user(firstName, lastName,
-                                                       preferredName, email,
+            result = container.process.siteadmin.adduser_create_new_user(preferredName, email,
                                                        userId, divisionid, groups, 
                                                        sendVerification, fieldmap)
 
