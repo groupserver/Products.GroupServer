@@ -16,6 +16,7 @@ form = context.REQUEST.form
 assert form.has_key('contactedUser')
 assert form.has_key('site')
 assert form.has_key('siteName')
+assert form.has_key('siteId')
 result['form'] = form
 
 for field in form:
@@ -26,7 +27,9 @@ for field in form:
 
 requestingUser = context.REQUEST.AUTHENTICATED_USER
 site_root = context.site_root()
-site = context.Scripts.get.division_object()
+siteId = form['siteId']
+assert siteId
+site = getattr(site_root.Content, siteId)
 contactedUser = site_root.acl_users.getUser(form['contactedUser'])
 canonical = form['site']
 
@@ -34,7 +37,7 @@ email_addresses = contactedUser.get_defaultDeliveryEmailAddresses()
 if email_addresses:
     n_dict = {
         'siteName'            : form['siteName'],
-        'supportEmail'        : get_support_email(context, site.getId()),
+        'supportEmail'        : get_support_email(context, siteId),
         'requestingPreferredName' : requestingUser.getProperty('preferredName'),
         'requestingEmail'     : requestingUser.get_defaultDeliveryEmailAddresses()[0],
         'requestingFirstName' : requestingUser.getProperty('firstName'),
@@ -50,5 +53,3 @@ result['message'] = '''The contact request has been sent.'''
 
 return result
 
-# url = '/%s/contacts/%s?mid=1040' % (division_object.getId(), user_id)
-# return context.REQUEST.RESPONSE.redirect(url)
