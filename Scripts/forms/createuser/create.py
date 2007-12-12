@@ -25,8 +25,6 @@ groupid = form['groupid']
 siteid = form['divisionid']
 joingroups = form.get('groups', [])
 userid = form.get('userid','')
-firstname = form.get('firstname','')
-lastname = form.get('lastname','')
 email = form.get('email','').lower()
 sendVerification = form.get('sendVerification', '')
 preferredname = form.get('preferredname', '')
@@ -50,13 +48,12 @@ if user:
     result['message'] = '<ul>%s</ul>' % retval['message']
     result['error'] = retval['error']
 else:
-    message = context.process.siteadmin.verifyuserdata(firstname, lastname, userid, email)
+    message = context.process.siteadmin.verifyuserdata(preferredname, userid, email)
     if message:
         result['message'] = '<p>%s</p>' % message
         result['error'] = True
     else:
-        retval = container.process.siteadmin.adduser_create_new_user(firstname, lastname,
-                                                   preferredname, email,
+        retval = container.process.siteadmin.adduser_create_new_user(preferredname, email,
                                                    userid, siteid, groups, 
                                                    sendVerification)
         result['message'] = '<ul>%s</ul>' % retval['message']
