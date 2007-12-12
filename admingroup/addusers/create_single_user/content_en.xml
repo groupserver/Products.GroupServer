@@ -17,8 +17,7 @@
         <paragraph>
           You can create a new member by filling out the following fields
           and clicking Create Member below.
-          The email address, first name and last name are required;
-          the preferred name of the new member is optional.
+          The email address and preferred name of the new member are required.
         </paragraph>
         
         <paragraph>Once the member has been created, he or she will be
@@ -30,20 +29,10 @@
           <xf:label>Email</xf:label>
           <xf:hint>Please enter the member's email address (required)</xf:hint>
         </xf:input>
-        
-        <xf:input model="createuser" bind="firstname" class="text">
-          <xf:label>First Name</xf:label>
-          <xf:hint>Please enter the member's first name (required)</xf:hint>
-        </xf:input>
-        
-        <xf:input model="createuser" bind="lastname" class="text">
-          <xf:label>Last Name</xf:label>
-          <xf:hint>Please enter the member's last name (required)</xf:hint>
-        </xf:input>
-        
+               
         <xf:input model="createuser" ref="preferredname" class="text">
           <xf:label>Preferred Name</xf:label>
-          <xf:hint>Please enter the member's preferred name (optional)</xf:hint>
+          <xf:hint>Please enter the member's preferred name (required)</xf:hint>
         </xf:input>
         
         <tal:block
