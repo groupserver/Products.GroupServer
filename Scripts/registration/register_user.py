@@ -27,6 +27,7 @@ if manual:
                 error.append('error:list=required')
                 print 'Missing a required field'
 
+print groups
 group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], groups))
 print group_string
 
@@ -57,7 +58,7 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        print 'Will redirect to /login/register.xml?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string))
+        print 'Will redirect to /login/register.xml?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string)
         return redirect('/login/register.xml?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string))
     return 0
     
@@ -90,29 +91,31 @@ if groups:
     print 'Setting verification groups: %s' % groups
     user.set_verificationGroups(groups)
 
-if sendVerification:
-  print 'Sending verification'
-	user.send_userVerification(password=password, site=context.REQUEST.SERVER_URL)
-else:
-	# --=mpj17=-- I should be punished for this:
-	# If there is no verification email sent, then just verify the
-	#   SOB. This creates a hole for spammers.
-	verificationCode = user.get_verificationCode()
-	user.verify_user(verificationCode)
-	
-	site = get_site_by_id(context, site_id)
-	canonical = getOption(site, 'canonicalHost')
+site = get_site_by_id(context, site_id)
+canonical = getOption(site, 'canonicalHost')
+print site
+print canonical
 
-	# Send an "Administrator-Verified Join" message
-	n_dict = {
-    'user_id'       : user_id,
-    'password'      : password,
-    'canonical'     : canonical,
-    'siteName'      : site.title_or_id(),
-    'supportEmail'  : get_support_email(context, site_id)
-	}
-	print 'Seding admin verified join notification'
-	user.send_notification(n_type='admin_verified_join', n_id='default', n_dict=n_dict)
+if sendVerification:
+    print 'Sending verification'
+    user.send_userVerification(password=password, site=context.REQUEST.SERVER_URL)
+else:
+  	# --=mpj17=-- I should be punished for this:
+  	# If there is no verification email sent, then just verify the
+  	#   SOB. This creates a hole for spammers.
+  	verificationCode = user.get_verificationCode()
+  	user.verify_user(verificationCode)
+  	
+  	# Send an "Administrator-Verified Join" message
+  	n_dict = {
+      'user_id'       : user_id,
+      'password'      : password,
+      'canonical'     : canonical,
+      'siteName'      : site.title_or_id(),
+      'supportEmail'  : get_support_email(context, site_id)
+  	}
+  	print 'Sending admin_verified_join notification'
+  	user.send_notification(n_type='admin_verified_join', n_id='default', n_dict=n_dict)
 
 if manual:
     if came_from:
@@ -122,4 +125,5 @@ if manual:
         print 'Redirecting to /login/index.xml?error:list=register_thanks'
         return redirect('/login/index.xml?error:list=register_thanks')
 
-return user
+#return user
+return printed
