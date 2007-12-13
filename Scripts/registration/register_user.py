@@ -91,11 +91,6 @@ if groups:
     print 'Setting verification groups: %s' % groups
     user.set_verificationGroups(groups)
 
-site = get_site_by_id(context, site_id)
-canonical = getOption(site, 'canonicalHost')
-print site
-print canonical
-
 if sendVerification:
     print 'Sending verification'
     user.send_userVerification(password=password, site=context.REQUEST.SERVER_URL)
@@ -105,6 +100,11 @@ else:
   	#   SOB. This creates a hole for spammers.
   	verificationCode = user.get_verificationCode()
   	user.verify_user(verificationCode)
+
+    site = get_site_by_id(user, site_id)
+    canonical = getOption(site, 'canonicalHost')
+    print site
+    print canonical
   	
   	# Send an "Administrator-Verified Join" message
   	n_dict = {
