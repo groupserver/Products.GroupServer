@@ -40,7 +40,7 @@ if manual:
 
 print groups
 group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], groups))
-print group_string
+assert '_member' not in group_string, 'group_string contains errors: %s' % group_string
 
 if error:
     if manual:
