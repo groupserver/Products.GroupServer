@@ -95,27 +95,27 @@ if sendVerification:
     print 'Sending verification'
     user.send_userVerification(password=password, site=context.REQUEST.SERVER_URL)
 else:
-  	# --=mpj17=-- I should be punished for this:
-  	# If there is no verification email sent, then just verify the
-  	#   SOB. This creates a hole for spammers.
-  	verificationCode = user.get_verificationCode()
-  	user.verify_user(verificationCode)
+    # --=mpj17=-- I should be punished for this:
+    # If there is no verification email sent, then just verify the
+    #   SOB. This creates a hole for spammers.
+    verificationCode = user.get_verificationCode()
+    user.verify_user(verificationCode)
 
     site = get_site_by_id(user, site_id)
     canonical = getOption(site, 'canonicalHost')
     print site
     print canonical
-  	
-  	# Send an "Administrator-Verified Join" message
-  	n_dict = {
-      'user_id'       : user_id,
-      'password'      : password,
-      'canonical'     : canonical,
-      'siteName'      : site.title_or_id(),
-      'supportEmail'  : get_support_email(context, site_id)
-  	}
-  	print 'Sending admin_verified_join notification'
-  	user.send_notification(n_type='admin_verified_join', n_id='default', n_dict=n_dict)
+
+    # Send an "Administrator-Verified Join" message
+    n_dict = {
+        'user_id'       : user_id,
+        'password'      : password,
+        'canonical'     : canonical,
+        'siteName'      : site.title_or_id(),
+        'supportEmail'  : get_support_email(context, site_id)
+    }
+    print 'Sending admin_verified_join notification'
+    user.send_notification(n_type='admin_verified_join', n_id='default', n_dict=n_dict)
 
 if manual:
     if came_from:
