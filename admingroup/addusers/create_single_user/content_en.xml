@@ -30,7 +30,7 @@
           <xf:hint>Please enter the member's email address (required)</xf:hint>
         </xf:input>
                
-        <xf:input model="createuser" ref="preferredname" class="text">
+        <xf:input model="createuser" bind="preferredname" class="text">
           <xf:label>Preferred Name</xf:label>
           <xf:hint>Please enter the member's preferred name (required)</xf:hint>
         </xf:input>
