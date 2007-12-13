@@ -34,7 +34,7 @@ print group_string
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('/login/register.xml?%s&%s&%s' % (error_string, createRequestFromRequest(context.REQUEST, preferred_name=preferred_name, email=email, user_id=user_id), group_string))
+        rstring = str('/login/register?%s&%s&%s' % (error_string, createRequestFromRequest(context.REQUEST, preferred_name=preferred_name, email=email, user_id=user_id), group_string))
         print 'Will redirect to %s' % rstring
         return redirect(rstring)
     return 0
@@ -58,8 +58,8 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        print 'Will redirect to /login/register.xml?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string)
-        return redirect('/login/register.xml?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string))
+        print 'Will redirect to /login/register?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string)
+        return redirect('/login/register?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string))
     return 0
     
 user = site_root.acl_users.getUser(user_id)
