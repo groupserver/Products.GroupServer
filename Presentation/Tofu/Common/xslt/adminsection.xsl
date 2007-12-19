@@ -8,8 +8,6 @@
   <xsl:include href="file://news" />
   <xsl:include href="file://contacts" />
   <xsl:include href="file://layout" />
-  <xsl:include href="file://Presentation/Tofu/FileLibrary/xslt/files" />
-  <xsl:include href="file://Presentation/Tofu/FileLibrary2/xslt/files" />
   <xsl:include href="file://Presentation/Tofu/SiteSearch/xslt/results" />
   <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
   

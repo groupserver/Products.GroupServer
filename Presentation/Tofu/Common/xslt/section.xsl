@@ -8,9 +8,6 @@
   <xsl:include href="file://contacts" /> 
   <xsl:include href="file://news" />
 
-  <xsl:include href="file://Presentation/Tofu/FileLibrary/xslt/files"/>
-  <xsl:include href="file://Presentation/Tofu/SiteSearch/xslt/results"/>
-
   <xsl:output method="html" indent="yes" encoding="UTF8"
     omit-xml-declaration="yes"
     doctype-public="-//W3C//DTD HTML 4.01//EN"
