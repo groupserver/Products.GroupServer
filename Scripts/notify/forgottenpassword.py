@@ -32,12 +32,7 @@ if user:
     user.send_notification('forgotten_password', 'default', n_dict, 
       addresses)
         
-#    return context.REQUEST.RESPONSE.redirect('/sent_password.xml')
-#else:
-#    return context.REQUEST.RESPONSE.redirect('/login/forgotten_password.xml?erX0ror=1')
-
-
-url = '/sent_password.xml?user_or_address=%s&providedInfo=%s' % \
+url = '/sentpassword.html?user_or_address=%s&providedInfo=%s' % \
       (providedEmailAddress and 'email%20address' or 'user%20name',
        username)
 return context.REQUEST.RESPONSE.redirect(url)
