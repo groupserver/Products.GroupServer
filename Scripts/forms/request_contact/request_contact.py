@@ -8,7 +8,7 @@
 ##title=Request Contact from User
 ##
 
-from Products.XWFCore.XWFUtils import get_support_email
+from Products.XWFCore.XWFUtils import get_support_email, get_user_realnames
 
 result = {}
 
@@ -32,18 +32,17 @@ assert siteId
 site = getattr(site_root.Content, siteId)
 contactedUser = site_root.acl_users.getUser(form['contactedUser'])
 canonical = form['site']
+requesting_id = requestingUser.getId()
 
 email_addresses = contactedUser.get_defaultDeliveryEmailAddresses()
 if email_addresses:
     n_dict = {
-        'siteName'            : form['siteName'],
-        'supportEmail'        : get_support_email(context, siteId),
-        'requestingPreferredName' : requestingUser.getProperty('preferredName'),
-        'requestingEmail'     : requestingUser.get_defaultDeliveryEmailAddresses()[0],
-        'requestingFirstName' : requestingUser.getProperty('firstName'),
-        'requestingLastName'  : requestingUser.getProperty('lastName'),
-        'canonical'           : canonical,
-        'requestingId'        : requestingUser.getId(),
+        'siteName'       : form['siteName'],
+        'supportEmail'   : get_support_email(context, siteId),
+        'requestingName' : get_user_realnames(requestingUser, requesting_id),
+        'requestingEmail': requestingUser.get_defaultDeliveryEmailAddresses()[0],
+        'canonical'      : canonical,
+        'requestingId'   : requesting_id
     }
   
     contactedUser.send_notification('request_contact', 'default', n_dict=n_dict)
