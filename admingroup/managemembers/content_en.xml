@@ -128,10 +128,8 @@
               <link class="name"
                 tal:attributes="url string:/contacts/${userobj/getId};
                 id string:${userobj/getId}">
-                <span class="firstName"
-                  tal:content="userobj/firstName | nothing"/>
-                <span class="lastName"
-                  tal:content="userobj/lastName | nothing"/>
+                <span class="name"
+                  tal:content="userobj/preferredName | nothing"/>
               </link><!--name-->
               &#8212;
               <span class="membershipStatus"
