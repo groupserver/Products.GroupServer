@@ -38,7 +38,7 @@ if error:
 try:
     print 'About to try registering the user'
     if first_name and last_name:
-        user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, first_name, last_name, preferred_name)
+        user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name, first_name, last_name)
     else:
         user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name)
 except Exception, x:
