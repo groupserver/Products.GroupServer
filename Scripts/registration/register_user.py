@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=preferred_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
+##parameters=first_name='',last_name='',preferred_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
 ##title=
 ##
 from Products.XWFCore.XWFUtils import createRequestFromRequest, getOption
@@ -17,14 +17,12 @@ form = context.REQUEST.form
 site_root = context.site_root()
 
 error = []
-if not preferred_name:
-    error.append('error:list=pname')
 if not email:
     error.append('error:list=email')
 
 if manual:
     for prop_def in site_root.UserProperties.objectValues():
-        if prop_def and prop_def.getId() not in ['email', 'preferred_name', 'user_id']:
+        if prop_def and prop_def.getId() not in ['email', 'user_id']:
             if prop_def.getProperty('required', 0) and not form.get(prop_def.getId(), None):
                 error.append('error:list=required')
 
@@ -39,7 +37,10 @@ if error:
 
 try:
     print 'About to try registering the user'
-    user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name)
+    if first_name and last_name:
+        user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, first_name, last_name, preferred_name)
+    else:
+        user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name)
 except Exception, x:
     exception_string = str(x)
     print 'Exception %s when registering the user' % exception_string
