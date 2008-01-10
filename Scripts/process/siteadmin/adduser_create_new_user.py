@@ -15,25 +15,14 @@ result = {}
 
 userproperties['preferredName'] = preferredname
 
-try:
-    user = context.Scripts.registration.register_user(preferredname,
-                                                      email, userid, siteid,
-                                                      groups, 0,
-                                                      userproperties,
-                                                      sendVerification)
-except 'Bad Request', x:
-    msg = str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&lt;')
-    result['message'] = '''<listitem>An exception occurred creating user
-    with the email address %s: %s. Please report this as a
-    bug.</listitem>''' % (email, msg)
-    result['error'] = True
-    return result
-except Exception, x:
-    msg = str(x).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&lt;')
-    result['message'] = '''<listitem>An exception occurred creating user
-    with the email address %s: %s.</listitem>''' % (email, msg)
-    result['error'] = True
-    return result
+firstname=''
+lastname=''
+
+user = context.Scripts.registration.register_user(firstname, lastname, preferredname,
+                                                  email, userid, siteid,
+                                                  groups, 0,
+                                                  userproperties,
+                                                  sendVerification)
 
 if not user:
     result['error'] = True

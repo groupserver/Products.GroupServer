@@ -4,12 +4,11 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=first_name='',last_name='',preferred_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
+##parameters=first_name='', last_name='', preferred_name='', email='', user_id='', site_id='', groups=[], manual=1, userproperties={}, sendVerification=True, came_from=''
 ##title=
 ##
 from Products.XWFCore.XWFUtils import createRequestFromRequest, getOption
 from Products.XWFCore.XWFUtils import get_support_email, get_site_by_id
-
 
 redirect = context.REQUEST.RESPONSE.redirect
 form = context.REQUEST.form
@@ -36,7 +35,6 @@ if error:
     return 0
 
 try:
-    print 'About to try registering the user'
     if first_name and last_name:
         user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name, first_name, last_name)
     else:
