@@ -99,7 +99,9 @@ for row in results.mainData:
         fieldmap[fieldId] = col
         field += 1
 
-    preferredName = fieldmap.get('preferredName', '')
+    preferredName = fieldmap.get('fn', '')
+    firstname = fieldmap.get('givenName', '')
+    lastname = fieldmap.get('familyName', '')
     email = fieldmap.get('email','').lower()
     userId = fieldmap.get('userId', '')
 
@@ -134,7 +136,7 @@ for row in results.mainData:
         else:
             result = container.process.siteadmin.adduser_create_new_user(preferredName, email,
                                                        userId, divisionid, groups, 
-                                                       sendVerification, fieldmap)
+                                                       sendVerification, fieldmap, firstname, lastname)
 
             if result['error']:
                 errors += 1
