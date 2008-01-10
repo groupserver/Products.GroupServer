@@ -31,7 +31,9 @@ divisionid = form.get('divisionid')
 csvfile = form.get('csvfile')
 fields = {}
 num_fields = 0
-key_fields = ['email','preferredName']
+required_props = filter(lambda x: x.getProperty('required', 0), context.UserProperties.objectValues())
+key_fields = map(lambda x: x.getId(), required_props)
+key_fields.append('email')
 for key in form:
     parts = key.split('field')
     if len(parts) == 2:
@@ -47,16 +49,14 @@ error = 0
 message = []
 if not csvfile:
     error = 1
-    message.append("""<p>You must specify a CSV file to
-    process</p>""") 
+    message.append("""<p>You must specify a CSV file to process</p>""") 
 
 if key_fields:
     error = 1
     for field in key_fields:
         field_def = getattr(site_root.UserProperties, field, None)
         field_name = field_def and field_def.getProperty('title') or field
-        message.append("""<p>Missing compulsory column
-        %s</p>""" % field_name) 
+        message.append("""<p>Missing compulsory column %s</p>""" % field_name)
         
 try:
     results = CSVFile(csvfile, [str]*num_fields)
