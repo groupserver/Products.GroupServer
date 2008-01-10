@@ -16,8 +16,7 @@ form = context.REQUEST.form
 site_root = context.site_root()
 
 # AM: hack to redirect eDem users to the old page for now
-site = get_site_by_id(context, site_id)
-isEDem = getOption(site, 'canonicalHost') == 'forums.e-democracy.org'
+isEDem = getOption(context, 'canonicalHost') == 'forums.e-democracy.org'
 reg_page = isEDem and '/login/register.xml' or '/register.html'
 
 error = []
@@ -33,18 +32,22 @@ if first_name and 'givenName' not in form.keys():
 if last_name and 'familyName' not in form.keys():
     form['familyName'] = last_name
 
+if not email:
+    error.append('error:list=required')
+
 if manual:
-    for prop_def in site_root.UserProperties.objectValues():
-        if prop_def and prop_def.getId() not in ['email', 'user_id']:
-            if prop_def.getProperty('required', 0) and not form.get(prop_def.getId(), None):
-                error.append('error:list=required')
+    required_props = filter(lambda x: x.getProperty('required', 0), context.UserProperties.objectValues())
+    key_fields = map(lambda x: x.getId(), required_props)
+    for field in key_fields:
+        if not form.get(field, None):
+            error.append('error:list=required')
 
 group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], groups))
 
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('%s?%s&%s&%s' % (reg_page, error_string, createRequestFromRequest(context.REQUEST, preferred_name=preferred_name, email=email, user_id=user_id), group_string))
+        rstring = str('%s?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, preferred_name, email, user_id, group_string))
         return redirect(rstring)
     return 0
 
