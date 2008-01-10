@@ -16,7 +16,7 @@ form = context.REQUEST.form
 site_root = context.site_root()
 
 # AM: hack to redirect eDem users to the old page for now
-site = get_site_by_id(user, site_id)
+site = get_site_by_id(context, site_id)
 isEDem = getOption(site, 'canonicalHost') == 'forums.e-democracy.org'
 reg_page = isEDem and '/login/register.xml' or '/register.html'
 
