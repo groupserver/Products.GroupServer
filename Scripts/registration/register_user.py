@@ -15,6 +15,11 @@ form = context.REQUEST.form
 
 site_root = context.site_root()
 
+# AM: hack to redirect eDem users to the old page for now
+site = get_site_by_id(user, site_id)
+isEDem = getOption(site, 'canonicalHost') == 'forums.e-democracy.org'
+reg_page = isEDem and '/login/register.xml' or '/register.html'
+
 error = []
 if not email:
     error.append('error:list=email')
@@ -39,7 +44,7 @@ group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], 
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('/register.html?%s&%s&%s' % (error_string, createRequestFromRequest(context.REQUEST, preferred_name=preferred_name, email=email, user_id=user_id), group_string))
+        rstring = str('%s?%s&%s&%s' % (reg_page, error_string, createRequestFromRequest(context.REQUEST, preferred_name=preferred_name, email=email, user_id=user_id), group_string))
         return redirect(rstring)
     return 0
 
@@ -64,7 +69,7 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('/register.html?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (error_string, came_from, preferred_name, email, user_id, group_string))
+        rstring = str('%s?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, preferred_name, email, user_id, group_string))
         return redirect(rstring)
     return 0
     
@@ -101,11 +106,6 @@ else:
     #   SOB. This creates a hole for spammers.
     verificationCode = user.get_verificationCode()
     user.verify_user(verificationCode)
-
-    site = get_site_by_id(user, site_id)
-    canonical = getOption(site, 'canonicalHost')
-    print site
-    print canonical
 
     # Send an "Administrator-Verified Join" message
     n_dict = {
