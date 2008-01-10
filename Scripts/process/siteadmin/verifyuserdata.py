@@ -8,7 +8,8 @@
 ##title=
 ##
 site_root = context.site_root()
-message = """<bulletlist>"""
+message = ''
+
 if userid and site_root.acl_users.getUser(userid):
     error = 1
     message = message + '<listitem>The user ID %s is already taken</listitem>' % userid
@@ -33,10 +34,5 @@ if hasattr(site_root.UserProperties, 'givenName') and not given_name:
 if hasattr(site_root.UserProperties, 'familyName') and not family_name:
     error = 1
     message = message + "<listitem>The user's last name was not specified</listitem>"
-
-message = message + """</bulletlist>"""
-
-if message == """<bulletlist></bulletlist>""":
-    message = None
 
 return message
