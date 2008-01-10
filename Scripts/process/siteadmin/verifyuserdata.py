@@ -8,7 +8,7 @@
 ##title=
 ##
 site_root = context.site_root()
-message = ''
+message = """"""
 
 if userid and site_root.acl_users.getUser(userid):
     error = 1
