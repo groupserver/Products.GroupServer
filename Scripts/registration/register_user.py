@@ -19,6 +19,9 @@ error = []
 if not email:
     error.append('error:list=email')
 
+if not 'fn' in form.keys():
+    form['fn'] = preferred_name
+
 if manual:
     for prop_def in site_root.UserProperties.objectValues():
         if prop_def and prop_def.getId() not in ['email', 'user_id']:
