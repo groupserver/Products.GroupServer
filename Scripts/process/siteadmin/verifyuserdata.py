@@ -36,4 +36,7 @@ if hasattr(site_root.UserProperties, 'familyName') and not family_name:
 
 message = message + """</bulletlist>"""
 
+if message == """<bulletlist></bulletlist>""":
+    message = None
+
 return message
