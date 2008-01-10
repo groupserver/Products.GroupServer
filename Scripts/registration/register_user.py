@@ -21,6 +21,12 @@ if not email:
 
 if not 'fn' in form.keys():
     form['fn'] = preferred_name
+    
+if first_name and 'givenName' not in form.keys():
+    form['givenName'] = first_name
+
+if last_name and 'familyName' not in form.keys():
+    form['familyName'] = last_name
 
 if manual:
     for prop_def in site_root.UserProperties.objectValues():
