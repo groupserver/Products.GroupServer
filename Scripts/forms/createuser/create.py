@@ -28,6 +28,8 @@ userid = form.get('userid','')
 email = form.get('email','').lower()
 sendVerification = form.get('sendVerification', '')
 preferredname = form.get('preferredname', '')
+firstname = form.get('firstname', '')
+lastname = form.get('lastname', '')
 
 groups = ['%s_member' % siteid]
 try: # check for string/list ness, the hard way
@@ -55,7 +57,8 @@ else:
     else:
         retval = container.process.siteadmin.adduser_create_new_user(preferredname, email,
                                                    userid, siteid, groups, 
-                                                   sendVerification)
+                                                   sendVerification,
+                                                   firstname=firstname, lastname=lastname)
         result['message'] = '<ul>%s</ul>' % retval['message']
         result['error'] = retval['error']
                                                
