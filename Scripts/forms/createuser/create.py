@@ -11,6 +11,7 @@ form = context.REQUEST.form
 site_root = context.site_root()
 result = {}
 result['form'] = form
+user = None
 
 assert form.has_key('groupid')
 assert form.has_key('divisionid')
@@ -43,14 +44,15 @@ for group in joingroups:
 if form.get('addtogroup', 'no') == 'yes' and groupid:
     groups.append('%s_member' % groupid)
 
-user = site_root.acl_users.get_userByEmail(email)
+if email:
+    user = site_root.acl_users.get_userByEmail(email)
 
 if user:
     retval = container.process.siteadmin.adduser_add_user(user,groups)
     result['message'] = '<ul>%s</ul>' % retval['message']
     result['error'] = retval['error']
 else:
-    message = context.process.siteadmin.verifyuserdata(preferredname, userid, email)
+    message = context.process.siteadmin.verifyuserdata(preferredname, userid, email, firstname, lastname)
     if message:
         result['message'] = '<p>%s</p>' % message
         result['error'] = True
