@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=preferredname=None, userid=None, email=None
+##parameters=preferredname=None, userid=None, email=None, given_name=None, family_name=None
 ##title=
 ##
 site_root = context.site_root()
@@ -25,5 +25,13 @@ ue = site_root.acl_users.get_userByEmail(email)
 if ue:
     error = 1
     message.append("<listitem>A user (%s) was already registered with that email address</listitem>" % ue.getId())
+    
+if hasattr(site_root.UserProperties, 'givenName') and not given_name:
+    error = 1
+    message.append("<listitem>The user's first name was not specified</listitem>")
+
+if hasattr(site_root.UserProperties, 'familyName') and not family_name:
+    error = 1
+    message.append("<listitem>The user's last name was not specified</listitem>")
 
 return message
