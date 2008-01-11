@@ -49,7 +49,7 @@ if email:
 
 if user:
     retval = container.process.siteadmin.adduser_add_user(user,groups)
-    result['message'] = '<bulletlist>%s</bulletlist>' % retval['message']
+    result['message'] = '<ul>%s</ul>' % retval['message']
     result['error'] = retval['error']
 else:
     message = context.process.siteadmin.verifyuserdata(preferredname, userid, email, firstname, lastname)
@@ -61,7 +61,7 @@ else:
                                                    userid, siteid, groups, 
                                                    sendVerification,
                                                    firstname=firstname, lastname=lastname)
-        result['message'] = '<bulletlist>%s</bulletlist>' % retval['message']
+        result['message'] = '<ul>%s</ul>' % retval['message']
         result['error'] = retval['error']
                                                
 return result

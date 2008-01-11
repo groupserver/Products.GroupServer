@@ -123,16 +123,16 @@ for row in results.mainData:
     else:
         # The user does not exist, so create the user
         result = context.process.siteadmin.verifyuserdata(preferredName,
-                                        userId, email)
+                                        userId, email, firstname, lastname)
         if result:
             errors += 1
             msg = """%s\n<li><strong>[Row %d]</strong>
             <ul>
-            %s
+            <ul>%s</ul>
             <li>The user on row %d <bold>has not</bold> been
             created.</li>
             </ul>
-            </li>""" % (msg, rowcount, result, rowcount)
+            </li>""" % ('\n'.join(msg), rowcount, result, rowcount)
         else:
             result = container.process.siteadmin.adduser_create_new_user(preferredName, email,
                                                        userId, divisionid, groups, 
