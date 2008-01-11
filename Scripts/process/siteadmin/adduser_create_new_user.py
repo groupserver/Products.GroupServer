@@ -23,15 +23,15 @@ user = context.Scripts.registration.register_user(firstname, lastname, preferred
 
 if not user:
     result['error'] = True
-    result['message'] = '''<listitem>An unexpected error occurred
-    while creating the user with the email address %s, please report
-    this as a bug.</listitem>''' % email
+    result['message'] = '''<li>An unexpected error occurred
+    while creating the user with the email address %s. Please report
+    this as a bug.</li>''' % email
 else:
     textGroups = ', '.join(map(lambda g: g[:-7], groups))
     result['error'] = False
-    result['message'] = '''<listitem>Created a user with ID
-    %s and the email address %s; the user has been added
-    to %s.</listitem>''' % (user.getId(), email, textGroups)
+    result['message'] = '''<li>Created a user with the
+    email address %s; the user has been added
+    to %s.</li>''' % (email, textGroups)
 
 return result
 

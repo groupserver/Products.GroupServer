@@ -31,9 +31,9 @@ for group in groups:
     if (inGroup and groupIsSite):
         pass
     elif (inGroup and (not groupIsSite)):
-        retval['message'] = retval['message'] + '''<listitem>The user
+        retval['message'] = retval['message'] + '''<li>The user
         %s <bold>has not</bold> been added to %s: %s is already a
-        member of the %s.</listitem>\n''' % (userId, groupName,
+        member of the %s.</li>\n''' % (userId, groupName,
                                              userId, siteOrGroup)
         retval['error'] = True
     elif user.add_groupWithNotification(group):
@@ -41,11 +41,11 @@ for group in groups:
             site = filter(lambda s: s.getId() == groupName, sites)[0]
             groupName = site.title_or_id()
         retval['count'] = retval['count'] + 1
-        retval['message'] = retval['message'] + '''<listitem>Added %s to
-        the %s %s.</listitem>\n''' % (userId, siteOrGroup, groupName)
+        retval['message'] = retval['message'] + '''<li>Added %s to
+        the %s %s.</li>\n''' % (userId, siteOrGroup, groupName)
     else:
-        retval['message'] = retval['message'] +'''<listitem>Could not
-        add %s to the %s %s; this should not have
-        happened.</listitem>\n''' % (userId, siteOrGroup, groupName)
+        retval['message'] = retval['message'] +'''<li>Could not
+        add %s to the %s %s: this should not have
+        happened.</li>\n''' % (userId, siteOrGroup, groupName)
         
 return retval
