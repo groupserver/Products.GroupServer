@@ -12,7 +12,7 @@ def sorter(a,b):
    if a ==None or b == None:
       return 0
    
-   if a.getProperty('preferredName').lower() > b.getProperty('preferredName').lower():
+   if a.getProperty('givenName').lower() > b.getProperty('givenName').lower():
       return 1
    else:
       return -1
