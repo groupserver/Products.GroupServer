@@ -11,8 +11,9 @@
 def sorter(a,b):
    if a ==None or b == None:
       return 0
-   
-   if a.getProperty('givenName').lower() > b.getProperty('givenName').lower():
+    nameA = a.getProperty('givenName', '')
+    nameB = b.getProperty('givenName', '')
+   if nameA.lower() > nameB.lower():
       return 1
    else:
       return -1
