@@ -28,13 +28,13 @@ else:
         message.append("""<li>A user is already registered with that email address</li>""")
     
 if hasattr(site_root.UserProperties, 'givenName'):
-    isRequired = getattr(site_root.UserProperties.givenName, 'required').getProperty('required', 0)
+    isRequired = getattr(site_root.UserProperties.givenName, 'required', 0)
     if isRequired and not given_name:
         error = 1
         message.append("""<li>The user's first name was not specified</li>""")
 
 if hasattr(site_root.UserProperties, 'familyName'):
-    isRequired = getattr(site_root.UserProperties.familyName, 'required').getProperty('required', 0)
+    isRequired = getattr(site_root.UserProperties.familyName, 'required', 0)
     if isRequired and not family_name:
         error = 1
         message.append("""<li>The user's last name was not specified</li>""")
