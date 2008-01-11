@@ -31,9 +31,9 @@ if not result.get('error', False):
     except:
         pass
 
-    if not hasattr(div_config, 'timezone'):
-        div_config.manage_addProperty('timezone', zone, 'string')
-    div_config.manage_changeProperties(timezone=zone)
+    if not hasattr(div_config, 'tz'):
+        div_config.manage_addProperty('tz', zone, 'string')
+    div_config.manage_changeProperties(tz=zone)
 
     result['error'] = False
     result['message'] = 'The site timezone has been changed to <code>%s</code>' % zone

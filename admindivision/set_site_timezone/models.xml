@@ -2,7 +2,7 @@
   xmlns:xf="http://www.w3.org/2002/xforms" 
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   tal:define="site_object here/Scripts/get/division_object;
-    current_tz python:context.Scripts.get.option('timezone','UTC')">
+    current_tz python:context.DivisionConfiguration.getProperty('tz','UTC')">
   <xf:instance>
     <data>
       <submitted>1</submitted>
