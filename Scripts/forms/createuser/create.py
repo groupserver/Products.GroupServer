@@ -54,8 +54,8 @@ if user:
 else:
     message = context.process.siteadmin.verifyuserdata(preferredname, userid, email, firstname, lastname)
     if message:
-        result['message'] = '<bulletlist>%s</bulletlist>' % message
-        result['error'] = True
+        result['error'] = True                   
+        result['message'] = '\n'.join(message)
     else:
         retval = container.process.siteadmin.adduser_create_new_user(preferredname, email,
                                                    userid, siteid, groups, 
