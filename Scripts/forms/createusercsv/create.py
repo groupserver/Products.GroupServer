@@ -63,8 +63,8 @@ try:
 except AssertionError, x:
     error = 1
     message.append("""<p>The number of columns you have
-    defined does not match the number of columns in the CSV file you
-    provided</p>""")
+    defined (%s) does not match the number of columns in the CSV file you
+    provided</p>""" % num_fields)
     
 if error:
     message.insert(0,
