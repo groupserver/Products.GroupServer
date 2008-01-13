@@ -32,9 +32,6 @@ if first_name and 'givenName' not in form.keys():
 if last_name and 'familyName' not in form.keys():
     form['familyName'] = last_name
 
-if not email:
-    error.append('error:list=required')
-
 if manual:
     required_props = filter(lambda x: x.getProperty('required', 0), context.UserProperties.objectValues())
     key_fields = map(lambda x: x.getId(), required_props)
@@ -109,6 +106,9 @@ else:
     #   SOB. This creates a hole for spammers.
     verificationCode = user.get_verificationCode()
     user.verify_user(verificationCode)
+    
+    site = get_site_by_id(user, site_id)
+    canonical = getOption(site, 'canonicalHost')
 
     # Send an "Administrator-Verified Join" message
     n_dict = {
