@@ -47,12 +47,12 @@ group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], 
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, user_id, group_string))
+        rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, group_string))
         return redirect(rstring)
     return 0
 
 try:
-    if first_name and last_name:
+    if first_name or last_name:
         user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name, first_name, last_name)
     else:
         user_id, password, verification_code = site_root.acl_users.register_user(email, user_id, preferred_name)
@@ -72,7 +72,7 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, user_id, group_string))
+        rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, group_string))
         return redirect(rstring)
     return 0
     
