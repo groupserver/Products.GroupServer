@@ -16,8 +16,11 @@ form = context.REQUEST.form
 site_root = context.site_root()
 
 # AM: hack to redirect eDem users to the old page for now
-isEDem = getOption(context, 'canonicalHost') == 'forums.e-democracy.org'
-reg_page = isEDem and '/login/register.xml' or '/register.html'
+#  Update: eDem switched to new page, leaving hack here
+#  in case we have to switch back in a hurry.
+#isEDem = getOption(context, 'canonicalHost') == 'forums.e-democracy.org'
+#reg_page = isEDem and '/login/register.xml' or '/register.html'
+reg_page = '/register.html'
 
 error = []
 if not email:
