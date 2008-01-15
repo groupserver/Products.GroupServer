@@ -47,10 +47,7 @@ group_string = '&'.join(map(lambda x: 'groups:list=%s' % x.split('_member')[0], 
 if error:
     if manual:
         error_string = '&'.join(error)
-        if first_name and last_name:
-            rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, user_id, group_string))
-        else:
-            rstring = str('%s?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, preferred_name, email, user_id, group_string))
+        rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, user_id, group_string))
         return redirect(rstring)
     return 0
 
@@ -75,10 +72,7 @@ except Exception, x:
 if error:
     if manual:
         error_string = '&'.join(error)
-        if first_name and last_name:
-            rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, user_id, group_string))
-        else:
-            rstring = str('%s?%s&came_from=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, preferred_name, email, user_id, group_string))
+        rstring = str('%s?%s&came_from=%s&first_name=%s&last_name=%s&preferred_name=%s&email=%s&user_id=%s&%s' % (reg_page, error_string, came_from, first_name, last_name, preferred_name, email, user_id, group_string))
         return redirect(rstring)
     return 0
     
