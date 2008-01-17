@@ -101,6 +101,56 @@
   </tr>
   <tr>
     <td align="left" valign="top">
+    <div class="form-label">
+    Database Host (eg. localhost)
+    </div>
+    </td>
+    <td align="left" valign="top">
+    <input type="text" name="databaseHost" value="localhost" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+    <div class="form-label">
+    Database Port (eg. 5432)
+    </div>
+    </td>
+    <td align="left" valign="top">
+    <input type="text" name="databasePort" value="5432" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+    <div class="form-label">
+    Database Name (eg. demo_database)
+    </div>
+    </td>
+    <td align="left" valign="top">
+    <input type="text" name="databaseName" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+    <div class="form-label">
+    Database Username
+    </div>
+    </td>
+    <td align="left" valign="top">
+    <input type="text" name="databaseUsername" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+    <div class="form-label">
+    Database Password
+    </div>
+    </td>
+    <td align="left" valign="top">
+    <input type="text" name="databasePassword" size="40" />
+    </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
     </td>
     <td align="left" valign="top">
     <div class="form-element">

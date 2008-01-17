@@ -219,55 +219,72 @@ def init_catalog( groupserver_site ):
             # The key is already in the column
             pass
 
+def init_db_connection( container, databaseHost, databasePort, databaseUsername, databasePassword, databaseName ):
+    databasePort = int(databasePort)
+    assert databasePort != 0
+
+    container.manage_addProduct['ZSQLAlchemy'].manage_addZSQLAlchemy('zsqlalchemy')
+    container.zsqlalchemy.manage_changeProperties(dbtype='postgres',
+                                                  hostname=databaseHost,
+                                                  port=databasePort,
+                                                  username=databaseUsername,
+                                                  password=databasePassword,
+                                                  database=databaseName)
+
 def import_content( container ):
+    # big ugly hack
+    from Products.GroupServer import pathutil
+    
     container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
                                                                 smtp_host='localhost')   
-    instance_home = getConfiguration().instancehome
-    
     objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
-                         'ListManager.zexp', 'Templates.zexp', 'UserProperties.zexp',
-                         'contacts.zexp']
+                         'ListManager.zexp', 'Templates.zexp', 'contacts.zexp']
     
     for object_to_import in objects_to_import:
-        container._importObjectFromFile( '%s/Products/GroupServer/imports/%s' % 
-                                         (instance_home, object_to_import) )
+        container._importObjectFromFile( '%s/%s' % 
+                                         (pathutil.IMPORTPATH, object_to_import) )
 
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
                                support_email, timezone,
                                canonicalHost, userVerificationEmail, registrationEmail,
+                               databaseHost, databasePort,
+                               databaseUsername, databasePassword,
+                               databaseName,
                                REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
     id = container._setObject( id, GroupserverSite( id, title ) )
-    get_transaction().commit()
+    transaction.commit()
     
     gss = getattr( container, id )
 
+    init_db_connection( gss, databaseHost, databasePort, databaseUsername, databasePassword, databaseName )
+
     init_catalog( gss )
-    get_transaction().commit()
+    transaction.commit()
 
     init_id_factory( gss )
-    get_transaction().commit()
+    transaction.commit()
 
     init_file_library( gss )
-    get_transaction().commit()
+    transaction.commit()
     
     import_content( gss )
-    get_transaction().commit()
+    transaction.commit()
     
     init_user_folder( gss, initial_user, initial_password, support_email )
-    get_transaction().commit()
+    transaction.commit()
 
     init_fs_presentation( gss )
-    get_transaction().commit()
+    transaction.commit()
 
     init_fs_scripts( gss )
-    get_transaction().commit()
+    transaction.commit()
 
     init_global_configuration( gss, title, support_email, timezone,
                                canonicalHost, userVerificationEmail, registrationEmail )
-    get_transaction().commit()
+    transaction.commit()
                                
     if REQUEST is None:
         return
