@@ -238,7 +238,7 @@ def import_content( container ):
     container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
                                                                 smtp_host='localhost')   
     objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
-                         'ListManager.zexp', 'Templates.zexp', 'contacts.zexp']
+                         'ListManager.zexp', 'UserProperties.zexp', 'Templates.zexp', 'contacts.zexp']
     
     for object_to_import in objects_to_import:
         container._importObjectFromFile( '%s/%s' % 
