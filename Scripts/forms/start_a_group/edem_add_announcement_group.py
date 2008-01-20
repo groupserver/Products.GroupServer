@@ -33,7 +33,7 @@ container.create.files_area(group)
 container.create.messages_area(group)
 container.create.charter(group, templateId)
 container.create.email_settings(group)
-container.create.administration(group)
+container.create.edem_administration(group)
 groupList = container.create.list_instance(group, canonical_host, siteId,
                                            privacy)
 container.create.default_administrator(group)

@@ -32,7 +32,7 @@ container.create.messages_area(group)
 container.create.charter(group, templateId)
 container.create.members_area(group)
 container.create.email_settings(group)
-container.create.administration(group)
+container.create.edem_administration(group)
 container.create.chat(group)
 groupList = container.create.list_instance(group, canonical_host, siteId,
                                            privacy)
