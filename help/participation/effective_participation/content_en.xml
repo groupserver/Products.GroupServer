@@ -39,7 +39,7 @@
         going on in the group without even reading it. Even if you 
         do open and skim read it, unless you want to respond or act on 
         the post, you can delete it. You can always go to the
-        Messages area to find it again.
+        Topics area to find it again.
       </paragraph>
       
       <paragraph>
@@ -49,7 +49,7 @@
         them there automatically.
         If you prefer, you can delete the emails 
         from your Inbox as you receive them and 
-        read them in the Messages area when you 
+        read them in the Topics area when you 
         are ready.
       </paragraph>
       
@@ -58,15 +58,14 @@
       </heading2>
       
       <paragraph>
-        Stick to the subject described in the subject 
-        line. If you are responding on the same subject, use the 
-        same subject line. If you are starting a new subject, create
-        a new "post" (email) and give it an appropriate subject line.
-        Look at the "Topics" view in the 
-        Messages area of your Online Group now to see
+        Stick to the topic described in the subject 
+        line. If you are responding on the same topic, use the 
+        same subject line. If you are starting a new topic, create
+        a new email and give it an appropriate subject line.
+        Look at the Topics area of your Online Group now to see
         how it organises posts into a readable sequence.
-        You can configure some email clients to 
-        support threading as well.
+        You can configure some email clients to support this 
+        (known as "threading") as well.
       </paragraph>
       
       <heading2 id="3">
@@ -74,13 +73,10 @@
       </heading2>
       
       <paragraph>
-        Delete the text of the "post" you are replying to.
+        Delete the text of the post you are replying to.
         Keep your post as short and to-the-point as possible.
-        The text is already in the messages area (leaving the 
-        text of the previous message on your post reduces the "signal 
-        to noise" ratio and leads to "false positive" 
-        search results). "Quote" from the previous post minimally
-        and clearly.
+        The text is already in the Topics area. Quote from 
+        the previous post minimally and clearly.
       </paragraph>
       
       <heading2 id="4">
@@ -92,21 +88,21 @@
       </paragraph>
 
       <bulletlist>
-	<listitem>
-	    when sending an email to the group, add one or more files 
-	    to your email as attachments
-	</listitem>
-	<listitem>
-	    when posting a message from this website, click the "Browse" 
-            button under the "File" heading and choose one single file to 
-	    share with the group
-	</listitem>
+      	<listitem>
+    	    when sending an email to the group, add one or more files 
+    	    to your email as attachments
+      	</listitem>
+      	<listitem>
+    	    when posting a message from this website, click the "Browse" 
+          button under the "File" heading and choose one single file to 
+    	    share with the group
+      	</listitem>
        </bulletlist>
 
        <paragraph>
-	The files will be added to your post as links, and a list of posts 
-	with files is clearly displayed at the top of the page when viewing 
-	a topic.
+      	The files will be uploaded to the site, and a link to each file added
+      	to your post. A list of the posts with attached files is clearly 
+      	displayed at the top of the page when viewing a topic.
        </paragraph>
       
       <paragraph>
@@ -152,9 +148,10 @@
       
       <bulletlist>
         <listitem>
-          never forward an email (or document) you have received to a third 
-          person without the original sender's consent (unless the content 
-          is obviously in the public domain)</listitem>
+          never forward an email (or document) to a third person without
+          the original sender's consent (unless the content is obviously 
+          in the public domain)
+        </listitem>
         
         <listitem>
           never send large file attachments without the recipient's consent
@@ -184,7 +181,7 @@
         </listitem>
         
         <listitem>
-        <link url="http://help.mindspring.com/docs/006/emailheaders/emailheaders.php3 "
+        <link url="http://www.help.mindspring.com/docs/006/emailheaders/emailheaders.php3"
             target="_blank">Email Headers explained</link>
         </listitem>
         

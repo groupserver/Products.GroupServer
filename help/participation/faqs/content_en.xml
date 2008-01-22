@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <root xmlns:tal="http://xml.zope.org/namespaces/tal">
   <output>
-    <content>
+    <content
+      tal:define="site context/Scripts/get/division_object;
+        authenticated python:'Authenticated' in user.getRolesInContext(site)">
       
       <heading1>
         Frequently Asked Questions
@@ -10,21 +12,26 @@
       <faqs>
         <faq>
           <question>
-	    How do I find the email address for my Online Group?
+      	    How do I find the email address for my Online Group?
           </question>
           <answer>
-            The email address for your Online Group is on the Online Group's main page on this site.
-            Go to the 'Groups' section and then click the link to your Online Group.
+            The email address for your Online Group is on the Online Group's 
+            home page on this site. Go to the <a href="/groups">Groups section</a>
+            and then click the link to your Online Group.
           </answer>
         </faq>
 
         <faq>
           <question>
-            I did not receive an email notifying me about my Online Group. What do I do?
+            I did not receive an email notifying me about my Online Group. What 
+            do I do?
           </question>
           <answer>
-            If you are reading this, you do not need that email. Please make sure that your email 
-            address(es) is(are) specified correctly on your profile page.
+            If you are reading this, you do not need that email. Please make 
+            sure that your email address(es) is/are registered to your profile 
+            by visiting your 
+            <a tal:attributes="href python:'/contacts/%s/useremail' % user.getId()"
+              tal:omit-tag="python:not(authenticated)">Edit Email Settings page</a>.
             Then simply try posting to your Online Group.
           </answer>
         </faq>
@@ -32,64 +39,90 @@
         <faq>
           <question>
             I sent an email to my Online Group and it hasn't appeared in the 
-            'Messages' section of my Online Group.
+            Topics section of my Online Group.
           </question>
           <answer>
-	    First check that the message was sent to the Online Group. 
-            If it was, you will have received a copy of your own message. 
-            It will have a shortened version of the Online Group name in the
-            subject line (e.g. [groupname]).
-            If you got the message and it is not in the 'Messages' section of the Online Group, please contact us.
-            If you did not receive the message, check to make sure the address 
-            you sent it to was correct. 
-            Also check that the email address you sent the message from is 
-            correct by going to your profile page. 
+      	    First, check that the message was sent to the Online Group. If it 
+      	    was, you will have received a copy of your own message. It will have
+      	    a shortened version of the Online Group name in the subject line 
+      	    (e.g. [groupname]). If you got the message and it is not in the 
+      	    Topics section of the Online Group, please contact us. If you did 
+      	    not receive the message, check to make sure the email address you 
+      	    sent it to was correct. Also check that the email address you sent 
+      	    the message from is registered to your profile. You can do this by 
+      	    going to your 
+            <a tal:attributes="href python:'/contacts/%s/useremail' % user.getId()"
+              tal:omit-tag="python:not(authenticated)">Edit Email Settings page</a>.
             You can change your email address(es) there if neccessary.
           </answer>
         </faq>
 
         <faq>
           <question>
-	    How do I change my email address?
-	  </question>
+      	    How do I change my email address?
+      	  </question>
           <answer>
-	    Go to your profile page.
-	    Click the Change Email Settings link in the menu. 
-	    On this page you can add or remove email address(es).
-            To add an email address, type your email address into the 'New Address' field and click 'Add Address'. 
-            To remove an email address, click the button to the left of it and then click 'Remove Address'.
+      	    Go to your
+            <a tal:attributes="href python:'/contacts/%s/' % user.getId()"
+              tal:omit-tag="python:not(authenticated)">profile page</a>.
+            Click the Edit Email Settings link in the menu. On this page you can
+            add or remove email addresses. To add an email address, type your 
+            email address into the 'New Address' field and click 'Add Address'. 
+            To remove an email address, click the button to the left of it and 
+            then click 'Remove Address'.
           </answer>
-	</faq>
+      	</faq>
         
         <faq>
           <question>
-	    When I post to my Online Group, it tells me
-            I am not a member of the group but I am.
-	  </question>
+      	    When I send an email to my Online Group, I receive an email
+      	    telling me I am not a member of the group even though I am.
+      	  </question>
           <answer>
-	    It may be that your email is configured such that your outgoing messages are sent from a different email address to the one that you use to receive incoming messages. The difference may be slight but it will mean that you cannot post (send email to) Online Groups. If this is the case, go to your profile page and click 'Change Email Settings'. From there, you can add the email address that you use for sending messages.
+      	    It may be that your email is configured such that your outgoing
+      	    messages are sent from a different email address to the one that you
+      	    use to receive incoming messages. The difference may be slight, but
+      	    it will still mean that you cannot post to Online Groups via email.
+      	    Very carefully, compare the email address mentioned in the reply you
+      	    received ("2. You have not specified the email address &lt;...&gt; 
+      	    on the site...") with the email addresses on your 
+            <a tal:attributes="href python:'/contacts/%s/useremail' % user.getId()"
+              tal:omit-tag="python:not(authenticated)">Edit Email Settings page</a>.
+            If the email address mentioned in the email is not listed there, 
+            add it (see "How do I change my email address?" above).
           </answer>
         </faq>
         
         <faq>
           <question>
-	    On my 'Change Email Settings' page, what does 'Default Email Delivery' mean?
-	  </question>
+      	    On my 'Edit Email Settings' page, what does 'Default Email Delivery'
+      	    mean?
+      	  </question>
           <answer>
-	    If you tick the box next to one of your email addresses and click 'Add to Default', you will receive posts from all your online groups at that address unless you specify otherwise.
-	  </answer>
-	</faq>
+	          If you tick the box next to one of your email addresses and click 
+	          'Add to Default', you will receive posts from all your Online Groups
+	          at that address unless you specify otherwise.
+          </answer>
+        </faq>
 
-	<faq>
-	  <question>
-	    How do I change my settings so that messages from one or more particular groups are delivered to an email address that is not in my list of default addresses?
-	  </question>
-	  <answer>
-	    View your profile page and click 'Change Email Settings'. Under the heading 'Group Email Delivery Settings', find the group(s) for which that you wish to change delivery settings and click 'Change' next to 'Email Setting'. Choose the 'Specific Address or Addresses' option and check the box next to the email address(es) at which you wish to receive the messages from this group.
+        <faq>
+          <question>
+            How do I change my settings so that messages from one or more 
+            particular groups are delivered to an email address that is not in 
+            my list of default addresses?
+          </question>
+      	  <answer>
+      	    View your profile page and click the 'Edit Email Settings' link. 
+      	    Under the heading 'Group Email Delivery Settings', find the group(s)
+      	    for which that you wish to change delivery settings and click 
+      	    'Change' on the line beginning 'Email Setting:'. Choose the 
+      	    'Specific Address or Addresses' option and check the box next to the
+      	    email address(es) at which you wish to receive the messages from 
+      	    this group.
           </answer>
         </faq>
-        
       </faqs>
+      
     </content>
   </output>
 </root>
