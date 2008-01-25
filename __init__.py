@@ -1,10 +1,12 @@
+import os
 from Products.FileSystemSite.DirectoryView import registerDirectory
 
-registerDirectory( 'Products/GroupServer/Scripts', globals() )
-registerDirectory( 'Products/GroupServer/Presentation', globals() )
-registerDirectory( 'Products/GroupServer/help', globals() )
-registerDirectory( 'Products/GroupServer/admindivision', globals() )
-registerDirectory( 'Products/GroupServer/admingroup', globals() )
+GROUPSERVERPATH = os.path.dirname(__file__)
+registerDirectory( os.path.join(GROUPSERVERPATH, 'Scripts'), globals() )
+registerDirectory( os.path.join(GROUPSERVERPATH, 'Presentation'), globals() )
+registerDirectory( os.path.join(GROUPSERVERPATH, 'help'), globals() )
+registerDirectory( os.path.join(GROUPSERVERPATH, 'admindivision'), globals() )
+registerDirectory( os.path.join(GROUPSERVERPATH, 'admingroup'), globals() )
 
 import groupserver
 
