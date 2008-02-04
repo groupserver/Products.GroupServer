@@ -28,7 +28,9 @@ group = getattr(site.groups, group_id)
 
 # Get the participation-coach for the group
 ptnCoachId = group.getProperty('ptn_coach_id', '')
-ptnCoach = site_root.acl_users.getUser(ptnCoachId)
+ptnCoach = None
+if ptnCoachId:
+    ptnCoach = site_root.acl_users.getUser(ptnCoachId)
 
 # The dictionary of values for the admin notifications.
 #  The last two keys are superfluous on OGN, but included
