@@ -22,7 +22,7 @@ assert group
 
 # Add a messages area
 xwfmail = group.manage_addProduct['XWFMailingListManager']
-xwfmail.manage_addXWFVirtualMailingListArchive2('messages', 'messages')
+xwfmail.manage_addXWFVirtualMailingListArchive2('messages', 'Messages')
 
 assert group.messages, 'Messages area not added to "s"' % group.getId()
 

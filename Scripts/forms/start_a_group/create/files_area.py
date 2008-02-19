@@ -21,7 +21,7 @@
 assert group
 
 xwffiles = group.manage_addProduct['XWFFileLibrary2']
-xwffiles.manage_addXWFVirtualFileFolder2('files', 'files')
+xwffiles.manage_addXWFVirtualFileFolder2('files', 'Files')
 
 assert hasattr(group.aq_explicit, 'files'), \
   'Files area not added to "%s"' % group.getId()
