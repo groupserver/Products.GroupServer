@@ -41,7 +41,7 @@
               <xf:hint>Select the site members you wish to add to the
                 group</xf:hint>
               <xf:item tal:repeat="userobj python:filter(lambda x:x not in group_members, here.Scripts.get.division_users(division_object.getId()))">
-                <xf:label tal:content="python:'%s (%s)' % (realnames(userobj), userobj.getId())">blarg</xf:label>
+                <xf:label tal:content="python:'%s (%s)' % (realnames(usr=userobj, user_id=userobj.getId()), userobj.getId())">blarg</xf:label>
                 <xf:value tal:content="userobj/getId">blarg</xf:value>
               </xf:item>
             </xf:select>
@@ -61,7 +61,7 @@
             <xf:hint>The following are the current members of
             <span tal:replace="group_object/title_or_id"/>.</xf:hint>
             <xf:item tal:repeat="userobj here/Scripts/get/group_members">
-              <xf:label tal:content="python:'%s (%s)' % (realnames(userobj), userobj.getId())">blarg</xf:label>
+              <xf:label tal:content="python:'%s (%s)' % (realnames(usr=userobj, user_id=userobj.getId()), userobj.getId())">blarg</xf:label>
             <xf:value tal:content="userobj/getId">blarg</xf:value>
             </xf:item>
           </xf:select>
