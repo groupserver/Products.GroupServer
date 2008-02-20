@@ -340,11 +340,11 @@
             The <cite>Log In</cite> page will open.
           </li>
           <li>
-            Type your user name and password into the respective fields.
+            Type your email address and password into the respective fields.
           </li>
           <li>
             Click the <samp class="button">Log In</samp> button.
-            The homepage will be shown, with your user name at the top-right of
+            The homepage will be shown, with your display name at the top-right of
             the page.
           </li>
         </ol>
@@ -372,7 +372,6 @@
             password.
             Carry out the following to reset your password.
           </p>
-          
           <ol>
             <li>
               Click on <samp class="link">Log In</samp>, on 
@@ -382,22 +381,29 @@
               The <cite>Log In</cite> page will open.
             </li>
             <li>
-              Click <samp class="link">Reset password</samp> to open
+              Click <samp class="link">Reset Password</samp> to open
               the <cite>Reset Password</cite> page.
             </li>
             <li>
-              Enter your email address, <em>or</em> your user name, into the
-              <samp class="field">Address</samp> field.
+              Enter your email address into the
+              <samp class="field">Email Address</samp> field.
             </li>
             <li>
               Click the <samp class="button">Reset</samp> button.
-              A message, containing a new password, will be  sent to all email
-              addresses listed with <span class="site" tal:content="siteName"/>.
+              A message will be sent to all your
+              email addresses listed with <span class="site" tal:content="siteName"/>
+              (see 
+              <cite
+                href="#groupserver-profile-adding-an-email-address">Adding
+                an Email Address</cite>).
             </li>
             <li>
-              Log in to <span class="site" tal:content="siteName"/> using your new password
-              (see <cite href="#groupserver-log-in-to-groupserver">Logging
-                In to <span class="site" tal:content="siteName"/></cite>).
+              The message will contain a link. Click on the link.
+            </li>
+            <li>
+              Choose a new password, enter it into the first text box and 
+              confirm it in the second, and click the 
+              <samp class="button">Set</samp> button.
             </li>
           </ol>
         </section>
