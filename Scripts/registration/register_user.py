@@ -26,14 +26,25 @@ error = []
 if not email:
     error.append('error:list=email')
 
-if not 'fn' in form.keys():
-    form['fn'] = preferred_name
-    
-if first_name and 'givenName' not in form.keys():
-    form['givenName'] = first_name
+if form:
+  if not 'fn' in form.keys():
+      form['fn'] = preferred_name
+      
+  if first_name and 'givenName' not in form.keys():
+      form['givenName'] = first_name
 
-if last_name and 'familyName' not in form.keys():
-    form['familyName'] = last_name
+  if last_name and 'familyName' not in form.keys():
+      form['familyName'] = last_name
+
+if userproperties:
+  if not 'fn' in userproperties.keys():
+      userproperties['fn'] = preferred_name
+      
+  if first_name and 'givenName' not in userproperties.keys():
+      userproperties['givenName'] = first_name
+
+  if last_name and 'familyName' not in userproperties.keys():
+      userproperties['familyName'] = last_name
 
 if manual:
     required_props = filter(lambda x: x.getProperty('required', 0), context.UserProperties.objectValues())
@@ -78,14 +89,6 @@ if error:
     
 user = site_root.acl_users.getUser(user_id)
 
-for prop in userproperties.keys():
-    prop_def = getattr(site_root.UserProperties.aq_explicit, prop, None)
-    if prop_def and prop != 'email':
-        if user.hasProperty(prop):
-            user.manage_changeProperties({prop: userproperties[prop]})
-        else:
-            user.manage_addProperty(prop, userproperties[prop], prop_def.getProperty('property_type'))
-
 for prop in form:
     try:
         prop_def = getattr(site_root.UserProperties.aq_explicit, prop, None)
@@ -97,6 +100,14 @@ for prop in form:
             user.manage_changeProperties({prop: form[prop]})
         else:
             user.manage_addProperty(prop, form[prop], prop_def.getProperty('property_type'))
+
+for prop in userproperties.keys():
+    prop_def = getattr(site_root.UserProperties.aq_explicit, prop, None)
+    if prop_def and prop != 'email':
+        if user.hasProperty(prop):
+            user.manage_changeProperties({prop: userproperties[prop]})
+        else:
+            user.manage_addProperty(prop, userproperties[prop], prop_def.getProperty('property_type'))
 
 if groups:
     user.set_verificationGroups(groups)
