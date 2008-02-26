@@ -10,7 +10,7 @@
 site_root = context.site_root()
 
 def sorter(a,b):
-    if a.getProperty('lastName') > b.getProperty('lastName'):
+    if a.getProperty('familyName') > b.getProperty('familyName'):
         return 1
     else:
         return -1
