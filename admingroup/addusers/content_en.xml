@@ -36,7 +36,7 @@
                 the details of a new member</link>, or</listitem>
           <listitem>Advanced users can 
               <link title="Add bulk members in bulk" url="createbulkusers"
-               tal:attributes="string:/groups/${group_object/getId}/admin_join_csv.html">upload
+               tal:attributes="url string:/groups/${group_object/getId}/admin_join_csv.html">upload
                the details of multiple members using a CSV file</link>.
             </listitem>
           </numberedlist>
