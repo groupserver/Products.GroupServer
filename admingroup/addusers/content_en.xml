@@ -30,13 +30,14 @@
                 members</link><span tal:condition="python: not(potential_members)"
                   tal:content="string: (all site members are members of this group)"/>,
               </listitem>
-            <listitem><link title="Add a new member"
-                url="create_single_user">Enter the details of a new member</link>,
-              or</listitem>
+            <listitem>
+              <link title="Add a new member" url="create_single_user"
+                tal:attributes="url string:/groups/${group_object/getId}/admin_join.html">Enter
+                the details of a new member</link>, or</listitem>
           <listitem>Advanced users can 
-              <link title="Add bulk members in bulk"
-                url="createbulkusers">upload the details of multiple
-                members using a CSV file</link>.
+              <link title="Add bulk members in bulk" url="createbulkusers"
+               tal:attributes="string:/groups/${group_object/getId}/admin_join_csv.html">upload
+               the details of multiple members using a CSV file</link>.
             </listitem>
           </numberedlist>
         </tal:block><!--canJoin-->
