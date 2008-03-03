@@ -54,14 +54,6 @@ group.files.manage_permission('View', [], 1)
 group.files.manage_permission('Access contents information', [], 1)
 group.messages.manage_permission('View', [], 1)
 group.messages.manage_permission('Access contents information', [], 1)
-
-# In an OGN goup, group and site administrators can add users.
-group.manage_permission('Manage users', 
-                        ['DivisionAdmin','GroupAdmin','Manager','Owner'],0)
-# In an OGN goup, only site administrators can alter the properties
-group.manage_permission('Manage properties', 
-                        ['DivisionAdmin','Manager','Owner'],0)
-
 # Add the "mailinlist_members" script to the mailing list object, if we
 #    are creating an announcement group.
 if templateId == 'announcement':
