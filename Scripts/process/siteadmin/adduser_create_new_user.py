@@ -13,7 +13,11 @@ assert not site_root.acl_users.get_userByEmail(email)
 
 result = {}
 
-userproperties['preferredName'] = preferredname
+userproperties['fn'] = preferredname
+if firstname:
+    userproperties['givenName'] = firstname
+if lastname:
+    userproperties['familyName'] = lastname
 
 user = context.Scripts.registration.register_user(firstname, lastname, preferredname,
                                                   email, userid, siteid,
