@@ -8,7 +8,20 @@
 ##title=
 ##
 
+def sorter(a,b):
+   if a ==None or b == None:
+      return 0
+   nameA = a.getProperty('fn', '')
+   nameB = b.getProperty('fn', '')
+   if nameA.lower() > nameB.lower():
+      return 1
+   else:
+      return -1
+
 divisionGroup = '%s_member' % divisionId
 users = context.Scripts.get.users_from_groups([divisionGroup])
 
+users = filter(lambda u: u != None, users)
+users.sort(sorter)
+assert users
 return users
