@@ -9,6 +9,7 @@
 ##
 from Products.PythonScripts.standard import html_quote
 import DateTime
+from Products.GSProfile.utils import send_verification_message
 
 assert siteId
 assert groupId
@@ -27,21 +28,12 @@ if userObj.hasProperty('reminders_sent'):
 else:
     userObj.manage_addProperty('reminders_sent', [DateTime.DateTime()], 
                                'lines')
-
 site = getattr(site_root.Content, siteId)
-siteName = context.Scripts.get.option('canonicalHost') or site.title_or_id()
-group = getattr(site.groups, groupId)
-canonicalHost = context.Scripts.get.option('canonicalHost',
-                                           'onlinegroups.net')
-email_addresses  = userObj.get_defaultDeliveryEmailAddresses()
-n_dict = {'first_name': userObj.firstName,
-          'last_name':  userObj.lastName,
-          'to_addr':    email_addresses[0],
-          'site_name':  siteName,
-          'group_name': group.title_or_id(),
-          'cannonical_host': canonicalHost}
-userObj.send_notification('confirm_registration',
-                          'verification_reminder',
-                          n_dict=n_dict)
+verified = userObj.get_verifiedEmailAddresses()
+allAddr = userObj.get_emailAddresses()
+unverified = [e for e in allAddr if e not in verified]
+
+for email in unverified:
+    send_verification_message(site, userObj, email)
 return (True, '')
 
