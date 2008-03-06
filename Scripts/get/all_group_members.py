@@ -9,7 +9,7 @@
 ##
 
 def sorter(a,b):
-    if a.getProperty('lastName').lower() > b.getProperty('lastName').lower():
+    if a.getProperty('fn', '').lower() > b.getProperty('fn', '').lower():
         return 1
     else:
         return -1

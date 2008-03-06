@@ -22,5 +22,7 @@
 assert group
 
 user = context.REQUEST.AUTHENTICATED_USER
+assert user
 user.add_groupWithNotification('%s_member' % group.getId())
 group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
+

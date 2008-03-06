@@ -27,7 +27,10 @@ unverifiedGroupUserIds = map(lambda u: u.getId(),
                              group.Scripts.get.unverified_group_members()) 
 
 ptnCoachId = group.getProperty('ptn_coach_id', '')
-ptnCoach = site_root.acl_users.getUser(ptnCoachId)
+ptnCoach = None
+if ptnCoachId:
+  ptnCoach = site_root.acl_users.getUser(ptnCoachId)
+  
 
 # Only inform the participation coach if he or she is *not* the user
 #   who is removing all the people at the moment.
