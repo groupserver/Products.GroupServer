@@ -22,7 +22,10 @@
       postingMembers python: (isGroupAnnouncement and group_object.messages.get_listProperty(group_object.getId(), 'posting_members')) or [];
       joinable python:here.LocalScripts.get.usersCanJoinGroup(group_object.getId(),True);
       canJoin python:joinable[0];
-      unverifiedUsers here/Scripts/get/unverified_group_members;">
+      unverifiedUsers here/Scripts/get/unverified_group_members;
+      allMembers here/Scripts/get/group_members;
+      unverifiedUserObjs python:filter(lambda u:u.get_verifiedEmailAddresses()==[],allMembers);
+      unverifiedUsers python:map(lambda u:u.getId(), unverifiedUserObjs)">
       
       <heading1>
         Manage the Members of 
@@ -112,7 +115,7 @@
       
       <bulletlist class="contacts">
         <tal:block
-          tal:repeat="userobj here/Scripts/get/all_group_members">
+          tal:repeat="userobj allMembers">
           <tal:block
             tal:define="roles python:userobj.getRolesInContext(group_object);
             isSiteAdmin python:'DivisionAdmin' in roles;
@@ -121,7 +124,7 @@
             isModerated python:userobj.getId() in moderated_members_ids;
             isModerator python:userobj.getId() in moderator_ids;
             isPoster python:(not isGroupAnnouncement) or (userobj.getId() in postingMembers);
-            isUnverified python:userobj in unverifiedUsers;
+            isUnverified python:userobj.getId() in unverifiedUsers;
             isNormal python:not (isSiteAdmin or isGroupAdmin or isPtnCoach or isModerator or isModerated or isUnverified) and ((not isPoster and isGroupAnnouncement) or (isPoster and not isGroupAnnouncement));"
             tal:condition="python:((not editIds) or userobj.getId() in editIds ) and (showMembers=='all') or (isModerated and (showMembers=='moderated')) or ((isGroupAdmin or isSiteAdmin) and (showMembers=='managers')) or ((isGroupAnnouncement and isPoster) and (showMembers=='posting')) or (isUnverified and (showMembers=='unverified'))">
             <listitem>
@@ -129,7 +132,7 @@
                 tal:attributes="url string:/contacts/${userobj/getId};
                 id string:${userobj/getId}">
                 <span class="name"
-                  tal:content="userobj/preferredName | nothing"/>
+                  tal:content="userobj/fn | nothing"/>
               </link><!--name-->
               &#8212;
               <span class="membershipStatus"
@@ -182,7 +185,7 @@
                   tal:condition="python:(not isUnverified) and not isPtnCoach and not isModerated">
                   <xf:item>
                     <xf:label>Make
-                      <span tal:replace="userobj/preferredName"/>
+                      <span tal:replace="userobj/fn | nothing"/>
                       the participation coach.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
@@ -194,7 +197,7 @@
                   tal:condition="isPtnCoach">
                   <xf:item>
                     <xf:label>Revoke participation coach status from
-                      <span tal:replace="userobj/preferredName"/>.
+                      <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
                   </xf:item>
@@ -205,7 +208,7 @@
                   tal:condition="python:(not isUnverified) and ((not(isSiteAdmin or isGroupAdmin)) and (not isModerated)) and (isNormal or isPtnCoach or isModerator)">
                   <xf:item>
                     <xf:label>Make
-                      <span tal:replace="userobj/preferredName"/>
+                      <span tal:replace="userobj/fn | nothing"/>
                       a group administrator.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
@@ -217,7 +220,7 @@
                   tal:condition="isGroupAdmin">
                   <xf:item>
                     <xf:label>Revoke the administrator privilages from
-                      <span tal:replace="userobj/preferredName"/>.
+                      <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
                   </xf:item>
@@ -228,7 +231,7 @@
                   tal:condition="python:(not isUnverified) and isGroupModerated and (not (isModerated or isModerator))">
                   <xf:item>
                     <xf:label>Make
-                      <span tal:replace="userobj/preferredName"/>
+                      <span tal:replace="userobj/fn | nothing"/>
                       a moderator for this group.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
@@ -240,7 +243,7 @@
                   tal:condition="python:(not isUnverified) and isModerator and isGroupModerated">
                   <xf:item>
                     <xf:label>Revoke moderator status from
-                      <span tal:replace="userobj/preferredName"/>.
+                      <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
                   </xf:item>
@@ -251,7 +254,7 @@
                   tal:condition="python:(not isUnverified) and isGroupModerated and (not isModerated) and not (isGroupAdmin or isSiteAdmin or isPtnCoach or isModerator)">
                   <xf:item>
                     <xf:label>Start moderating messages from
-                      <span tal:replace="userobj/preferredName"/>.
+                      <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
                   </xf:item>
@@ -262,7 +265,7 @@
                   tal:condition="python:(not isUnverified) and isModerated and isGroupModerated">
                   <xf:item>
                     <xf:label>Stop moderating messages from
-                    <span tal:replace="userobj/preferredName"/>.
+                    <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
                   </xf:item>
@@ -273,7 +276,7 @@
                   tal:condition="python:(not isUnverified) and isGroupAnnouncement and (not isPoster) and (len(postingMembers) &lt; 5)">
                   <xf:item>
                     <xf:label>Make 
-                      <span tal:replace="userobj/preferredName"/>
+                      <span tal:replace="userobj/fn | nothing"/>
                       a posting member.
                     </xf:label>
                   <xf:value tal:content="userobj/getId"></xf:value>
@@ -285,7 +288,7 @@
                   tal:condition="python:(not isUnverified) and isGroupAnnouncement and isPoster">
                   <xf:item>
                     <xf:label>Revoke the ability to post, from
-                    <span tal:replace="userobj/preferredName"/>.
+                    <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                   <xf:value tal:content="userobj/getId"></xf:value>
                   </xf:item>
@@ -296,7 +299,7 @@
                     <link 
                       tal:attributes="url string:send_verification_reminder?userId=${userobj/getId}">Send
                       a verification reminder</link> to
-                    <span tal:replace="userobj/preferredName" />
+                    <span tal:replace="userobj/fn | nothing" />
                   </listitem>
                 </bulletlist>
                 
@@ -304,7 +307,7 @@
                   ref="group_remove_userid">
                   <xf:item>
                     <xf:label>Remove
-                      <span tal:replace="userobj/preferredName"/>
+                      <span tal:replace="userobj/fn | nothing"/>
                       from 
                     <span tal:replace="group_object/title_or_id"/>.
                     </xf:label>
