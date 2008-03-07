@@ -8,7 +8,7 @@
       <submitted>1</submitted>
 
       <userid tal:content="python:request.get('userId','') or (request.get('form', '') and request['form']['userid'])"/>
-            
+      <adminid tal:content="request/AUTHENTICATED_USER/getId">Me!</adminid>
       <groupid tal:content="group_object/getId">group id</groupid>
       <siteid
         tal:content="site_object/getId">division id</siteid>

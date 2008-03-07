@@ -16,6 +16,7 @@ form = context.REQUEST.form
 assert form.has_key('siteid')
 assert form.has_key('groupid')
 assert form.has_key('userid')
+assert form.has_key('adminid')
 result['form'] = form
 
 for field in form:
@@ -27,8 +28,10 @@ for field in form:
 siteId = form['siteid']
 groupId = form['groupid']
 userId = form['userid']
+adminId = form['adminid']
 
-retval = container.send_verification_reminder(siteId, groupId, userId)
+retval = container.send_verification_reminder(siteId, groupId, 
+                                              userId, adminId)
 if retval[0]:
     result['error'] = False
     result['message'] = '''The verification reminder has been sent.'''
