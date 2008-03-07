@@ -113,7 +113,7 @@
         </listitem>
       </bulletlist>
       
-      <bulletlist class="contacts">
+      <div class="contacts">
         <tal:block
           tal:repeat="userobj allMembers">
           <tal:block
@@ -127,57 +127,59 @@
             isUnverified python:userobj.getId() in unverifiedUsers;
             isNormal python:not (isSiteAdmin or isGroupAdmin or isPtnCoach or isModerator or isModerated or isUnverified) and ((not isPoster and isGroupAnnouncement) or (isPoster and not isGroupAnnouncement));"
             tal:condition="python:((not editIds) or userobj.getId() in editIds ) and (showMembers=='all') or (isModerated and (showMembers=='moderated')) or ((isGroupAdmin or isSiteAdmin) and (showMembers=='managers')) or ((isGroupAnnouncement and isPoster) and (showMembers=='posting')) or (isUnverified and (showMembers=='unverified'))">
-            <listitem>
-              <link class="name"
-                tal:attributes="url string:/contacts/${userobj/getId};
-                id string:${userobj/getId}">
-                <span class="name"
-                  tal:content="userobj/fn | nothing"/>
-              </link><!--name-->
-              &#8212;
-              <span class="membershipStatus"
-                tal:condition="isSiteAdmin">
-                Site Administrator
-              </span>
-              <span class="membershipStatus"
-                tal:condition="python:isGroupAdmin and (not isSiteAdmin)">
-                Group Administrator
-              </span>
-              <span 
-                tal:condition="python:(isSiteAdmin or isGroupAdmin) and isPtnCoach">and</span>
-              <span class="membershipStatus"
-                tal:condition="isPtnCoach">
-                Participation Coach
-              </span>
-              <span 
-                tal:condition="python:(isSiteAdmin or isGroupAdmin or isPtnCoach) and (isModerator and isGroupModerated)">and</span>
-              <span class="membershipStatus"
-                tal:condition="python:isModerator and isGroupModerated">
-                Moderator for         
-                <span class="group" tal:content="group_object/title_or_id"/>
-              </span>
-              <span class="membershipStatus"
-                tal:condition="python:isModerated and isGroupModerated">
-                Moderated Member
-              </span>
-              <span 
-                tal:condition="python:(isSiteAdmin or isGroupAdmin or isPtnCoach or (isModerator and isGroupModerated)) and isGroupAnnouncement and isPoster">and</span>
-              <span tal:condition="python:isGroupAnnouncement and isPoster">
-                Posting Member
-              </span>
-              <span class="membershipStatus" tal:condition="isUnverified">
-                Unverified Member
-              </span>
-              
-              <span class="membershipStatus"
-                tal:condition="python:isNormal">
-                Normal Member
-              </span>
-              <span class="membershipStatus"
-                tal:condition="python:isModerated and (isSiteAdmin or isGroupAdmin or isPtnCoach and isModerator)">
-                An Oddly Configured Member. (Please contact
-                <link url="mailto:support@onlinegroups.net">support@onlinegroups.net</link>.)
-              </span>
+            <div class="member">
+              <heading3>
+                <link class="fn"
+                  tal:attributes="url string:/contacts/${userobj/getId};
+                  id string:${userobj/getId}">
+                  <span class="name"
+                    tal:content="userobj/fn | nothing"/>
+                </link><!--name-->
+                &#8212;
+                <span class="membershipStatus"
+                  tal:condition="isSiteAdmin">
+                  Site Administrator
+                </span>
+                <span class="membershipStatus"
+                  tal:condition="python:isGroupAdmin and (not isSiteAdmin)">
+                  Group Administrator
+                </span>
+                <span 
+                  tal:condition="python:(isSiteAdmin or isGroupAdmin) and isPtnCoach">and</span>
+                <span class="membershipStatus"
+                  tal:condition="isPtnCoach">
+                  Participation Coach
+                </span>
+                <span 
+                  tal:condition="python:(isSiteAdmin or isGroupAdmin or isPtnCoach) and (isModerator and isGroupModerated)">and</span>
+                <span class="membershipStatus"
+                  tal:condition="python:isModerator and isGroupModerated">
+                  Moderator for         
+                  <span class="group" tal:content="group_object/title_or_id"/>
+                </span>
+                <span class="membershipStatus"
+                  tal:condition="python:isModerated and isGroupModerated">
+                  Moderated Member
+                </span>
+                <span 
+                  tal:condition="python:(isSiteAdmin or isGroupAdmin or isPtnCoach or (isModerator and isGroupModerated)) and isGroupAnnouncement and isPoster">and</span>
+                <span tal:condition="python:isGroupAnnouncement and isPoster">
+                  Posting Member
+                </span>
+                <span class="membershipStatus" tal:condition="isUnverified">
+                  Unverified Member
+                </span>
+                
+                <span class="membershipStatus"
+                  tal:condition="python:isNormal">
+                  Normal Member
+                </span>
+                <span class="membershipStatus"
+                  tal:condition="python:isModerated and (isSiteAdmin or isGroupAdmin or isPtnCoach and isModerator)">
+                  An Oddly Configured Member. (Please contact
+                  <link url="mailto:support@onlinegroups.net">support@onlinegroups.net</link>.)
+                </span>
+              </heading3>
               <div class="userOptions">
                 
                 <xf:select1 appearance="full" model="manage_group_members"
@@ -315,10 +317,10 @@
                   </xf:item>
                 </xf:select>
               </div><!--userOptions-->
-            </listitem>
+            </div>
           </tal:block>
         </tal:block>
-      </bulletlist><!--memberlist-->
+      </div><!--memberlist-->
       
       <xf:submit class="button" model="manage_group_members"
         submission="change">
