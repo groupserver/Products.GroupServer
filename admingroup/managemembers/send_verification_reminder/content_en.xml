@@ -11,7 +11,7 @@
       site_root here/site_root;
       group_object here/Scripts/get/group_object;
       userId python:request.get('userId','') or (request.get('form', '') and request['form']['userid']);
-      userName python:here.Scripts.get.user_realnames(userId, True);">
+      userName python:here.Scripts.get.user_realnames(userId);">
       
       <tal:block tal:condition="userId"
         tal:define="canSendReminders python:True;">
