@@ -38,8 +38,9 @@
         <span tal:replace="python:member_count == 1 and 'is %s member' % member_count or 'are %s members' % member_count"/>
         <span tal:condition="unverifiedUsers"
           tal:define="u_member_count python:len(unverifiedUsers)">
-          — and
-          <span tal:replace="python:u_member_count == 1 and '%s unverified member' % u_member_count or '%s unverified members' % u_member_count"/>
+          — of which
+          <span tal:replace="python:u_member_count == 1 and '%s member is' % u_member_count or '%s members are' % u_member_count"/>
+          unverified
           —
         </span>
         in this group.
