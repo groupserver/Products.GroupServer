@@ -1004,38 +1004,40 @@
               Carry out the following, to change how you are informed of
               messages posted to a group.
             </p>
-            
-            <ol>
-              <li>
-                Join the group (see
-                <cite href="#groupserver-joining-a-group">Joining
-                  a Group</cite>).
-              </li>
-              <li>
-                View the group (see
-                <cite href="#groupserver-viewing-a-group">Viewing a 
-                  Group</cite>).
-              </li>
-              <li>
-                Click <samp class="link">Change your email settings</samp>, 
-                which is found in the
-                <samp class="field">Members</samp> section of the group 
-                homepage, or <samp class="link">Email settings</samp> in the
-                context-menu for the group.
-                The <cite>Email Delivery Settings</cite> page for the group
-                will be shown.
-              </li>
-              <li>
-                Select the desired notification option from the 
-                <samp class="list">Message Notification</samp> list (see
-                <cite 
-                  href="#groupserver-tab-message-notification-preferences">Message
-                  Notification Preferences</cite>).
-              </li>
-              <li>
-                Click the <samp class="button">Change</samp> button.
-              </li>
-            </ol>
+
+            <div id="groupserver-changing-your-message-notification-settings-instructions">
+              <ol>
+                <li>
+                  Join the group (see
+                  <cite href="#groupserver-joining-a-group">Joining
+                    a Group</cite>).
+                </li>
+                <li>
+                  View the group (see
+                  <cite href="#groupserver-viewing-a-group">Viewing a 
+                    Group</cite>).
+                </li>
+                <li>
+                  Click <samp class="link">Change your email settings</samp>, 
+                  which is found in the
+                  <samp class="field">Members</samp> section of the group 
+                  homepage, or <samp class="link">Email settings</samp> in the
+                  context-menu for the group.
+                  The <cite>Email Delivery Settings</cite> page for the group
+                  will be shown.
+                </li>
+                <li>
+                  Select the desired notification option from the 
+                  <samp class="list">Message Notification</samp> list (see
+                  <cite 
+                    href="#groupserver-tab-message-notification-preferences">Message
+                    Notification Preferences</cite>).
+                </li>
+                <li>
+                  Click the <samp class="button">Change</samp> button.
+                </li>
+              </ol>
+            </div>
             
             <table id="groupserver-tab-message-notification-preferences">
               <caption id="groupserver-tab-message-notification-preferences-t">
@@ -1239,43 +1241,45 @@
                 carry out the following.
               </p>
               
-              <ol>
-                <li>
-                  View the group (see 
-                  <cite href="#groupserver-viewing-a-group">Viewing a
-                    Group</cite>).
-                </li>
-                <li>
-                  Either
-                  <ul>
-                    <li>
-                      Click on the name of a topic in the
-                      <samp class="list">Current Topics</samp> list, which lists
-                      the five most active topics on the main page for the
-                      group, or
-                    </li>
-                    <li>
-                      Click on <samp class="link">View topics</samp>
-                      and click the name of a topic that is listed on the
-                      <cite>Topics</cite> page.
-                    </li>
-                  </ul>
-                  <p>
-                    The page for the selected topic will be displayed.
-                    (If you are not a member of a group, you may not be able
-                    to see any topics.)
-                  </p>
-                </li>
-                <li>
-                  Scroll to view the messages, which are displayed from oldest
-                  (at the top) to newest.
-                  Alternatively, click on 
-                  <samp class="link">Jump to latest</samp>
-                  to view the most recent post, or use the
-                  <samp class="list">Post Index</samp> list to jump to a
-                  particular post.
-                </li>
-              </ol>
+              <div id="groupserver-reading-messages-using-the-web-instructions">
+                <ol>
+                  <li>
+                    View the group (see 
+                    <cite href="#groupserver-viewing-a-group">Viewing a
+                      Group</cite>).
+                  </li>
+                  <li>
+                    Either
+                    <ul>
+                      <li>
+                        Click on the name of a topic in the
+                        <samp class="list">Latest Topics</samp> list, which lists
+                        the six most active topics on the main page for the
+                        group, or
+                      </li>
+                      <li>
+                        Click on <samp class="link">Topics</samp>
+                        and click the name of a topic that is listed on the
+                        <cite>Topics</cite> page.
+                      </li>
+                    </ul>
+                    <p>
+                      The page for the selected topic will be displayed.
+                      (If you are not a member of a group, you may not be able
+                      to see any topics.)
+                    </p>
+                  </li>
+                  <li>
+                    Scroll to view the messages, which are displayed from oldest
+                    (at the top) to newest.
+                    Alternatively, click on 
+                    <samp class="link">Latest post</samp>
+                    to view the most recent post<!--, or use the
+                    <samp class="list">Post Index</samp> list to jump to a
+                    particular post-->.
+                  </li>
+                </ol>
+              </div>
             </section>
             
             <section id="groupserver-reading-messages-using-email">
@@ -1358,22 +1362,24 @@
                 Reading Messages using Web Feeds
               </h>
               
-              <p>
-                On <span class="site" tal:content="siteName"/>, Web Feeds (often known as
-                <quote>RSS Feeds</quote> and
-                <quote>Live Bookmarks</quote>) provide summaries
-                of the messages that are posted to groups.
-                They can be viewed in an aggregator, such as
-                <cite class="software">Microsoft Internet
-                  Explorer 7</cite>,
-                <cite class="software">Mozilla Firefox</cite> and
-                <cite class="software">Apple Safari</cite>.
-                Links to three feeds are provided, which summarise the
-                notices, files and topics that have been posted, are
-                linked of the homepage for the site.
-                Consult the documentation for your aggregator on how
-                to view a feed.
-              </p>
+              <div id="groupserver-reading-messages-using-web-feeds-instructions">
+                <p>
+                  On <span class="site" tal:content="siteName"/>, Web Feeds (often known as
+                  <quote>RSS Feeds</quote> and
+                  <quote>Live Bookmarks</quote>) provide summaries
+                  of the messages that are posted to groups.
+                  They can be viewed in an aggregator, such as
+                  <cite class="software">Microsoft Internet
+                    Explorer 7</cite>,
+                  <cite class="software">Mozilla Firefox</cite> and
+                  <cite class="software">Apple Safari</cite>.
+                  Links to three feeds are provided, which summarise the
+                  notices, files and topics that have been posted, are
+                  linked of the homepage for the site.
+                  Consult the documentation for your aggregator on how
+                  to view a feed.
+                </p>
+              </div>
             </section>
           </section>
           <section id="groupserver-creating-messages">
@@ -1412,53 +1418,56 @@
                   Carry out the following, to post a message to a topic using
                   the Web.
                 </p>
-                <ol>
-                  <li>
-                    Log in to <span class="site" tal:content="siteName"/> (see
-                    <cite href="#groupserver-log-in-to-groupserver">Logging In
-                      to <span class="site" tal:content="siteName"/></cite>).
-                  </li>
-                  <li>
-                    View the topic (see 
-                    <cite
-                      href="#groupserver-reading-messages-using-the-web">Reading
-                      Messages Using the Web</cite>).
-                  </li>
-                  <li>
-                    Scroll to the bottom of the page, where the 
-                    <cite>Add to the topic</cite> section is located.
-                  </li>
-                  <li>
-                    Create your message.
-                    <ul>
-                      <li>
-                        Edit the text of your message in the
-                        <samp class="field">Message</samp>
-                        entry.
-                      </li>
-                      <li>
-                        Optionally, add tags to your message by writing them
-                        into the <samp class="field">Tags</samp> entry.
-                        (See <cite href="#groupserver-tag">Tags</cite>.)
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    In addition, you may add a file along with your post 
-                    (see <cite href="#groupserver-posting-files-using-the-web">Posting 
-                    Files using the Web</cite>).
-                  </li>
-                  <li>
-                    Click the <samp class="button">Add</samp> button.
-                    Your message will be shown on the topic page, and will
-                    be sent to all group members who receive one email
-                    notification of posts.
-                  </li>
-                </ol>
-                <p>
-                  (If you do not belong to the group, you cannot
-                  post messages to the group.)
-                </p>
+                
+                <div id="groupserver-posting-a-message-using-the-web-instructions">
+                  <ol>
+                    <li>
+                      Log in to <span class="site" tal:content="siteName"/> (see
+                      <cite href="#groupserver-log-in-to-groupserver">Logging In
+                        to <span class="site" tal:content="siteName"/></cite>).
+                    </li>
+                    <li>
+                      View the topic (see 
+                      <cite
+                        href="#groupserver-reading-messages-using-the-web">Reading
+                        Messages Using the Web</cite>).
+                    </li>
+                    <li>
+                      Scroll to the bottom of the page, where the 
+                      <cite>Add to the topic</cite> section is located.
+                    </li>
+                    <li>
+                      Create your message.
+                      <ul>
+                        <li>
+                          Edit the text of your message in the
+                          <samp class="field">Message</samp>
+                          entry.
+                        </li>
+                        <li>
+                          Optionally, add tags to your message by writing them
+                          into the <samp class="field">Tags</samp> entry.
+                          (See <cite href="#groupserver-tag">Tags</cite>.)
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      In addition, you may add a file along with your post 
+                      (see <cite href="#groupserver-posting-files-using-the-web">Posting 
+                      Files using the Web</cite>).
+                    </li>
+                    <li>
+                      Click the <samp class="button">Add</samp> button.
+                      Your message will be shown on the topic page, and will
+                      be sent to all group members who receive one email
+                      notification of posts.
+                    </li>
+                  </ol>
+                  <p>
+                    (If you do not belong to the group, you cannot
+                    post messages to the group.)
+                  </p>
+                </div>
               </section>
               
               <section class="note" id="groupserver-tags">
@@ -1509,23 +1518,25 @@
                 <h id="groupserver-posting-a-message-using-email-t">
                   Posting a Message using Email
                 </h>
-                <p>
-                  To post a message to an existing topic using email, open
-                  a message that was posted to the topic
-                  (see 
-                  <cite href="#groupserver-reading-email-posts">Reading Email
-                    Posts</cite>) 
-                  and reply;
-                  <em>do not</em> change the subject of the email
-                  message, as this will cause <span class="site" tal:content="siteName"/> to create a new topic
-                  (see
-                  <cite
-                    href="#groupserver-starting-a-new-topic-using-email">
-                    Starting a New Topic Using Email</cite>).
-                  Once sent, the message will be added to the Topics page for
-                  the group, and be sent to all group members who receive
-                  email notification of posts.
-                </p>
+                <div id="groupserver-posting-a-message-using-email-instructions">
+                  <p>
+                    To post a message to an existing topic using email, open
+                    a message that was posted to the topic
+                    (see 
+                    <cite href="#groupserver-reading-email-posts">Reading Email
+                      Posts</cite>) 
+                    and reply;
+                    <em>do not</em> change the subject of the email
+                    message, as this will cause <span class="site" tal:content="siteName"/> to create a new topic
+                    (see
+                    <cite
+                      href="#groupserver-starting-a-new-topic-using-email">
+                      Starting a New Topic Using Email</cite>).
+                    Once sent, the message will be added to the Topics page for
+                    the group, and be sent to all group members who receive
+                    email notification of posts.
+                  </p>
+                </div>
                 
                 <section class="note">
                   <h>Email Attachments</h>
