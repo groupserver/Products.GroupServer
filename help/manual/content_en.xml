@@ -1463,11 +1463,11 @@
                       notification of posts.
                     </li>
                   </ol>
-                  <p>
-                    (If you do not belong to the group, you cannot
-                    post messages to the group.)
-                  </p>
                 </div>
+                <p>
+                  (If you do not belong to the group, you cannot
+                  post messages to the group.)
+                </p>
               </section>
               
               <section class="note" id="groupserver-tags">
