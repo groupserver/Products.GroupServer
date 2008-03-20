@@ -1,0 +1,16 @@
+<tal:block 
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
+      <script type="text/javascript">
+        jQuery.noConflict()
+        jQuery(document).ready( function () {
+            jQuery("#change-message-notification-digest-content").load("/help/manual/ #groupserver-changing-your-message-notification-settings-instructions", {}, fix_html);
+            jQuery("#reading-web-feeds-content").load("/help/manual/ #groupserver-reading-messages-using-web-feeds-instructions", {}, fix_html);
+        });
+        var fix_html = function (responseText, textStatus, XMLHttpRequest) {
+          jQuery(this).find("a").each(function(){jQuery(this).attr('href', '/help/manual'+jQuery(this).attr('href'));});
+        }
+      </script>
+</tal:block>
+
+

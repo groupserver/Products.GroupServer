@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
-  xmlns="http://www.w3.org/2002/06/xhtml2/"
-  metal:use-macro="context/@@groupserver_layout/page">
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
   <head>
     <title>
       Online Groups Participation Guide: Benefits of Online Participation

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
-  xmlns="http://www.w3.org/2002/06/xhtml2/"
-  metal:use-macro="context/@@groupserver_layout/page">
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
   <head>
     <title>Online Groups Participation Guide: Contributing to Conversations</title>
     <meta property="dc:created">February 2008</meta>
@@ -259,19 +258,6 @@
         </section>
       </section>
     </section>
-
-    <tal:block metal:fill-slot="javascript">
-      <script type="text/javascript">
-        jQuery.noConflict()
-        jQuery(document).ready( function () {
-            jQuery("#add-topic-email-content").load("/help/manual/ #groupserver-posting-a-message-using-email-instructions", {}, fix_links);
-            jQuery("#add-topic-web-content").load("/help/manual/ #groupserver-posting-a-message-using-the-web-instructions", {}, fix_links);
-        });
-        var fix_links = function (responseText, textStatus, XMLHttpRequest) {
-          jQuery(this).find("a").each(function(){jQuery(this).attr('href', '/help/manual'+jQuery(this).attr('href'));});
-        }
-      </script>
-    </tal:block>
 
   </body>
 </html>
