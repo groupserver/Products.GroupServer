@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/"
+  metal:use-macro="context/@@groupserver_layout/page">
+  <head>
+    <title>Online Groups Participation Guide: Following Conversations Closely</title>
+    <meta property="dc:created">February 2008</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Alice Murphy</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="help-participation-guide-follow-closely"
+    tal:define="site context/Scripts/get/division_object;
+      siteName site/title_or_id">
+    <section>
+      <h>Following Conversations Closely</h>
+      <p>
+        If you are actively involved in an online group, you will probably want 
+        to follow the conversations closely. You can do this by reading the 
+        emails as they come in, but in busy online groups, it is often easier to
+        follow them via the web.
+      </p>
+      <nl>
+        <li><a href="#follow-email">Follow a Conversation Using Email</a></li>
+        <li><a href="#follow-web">Follow a Conversation via the Web</a></li>
+      </nl>
+
+      <section id="follow-email">
+        <h>Follow a Conversation Using Email</h>
+        <p>
+          As soon as a post is added to the group, 
+          <span tal:content="siteName" /> can send the full text of the post 
+          to you as an email message. The subject line contains the group name 
+          and the topic title, while the body of the email message 
+          contains the full text of the post.
+        </p>
+        <section id="follow-email-advantages">
+          <h>Advantages</h>
+          <nl>
+            <li>
+              You will be notified as soon as a post has been added to the group.
+            </li>
+            <li>
+              You can read the full text of a post directly in your email, without
+              needing to visit the website.
+            </li>
+          </nl>
+        </section>
+        <section id="follow-email-disadvantages">
+          <h>Disadvantages</h>
+          <nl>
+            <li>You may receive more email messages than you would like.</li>
+          </nl>
+        </section>
+        <section id="follow-email-how">
+          <h>How To</h>
+          <div id="change-message-notification-email-content">Loading&#8230;</div>
+        </section>
+      </section>
+
+      <section id="follow-web">
+        <h>Follow a Conversation via the Web</h>
+        <p>
+          When there are a lot of posts, it is easier to turn off email and
+          follow conversations on the website instead. Posts on <span tal:content="siteName" /> 
+          are organized into topics. Each topic is a readable sequence of messages, 
+          making it possible to follow several conversations even when they
+          are occurring simultaneously.
+        </p>
+        <section id="follow-web-advantages">
+        <h>Advantages</h>
+          <nl>
+            <li>
+              You will not receive a lot of email.
+            </li>
+            <li>
+              You do not have to manage a lot of stored email. 
+            </li>
+          </nl>
+        </section>
+        <section id="follow-web-disadvantages">
+          <h>Disadvantages</h>
+          <nl>
+            <li>
+              You are not notified of new messages via email.
+            </li>
+          </nl>
+        </section>
+        <section id="follow-web-how">
+          <h>How To</h>
+          <p>Set your message notification preferences to <cite>Email delivery disabled</cite>.</p>
+          <div id="change-message-notification-web-content">Loading&#8230;</div>
+          <p>Read messages via the web.</p>
+          <div id="reading-web-content">Loading&#8230;</div>
+        </section>
+      </section>
+    </section>
+    
+    <tal:block metal:fill-slot="javascript">
+      <script type="text/javascript">
+        jQuery.noConflict()
+        jQuery(document).ready( function () {
+            jQuery("#change-message-notification-email-content").load("/help/manual/ #groupserver-changing-your-message-notification-settings-instructions", {}, fix_links);
+            jQuery("#change-message-notification-web-content").load("/help/manual/ #groupserver-changing-your-message-notification-settings-instructions", {}, fix_links);
+            jQuery("#reading-web-content").load("/help/manual/ #groupserver-reading-messages-using-the-web-instructions", {}, fix_links);
+        });
+        var fix_links = function (responseText, textStatus, XMLHttpRequest) {
+          jQuery(this).find("a").each(function(){jQuery(this).attr('href', '/help/manual'+jQuery(this).attr('href'));});
+        }
+      </script>
+    </tal:block>
+
+  </body>
+</html>
+
