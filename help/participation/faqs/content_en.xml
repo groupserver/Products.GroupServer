@@ -1,127 +1,126 @@
-<?xml version="1.0" ?>
-<root xmlns:tal="http://xml.zope.org/namespaces/tal">
-  <output>
-    <content
-      tal:define="site context/Scripts/get/division_object;
-        siteName site/title_or_id;
-        isAuthenticated python:'Authenticated' in user.getRolesInContext(site);
-        get_option python:modules['Products.XWFCore.XWFUtils'].getOption">
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>Online Groups User Guide: Frequently Asked Questions</title>
+    <meta property="dc:created">March 2008</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Alice Murphy</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body
+    tal:define="site context/Scripts/get/division_object;
+      siteName site/title_or_id;
+      isAuthenticated python:'Authenticated' in user.getRolesInContext(site);
+      get_option python:modules['Products.XWFCore.XWFUtils'].getOption">
+    <section>
+      <h>Frequently Asked Questions</h>
       
-      <heading1>
-        Frequently Asked Questions
-      </heading1>
+      <nl>
+        <li href="#groupserver-faq-password-reset">
+          I can't log in. How do I get a new password?
+        </li>
+        <li href="#groupserver-faq-change-email">
+          How do I change my email address?
+        </li>
+        <li href="#groupserver-faq-delete-posts-files">
+          How do I delete a post? How do I delete a file?
+        </li>
+        <li href="#groupserver-faq-email-not-member">
+          When I send an email to my Online Group, I receive an email
+    	    telling me I am not a member of the group even though I am.
+  	    </li>
+        <li href="">
+          On my 'Edit Email Settings' page, what does 'Default' mean?
+        </li>
+      </nl>
+    
+      <section id="groupserver-faq-password-reset">
+        <h>I can't log in. How do I get a new password?</h>
+        <p>
+    	    Visit the <a href="/reset_password.html">Reset Password page</a> and
+    	    follow the instructions there to set a new password.
+        </p>
+      </section>
       
-      <faqs>
-
-        <faq>
-          <question>
-      	    I can't log in. How do I get a new password?
-      	  </question>
-          <answer>
-      	    Visit the <a href="/reset_password.html">Reset Password page</a> and
-      	    follow the instructions there to set a new password.
-          </answer>
-      	</faq>
-
-        <faq>
-          <question>
-      	    How do I change my email address?
-      	  </question>
-          <answer>
-      	    Log in and go to your
-            <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
-              tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
-            On this page you can add or remove email addresses. To add an email 
-            address, type your email address into the 'Add Address' field and 
-            click the 'Add' button. To remove an email address, choose 'Remove Address'
-            from the drop-down list under 'Change' next to your email address.
-          </answer>
-      	</faq>
-
-        <faq>
-          <question>
-      	    How do I delete a post? How do I delete a file?
-      	  </question>
-          <answer>
-      	    Because messages and files in <span tal:content="siteName" /> groups are sent 
-      	    out via email as well as being displayed on the web, we cannot alter 
-      	    or delete any post or file once it has been added to the group. (If 
-      	    we did that, then the email version would be different from the web 
-      	    version, which would be very strange.) Instead, we encourage you to
-      	    post another message correcting your previous one.
-          </answer>
-      	</faq>
-
-        <faq>
-          <question>
-      	    When I send an email to my Online Group, I receive an email
-      	    telling me I am not a member of the group even though I am.
-      	  </question>
-          <answer>
-      	    Your email account might be configured such that your outgoing
-      	    messages are sent from an email address slightly different from the 
-      	    one at which you receive messages. If so, the system will not 
-      	    recognize your sent emails. If the rejected address mentioned in 
-      	    the email is not listed on your 
-            <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
-              tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>,
-            add it.
-          </answer>
-        </faq>
-
-        <faq>
-          <question>
-            I sent an email to my Online Group and it hasn't appeared in the 
-            Topics section of my Online Group.
-          </question>
-          <answer>
-      	    First, check that the message was sent to the Online Group. If it 
-      	    was, you will have received a copy of your own message. It will have
-      	    a shortened version of the Online Group name in the subject line 
-      	    (e.g. [groupname]). If you got the message and it is not in the 
-      	    Topics section of the Online Group on this website, please 
-      	    <a href="mailto:support@onlinegroups.net">contact us</a>. If 
-      	    you did not receive the message, check to make sure the email address you 
-      	    sent it to was correct. Also check that the email address you sent 
-      	    the message from is registered to your profile. You can do this by 
-      	    going to your 
-            <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
-              tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
-            You can change your email address(es) there if neccessary.
-          </answer>
-        </faq>
-        
-        <faq>
-          <question>
-      	    On my 'Edit Email Settings' page, what does 'Default'
-      	    mean?
-      	  </question>
-          <answer>
-	          If you select 'Make default' under 'Change' next to your email 
-	          address, you will receive posts from all your Online Groups
-	          at that address unless you specify otherwise.
-          </answer>
-        </faq>
-
-        <!--faq>
-          <question>
-            How do I change my settings so that messages from one or more 
-            particular groups are delivered to an email address that is not in 
-            my list of default addresses?
-          </question>
-      	  <answer>
-      	    View your profile page and click the 'Edit Email Settings' link. 
-      	    Under the heading 'Group Email Delivery Settings', find the group(s)
-      	    for which that you wish to change delivery settings and click 
-      	    'Change' on the line beginning 'Email Setting:'. Choose the 
-      	    'Specific Address or Addresses' option and check the box next to the
-      	    email address(es) at which you wish to receive the messages from 
-      	    this group.
-          </answer>
-        </faq-->
-      </faqs>
+      <section id="groupserver-faq-change-email">
+        <h>How do I change my email address?</h>
+        <p>
+    	    Log in and go to your
+          <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
+            tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
+          On this page you can add or remove email addresses. To add an email 
+          address, type your email address into the 'Add Address' field and 
+          click the 'Add' button. To remove an email address, choose 'Remove Address'
+          from the drop-down list under 'Change' next to your email address.
+        </p>
+      </section>
       
-    </content>
-  </output>
-</root>
+      <section id="groupserver-faq-delete-posts-files">
+        <h>How do I delete a post? How do I delete a file?</h>
+        <p>
+    	    Because messages and files in <span tal:content="siteName" /> groups are sent 
+    	    out via email as well as being displayed on the web, we cannot alter 
+    	    or delete any post or file once it has been added to the group. (If 
+    	    we did that, then the email version would be different from the web 
+    	    version, which would be very strange.) Instead, we encourage you to
+    	    post another message correcting your previous one.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-email-not-member">
+        <h>
+          When I send an email to my Online Group, I receive an email telling me I 
+          am not a member of the group even though I am.
+    	  </h>
+        <p>
+    	    Your email account might be configured such that your outgoing
+    	    messages are sent from an email address slightly different from the 
+    	    one at which you receive messages. If so, the system will not 
+    	    recognize your sent emails. If the rejected address mentioned in 
+    	    the email is not listed on your 
+          <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
+            tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>,
+          add it.
+        </p>
+      </section>
+      
+      <section>
+        <h>
+          I sent an email to my Online Group and it hasn't appeared in the 
+          Topics section of my Online Group.
+        </h>
+        <p>
+    	    First, check that the message was sent to the Online Group. If it 
+    	    was, you will have received a copy of your own message. It will have
+    	    a shortened version of the Online Group name in the subject line 
+    	    (e.g. [groupname]). If you got the message and it is not in the 
+    	    Topics section of the Online Group on this website, please 
+    	    <a href="mailto:support@onlinegroups.net">contact us</a>. If 
+    	    you did not receive the message, check to make sure the email address you 
+    	    sent it to was correct. Also check that the email address you sent 
+    	    the message from is registered to your profile. You can do this by 
+    	    going to your 
+          <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
+            tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
+          You can change your email address(es) there if neccessary.
+        </p>
+      </section>
+      
+      <section>      
+        <h>On my 'Edit Email Settings' page, what does 'Default' mean?</h>
+        <p>
+          If you select 'Make default' under 'Change' next to your email 
+          address, you will receive posts from all your Online Groups
+          at that address unless you specify otherwise.
+        </p>
+      </section>
+      
+    </section>
+  </body>
+</html>
 

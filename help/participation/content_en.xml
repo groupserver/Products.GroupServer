@@ -3,7 +3,7 @@
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns="http://www.w3.org/2002/06/xhtml2/">
   <head>
-    <title>Online Groups Participation Guide</title>
+    <title>Online Groups User Guide</title>
     <meta property="dc:created">February 2008</meta>
     <meta property="dc:publisher">OnlineGroups.Net</meta>
     <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
@@ -12,11 +12,11 @@
     <link rel="stylesheet" type="text/css" 
       href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
   </head>
-  <body id="help-participation-guide">
+  <body id="help-user-guide">
     <section>
-      <h>Participation Guide</h>
+      <h>User Guide</h>
       <p>
-        This Participation Guide aims to help you gain the maximum 
+        This User Guide aims to help you gain the maximum 
         <a href="benefits">benefit from participating</a> in Online Groups.
       </p>
       <p>
@@ -28,7 +28,7 @@
         explains different ways to do these things, and answers 
         <a href="faqs">frequently asked questions</a>.
       </p>
-      <section id="help-participation-guide-contents">
+      <section id="help-user-guide-contents">
         <h>Contents</h>
         <nl>
           <li href="benefits">Benefits of Online Participation</li>
@@ -41,7 +41,7 @@
       <p>
         Please provide 
         <a href="mailto:support@onlinegroups.net">feedback to OnlineGroups.Net</a>
-        about this Participation Guide, and your experience with this Online 
+        about this User Guide, and your experience with this Online 
         Groups site.
       </p>  
     </section>
