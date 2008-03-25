@@ -4,7 +4,7 @@
   </p>
   <ul>
     <li>
-      <a href="/help/participation/" class="current">User Guide</a> 
+      <a href="/help/participation/" class="not-current">User Guide</a> 
       <div>
         <ul>
           <li>
@@ -17,7 +17,7 @@
             <a href="/help/participation/follow_closely/" class="not-current">Following Conversations Closely</a> 
           </li>
           <li>
-            <a href="/help/participation/contribute/" class="not-current">Contributing to Conversations</a> 
+            <a href="/help/participation/contribute/" class="current">Contributing to Conversations</a> 
           </li>
           <li>
             <a href="/help/participation/faqs/" class="not-current">Frequently Asked Questions</a> 
