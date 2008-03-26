@@ -14,6 +14,7 @@
   </head>
   <body
     tal:define="site context/Scripts/get/division_object;
+      siteId site/getId;
       siteName site/title_or_id;
       isAuthenticated python:'Authenticated' in user.getRolesInContext(site);
       get_support_email python:modules['Products.XWFCore.XWFUtils'].get_support_email">
