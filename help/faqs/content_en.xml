@@ -16,7 +16,7 @@
     tal:define="site context/Scripts/get/division_object;
       siteName site/title_or_id;
       isAuthenticated python:'Authenticated' in user.getRolesInContext(site);
-      get_option python:modules['Products.XWFCore.XWFUtils'].getOption">
+      get_support_email python:modules['Products.XWFCore.XWFUtils'].get_support_email">
     <section>
       <h>Frequently Asked Questions</h>
       
@@ -34,8 +34,15 @@
           When I send an email to my Online Group, I receive an email
     	    telling me I am not a member of the group even though I am.
   	    </li>
-        <li href="">
+        <li href="#groupserver-faq-email-not-in-topics">
+          I sent an email to my Online Group. Why hasn't appeared in the 
+          Topics section of my Online Group?
+        </li>
+        <li href="#groupserver-faq-email-settings-default">
           On my 'Edit Email Settings' page, what does 'Default' mean?
+        </li>
+        <li href="#groupserver-faq-support">
+          I'm still stuck. How can I get help?
         </li>
       </nl>
     
@@ -56,7 +63,7 @@
           On this page you can add or remove email addresses. To add an email 
           address, type your email address into the 'Add Address' field and 
           click the 'Add' button. To remove an email address, choose 'Remove Address'
-          from the drop-down list under 'Change' next to your email address.
+          from the drop-down list under 'Change' next to that email address.
         </p>
       </section>
       
@@ -89,10 +96,10 @@
         </p>
       </section>
       
-      <section>
+      <section id="groupserver-faq-email-not-in-topics">
         <h>
-          I sent an email to my Online Group and it hasn't appeared in the 
-          Topics section of my Online Group.
+          I sent an email to my Online Group. Why hasn't it appeared in the 
+          Topics section of my Online Group?
         </h>
         <p>
     	    First, check that the message was sent to the Online Group. If it 
@@ -111,12 +118,34 @@
         </p>
       </section>
       
-      <section>      
+      <section id="groupserver-faq-email-settings-default">      
         <h>On my 'Edit Email Settings' page, what does 'Default' mean?</h>
         <p>
           If you select 'Make default' under 'Change' next to your email 
           address, you will receive posts from all your Online Groups
           at that address unless you specify otherwise.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-support">
+        <h>I'm still stuck. How can I get help?</h>
+        <!--tal:block
+          tal:condition="python:isAuthenticated">
+          <p>
+            If you have a question that is not answered here, please raise it in 
+            <a title="Groups Homepage" href="/groups">your online groups,</a>
+            or directly with the Participation Coach in the relevant
+            group
+            <a href="/help/manual/#groupserver-getting-help-from-the-participation-coach"
+              class="helpLink">[?]</a>.
+          </p>
+        </tal:block-->
+        <p>
+          If your question is still unanswered, you can address it to
+          <a class="emaillink" title="Email address for support"
+            tal:define="supportEmail python:get_support_email(site, siteId)"
+            tal:attributes="href string:mailto:${supportEmail}" 
+            tal:content="supportEmail"/>.
         </p>
       </section>
       

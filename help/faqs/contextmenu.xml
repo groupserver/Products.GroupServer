@@ -4,26 +4,10 @@
   </p>
   <ul>
     <li>
+      <a href="/help/faqs/" class="current">Frequently Asked Questions</a>  
+    </li>
+    <li>
       <a href="/help/participation/" class="not-current">User Guide</a> 
-      <div>
-        <ul>
-          <li>
-            <a href="/help/participation/benefits/" class="not-current">Benefits of Online Participation</a> 
-          </li>
-          <li>
-            <a href="/help/participation/keep_track/" class="not-current">Keeping Track of Conversations</a> 
-          </li>
-          <li>
-            <a href="/help/participation/follow_closely/" class="not-current">Following Conversations Closely</a> 
-          </li>
-          <li>
-            <a href="/help/participation/contribute/" class="not-current">Contributing to Conversations</a> 
-          </li>
-          <li>
-            <a href="/help/participation/faqs/" class="current">Frequently Asked Questions</a> 
-          </li>
-        </ul>
-      </div>
     </li>
     <li>
       <a href="/help/manual/" class="not-current">User Manual</a>

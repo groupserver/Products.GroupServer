@@ -4,6 +4,9 @@
   </p>
   <ul>
     <li>
+      <a href="/help/faqs/" class="not-current">Frequently Asked Questions</a>  
+    </li>
+    <li>
       <a href="/help/participation/" class="current">User Guide</a> 
       <div>
         <ul>
@@ -18,9 +21,6 @@
           </li>
           <li>
             <a href="/help/participation/contribute/" class="not-current">Contributing to Conversations</a> 
-          </li>
-          <li>
-            <a href="/help/participation/faqs/" class="not-current">Frequently Asked Questions</a> 
           </li>
         </ul>
       </div>
