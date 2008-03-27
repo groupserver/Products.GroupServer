@@ -144,7 +144,7 @@
         <p>
           If your question is still unanswered, you can address it to
           <a class="emaillink" title="Email address for support"
-            tal:define="supportEmail python:get_support_email(site, siteId)"
+            tal:define="supportEmail python:get_support_email(context, siteId)"
             tal:attributes="href string:mailto:${supportEmail}" 
             tal:content="supportEmail"/>.
         </p>
