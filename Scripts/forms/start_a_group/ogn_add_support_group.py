@@ -64,7 +64,7 @@ group.admingroup.manage_permission('View', adminGroups)
 group.admingroup.manage_permission('Access contents information', adminGroups)
 
 # Remove the "subscribe" property from the group
-groupList.manage_delProperties(['subscribe',])
+groupList.manage_changeProperties(subscribe='')
 
 # Add the "unclosed" property to the mailing list object
 # to allow anyone to post to the group
