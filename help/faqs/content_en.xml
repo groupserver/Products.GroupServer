@@ -59,7 +59,7 @@
         <h>How do I change my email address?</h>
         <p>
     	    Log in and go to your
-          <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
+          <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
             tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
           On this page you can add or remove email addresses. To add an email 
           address, type your email address into the 'Add Address' field and 
@@ -91,7 +91,7 @@
     	    one at which you receive messages. If so, the system will not 
     	    recognize your sent emails. If the rejected address mentioned in 
     	    the email is not listed on your 
-          <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
+          <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
             tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>,
           add it.
         </p>
@@ -113,7 +113,7 @@
     	    sent it to was correct. Also check that the email address you sent 
     	    the message from is registered to your profile. You can do this by 
     	    going to your 
-          <a tal:attributes="href python:'/contacts/%s/email.html' % user.getId()"
+          <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
             tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
           You can change your email address(es) there if neccessary.
         </p>
