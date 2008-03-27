@@ -20,14 +20,14 @@
       siteId site/getId">
     <section>
       <h>Help</h>
-      <div style="display:block;float:left;" src="faq.png" href="faqs">
-        F*A*Q
-      </div>
       <p>
         Stuck? 
         You can find solutions to common problems in the 
         <a href="faqs">Frequently Asked Questions</a>.
       </p>
+      <div style="display:block;float:left;" src="faq.png" href="faqs">
+        F*A*Q
+      </div>
 
       <section style="clear:left;">
         <h>Want to find out more?</h>
