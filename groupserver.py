@@ -11,6 +11,9 @@ import transaction
 import DateTime
 import urlparse
 
+import pathutil
+import os.path
+
 class GroupserverSite( OrderedFolder ):
     implements( IGroupserverSite )
     
@@ -157,12 +160,12 @@ def init_global_configuration( groupserver_site, siteName, supportEmail, timezon
     
 def init_fs_presentation( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
-    fss.manage_addDirectoryView( 'GroupServer/Presentation', 'Presentation' )
+    fss.manage_addDirectoryView( pathutil.get_groupserver_path('Presentation'), 'Presentation' )
     groupserver_site.manage_addFolder('PresentationCustom', 'Site specific presentation customisation')
     
 def init_fs_scripts( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
-    fss.manage_addDirectoryView( 'GroupServer/Scripts', 'Scripts' )
+    fss.manage_addDirectoryView( pathutil.get_groupserver_path('Scripts'), 'Scripts' )
     groupserver_site.manage_addFolder('LocalScripts', 'Site specific scripts')
 
 def init_file_library( groupserver_site ):
@@ -241,8 +244,8 @@ def import_content( container ):
                          'ListManager.zexp', 'UserProperties.zexp', 'Templates.zexp', 'contacts.zexp']
     
     for object_to_import in objects_to_import:
-        container._importObjectFromFile( '%s/%s' % 
-                                         (pathutil.IMPORTPATH, object_to_import) )
+        container._importObjectFromFile( pathutil.get_import_path(
+                                             object_to_import) )
 
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
                                support_email, timezone,
