@@ -222,7 +222,7 @@
                   ref="group_admin_remove_userid"
                   tal:condition="isGroupAdmin">
                   <xf:item>
-                    <xf:label>Revoke the administrator privilages from
+                    <xf:label>Revoke the administrator privileges from
                       <span tal:replace="userobj/fn | nothing"/>.
                     </xf:label>
                     <xf:value tal:content="userobj/getId"></xf:value>
@@ -330,3 +330,4 @@
     </content>
   </output>
 </root>
+
