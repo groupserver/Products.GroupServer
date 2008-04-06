@@ -29,7 +29,7 @@
               ref="member_ids">
               <xf:item>
                 <xf:label>Manage
-                  <span tal:replace="userobj/preferredName"/>
+                  <span tal:replace="userobj/fn"/>
                   (<span tal:replace="userobj/getId"/>)
                 </xf:label>
                 <xf:value tal:content="userobj/getId"></xf:value>
