@@ -106,7 +106,7 @@
 
 <!-- Bread Crumbs Starts -->
 
-<xsl:template match="context/">
+<xsl:template match="context">
   <xsl:call-template name="breadcrumb">
         <xsl:with-param name="context" select="./contextitem" />
         <xsl:with-param name="separator" select="$separatoricon" />
