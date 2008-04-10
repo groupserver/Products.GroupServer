@@ -102,49 +102,57 @@ class GroupserverSite( OrderedFolder ):
         raise
 
 def init_user_folder( groupserver_site, initial_user, initial_password, email ):
+    btf = groupserver_site.manage_addProduct['BTreeFolder2']
+    btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
+    btf.manage_addBTreeFolder( 'contactsimages', 'People in the Site' )
+
     cuf = groupserver_site.manage_addProduct['CustomUserFolder']
     cuf.manage_addCustomUserFolder( 'contacts' )
-    btf = groupserver_site.manage_addProduct['BTreeFolder2']
-    btf.manage_addBTreeFolder( 'contactsimages', 'People in the Site' )
     
     acl = getattr( groupserver_site, 'acl_users' )
     
-    #acl.userFolderDelUsers( ('test_user',) )
-    
-    acl.userFolderAddGroup( 'example_division_member', 
+    acl.userFolderAddGroup( 'example_site_member', 
                                 'Membership of Example Division' )
-    acl.userFolderAddGroup( 'example_division_admin', 
-                                'Administration of Example Division' )
     acl.userFolderAddGroup( 'example_group_member', 
                                 'Member of Example Group' )
-    acl.userFolderAddGroup( 'example_group_admin', 
-                                'Administration of Example Group' )
-    
-    acl.userFolderAddGroup( 'unverified_member', 
-                                'Users who have not yet been verified' )
     
     acl._doAddUser( initial_user, initial_password, 
-                              (), (), ('example_division_member', 
-                                       'example_division_admin', 
-                                       'example_group_member', 
-                                       'example_group_admin' ) )
+                              (), (), ('example_site_member', 
+                                       'example_group_member' ) )
     
-    user = acl.getUser(initial_user)
-    user.manage_changeProperties(firstName='Default', lastName='Administrator',
-                                 preferredName='Default')
-    user.add_defaultDeliveryEmailAddress(email)
-    
+    acl._doAddUser( 'example_user', 'example_user',
+                              (), (), ('example_site_member',
+                                       'example_group_member'))
+
+    adminuser = acl.getUser(initial_user)
+    adminuser.manage_changeProperties(firstName='Default', lastName='Administrator',
+                                 preferredName='Admin')
+    adminuser.add_defaultDeliveryEmailAddress(email)
+
+    user = acl.getUser('example_user')
+    user.manage_changeProperties(firstName='Example', lastName='User',
+                                 preferredName='Example User')
+    user.add_defaultDeliveryEmailAddress('example@groupserver')
+
     cc = groupserver_site.manage_addProduct['CookieCrumbler']
     cc.manage_addCC('cookie_authentication')
     
     cookies = getattr( groupserver_site, 'cookie_authentication' )
-    cookies.manage_changeProperties( auto_login_page='Content/login',
-                                     unauth_page='Content/login',
-                                     logout_page='Content/login/logout.xml' )
+    cookies.manage_changeProperties( auto_login_page='Content/login.html',
+                                     unauth_page='Content/login.html',
+                                     logout_page='Content/logout.html' )
     
     contacts = getattr( groupserver_site, 'contacts' )
     contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
     
+    # TODO: Create these groups instead of importing them
+    example_site = getattr( groupserver_site.Content, 'example_site')
+    example_site.manage_addLocalRoles(adminuser, ['DivisionAdmin'])
+
+    example_group = getattr(example_site.groups, 'example_group')
+    example_group.manage_addLocalRoles(adminuser, ['GroupAdmin'])    
+
+
 def init_global_configuration( groupserver_site, siteName, supportEmail, timezone, canonicalHost,
                                userVerificationEmail, registrationEmail ):
     cp = groupserver_site.manage_addProduct['CustomProperties']
@@ -241,7 +249,7 @@ def import_content( container ):
     container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
                                                                 smtp_host='localhost')   
     objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
-                         'ListManager.zexp', 'UserProperties.zexp', 'Templates.zexp', 'contacts.zexp']
+                         'ListManager.zexp', 'UserProperties.zexp', 'Templates.zexp']
     
     for object_to_import in objects_to_import:
         container._importObjectFromFile( pathutil.get_import_path(
