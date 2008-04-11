@@ -3,9 +3,7 @@ from OFS.OrderedFolder import OrderedFolder
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest
-from App.config import getConfiguration
-
-from Products.GSProfile.utils import create_user_from_email
+from App.config import getConfigurationS
 
 from interfaces import IGroupserverSite
 
@@ -268,7 +266,7 @@ def import_content( container ):
     
     container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
                                                                 smtp_host='localhost')   
-    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp',
+    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
                          'ListManager.zexp', 'Templates.zexp']
     
     for object_to_import in objects_to_import:
