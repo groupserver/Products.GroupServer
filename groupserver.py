@@ -5,6 +5,8 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest
 from App.config import getConfiguration
 
+from Products.GSProfile.utils import create_user_from_email
+
 from interfaces import IGroupserverSite
 
 import transaction
@@ -13,6 +15,9 @@ import urlparse
 
 import pathutil
 import os.path
+
+import logging
+log = logging.getLogger('GroupServer Site')
 
 class GroupserverSite( OrderedFolder ):
     implements( IGroupserverSite )
@@ -101,7 +106,7 @@ class GroupserverSite( OrderedFolder ):
         
         raise
 
-def init_user_folder( groupserver_site, initial_user, initial_password, email ):
+def init_user_folder( groupserver_site, initial_user, initial_password, email, canonical ):
     btf = groupserver_site.manage_addProduct['BTreeFolder2']
     btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
     btf.manage_addBTreeFolder( 'contactsimages', 'People in the Site' )
@@ -112,28 +117,43 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email ):
     acl = getattr( groupserver_site, 'acl_users' )
     
     acl.userFolderAddGroup( 'example_site_member', 
-                                'Membership of Example Division' )
+                                'Membership of Example Site' )
     acl.userFolderAddGroup( 'example_group_member', 
                                 'Member of Example Group' )
     
-    acl._doAddUser( initial_user, initial_password, 
-                              (), (), ('example_site_member', 
-                                       'example_group_member' ) )
-    
-    acl._doAddUser( 'example_user', 'example_user',
-                              (), (), ('example_site_member',
-                                       'example_group_member'))
-
+    acl._doAddUser(initial_user, initial_password, [], [], [])
     adminuser = acl.getUser(initial_user)
-    adminuser.manage_changeProperties(firstName='Default', lastName='Administrator',
-                                 preferredName='Admin')
+    assert adminuser, 'Did not create the initial user'
+    adminuser.manage_changeProperties(fn='Default Administrator')
     adminuser.add_defaultDeliveryEmailAddress(email)
+    try:
+        vid = 'AdminVerified%s' % email.replace('@', 'at')
+        adminuser.add_emailAddressVerification(vid, email)
+        adminuser.verify_emailAddress(vid)
+        m = 'init_user_folder: Verified initial user email address %s' % email
+        log.info(m)
+    except:
+        m = 'init_user_folder: Issues verifying initial user email address %s' % email
+        log.error(m)
+    acl.addGroupsToUser(['example_site_member', 'example_group_member'], adminuser.getId())
 
-    user = acl.getUser('example_user')
-    user.manage_changeProperties(firstName='Example', lastName='User',
-                                 preferredName='Example User')
-    user.add_defaultDeliveryEmailAddress('example@groupserver')
-
+    acl._doAddUser('example_user', 'fake', [], [], [])
+    exampleuser = acl.getUser('example_user')
+    assert exampleuser, 'Did not create the example user'
+    example_address = 'example_user@%s' % canonical
+    exampleuser.manage_changeProperties(fn='Example User')
+    exampleuser.add_defaultDeliveryEmailAddress(example_address)
+    try:
+        vid = 'AdminVerified%s' % example_address.replace('@', 'at')
+        exampleuser.add_emailAddressVerification(vid, example_address)
+        exampleuser.verify_emailAddress(vid)
+        m = 'init_user_folder: Verified example user email address %s' % example_address
+        log.info(m)
+    except:
+        m = 'init_user_folder: Issues verifying example user email address %s' % example_address
+        log.error(m)
+    acl.addGroupsToUser(['example_site_member', 'example_group_member'], exampleuser.getId())
+        
     cc = groupserver_site.manage_addProduct['CookieCrumbler']
     cc.manage_addCC('cookie_authentication')
     
@@ -248,8 +268,8 @@ def import_content( container ):
     
     container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
                                                                 smtp_host='localhost')   
-    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
-                         'ListManager.zexp', 'UserProperties.zexp', 'Templates.zexp']
+    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp',
+                         'ListManager.zexp', 'Templates.zexp']
     
     for object_to_import in objects_to_import:
         container._importObjectFromFile( pathutil.get_import_path(
@@ -284,7 +304,7 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     import_content( gss )
     transaction.commit()
     
-    init_user_folder( gss, initial_user, initial_password, support_email )
+    init_user_folder( gss, initial_user, initial_password, support_email, canonicalHost )
     transaction.commit()
 
     init_fs_presentation( gss )
