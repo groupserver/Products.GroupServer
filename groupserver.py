@@ -3,7 +3,7 @@ from OFS.OrderedFolder import OrderedFolder
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest
-from App.config import getConfigurationS
+from App.config import getConfiguration
 
 from interfaces import IGroupserverSite
 
@@ -134,6 +134,7 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
         m = 'init_user_folder: Issues verifying initial user email address %s' % email
         log.error(m)
     acl.addGroupsToUser(['example_site_member', 'example_group_member'], adminuser.getId())
+    
 
     acl._doAddUser('example_user', 'fake', [], [], [])
     exampleuser = acl.getUser('example_user')
