@@ -60,7 +60,7 @@ for userid in userids:
                     'canonical'    : getOption(group, 'canonicalHost'),
                     'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail'),
                     'memberId'     : userid,
-                    'memberName'   : user.getProperty('preferredName'),
+                    'memberName'   : user.getProperty('fn',''),
                     'joining_user' : user,
                     'joining_group': group
                   }
