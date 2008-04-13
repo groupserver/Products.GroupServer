@@ -24,13 +24,12 @@ else:
         # --=rrw=-- Yes, this is a hack assuming that we will never
         #  have very short userids
         userids = [userids]
-    group_memebersip_id = '%s_member' % groupid
+    group_membership_id = '%s_member' % groupid
     names = []
     for userid in userids:
         user = site_root.acl_users.getUser(userid)
-        user.add_groupWithNotification(*[group_memebersip_id])
-        names.append('%s %s' % (getattr(user, 'firstName', ''),
-                                getattr(user, 'lastName', '')))
+        user.add_groupWithNotification(*[group_membership_id])
+        names.append(getattr(user, 'fn', ''))
     if (len(userids) > 1):
         namesStr = '%s and %s' % (', '.join(names[:-1]), names[-1])
         result['message'] = """<p>Added %d existing site-members (%s) to 
