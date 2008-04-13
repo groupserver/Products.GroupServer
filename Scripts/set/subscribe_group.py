@@ -43,7 +43,7 @@ if ptnCoach:
                 'canonical'    : getOption(group, 'canonicalHost'),
                 'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail'),
                 'memberId'     : user_id,
-                'memberName'   : user.getProperty('preferredName'),
+                'memberName'   : user.getProperty('fn',''),
                 'joining_user' : user,
                 'joining_group': group
               }
