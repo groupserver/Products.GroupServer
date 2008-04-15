@@ -31,7 +31,7 @@
         <li href="#groupserver-faq-change-email">
           How do I change my email address?
         </li>
-        <li href="#groupserver-faq-file-attach_freezes">
+        <li href="#groupserver-faq-file-attach-freezes">
           When I try to send a file to my online group via the web, the page freezes.
         </li>
         <li href="#groupserver-faq-delete-posts-files">
@@ -86,7 +86,7 @@
         </p>
       </section>
 
-      <section id="groupserver-faq-file-attach_freezes">
+      <section id="groupserver-faq-file-attach-freezes">
         <h>When I try to send a file to my online group via the web, the page freezes.</h>
         <p>
           If you wish to share a link to a webpage with your group, simply paste 
