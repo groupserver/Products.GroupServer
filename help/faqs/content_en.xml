@@ -25,8 +25,14 @@
         <li href="#groupserver-faq-password-reset">
           I can't log in. How do I get a new password?
         </li>
+        <li href="#groupserver-faq-password-reset-freezes">
+          When I try to confirm my new password, the page freezes.
+        </li>
         <li href="#groupserver-faq-change-email">
           How do I change my email address?
+        </li>
+        <li href="#groupserver-faq-file-attach_freezes">
+          When I try to send a file to my online group via the web, the page freezes.
         </li>
         <li href="#groupserver-faq-delete-posts-files">
           How do I delete a post? How do I delete a file?
@@ -54,6 +60,18 @@
     	    follow the instructions there to set a new password.
         </p>
       </section>
+
+      <section id="groupserver-faq-password-reset-freezes">
+        <h>When I try to confirm my new password, the page freezes.</h>
+        <p>
+    	    Clear the cache of your internet browser and then 
+    	    <a href="#groupserver-faq-password-reset">reset your password</a>
+    	    again. Microsoft has 
+    	    <a class="weblink"
+    	      href="http://www.microsoft.com/windows/ie/ie6/using/howto/customizing/clearcache.mspx">instructions</a> 
+    	    for clearing the cache of Internet Explorer 6.
+        </p>
+      </section>
       
       <section id="groupserver-faq-change-email">
         <h>How do I change my email address?</h>
@@ -65,6 +83,19 @@
           address, type your email address into the 'Add Address' field and 
           click the 'Add' button. To remove an email address, choose 'Remove Address'
           from the drop-down list under 'Change' next to that email address.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-file-attach_freezes">
+        <h>When I try to send a file to my online group via the web, the page freezes.</h>
+        <p>
+          If you wish to share a link to a webpage with your group, simply paste 
+          the URL of the webpage into the <cite>Message</cite> section of the 
+          page, along with the rest of your post.
+        </p>
+        <p>
+          You should only use the <cite>File</cite> section of the page to 
+          select and upload a file that is saved to your local computer.
         </p>
       </section>
       
