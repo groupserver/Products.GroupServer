@@ -107,13 +107,12 @@ class GroupserverSite( OrderedFolder ):
 def init_user_folder( groupserver_site, initial_user, initial_password, email, canonical ):
     btf = groupserver_site.manage_addProduct['BTreeFolder2']
     btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
-    btf.manage_addBTreeFolder( 'contactsimages', 'People in the Site' )
+    groupserver_site.manage_addFolder( 'contactsimages', 'People in the Site' )
 
     cuf = groupserver_site.manage_addProduct['CustomUserFolder']
     cuf.manage_addCustomUserFolder( 'contacts' )
     
     acl = getattr( groupserver_site, 'acl_users' )
-    
     acl.userFolderAddGroup( 'example_site_member', 
                                 'Membership of Example Site' )
     acl.userFolderAddGroup( 'example_group_member', 
@@ -177,7 +176,7 @@ def init_global_configuration( groupserver_site, siteName, supportEmail, timezon
     cp = groupserver_site.manage_addProduct['CustomProperties']
     cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
     gc = getattr(groupserver_site, 'GlobalConfiguration')
-    gc.manage_addProperty('alwaysShowMemberPhotos', False, 'boolean')
+    gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
     gc.manage_addProperty('siteName', siteName, 'string')
     gc.manage_addProperty('supportEmail', supportEmail, 'string')
     gc.manage_addProperty('timezone', timezone, 'string')
@@ -189,6 +188,14 @@ def init_fs_presentation( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
     fss.manage_addDirectoryView( pathutil.get_groupserver_path('Presentation'), 'Presentation' )
     groupserver_site.manage_addFolder('PresentationCustom', 'Site specific presentation customisation')
+    pc = getattr(groupserver_site, 'PresentationCustom')
+    pc.manage_addFolder('Tofu', 'Choose Your Own Flavor')
+    tofu = getattr(pc, 'Tofu')
+    tofu.manage_addFolder('Common', 'Common Style')
+    common = getattr(tofu, 'Common')
+    common.manage_addFolder('css', 'Cascading Style Sheets')
+    css = getattr(common, 'css')
+    css.manage_addDTMLMethod('globalstyle.css', 'Custom Stylesheet')
     
 def init_fs_scripts( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
