@@ -7,7 +7,7 @@
       <tal:block      
         tal:define="site context/Scripts/get/division_object;
           group context/Scripts/get/group_object;
-          permission python:context.Scripts.check.permission(site, group, ('DivisionAdmin', 'GroupAdmin', 'Manager'));
+          permission python:context.Scripts.check.permission((site, group), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
           localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
           usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
           joinable python:usersCanJoinGroup(group.getId(),True);
