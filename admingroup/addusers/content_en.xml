@@ -5,25 +5,27 @@
   <output>
     <content>
       <tal:block      
-        tal:define="permission python:context.Scripts.check.permission((context.Scripts.get.division_object(), context.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
-        group_object context/Scripts/get/group_object; 
-        division_object context/Scripts/get/division_object;
-        joinable python:context.LocalScripts.get.usersCanJoinGroup(group_object.getId(),True);
-        canJoin python:joinable[0];">
+        tal:define="site context/Scripts/get/division_object;
+          group context/Scripts/get/group_object;
+          permission python:context.Scripts.check.permission(site, group, ('DivisionAdmin', 'GroupAdmin', 'Manager'));
+          localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+          usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+          joinable python:usersCanJoinGroup(group.getId(),True);
+          canJoin python:joinable[0];">
 
         <heading1>Add Members to
           <span class="group"
-            tal:content="group_object/title_or_id"/></heading1>
+            tal:content="group/title_or_id"/></heading1>
 
         <tal:block tal:condition="canJoin">
           <paragraph>There are three ways to add a member to 
             <span class="group"
-              tal:content="group_object/title_or_id"/>:</paragraph>
+              tal:content="group/title_or_id"/>:</paragraph>
           
           <numberedlist>
             <listitem
               tal:define="group_members context/Scripts/get/group_members;
-                potential_members python:filter(lambda x:x not in group_members, context.Scripts.get.division_users(division_object.getId()))">
+                potential_members python:filter(lambda x:x not in group_members, context.Scripts.get.division_users(site.getId()))">
               <link tal:omit-tag="python: not(potential_members)"
                 title="Select an existing member"
                 url="addsitemembers">Select existing site
@@ -32,11 +34,11 @@
               </listitem>
             <listitem>
               <link title="Add a new member" url="create_single_user"
-                tal:attributes="url string:/groups/${group_object/getId}/admin_join.html">Enter
+                tal:attributes="url string:/groups/${group/getId}/admin_join.html">Enter
                 the details of a new member</link>, or</listitem>
           <listitem>Advanced users can 
               <link title="Add bulk members in bulk" url="createbulkusers"
-               tal:attributes="url string:/groups/${group_object/getId}/admin_join_csv.html">upload
+               tal:attributes="url string:/groups/${group/getId}/admin_join_csv.html">upload
                the details of multiple members using a CSV file</link>.
             </listitem>
           </numberedlist>
@@ -44,7 +46,7 @@
         <tal:block tal:condition="python:not canJoin">
           <paragraph>
             Normally, you could add people to
-            <span class="group" tal:content="group_object/title_or_id"/>,
+            <span class="group" tal:content="group/title_or_id"/>,
             but <span tal:content="python:joinable[1][1].lower()"/>.
           </paragraph>
         </tal:block>
