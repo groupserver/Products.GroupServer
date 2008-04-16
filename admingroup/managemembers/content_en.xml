@@ -7,25 +7,27 @@
   <output>
     <content 
       tal:define="division_object here/Scripts/get/division_object;
-      group_object here/Scripts/get/group_object;
-      moderated_members python:here.Scripts.get.group_members_moderated();
-      moderated_members_ids python:map(lambda m: m.getId(), moderated_members);
-      isGroupModerated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);
-      list python:getattr(here.ListManager, group_object.getId(), None);
-      moderator_ids python:list.getProperty('moderator_members', []);
-      showMembers python:request.get('show', 'all');
-      uIds python:request.get('userIds', '');
-      editIds python:hasattr(uIds, 'split') and uIds.split() or uIds;
-      member_count here/Scripts/get/group_member_count;
-      groupType python:group_object.getProperty('group_template');
-      isGroupAnnouncement python:groupType == 'announcement';
-      postingMembers python: (isGroupAnnouncement and group_object.messages.get_listProperty(group_object.getId(), 'posting_members')) or [];
-      joinable python:here.LocalScripts.get.usersCanJoinGroup(group_object.getId(),True);
-      canJoin python:joinable[0];
-      unverifiedUsers here/Scripts/get/unverified_group_members;
-      allMembers here/Scripts/get/group_members;
-      unverifiedUserObjs python:filter(lambda u:u.get_verifiedEmailAddresses()==[],allMembers);
-      unverifiedUsers python:map(lambda u:u.getId(), unverifiedUserObjs)">
+        group_object here/Scripts/get/group_object;
+        moderated_members python:here.Scripts.get.group_members_moderated();
+        moderated_members_ids python:map(lambda m: m.getId(), moderated_members);
+        isGroupModerated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);
+        list python:getattr(here.ListManager, group_object.getId(), None);
+        moderator_ids python:list.getProperty('moderator_members', []);
+        showMembers python:request.get('show', 'all');
+        uIds python:request.get('userIds', '');
+        editIds python:hasattr(uIds, 'split') and uIds.split() or uIds;
+        member_count here/Scripts/get/group_member_count;
+        groupType python:group_object.getProperty('group_template');
+        isGroupAnnouncement python:groupType == 'announcement';
+        postingMembers python: (isGroupAnnouncement and group_object.messages.get_listProperty(group_object.getId(), 'posting_members')) or [];
+        localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+        usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+        joinable python:usersCanJoinGroup(group_object.getId(),True);
+        canJoin python:joinable[0];
+        unverifiedUsers here/Scripts/get/unverified_group_members;
+        allMembers here/Scripts/get/group_members;
+        unverifiedUserObjs python:filter(lambda u:u.get_verifiedEmailAddresses()==[],allMembers);
+        unverifiedUsers python:map(lambda u:u.getId(), unverifiedUserObjs)">
       
       <heading1>
         Manage the Members of 

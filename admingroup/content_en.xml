@@ -20,16 +20,19 @@
       </p>
 
       <ul
-        tal:define="permission python:here.Scripts.check.permission((here.Scripts.get.division_object(), here.Scripts.get.group_object()), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
-        site here/Scripts/get/division_object;
-        group here/Scripts/get/group_object;
-        joinable python:here.LocalScripts.get.usersCanJoinGroup(group.getId(),True);
+        tal:define="site context/Scripts/get/division_object;
+        group context/Scripts/get/group_object;
+        permission python:context.Scripts.check.permission((site, group, ('DivisionAdmin', 'GroupAdmin', 'Manager'));
+        localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+        usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+        joinable python:usersCanJoinGroup(group.getId(),True);
         canJoin python:joinable[0];
-        member_count here/Scripts/get/group_member_count;
+        member_count context/Scripts/get/group_member_count;
         groupType python:group.getProperty('group_template');
         isGroupDiscussion python:groupType == 'standard';
         isGroupAnnouncement python:groupType == 'announcement';
-        isGroupModerated python:here.Scripts.get.list_property(group.getId(), 'moderated', False);">
+        isGroupModerated python:context.Scripts.get.list_property(group.getId(), 'moderated', False);">
+        
         <li tal:condition="canJoin" href="addusers">
           <strong>Add members</strong> to
           <span class="group" tal:content="group/title_or_id"/>

@@ -7,11 +7,13 @@
   <output>
     <content 
       tal:define="group_members here/Scripts/get/group_members; 
-      group_object here/Scripts/get/group_object;
-      division_object here/Scripts/get/division_object;
-      joinable python:here.LocalScripts.get.usersCanJoinGroup(group_object.getId(),True);
-      canJoin python:joinable[0];
-      realnames python:modules['Products.XWFCore.XWFUtils'].get_user_realnames">
+        group_object here/Scripts/get/group_object;
+        division_object here/Scripts/get/division_object;
+        localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+        usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+        joinable python:usersCanJoinGroup(group_object.getId(),True);
+        canJoin python:joinable[0];
+        realnames python:modules['Products.XWFCore.XWFUtils'].get_user_realnames">
       
       <heading1>Add Members of 
         <span class="division"
