@@ -163,13 +163,18 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     contacts = getattr( groupserver_site, 'contacts' )
     contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
     
+    # The LocalRoles are currently taken care of in the imported Content
     # TODO: Create these groups instead of importing them
-    example_site = getattr( groupserver_site.Content, 'example_site')
-    example_site.manage_addLocalRoles(adminuser, ['DivisionAdmin'])
+    #example_site = getattr( groupserver_site.Content, 'example_site')
+    #example_site.manage_addLocalRoles(adminuser, ['DivisionAdmin'])
+    #example_group = getattr(example_site.groups, 'example_group')
+    #example_group.manage_addLocalRoles(adminuser, ['GroupAdmin'])    
 
-    example_group = getattr(example_site.groups, 'example_group')
-    example_group.manage_addLocalRoles(adminuser, ['GroupAdmin'])    
-
+    site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
+    site_config.manage_changeProperties(canonicalHost=canonical)
+    
+    maillist = getattr(groupserver_site.ListManager, 'example_group')
+    maillist.manage_changeProperties(mailto='example_group@%s' % canonical)
 
 def init_global_configuration( groupserver_site, siteName, supportEmail, timezone, canonicalHost,
                                userVerificationEmail, registrationEmail ):
