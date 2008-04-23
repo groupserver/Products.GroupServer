@@ -87,7 +87,5 @@ group.manage_addProperty('date_open', str(DateTime().day())+' '+str(DateTime().M
 # with a value of "sender" so that replies do not go to the list
 groupList.manage_addProperty('replyto', 'sender', 'string')
 
-# Add the shop to the group
-context.LocalScripts.process.add_shop_to_group(siteId, groupId)
-
 return group
+

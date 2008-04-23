@@ -70,8 +70,6 @@ group.messages.manage_permission('Access contents information', [], 1)
 adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']
 group.admingroup.manage_permission('View', adminGroups)
 group.admingroup.manage_permission('Access contents information', adminGroups)
-
-# Add the shop to the group
-context.LocalScripts.process.add_shop_to_group(siteId, groupId)
-    
+   
 return group
+
