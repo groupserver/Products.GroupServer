@@ -40,7 +40,7 @@
     <link rel="stylesheet" type="text/css"
       href="/++resource++globalstyle-20080310.css" />
     <link rel="stylesheet" type="text/css" 
-      href="/++resource++site-20080418.css" />
+      href="/++resource++site-20080423.css" />
 
     <script type="text/javascript"
       src="/Presentation/Tofu/XForms/js/xforms.js">
