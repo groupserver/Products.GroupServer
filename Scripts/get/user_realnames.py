@@ -20,6 +20,6 @@ except:
     user = None
 
 if user:
-    return '%s' % (user.getProperty('preferredName'))
+    return '%s' % (user.getProperty('fn'))
 
 return '%s (account removed)' % user_id
