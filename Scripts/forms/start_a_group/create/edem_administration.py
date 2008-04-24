@@ -23,4 +23,16 @@ site_root = context.site_root()
 mainSite = getattr(site_root.Content, 'main')
 edemAdminGroup = mainSite.manage_copyObjects(('admingroup',))
 group.manage_pasteObjects(edemAdminGroup)
+
+# Add the IGSGroupFolder, so the Zope Five pages work!
+interfaces = ('Products.XWFChat.interfaces.IGSGroupFolder',)
+context.add_marker_interfaces(group, interfaces)
+
+# In an eDem group, group and site administrators can add users.
+group.manage_permission('Manage users', 
+                        ['DivisionAdmin','GroupAdmin','Manager','Owner'],0)
+# In an eDem group, only site administrators can alter the properties
+group.manage_permission('Manage properties', 
+                        ['DivisionAdmin','Manager','Owner'],0)
+
 assert hasattr(group.aq_explicit, 'admingroup')
