@@ -40,3 +40,4 @@ justUsers = ['GroupAdmin','GroupMember','Manager', 'Owner']
 group.email_settings.manage_permission('View', justUsers)
 group.email_settings.manage_permission('Access contents information',
                                        justUsers)
+

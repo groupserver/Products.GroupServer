@@ -46,13 +46,6 @@ site_root.acl_users.userFolderAddGroup('%s_member' % groupId)
 group.manage_defined_roles('Add Role', {'role':'GroupMember'})
 group.manage_defined_roles('Add Role', {'role':'GroupAdmin'})
 group.manage_addLocalGroupRoles('%s_member' % groupId, ['GroupMember'])
-# --=rrw=--
-#   The group needs to be 'owned' by a top level user, since the Scripts are
-#   above the context of the site, and some of them require Manager level
-#   proxy access. Yes, this is darker magic than we'd like. Any suggestions
-#   welcome.
-#owner = 'admin'
-Products.XWFCore.XWFUtils.assign_ownership(group, 'admin', 1, '/acl_users')
 
 # Set the correct properties
 group.manage_addProperty('is_group', True, 'boolean')

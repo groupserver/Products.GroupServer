@@ -7,7 +7,7 @@
 ##parameters=siteId='',templateId='',groupId='',groupName='',realLifeGroup='',privacy=''
 ##title=Add Group
 ##
-from Products.XWFCore.XWFUtils import getOption
+from Products.XWFCore.XWFUtils import getOption, assign_ownership
 
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'
@@ -86,6 +86,13 @@ if templateId == 'announcement':
     # Add the "replyto" property to the mailing list object
     # with a value of "sender" so that replies do not go to the list
     groupList.manage_addProperty('replyto', 'sender', 'string')
+
+# --=rrw=--
+#   The group needs to be 'owned' by a top level user, since the Scripts are
+#   above the context of the site, and some of them require Manager level
+#   proxy access. Yes, this is darker magic than we'd like. Any suggestions
+#   welcome.
+assign_ownership(group, 'admin', 1, '/acl_users')
    
 return group
 
