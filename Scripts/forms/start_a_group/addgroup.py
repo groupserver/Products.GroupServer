@@ -1,11 +1,11 @@
-## Script (Python) "ogn_add_announcement_group"
+## Script (Python) "addgroup"
 ##bind container=container
 ##bind context=context
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=siteId='',templateId='',groupId='',groupName='',realLifeGroup='',privacy=''
-##title=OnlineGroups.Net Add Announcement Group
+##title=Add Group
 ##
 from Products.XWFCore.XWFUtils import getOption
 
@@ -25,8 +25,6 @@ assert not hasattr(groups, groupId), 'The group "%s" already exists'
 
 group = container.create.group_folder(groups, groupId, groupName,
                                        realLifeGroup, templateId)
-
-# Create everything except a members area and chat
 container.create.group_index(group)
 container.create.javascript(group)
 container.create.files_area(group)
@@ -34,15 +32,16 @@ container.create.messages_area(group)
 container.create.charter(group, templateId)
 container.create.email_settings(group)
 container.create.administration(group)
-
+if templateId == 'standard':
+    container.create.members_area(group)
+    container.create.chat(group)
 
 canonicalHost = getOption(site, 'canonicalHost', 'onlinegroups.net')
 if ('onlinegroups.net' in canonicalHost):
     mailHost = 'onlinegroups.net'
 else:
     mailHost = canonicalHost
-groupList = container.create.list_instance(group, mailHost, siteId,
-  privacy)
+groupList = container.create.list_instance(group, mailHost, siteId, privacy)
 container.create.default_administrator(group)
 
 # Set the permissions for the group.
@@ -71,21 +70,22 @@ adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']
 group.admingroup.manage_permission('View', adminGroups)
 group.admingroup.manage_permission('Access contents information', adminGroups)
 
-# Add the "mailinlist_members" script to the mailing list object
-assert(hasattr(context.CodeTemplates.ListManager, 
-        'mailinlist_members')), "No 'mailinlist_members' in CodeTemplates."
-groupList.manage_clone(getattr(context.CodeTemplates.ListManager, 
-                                'mailinlist_members'),
-                        'mailinlist_members') 
-user = context.REQUEST.AUTHENTICATED_USER
-groupList.manage_addProperty('posting_members', user.getId(), 'lines')
-
 # Add the start date to the group
 group.manage_addProperty('date_open', str(DateTime().day())+' '+str(DateTime().Month())+' '+str(DateTime().year()), 'string')
 
-# Add the "replyto" property to the mailing list object
-# with a value of "sender" so that replies do not go to the list
-groupList.manage_addProperty('replyto', 'sender', 'string')
+if templateId == 'announcement':
+    # Add the "mailinlist_members" script to the mailing list object
+    assert(hasattr(context.CodeTemplates.ListManager, 
+            'mailinlist_members')), "No 'mailinlist_members' in CodeTemplates."
+    groupList.manage_clone(getattr(context.CodeTemplates.ListManager, 
+                                    'mailinlist_members'),
+                            'mailinlist_members') 
+    user = context.REQUEST.AUTHENTICATED_USER
+    groupList.manage_addProperty('posting_members', user.getId(), 'lines')
 
+    # Add the "replyto" property to the mailing list object
+    # with a value of "sender" so that replies do not go to the list
+    groupList.manage_addProperty('replyto', 'sender', 'string')
+   
 return group
 

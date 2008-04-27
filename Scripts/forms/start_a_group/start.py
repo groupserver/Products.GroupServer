@@ -34,7 +34,7 @@ groupId = groupId.lower()
 realLifeGroup = form['realLifeGroup']
 privacy = form['privacy']
 
-# The user should not be able to stuff up the division ID as it is set
+# The user should not be able to stuff up the site ID as it is set
 #   by code.
 
 # The user should not be able to stuff up the group type, as it is set
@@ -65,11 +65,7 @@ if result['error']:
     return result
 
 # No error, start the group
-if groupType == 'announcement':
-    group = container.ogn_add_announcement_group(siteId, groupType, groupId, groupName,
-                                                 realLifeGroup, privacy)
-else:
-    group = container.ogn_add_discussion_group(siteId, groupType, groupId, groupName,
+group = container.addgroup(siteId, groupType, groupId, groupName,
                                                  realLifeGroup, privacy)
 
 if group != None:
