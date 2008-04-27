@@ -182,6 +182,7 @@ def init_global_configuration( groupserver_site, siteName, supportEmail, timezon
     cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
     gc = getattr(groupserver_site, 'GlobalConfiguration')
     gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
+    gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
     gc.manage_addProperty('siteName', siteName, 'string')
     gc.manage_addProperty('supportEmail', supportEmail, 'string')
     gc.manage_addProperty('timezone', timezone, 'string')
