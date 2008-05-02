@@ -52,13 +52,13 @@ if int(unsubscribe):
     user.del_groupWithNotification('%s_member' % group_id)
     if ptnCoach:
         ptnCoach.send_notification('leave_group_admin', group_id, n_dict)
-    return context.REQUEST.RESPONSE.redirect('/%s/groups/%s/' % (division_id, group_id))
+    return context.REQUEST.RESPONSE.redirect('/groups/%s/' % group_id)
 
 if joinable:
     user.add_groupWithNotification('%s_member' % group_id)
     if ptnCoach:
         ptnCoach.send_notification('join_group_admin', group_id, n_dict)
-    return context.REQUEST.RESPONSE.redirect('/%s/groups/%s/' % (division_id, group_id))
+    return context.REQUEST.RESPONSE.redirect('/groups/%s/' % group_id)
 
 
 return context.REQUEST.RESPONSE.redirect(context.REQUEST.SESSION['last_url'])
