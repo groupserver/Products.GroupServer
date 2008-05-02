@@ -20,6 +20,8 @@
 #    group is set so only the members of the group can see the email
 #    settings.
 #
+from Products.XWFCore.XWFUtils import add_marker_interfaces
+
 assert group
 site_root = context.site_root()
 assert hasattr(site_root.CodeTemplates.group, 'email_settings'), \
@@ -33,7 +35,7 @@ if hasattr(group.email_settings, 'index.xml'):
   group.email_settings.manage_delObjects(['index.xml'])
 
 interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
-context.add_marker_interfaces(group.email_settings, interfaces)
+add_marker_interfaces(group.email_settings, interfaces)
 
 # Only group members can see the email settings.
 justUsers = ['GroupAdmin','GroupMember','Manager', 'Owner']

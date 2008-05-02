@@ -18,6 +18,8 @@
 # SIDE EFFECTS
 #    A messages-area is created in the group.
 #
+from Products.XWFCore.XWFUtils import add_marker_interfaces
+
 assert group
 site_root = context.site_root()
 assert hasattr(site_root.CodeTemplates.group, 'members'), \
@@ -29,4 +31,4 @@ assert group.members, '"%s/members" not created' % group.getId()
 if hasattr(group.members, 'index.xml'):
     group.members.manage_delObjects(['index.xml'])
 interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
-context.add_marker_interfaces(group.members, interfaces)
+add_marker_interfaces(group.members, interfaces)

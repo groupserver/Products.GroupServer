@@ -18,7 +18,9 @@
 # SIDE EFFECTS
 #    A email-settings area is created in the group.
 #
+from Products.XWFCore.XWFUtils import add_marker_interfaces
+
 assert group
 interfaces = ('Products.XWFChat.interfaces.IGSChat',
               'Products.XWFChat.interfaces.IGSGroupFolder')
-context.add_marker_interfaces(group, interfaces)
+add_marker_interfaces(group, interfaces)

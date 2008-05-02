@@ -18,6 +18,8 @@
 # SIDE EFFECTS
 #    An index-page for the group is created.
 #
+from Products.XWFCore.XWFUtils import add_marker_interfaces
+
 assert group
 site_root = context.site_root()
 assert hasattr(site_root.CodeTemplates.group, 'content_en'), \
@@ -26,6 +28,6 @@ assert hasattr(site_root.CodeTemplates.group, 'content_en'), \
 group.manage_clone(getattr(context.CodeTemplates.group, 'content_en'),
                    'content_en')
 interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
-context.add_marker_interfaces(group, interfaces)
+add_marker_interfaces(group, interfaces)
 
 assert hasattr(group.aq_explicit, 'content_en')

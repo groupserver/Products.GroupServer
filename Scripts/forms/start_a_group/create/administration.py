@@ -20,13 +20,15 @@
 #    * The IGSGroupFolder is added to the group, for the "admin_join*html"
 #      pages.
 #
+from Products.XWFCore.XWFUtils import add_marker_interfaces
+
 assert group
 fss = group.manage_addProduct['FileSystemSite']
 fss.manage_addDirectoryView('GroupServer/admingroup')
 
 # Add the IGSGroupFolder, so the Zope Five pages work!
 interfaces = ('Products.XWFChat.interfaces.IGSGroupFolder',)
-context.add_marker_interfaces(group, interfaces)
+add_marker_interfaces(group, interfaces)
 # In an OGN goup, group and site administrators can add users.
 group.manage_permission('Manage users', 
                         ['DivisionAdmin','GroupAdmin','Manager','Owner'],0)

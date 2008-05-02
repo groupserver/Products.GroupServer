@@ -19,6 +19,8 @@
 # SIDE EFFECTS
 #    A charter is created in the group.
 #
+from Products.XWFCore.XWFUtils import add_marker_interfaces
+
 assert group
 assert templateId
 site_root = context.site_root()
@@ -35,4 +37,4 @@ if hasattr(templatedir, 'charter'):
     if hasattr(group.charter, 'index.xml'):
         group.charter.manage_delObjects(['index.xml'])
     interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
-    context.add_marker_interfaces(group.charter, interfaces)
+    add_marker_interfaces(group.charter, interfaces)
