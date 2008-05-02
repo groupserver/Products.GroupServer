@@ -287,6 +287,23 @@ def import_content( container ):
         container._importObjectFromFile( pathutil.get_import_path(
                                              object_to_import) )
 
+    site = getattr(container.Content, 'example_site')
+    assert site, 'No example_site found'
+    fss = site.manage_addProduct['FileSystemSite']
+    fss.manage_addDirectoryView( pathutil.get_groupserver_path('admindivision'), 'admindivision' )
+    assert hasattr(site.aq_explicit, 'admindivision')
+    getattr(site, 'admindivision').manage_changeProperties(title='Administer Site')
+    fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
+    assert hasattr(site.aq_explicit, 'help')
+    getattr(site, 'help').manage_changeProperties(title='Help')
+    
+    group = getattr(site.groups, 'example_group')
+    assert group, 'No example_group found'
+    fss = group.manage_addProduct['FileSystemSite']
+    fss.manage_addDirectoryView( pathutil.get_groupserver_path('admingroup'), 'admingroup' )
+    assert hasattr(group.aq_explicit, 'admingroup')
+    getattr(group, 'admingroup').manage_changeProperties(title='Administer Group')
+
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
                                support_email, timezone,
                                canonicalHost, userVerificationEmail, registrationEmail,

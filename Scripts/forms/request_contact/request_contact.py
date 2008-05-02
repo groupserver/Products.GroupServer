@@ -13,10 +13,10 @@ from Products.XWFCore.XWFUtils import get_support_email, get_user_realnames
 result = {}
 
 form = context.REQUEST.form
-assert form.has_key('contactedUser')
-assert form.has_key('site')
-assert form.has_key('siteName')
-assert form.has_key('siteId')
+assert form.has_key('contactedUser'), 'No contactedUser'
+assert form.has_key('site'), 'No site'
+assert form.has_key('siteName'), 'No siteName'
+assert form.has_key('siteId'), 'No siteId'
 result['form'] = form
 
 for field in form:
