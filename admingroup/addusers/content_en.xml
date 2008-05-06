@@ -44,7 +44,7 @@
           </numberedlist>
           <paragraph 
             tal:define="joinability here/Scripts/get/group_joinability"
-            tal:condition="python:group_joinability=='anyone'">
+            tal:condition="python:joinability=='anyone'">
             You can also 
             <link
               tal:attributes="url string:/groups/${group/getId}/admin_remote_request_register.html"
