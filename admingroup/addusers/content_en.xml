@@ -42,6 +42,14 @@
                the details of multiple members using a CSV file</link>.
             </listitem>
           </numberedlist>
+          <paragraph 
+            tal:define="joinability here/Scripts/get/group_joinability"
+            tal:condition="python:group_joinability=='anyone'">
+            You can also 
+            <link
+              tal:attributes="url string:/groups/${group/getId}/admin_remote_request_register.html"
+              url="#">put a registration box on a remote site.</link>
+          </paragraph>
         </tal:block><!--canJoin-->
         <tal:block tal:condition="python:not canJoin">
           <paragraph>
