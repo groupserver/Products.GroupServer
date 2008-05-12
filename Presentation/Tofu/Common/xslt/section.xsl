@@ -27,7 +27,7 @@
       <link rel="stylesheet" type="text/css"
         href="/++resource++globalstyle-20080310.css" />
       <link rel="stylesheet" type="text/css" 
-        href="/++resource++site-20080423.css" />
+        href="/++resource++site-20080513.css" />
       
       <xsl:if test="//link[@class='alternateRDF']">
         <xsl:for-each select="//link[@class='alternateRDF']">
