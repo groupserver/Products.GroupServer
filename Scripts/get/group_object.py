@@ -8,12 +8,14 @@
 ##title=
 ##
 group_object = context
+blarg = []
 while group_object:
     try:
         group_object = group_object.aq_parent
-        if getattr(group_object.aq_inner.aq_explicit, 'is_group', 0):
+        blarg = group_object.getProperty('is_group')
+        if blarg == True:
             break
     except:
         break
 
-return group_object.aq_inner.aq_explicit
+return group_object

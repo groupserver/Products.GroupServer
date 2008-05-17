@@ -10,10 +10,12 @@
 division_object = context
 while division_object:
     try:
-        division_object = division_object.aq_parent
-        if getattr(division_object.aq_inner.aq_explicit, 'is_division', 0):
+        in_division = division_object.getProperty('is_division')
+        if in_division:
             break
-    except:
-        return None
+    except AttributeError:
+        pass
+    division_object = division_object.aq_parent
+        
+return division_object.aq_explicit
 
-return division_object.aq_inner.aq_explicit
