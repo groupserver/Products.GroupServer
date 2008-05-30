@@ -8,6 +8,7 @@
 ##title=Add Group
 ##
 from Products.XWFCore.XWFUtils import getOption, assign_ownership
+from Products.GSContent.groupsInfo import GSGroupsInfoFactory
 
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'
@@ -93,6 +94,9 @@ if templateId == 'announcement':
 #   proxy access. Yes, this is darker magic than we'd like. Any suggestions
 #   welcome.
 assign_ownership(group, 'admin', 1, '/acl_users')
-   
+
+groupsInfo = GSGroupsInfoFactory()(site)
+groupsInfo.clear_visible_groups_cache()
+
 return group
 
