@@ -96,7 +96,7 @@ if templateId == 'announcement':
 assign_ownership(group, 'admin', 1, '/acl_users')
 
 groupsInfo = GSGroupsInfoFactory()(site)
-groupsInfo.clear_visible_groups_cache()
+groupsInfo.clear_groups_cache()
 
 return group
 
