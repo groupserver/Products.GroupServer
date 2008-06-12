@@ -35,20 +35,17 @@
           isGroupModerated python:context.Scripts.get.list_property(group.getId(), 'moderated', False);">
         
         <li tal:condition="canJoin" href="addusers">
-          <strong>Add members</strong> to
-          <span class="group" tal:content="group/title_or_id"/>
+          <strong>Add members</strong> to the group
         </li>
         <li tal:condition="python:not canJoin">
           Normally, you could add members to the group, but
           <span tal:content="python:joinable[1][1].lower()"/>
         </li>
         <li tal:condition="python:member_count &lt;= 127" href="managemembers">
-          <strong>Manage the members</strong> of 
-          <span class="group" tal:content="group/title_or_id"/>
+          <strong>Manage the group members</strong>
         </li>
         <li tal:condition="python:member_count &gt; 127" href="manage_many_members">
-          <strong>Manage the many members</strong> of 
-          <span class="group" tal:content="group/title_or_id"/>
+          <strong>Manage the many group members</strong>
           <ul>
             <li tal:condition="isGroupModerated" href="managemembers/?show=moderated">
               Manage the moderated members
@@ -67,13 +64,11 @@
           href="editproperties">Edit group <strong>properties</strong>
           <ul>
             <li href="editproperties/generalproperties">
-              Edit the <strong>general</strong> properties of 
-                <span class="group" tal:content="group/title_or_id"/>
+              Edit the <strong>general</strong> group properties
             </li>
-            <li><a href="#"
+            <li href="#"
                 tal:attributes="href string:/groups/${group/getId}/admin_change_basic_privacy.html">Change
-                the <strong>privacy</strong></a> of 
-              <span class="group" tal:content="groupName">this group</span>
+                the <strong>privacy</strong> of this group
             </li>
             <li tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)"
               href="editproperties/postinglimit">
@@ -86,8 +81,7 @@
         </li>
         <li tal:condition="python:('DivisionAdmin' in user.getRolesInContext(group)) and 
             (site.getProperty('isChargable', False)) and (groupType != 'support')"
-          href="../groupshop">Alter the <strong>size</strong> of 
-          <span class="group" tal:content="group/title_or_id"/>
+          href="../groupshop">Alter the group <strong>size</strong>
           </li>
       </ul> 
     </section>
