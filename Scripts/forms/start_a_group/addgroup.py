@@ -94,6 +94,7 @@ if templateId == 'announcement':
 #   proxy access. Yes, this is darker magic than we'd like. Any suggestions
 #   welcome.
 assign_ownership(group, 'admin', 1, '/acl_users')
+assign_ownership(groupList, 'admin', 1, '/acl_users')
 
 groupsInfo = GSGroupsInfoFactory()(site)
 groupsInfo.clear_groups_cache()
