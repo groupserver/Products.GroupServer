@@ -2,13 +2,14 @@ from zope.interface import implements
 from OFS.OrderedFolder import OrderedFolder
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.XWFCore.XWFUtils import createRequestFromRequest
+from Products.XWFCore.XWFUtils import createRequestFromRequest, rfc822_date
+
 from App.config import getConfiguration
 
 from interfaces import IGroupserverSite
 
 import transaction
-import DateTime
+import datetime
 import urlparse
 
 import pathutil
@@ -39,7 +40,8 @@ class GroupserverSite( OrderedFolder ):
         
         """
         if self.REQUEST.form.get('__ac_persistent', 0):
-            expires = (DateTime.DateTime() + 365).toZone('GMT').rfc822()
+            expires = rfc822_date(datetime.datetime.utcnow() +
+                                  datetime.timedelta(365))
             resp.setCookie(cookie_name, cookie_value, path=self.cookie_authentication.getCookiePath(), expires=expires)
         else:
             resp.setCookie(cookie_name, cookie_value, path=self.cookie_authentication.getCookiePath())
