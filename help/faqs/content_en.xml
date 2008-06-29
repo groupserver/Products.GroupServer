@@ -46,7 +46,7 @@
           Topics section of my Online Group?
         </li>
         <li href="#groupserver-faq-email-settings-default">
-          On my 'Edit Email Settings' page, what does 'Default' mean?
+          On my 'Change Email Settings' page, what does 'Default' mean?
         </li>
         <li href="#groupserver-faq-support">
           I'm still stuck. How can I get help?
@@ -78,7 +78,7 @@
         <p>
     	    Log in and go to your
           <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
-            tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
+            tal:omit-tag="python:not(isAuthenticated)">Change Email Settings page</a>.
           On this page you can add or remove email addresses. To add an email 
           address, type your email address into the 'Add Address' field and 
           click the 'Add' button. To remove an email address, choose 'Remove Address'
@@ -123,7 +123,7 @@
     	    recognize your sent emails. If the rejected address mentioned in 
     	    the email is not listed on your 
           <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
-            tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>,
+            tal:omit-tag="python:not(isAuthenticated)">Change Email Settings page</a>,
           add it.
         </p>
       </section>
@@ -147,13 +147,13 @@
     	    the message from is registered to your profile. You can do this by 
     	    going to your 
           <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
-            tal:omit-tag="python:not(isAuthenticated)">Edit Email Settings page</a>.
+            tal:omit-tag="python:not(isAuthenticated)">Change Email Settings page</a>.
           You can change your email address(es) there if neccessary.
         </p>
       </section>
       
       <section id="groupserver-faq-email-settings-default">      
-        <h>On my 'Edit Email Settings' page, what does 'Default' mean?</h>
+        <h>On my 'Change Email Settings' page, what does 'Default' mean?</h>
         <p>
           If you select 'Make default' under 'Change' next to your email 
           address, you will receive posts from all your Online Groups
