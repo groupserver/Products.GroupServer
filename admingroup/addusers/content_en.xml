@@ -18,7 +18,7 @@
             tal:content="group/title_or_id"/></heading1>
 
         <tal:block tal:condition="canJoin">
-          <paragraph>There are three ways to add a member to 
+          <paragraph>There are four ways to add a member to 
             <span class="group"
               tal:content="group/title_or_id"/>:</paragraph>
           
@@ -28,7 +28,8 @@
                 potential_members python:filter(lambda x:x not in group_members, context.Scripts.get.division_users(site.getId()))">
               <link tal:omit-tag="python: not(potential_members)"
                 title="Select an existing member"
-                url="addsitemembers">Select existing site
+                url="addsitemembers"
+                tal:attributes="url string:/groups/${group/getId}/admin_invite_site_members.html">Select existing site
                 members</link><span tal:condition="python: not(potential_members)"
                   tal:content="string: (all site members are members of this group)"/>,
               </listitem>
