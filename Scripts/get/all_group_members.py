@@ -7,6 +7,7 @@
 ##parameters=
 ##title=All members of a group, including unverified
 ##
+from Products.GSGroupMember.groupmembership import get_group_users
 
 def sorter(a,b):
     if a.getProperty('fn', '').lower() > b.getProperty('fn', '').lower():
@@ -14,13 +15,10 @@ def sorter(a,b):
     else:
         return -1
 
-allUsers = context.Scripts.get.unverified_group_members() + context.Scripts.get.group_members() 
+group_object = context.Scripts.get.group_object()
 
-u = {}
-for user in allUsers:
-  u[user] = 1
+retval = get_group_users(context, group_object.getId())
 
-retval = u.keys()
 retval.sort(sorter)
 
 return retval
