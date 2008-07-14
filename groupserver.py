@@ -91,7 +91,7 @@ class GroupserverSite( OrderedFolder ):
         request = self.REQUEST
         context = self.getRealContext()
         if kw['error_type'] == 'NotFound':
-            request.RESPONSE.redirect('/notfound.html', lock=1)
+            request.RESPONSE.redirect('/not_found.html', lock=1)
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):
             pass
