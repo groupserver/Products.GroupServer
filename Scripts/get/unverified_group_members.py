@@ -7,13 +7,15 @@
 ##parameters=
 ##title=Get Unverified Members
 ##
-from Products.GSGroupMember.groupmembership import get_group_users
+from Products.GSGroupMember.groupmembership import get_unverified_group_users
 
 group_object = context.Scripts.get.group_object()
 
-unverifiedUsersInGroup = []
-for user in get_group_users(context, group_object.getId()):
-    if len(user.get_verifiedEmailAddresses()) < 1:
-        unverifiedUsersInGroup.append(user)
+#unverifiedUsersInGroup = []
+#for user in get_group_users(context, group_object.getId()):
+#    if len(user.get_verifiedEmailAddresses()) < 1:
+#        unverifiedUsersInGroup.append(user)
+unverifiedUsersInGroup = get_unverified_group_users(context,
+                                                    group_object.getId())
 
 return unverifiedUsersInGroup
