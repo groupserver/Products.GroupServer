@@ -91,18 +91,12 @@ class GroupserverSite( OrderedFolder ):
         request = self.REQUEST
         context = self.getRealContext()
         if kw['error_type'] == 'NotFound':
-            if hasattr(context, 'notfound_message.xml'):
-                request.RESPONSE.redirect('%s/notfound_message.xml' % request.URL1, lock=1)
-            else:
-                raise
+            request.RESPONSE.redirect('/notfound.html', lock=1)
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):
             pass
         else:
-            if hasattr(self, 'unexpected_message.xml'):
-                request.RESPONSE.redirect('%s/unexpected_message.xml' % request.URL1, lock=1)
-            else:
-                raise
+            request.RESPONSE.redirect('unknown_error.html', lock=1)
         
         raise
 
