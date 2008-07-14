@@ -16,7 +16,6 @@
         showMembers python:request.get('show', 'all');
         uIds python:request.get('userIds', '');
         editIds python:hasattr(uIds, 'split') and uIds.split() or uIds;
-        member_count here/Scripts/get/group_member_count;
         groupType python:group_object.getProperty('group_template');
         isGroupAnnouncement python:groupType == 'announcement';
         postingMembers python: (isGroupAnnouncement and group_object.messages.get_listProperty(group_object.getId(), 'posting_members')) or [];
@@ -24,10 +23,10 @@
         usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
         joinable python:usersCanJoinGroup(group_object.getId(),True);
         canJoin python:joinable[0];
-        unverifiedUsers here/Scripts/get/unverified_group_members;
         allMembers here/Scripts/get/group_members;
-        unverifiedUserObjs python:filter(lambda u:u.get_verifiedEmailAddresses()==[],allMembers);
-        unverifiedUsers python:map(lambda u:u.getId(), unverifiedUserObjs)">
+        member_count python:len(allMembers);
+        unverifiedUsers here/Scripts/get/unverified_group_members;
+        unverifiedUsersIds python:map(lambda u:u.getId(), unverifiedUsers)">
       
       <heading1>
         Manage the Members of 
@@ -127,7 +126,7 @@
             isModerated python:userobj.getId() in moderated_members_ids;
             isModerator python:userobj.getId() in moderator_ids;
             isPoster python:(not isGroupAnnouncement) or (userobj.getId() in postingMembers);
-            isUnverified python:userobj.getId() in unverifiedUsers;
+            isUnverified python:userobj.getId() in unverifiedUsersIds;
             isNormal python:not (isSiteAdmin or isGroupAdmin or isPtnCoach or isModerator or isModerated or isUnverified) and ((not isPoster and isGroupAnnouncement) or (isPoster and not isGroupAnnouncement));"
             tal:condition="python:((not editIds) or userobj.getId() in editIds ) and (showMembers=='all') or (isModerated and (showMembers=='moderated')) or ((isGroupAdmin or isSiteAdmin) and (showMembers=='managers')) or ((isGroupAnnouncement and isPoster) and (showMembers=='posting')) or (isUnverified and (showMembers=='unverified'))">
             <div class="member">
