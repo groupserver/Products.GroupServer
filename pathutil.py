@@ -10,4 +10,5 @@ def get_import_path(filename=''):
     return path
 
 def get_groupserver_path(name=''):
-    return 'Products/GroupServer/%s' % name
+    import Products.GroupServer
+    return '%s/%s' % (os.path.dirname(Products.GroupServer.__file__), name)

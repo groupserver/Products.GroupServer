@@ -8,11 +8,11 @@ import groupserver
 # registerDirectory is also in here to get around some serious chicken-egg
 # problems with getting the module path
 def initialize( context ):
-    registerDirectory( 'Products/GroupServer/Scripts', globals() )
-    registerDirectory( 'Products/GroupServer/Presentation', globals() )
-    registerDirectory( 'Products/GroupServer/help', globals() )
-    registerDirectory( 'Products/GroupServer/admindivision', globals() )
-    registerDirectory( 'Products/GroupServer/admingroup', globals() )
+    registerDirectory( 'Scripts', globals() )
+    registerDirectory( 'Presentation', globals() )
+    registerDirectory( 'help', globals() )
+    registerDirectory( 'admindivision', globals() )
+    registerDirectory( 'admingroup', globals() )
 
     context.registerClass( 
         groupserver.GroupserverSite, 
