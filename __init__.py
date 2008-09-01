@@ -1,7 +1,8 @@
 import os
 from Products.FileSystemSite.DirectoryView import registerDirectory
+from AccessControl import ModuleSecurityInfo
 
-import pathutil
+from pathutil import get_groupserver_path
 
 import groupserver
 
@@ -19,7 +20,8 @@ def initialize( context ):
         constructors = ( groupserver.manage_addGroupserverSiteForm, 
                          groupserver.manage_addGroupserverSite ),
         icon='icons/ic-groupserversite.png'
-
                            )
-
                            
+pathutil_security = ModuleSecurityInfo('Products.GroupServer.pathutil')
+pathutil_security.declarePublic('get_groupserver_path')
+

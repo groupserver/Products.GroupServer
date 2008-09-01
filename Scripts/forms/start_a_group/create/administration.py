@@ -21,10 +21,11 @@
 #      pages.
 #
 from Products.XWFCore.XWFUtils import add_marker_interfaces
+from Products.GroupServer.pathutil import get_groupserver_path
 
 assert group
 fss = group.manage_addProduct['FileSystemSite']
-fss.manage_addDirectoryView('GroupServer/admingroup')
+fss.manage_addDirectoryView(get_groupserver_path('admingroup'))
 
 # Add the IGSGroupFolder, so the Zope Five pages work!
 interfaces = ('Products.XWFChat.interfaces.IGSGroupFolder',)
@@ -37,3 +38,4 @@ group.manage_permission('Manage properties',
                         ['DivisionAdmin','Manager','Owner'],0)
 
 assert hasattr(group.aq_explicit, 'admingroup')
+
