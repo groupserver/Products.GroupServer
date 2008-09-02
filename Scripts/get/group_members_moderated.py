@@ -18,7 +18,7 @@ site_object = context.site_root()
 group_object = context.Scripts.get.group_object()
 group_id = group_object.getId()
 
-members = context.list_property(group_id, 'moderated_members', [])
+members = filter(None, context.list_property(group_id, 'moderated_members', []))
 
 retval = []
 if ids_only:
