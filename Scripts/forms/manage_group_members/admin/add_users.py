@@ -7,8 +7,6 @@
 ##parameters=userids=[],groupid=None,divisionid=None
 ##title=Add Users to Group Administration List
 ##
-from Products.PythonScripts.standard import html_quote
-
 result = {}
 assert groupid != None
 assert divisionid != None

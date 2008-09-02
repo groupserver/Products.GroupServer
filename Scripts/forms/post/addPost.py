@@ -8,9 +8,6 @@
 ##title=Add a Post to the Group
 ##
 
-from Products.PythonScripts.standard import html_quote
-#from zLOG import LOG, WARNING, PROBLEM, INFO
-
 def tagProcess(tagsString):
     # --=mpj17=-- Not the most elegant function, but I did not want to
     #   use the regular-expression library.

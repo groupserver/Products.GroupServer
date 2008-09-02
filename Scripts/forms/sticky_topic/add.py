@@ -7,8 +7,6 @@
 ##parameters=
 ##title=Add a topic to the list of sticky topics
 ##
-from Products.PythonScripts.standard import html_quote
-
 result = {}
 
 form = context.REQUEST.form

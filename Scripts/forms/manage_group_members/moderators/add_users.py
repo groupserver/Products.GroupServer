@@ -7,8 +7,6 @@
 ##parameters=userids=[],groupid=None,divisionid=None
 ##title=Add Users to the List of Moderators
 ##
-from Products.PythonScripts.standard import html_quote
-
 result = {}
 assert groupid != None
 assert divisionid != None
@@ -25,10 +23,10 @@ assert(grouplist != None)
 mmemberIds = list(grouplist.getProperty('moderator_members', []))
 
 for userId in userids:
-   userObj = site_root.acl_users.getUser(userId)
-   userEmail = userObj.get_defaultDeliveryEmailAddresses()
-   if ((userId not in mmemberIds) and userEmail):
-      mmemberIds.append(userId)
+    userObj = site_root.acl_users.getUser(userId)
+    userEmail = userObj.get_defaultDeliveryEmailAddresses()
+    if ((userId not in mmemberIds) and userEmail):
+        mmemberIds.append(userId)
 
 if grouplist.hasProperty('moderator_members'):
     grouplist.manage_changeProperties(moderator_members=mmemberIds)

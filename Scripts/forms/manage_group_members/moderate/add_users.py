@@ -7,8 +7,6 @@
 ##parameters=userids=[],groupid=None,divisionid=None
 ##title=Add Users to Group Moderation List
 ##
-from Products.PythonScripts.standard import html_quote
-
 result = {}
 assert groupid != None
 assert divisionid != None
@@ -24,7 +22,7 @@ assert(grouplist != None)
 
 mmembers = []
 if grouplist.hasProperty('moderated_members'):
-   mmembers = filter(None, grouplist.getProperty('moderated_members'))
+    mmembers = filter(None, grouplist.getProperty('moderated_members'))
 
    
 for member in userids:

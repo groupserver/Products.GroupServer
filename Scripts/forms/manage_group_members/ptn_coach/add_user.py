@@ -7,8 +7,6 @@
 ##parameters=userid=None,groupid=None,divisionid=None
 ##title=Add User to the Participation Coach List
 ##
-from Products.PythonScripts.standard import html_quote
-
 result = {}
 assert groupid != None
 assert divisionid != None
@@ -29,30 +27,31 @@ userName = group.Scripts.get.user_realnames(userid,
 # Check that the user is a member of the group.
 userIds = map(lambda u: u.getId(), group.Scripts.get.group_members())
 if userid not in userIds:
-   result['error'] = True
-   result['message'] = '''%s (%s) does not belong to the group %s,
-     so cannot be a participation coach.''' % (userName, userid,
-                                               group.title_or_id())
-   return result
+    result['error'] = True
+    result['message'] = '''%s (%s) does not belong to the group %s,
+             so cannot be a participation coach.''' % (userName, userid,
+                                                       group.title_or_id())
+    return result
+ 
 # Check that the user is not moderated
 moderatedMembers = group.Scripts.get.group_members_moderated()
 moderatedMembersIds = map(lambda m: m.getId(), moderatedMembers)
 if userid in moderatedMembersIds:
-   result['error'] = True
-   result['message'] = '''%s (%s) is currently a moderated
+    result['error'] = True
+    result['message'] = '''%s (%s) is currently a moderated
      member of the group %s, so cannot be a participation
      coach.''' % (userName, userid, group.title_or_id())
 
 # Set the participation coach.
 if group.hasProperty('ptn_coach_id'):
-   group.manage_changeProperties(ptn_coach_id=userid)
+    group.manage_changeProperties(ptn_coach_id=userid)
 else:
-   group.manage_addProperty('ptn_coach_id', userid, 'string')
+    group.manage_addProperty('ptn_coach_id', userid, 'string')
 # ...and for the mailing list
 if groupList.hasProperty('ptn_coach_id'):
-   groupList.manage_changeProperties(ptn_coach_id=userid)
+    groupList.manage_changeProperties(ptn_coach_id=userid)
 else:
-   groupList.manage_addProperty('ptn_coach_id', userid, 'string')
+    groupList.manage_addProperty('ptn_coach_id', userid, 'string')
 
 result['error'] = False
 result['message'] = '''<paragraph>%s is now the participation

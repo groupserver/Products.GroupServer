@@ -7,8 +7,6 @@
 ##parameters=userids=[],groupid=None,divisionid=None
 ##title=Add Users to the List of Members that can Post
 ##
-from Products.PythonScripts.standard import html_quote
-
 result = {}
 assert groupid != None
 assert divisionid != None
@@ -25,22 +23,22 @@ assert(grouplist != None)
 userNames = ', '.join(map(lambda m: group.Scripts.get.user_realnames(m),
                           userids[:-1]))
 if (len(userids) > 1):
-   userNames = '%s and %s' % (userNames,
-                              group.Scripts.get.user_realnames(userids[-1]))
+    userNames = '%s and %s' % (userNames,
+                               group.Scripts.get.user_realnames(userids[-1]))
 else:
-   userNames = group.Scripts.get.user_realnames(userids[-1])
+    userNames = group.Scripts.get.user_realnames(userids[-1])
 postingMembers = []
 if grouplist.hasProperty('posting_members'):
-   postingMembers = filter(None, grouplist.getProperty('posting_members'))
+    postingMembers = filter(None, grouplist.getProperty('posting_members'))
 
 l = len(postingMembers)
 if ((l >= 5) or (l+len(userids) > 5)):
-   haveOrHas = ((len(userids) > 1) and 'have') or 'has'
-   result['error'] = True
-   result['message'] = '''%s %s not been added to the list of posting
+    haveOrHas = ((len(userids) > 1) and 'have') or 'has'
+    result['error'] = True
+    result['message'] = '''%s %s not been added to the list of posting
      members, as it would put the number of posting members beyond the
      maximum (five).''' % (userNames, haveOrHas)
-   return result
+    return result
    
    
 for member in userids:
