@@ -10,7 +10,7 @@
 from Products.PythonScripts.standard import html_quote
 import DateTime
 from Products.GSProfile.utils import send_add_user_notification
-from Products.GSContent.groupInfo import GSGroupInfoFactory
+from Products.GSGroup.groupInfo import GSGroupInfoFactory
 
 assert siteId
 assert groupId
