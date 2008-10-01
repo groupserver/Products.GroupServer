@@ -7,6 +7,14 @@
 ##parameters=
 ##title=
 ##
+
+# try to get the division object directly, without traversal
+division_object = context.restrictedTraverse(
+                       '/'.join(context.REQUEST.VirtualRootPhysicalPath))
+if division_object:
+    return division_object
+
+# otherwise, fallback
 division_object = context
 while division_object:
     try:
