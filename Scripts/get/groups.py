@@ -11,8 +11,8 @@ from Products.GSContent.groupsInfo import GSGroupsInfo
 
 visible_groups = GSGroupsInfo(context).get_visible_groups() or []
 
-groups = []
-for group in visible_groups:
-    groups.append((group.title_or_id().lower(), group))
+#groups = []
+#for group in visible_groups:
+#    groups.append((group.title_or_id().lower(), group))
 
-return groups
+return visible_groups
