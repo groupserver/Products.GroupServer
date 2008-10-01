@@ -8,20 +8,38 @@
     <content 
       tal:define="site here/Scripts/get/division_object;
       group_object here/Scripts/get/group_object;">
-      
       <heading1>
         Manage the Many Members of 
         <span class="group"
           tal:content="group_object/title_or_id"/>
       </heading1>
-
       <paragraph>
         There 
         <span tal:define="member_count here/Scripts/get/group_member_count"
           tal:replace="python:member_count == 1 and 'is %s member' % member_count or 'are %s members' % member_count"/>
         in this group.
       </paragraph>
-      
+      <bulletlist>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=all"
+            url="#">All members</link></listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=managers"
+            url="#">Managers only</link>
+        </listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=unverified"
+            url="#">Unverified members</link>
+        </listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=moderated"
+            url="#">Moderated members</link>
+        </listitem>
+      </bulletlist><!--memberlist-->
       <bulletlist class="contacts">
         <tal:block tal:repeat="userobj here/Scripts/get/all_group_members">
           <listitem>
@@ -38,7 +56,6 @@
           </listitem>
         </tal:block>
       </bulletlist><!--memberlist-->
-      
       <xf:submit class="button" 
       model="manage_many_members"
         submission="manage">
