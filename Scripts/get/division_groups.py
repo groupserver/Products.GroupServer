@@ -7,6 +7,9 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script)
+
 division = context.division_object()
 
 groups_object = None
