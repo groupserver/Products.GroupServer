@@ -7,6 +7,9 @@
 ##parameters=key, default=None, include_user_setting=True
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script)
+
 site_root = context.site_root()
 
 user = context.REQUEST.AUTHENTICATED_USER
