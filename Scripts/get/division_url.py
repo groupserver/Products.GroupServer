@@ -7,6 +7,9 @@
 ##parameters=no_division='/'
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use virtual hosting instead.")
+
 try:
     division_object = context.Scripts.get.division_object()
 except AttributeError:

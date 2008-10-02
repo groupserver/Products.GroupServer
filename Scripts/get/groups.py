@@ -8,7 +8,7 @@
 ##title=
 ##
 from Products.XWFCore.XWFUtils import deprecated
-deprecated(context, script)
+deprecated(context, script, "Use 'GSGroupsInfo(context).get_visible_groups()' instead")
 
 from Products.GSContent.groupsInfo import GSGroupsInfo
 
