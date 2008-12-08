@@ -446,12 +446,13 @@
           <div class="radiogroup">
             <input type="radio"
                 title="{../xf:hint/text()}" name="{../@model}+{$ref}"
-                id="{../@model}-{$ref}" value="{xf:value/text()}">
+                id="{../@model}-{$ref}-{xf:value/text()}"
+                value="{xf:value/text()}">
               <xsl:if test="$selected='1'">
                 <xsl:attribute name="checked">1</xsl:attribute>
                 </xsl:if>
               </input>
-            <label>
+            <label for="{../@model}-{$ref}-{xf:value/text()}">
               <xsl:value-of select="xf:label/text()" />
               </label>
             </div>
