@@ -15,7 +15,7 @@
   <xsl:include href="file://layout"/>
   <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
 
-  <xsl:output encoding="UTF-8" method="html" indent="yes"
+  <xsl:output encoding="UTF-8" method="xml" indent="yes"
     standalone="no"/>
   
   <xsl:template match="root">

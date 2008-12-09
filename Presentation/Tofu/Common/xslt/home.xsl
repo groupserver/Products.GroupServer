@@ -3,7 +3,7 @@
 <xsl:include href="menu.xsl"/>
 <xsl:include href="layout.xsl"/>
 
-<xsl:output method="html" indent="yes" encoding="ISO-8859-1" omit-xml-declaration="yes" doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" doctype-system="http://www.w3.org/TR/html4/loose.dtd" />
+<xsl:output method="xml" indent="yes" encoding="ISO-8859-1" omit-xml-declaration="yes" doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" doctype-system="http://www.w3.org/TR/html4/loose.dtd" />
 
 <xsl:template match="root">
 <html>
