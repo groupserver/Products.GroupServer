@@ -304,16 +304,16 @@
   <!-- Match an XForms textarea element -->
   <xsl:template match="xf:textarea">
     <xsl:variable name="ref">
-    <xsl:call-template name="getref">
-      <xsl:with-param name="model" select="@model" />
-      <xsl:with-param name="item" select="." />
+      <xsl:call-template name="getref">
+        <xsl:with-param name="model" select="@model" />
+        <xsl:with-param name="item" select="." />
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="model">
-    <xsl:value-of select="@model" />
+      <xsl:value-of select="@model" />
     </xsl:variable>
     <xsl:variable name="bind">
-    <xsl:value-of select="@bind" />
+      <xsl:value-of select="@bind" />
     </xsl:variable>
     
     <div class="formelement{@class}">
@@ -323,17 +323,25 @@
       </xsl:call-template>
       <xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
     <textarea name="{@model}+{$ref}" class="{@class}"
-        id="{@model}-{$ref}" title="{xf:hint/text()}"><!-- Copy across all other attributes in the xhtml namespace --><xsl:for-each
+      id="{@model}-{$ref}" title="{xf:hint/text()}">
+      &#160;
+      <!-- Copy across all other attributes in the xhtml namespace -->
+      <xsl:for-each
           select="@*[namespace-uri(.)='http://www.w3.org/1999/xhtml']">
-        <xsl:attribute name="{local-name()}"><xsl:value-of select="." />	</xsl:attribute>
-        </xsl:for-each><xsl:if
-          test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
+        <xsl:attribute name="{local-name()}">
+          <xsl:value-of select="." />
+        </xsl:attribute>
+      </xsl:for-each>
+      <xsl:if
+        test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
         <xsl:attribute name="class">required</xsl:attribute>
-        </xsl:if><xsl:call-template name="xforms-fetch-instance-data">
+      </xsl:if>
+      <xsl:call-template name="xforms-fetch-instance-data">
         <xsl:with-param name="model" select="@model" />
         <xsl:with-param name="bind" select="@bind" />
         <xsl:with-param name="ref" select="@ref" />
-        </xsl:call-template></textarea>
+      </xsl:call-template>
+    </textarea>
 
 	<!-- If this is a WYMEditor instance, we need to also include the WYMEditor support scripts. -->
 	<xsl:if test="@class = 'wymeditor'">
@@ -540,12 +548,12 @@
           <div class="checkgroup">
             <input type="checkbox"
                 title="{../xf:hint/text()}" name="{../@model}+{$ref}"
-                id="{../@model}-{$ref}" value="{xf:value/text()}">
+                id="{../@model}-{$ref}-{xf:value/text()}" value="{xf:value/text()}">
               <xsl:if test="$selected='1'">
                 <xsl:attribute name="checked">1</xsl:attribute>
                 </xsl:if>
               </input>
-            <label for="{../@model}-{$ref}">
+            <label for="{../@model}-{$ref}-{xf:value/text()}">
               <xsl:value-of select="xf:label/text()" />
               </label>
             </div>
