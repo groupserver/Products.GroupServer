@@ -324,7 +324,6 @@
       <xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
     <textarea name="{@model}+{$ref}" class="{@class}"
       id="{@model}-{$ref}" title="{xf:hint/text()}">
-      &#160;
       <!-- Copy across all other attributes in the xhtml namespace -->
       <xsl:for-each
           select="@*[namespace-uri(.)='http://www.w3.org/1999/xhtml']">
@@ -341,6 +340,7 @@
         <xsl:with-param name="bind" select="@bind" />
         <xsl:with-param name="ref" select="@ref" />
       </xsl:call-template>
+      &#160;  
     </textarea>
 
 	<!-- If this is a WYMEditor instance, we need to also include the WYMEditor support scripts. -->
