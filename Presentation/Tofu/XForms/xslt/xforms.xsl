@@ -568,39 +568,40 @@
   
 <!-- Standard label template, implementing the required field check -->
 <xsl:template name="label">
-  <xsl:param name="labelNode" />
+  <xsl:if test="boolean(xf:label/text())">
+    <xsl:param name="labelNode" />
     
-  <!-- Get the model and other attributes of corresponding form element -->
-  <xsl:variable name="labelParent" select="$labelNode/.." />
-  <xsl:variable name="model">
-    <xsl:value-of select="$labelParent/@model" />
+    <!-- Get the model and other attributes of corresponding form element -->
+    <xsl:variable name="labelParent" select="$labelNode/.." />
+    <xsl:variable name="model">
+      <xsl:value-of select="$labelParent/@model" />
     </xsl:variable>
-  <xsl:variable name="bind">
-    <xsl:value-of select="$labelParent/@bind" />
+    <xsl:variable name="bind">
+      <xsl:value-of select="$labelParent/@bind" />
     </xsl:variable>
-  <xsl:variable name="class">
-    <xsl:value-of select="$labelParent/@class" />
+    <xsl:variable name="class">
+      <xsl:value-of select="$labelParent/@class" />
     </xsl:variable>
     
-  <xsl:variable name="ref">
-    <xsl:call-template name="getref">
-      <xsl:with-param name="model" select="@model" />
-      <xsl:with-param name="item" select="$labelParent" />
+    <xsl:variable name="ref">
+      <xsl:call-template name="getref">
+        <xsl:with-param name="model" select="@model" />
+        <xsl:with-param name="item" select="$labelParent" />
       </xsl:call-template>
     </xsl:variable>
     
-  <!-- Build the label -->
-  <label for="{$model}-{$ref}" class="{$class}-label">
-    <xsl:if
-        test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
-      <xsl:attribute name="class">required</xsl:attribute>
+    <!-- Build the label -->
+    <label for="{$model}-{$ref}" class="{$class}-label">
+      <xsl:if
+          test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
+        <xsl:attribute name="class">required</xsl:attribute>
       </xsl:if>
-      
-    <xsl:value-of select="xf:label/text()" />
-      
-    <!-- Apply any other templates -->
-    <xsl:apply-templates select="$labelNode/*" />
+        
+      <xsl:value-of select="xf:label/text()" />
+      <!-- Apply any other templates -->
+      <xsl:apply-templates select="$labelNode/*" />
     </label>
-  </xsl:template>
+  </xsl:if>
+</xsl:template>
   
 </xsl:stylesheet>
