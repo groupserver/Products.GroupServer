@@ -110,7 +110,7 @@
   
   <!-- Match an XForms submit element -->
   <xsl:template match="xf:submit">
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
     <xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
     <input type="submit" name="__submit+{@model}+{@submission}"
         onclick="submitButtonHandler(this)" class="{@class}"
@@ -120,35 +120,38 @@
   
   <!-- Match an XForms input element -->
   <xsl:template match="xf:input">
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
       <xsl:variable name="ref">
-      <xsl:call-template name="getref">
-        <xsl:with-param name="model" select="@model" />
-        <xsl:with-param name="item" select="." />
+        <xsl:call-template name="getref">
+          <xsl:with-param name="model" select="@model" />
+          <xsl:with-param name="item" select="." />
         </xsl:call-template>
       </xsl:variable>
       <xsl:variable name="model">
-      <xsl:value-of select="@model" />
+        <xsl:value-of select="@model" />
       </xsl:variable>
       <xsl:variable name="bind">
-      <xsl:value-of select="@bind" />
+        <xsl:value-of select="@bind" />
       </xsl:variable>
-      
       <!-- Build the label -->
       <xsl:call-template name="label">
-      <xsl:with-param name="labelNode" select="xf:label" />
+        <xsl:with-param name="labelNode" select="xf:label" />
       </xsl:call-template>
-      <xsl:if test="xf:hint/text()"><div class="hint"><xsl:apply-templates select="xf:hint"/></div></xsl:if>
+      <xsl:if test="boolean(xf:hint/text())">
+        <div class="hint"><xsl:apply-templates select="xf:hint"/></div>
+      </xsl:if>
       <input type="text" id="{@model}-{$ref}"
         name="{@model}+{$ref}" class="{@class}" title="{xf:hint/text()}">
-        <xsl:attribute name="value">	<xsl:call-template
-            name="xforms-fetch-instance-data">
-          <xsl:with-param name="model" select="@model" />
-          <xsl:with-param name="bind" select="@bind" />
-          <xsl:with-param name="ref" select="@ref" />
-          </xsl:call-template>	</xsl:attribute>
-      <!-- Add a "required" class if this is a required item -->
-      <xsl:if
+        <xsl:attribute name="value">	
+          <xsl:call-template
+              name="xforms-fetch-instance-data">
+            <xsl:with-param name="model" select="@model" />
+            <xsl:with-param name="bind" select="@bind" />
+            <xsl:with-param name="ref" select="@ref" />
+          </xsl:call-template>
+        </xsl:attribute>
+        <!-- Add a "required" class if this is a required item -->
+        <xsl:if
           test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
         <xsl:attribute name="class">required</xsl:attribute>
         </xsl:if>
@@ -158,7 +161,7 @@
   
   <!-- Match an XForms date element (basically the same as a text input field with an additional link to pop up a calendar control) -->
   <xsl:template match="xf:date">
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
       <xsl:variable name="ref">
       <xsl:call-template name="getref">
         <xsl:with-param name="model" select="@model" />
@@ -234,7 +237,7 @@
     <xsl:variable name="bind">
     <xsl:value-of select="@bind" />
     </xsl:variable>
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
       <xsl:call-template name="label">
       <xsl:with-param name="labelNode" select="xf:label" />
       </xsl:call-template>
@@ -316,7 +319,7 @@
       <xsl:value-of select="@bind" />
     </xsl:variable>
     
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
       <!-- Build the label -->
       <xsl:call-template name="label">
       <xsl:with-param name="labelNode" select="xf:label" />
@@ -372,7 +375,7 @@
   <xsl:variable name="bind">
     <xsl:value-of select="@bind" />
     </xsl:variable>	
-  <div class="formelement{@class}">
+  <div class="formelement-{@class}">
     <xsl:call-template name="label">
       <xsl:with-param name="labelNode" select="xf:label" />
       </xsl:call-template>
@@ -398,7 +401,7 @@
     <xsl:value-of select="@bind" />
     </xsl:variable>
     
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
       <!-- Build the label -->
       <xsl:call-template name="label">
       <xsl:with-param name="labelNode" select="xf:label" />
@@ -491,7 +494,7 @@
     <xsl:value-of select="@bind" />
     </xsl:variable>
     
-    <div class="formelement{@class}">
+    <div class="formelement-{@class}">
       <!-- Build the label -->
       <xsl:call-template name="label">
       <xsl:with-param name="labelNode" select="xf:label" />
@@ -568,29 +571,29 @@
   
 <!-- Standard label template, implementing the required field check -->
 <xsl:template name="label">
+  <xsl:param name="labelNode" />
+  
+  <!-- Get the model and other attributes of corresponding form element -->
+  <xsl:variable name="labelParent" select="$labelNode/.." />
+  <xsl:variable name="model">
+    <xsl:value-of select="$labelParent/@model" />
+  </xsl:variable>
+  <xsl:variable name="bind">
+    <xsl:value-of select="$labelParent/@bind" />
+  </xsl:variable>
+  <xsl:variable name="class">
+    <xsl:value-of select="$labelParent/@class" />
+  </xsl:variable>
+  
+  <xsl:variable name="ref">
+    <xsl:call-template name="getref">
+      <xsl:with-param name="model" select="@model" />
+      <xsl:with-param name="item" select="$labelParent" />
+    </xsl:call-template>
+  </xsl:variable>
+  
+  <!-- Build the label -->
   <xsl:if test="boolean(xf:label/text())">
-    <xsl:param name="labelNode" />
-    
-    <!-- Get the model and other attributes of corresponding form element -->
-    <xsl:variable name="labelParent" select="$labelNode/.." />
-    <xsl:variable name="model">
-      <xsl:value-of select="$labelParent/@model" />
-    </xsl:variable>
-    <xsl:variable name="bind">
-      <xsl:value-of select="$labelParent/@bind" />
-    </xsl:variable>
-    <xsl:variable name="class">
-      <xsl:value-of select="$labelParent/@class" />
-    </xsl:variable>
-    
-    <xsl:variable name="ref">
-      <xsl:call-template name="getref">
-        <xsl:with-param name="model" select="@model" />
-        <xsl:with-param name="item" select="$labelParent" />
-      </xsl:call-template>
-    </xsl:variable>
-    
-    <!-- Build the label -->
     <label for="{$model}-{$ref}" class="{$class}-label">
       <xsl:if
           test="boolean(//data/xf:model[@id=$model]/xf:bind[@id=$bind]/@required)">
