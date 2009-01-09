@@ -108,19 +108,14 @@
     <!-- Navigation Bar Ends -->
 
   </div>
-  <!-- Top Area Starts -->
+  <!-- Top Area Ends -->
+  <div id="bodyblock">
+    <!-- Contextual Navigation Starts -->
+    <xsl:apply-templates select="output/menus/menu[@id='side']" />
+    <!-- Contextual Navigation Ends -->
 
-  <!-- Contextual Navigation Starts -->
-  <xsl:apply-templates select="output/menus/menu[@id='side']" />
-  <!-- Contextual Navigation Ends -->
-
-  <!-- Main Content Area Starts -->
-  <div id="content">
-
-    <!-- Breadcrumbs Start -->
-    <xsl:call-template name="breadcrumbs" />
-    <!-- Breadcrumbs End -->
-
+    <!-- Main Content Area Starts -->
+    <div id="content">
     <!-- Present any messages from the system -->
     <xsl:if test="//output/messages/message">
       <xsl:call-template name="result-messages" />
@@ -130,9 +125,8 @@
     <!-- Body Content Starts -->
     <xsl:apply-templates select="output/content" />
     <!-- Body Content Ends -->
-
-  </div>
-  <!-- Main Content Area Ends -->
+    </div><!--content-->
+  </div><!-- bodyblock -->
 
   <xsl:apply-templates select="output/menus/menu[@id='footerlinks']"/>
 
