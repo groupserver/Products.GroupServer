@@ -11,7 +11,7 @@
   <xsl:include href="file://Presentation/Tofu/SiteSearch/xslt/results" />
   <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
   
-  <xsl:output method="xml" indent="yes" encoding="utf-8"
+  <xsl:output method="xml" indent="yes" encoding="UTF-8"
     omit-xml-declaration="no"
     doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
     doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
