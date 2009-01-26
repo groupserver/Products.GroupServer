@@ -38,7 +38,7 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/++resource++globalstyle-20080911.css" />
+      href="/++resource++globalstyle-20090126.css" />
     <link rel="stylesheet" type="text/css" 
       href="/++resource++site-20081210.css" />
 
