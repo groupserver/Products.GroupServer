@@ -9,6 +9,8 @@
 ##
 from Products.PythonScripts.standard import html_quote
 
+STRIP_CHARS = ' \xc2\xa0\r\n'
+
 result = {}
 form = context.REQUEST.form
 assert form.has_key('groupid')
@@ -20,7 +22,7 @@ result['form'] = form
 
 for field in form:
     try:
-        form[field] = form[field].strip()
+        form[field] = form[field].strip(STRIP_CHARS)
     except AttributeError:
         pass
 
@@ -63,9 +65,9 @@ if coach_id:
 for property in site_root.GroupProperties.objectValues():
     prop = form.get(property.getId(), None)
     if property.getProperty('property_type') in ('lines', 'ulines'):
-        prop = tuple(map(lambda x: x.strip(), prop.split('\n')))
+        prop = tuple(map(lambda x: x.strip(STRIP_CHARS), prop.split('\n')))
     elif (prop != None):
-        prop = prop.strip()
+        prop = prop.strip(STRIP_CHARS)
     
     if prop != None and getattr(group.aq_explicit, property.getId(), '') != prop:
         if hasattr(group.aq_explicit, property.getId()):
