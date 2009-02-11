@@ -74,7 +74,14 @@ for property in site_root.GroupProperties.objectValues():
             group.manage_changeProperties({property.getId(): prop})
         else:
             group.manage_addProperty(property.getId(), prop, property.getProperty('property_type'))
-        message.append('<li>Set %s to <q>%s</q>.</li>' % (html_quote(property.title_or_id()), html_quote(prop)))
+        if property.getProperty('property_type') in ('lines','ulines'):
+            message.append('<li>Set %s to:<ul>' % html_quote(property.title_or_id())
+            for item in prop:
+                message.append('<li><q>%s</q></li>' % html_quote(prop))
+            
+            message.append('</ul></li>')
+        else:
+            message.append('<li>Set %s to <q>%s</q>.</li>' % (html_quote(property.title_or_id()), html_quote(prop)))
 
 m = '''<p>Updating group %s</p>
   <ul>%s</ul>''' % (html_quote(group.title_or_id()), '\n'.join(message))
