@@ -75,9 +75,9 @@ for property in site_root.GroupProperties.objectValues():
         else:
             group.manage_addProperty(property.getId(), prop, property.getProperty('property_type'))
         if property.getProperty('property_type') in ('lines','ulines'):
-            message.append('<li>Set %s to:<ul>' % html_quote(property.title_or_id())
+            message.append('<li>Set %s to:<ul>' % html_quote(property.title_or_id()))
             for item in prop:
-                message.append('<li><q>%s</q></li>' % html_quote(prop))
+                message.append('<li><q>%s</q></li>' % html_quote(item))
             
             message.append('</ul></li>')
         else:
