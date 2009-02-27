@@ -255,7 +255,7 @@
           
           <p>Help that relates to a particular situation
             &#8212; or <span class="wordasword">context</span> &#8212;
-            is avaliable on many pages.
+            is available on many pages.
             To access the context-sensitve help, carry out the following. 
           </p>
           <ol>
@@ -268,11 +268,11 @@
               the page.
               The help may be closed when no longer needed.</li>
           </ol>
-          <p>To view the section of  
+          <p>To view a section of
             <cite><span tal:condition="includeThe" tal:content="string:The"/>
             <span class="site" tal:content="siteName"/> User Manual</cite> that the 
             context-sensitive help comes from, click on 
-            <samp class="link">Read more</samp> at  the bottom of the 
+            <samp class="link">Read more</samp> at the bottom of the 
             help-window.</p> 
         </section>
         
@@ -281,8 +281,7 @@
             Help from the Participation Coach</h>
           
           <p>The participation coach is the person responsible for 
-            assisting group members with the interaction with 
-            each other and <span class="site" tal:content="siteName"/>.
+            assisting group members with team interaction and <span class="site" tal:content="siteName"/>.
             To contact the participation coach, carry out the following 
             tasks.</p>
           
@@ -292,11 +291,11 @@
               <cite href="#groupserver-viewing-a-group">Viewing a 
                 Group</cite>).
             </li>
-            <li>View the profile of the participation coach, by clicking
-              on the name of the participation coach, listed
+            <li>View the profile of the participation coach by clicking
+              on the name of the participation coach listed
               in the <cite>Members</cite> section of the group 
               homepage.</li>
-            <li>Contact the participation coach, by clicking on the link
+            <li>Contact the participation coach by clicking on the link
               listed in the <cite>Email addresses</cite> section of the
               coache's profile.</li>
           </ol>
@@ -307,15 +306,15 @@
             Help from <span class="site" tal:content="siteName"/> Support</h>
           
           <p>You can get help from <span class="site" tal:content="siteName"/>
-            Support by sending an email message, detailing your problem, to 
+            Support by sending an email message detailing your problem to
             <a class="emaillink" title="Email address for support"
               tal:define="supportEmail python:get_support_email(context, siteId)"
               tal:attributes="href string:mailto:${supportEmail}" 
               tal:content="supportEmail"/>.
             Your message should contain a description of exactly what you are
             doing, what is not happening, and what you think <em>should</em> happen.
-            If possible, supplying the email addresses you use, and your
-            user <acronym title="identifier">ID</acronym>, would be helpful
+            If possible supply all the email addresses you use, and your
+            user <acronym title="identifier">ID</acronym> would be helpful
             to <span class="site" tal:content="siteName"/> Support.
           </p>
         </section>
@@ -329,7 +328,7 @@
         <p>
           Registered users must log in to <span class="site" tal:content="siteName"/> to use all the
           facilities.
-          To log in to <span class="site" tal:content="siteName"/>, carry out the following.
+          To log in to <span class="site" tal:content="siteName"/> carry out the following.
         </p>
         
         <ol>
@@ -344,7 +343,7 @@
           </li>
           <li>
             Click the <samp class="button">Log In</samp> button.
-            The homepage will be shown, with your display name at the top-right of
+            The homepage will be shown with your display name at the top-right of
             the page.
           </li>
         </ol>
@@ -356,9 +355,9 @@
             identity will be remembered by 
             <span class="site" tal:content="siteName"/>, 
             so you will not have to log in next time you visit.
-            However, you should <strong>not</strong> select this if you
-            are using a shared or public computer, such as a computer in
-            an e-cafe or library, as your privacy may be compromised.
+            However you should <strong>not</strong> select this if you
+            are using a shared or public computer such as a computer in
+            an e-cafe or library as your privacy may be compromised.
           </p>
         </section>
         
@@ -368,13 +367,13 @@
           </h>
           
           <p>
-            If you forget your password, <span class="site" tal:content="siteName"/> can send you a new
+            If you forget your password <span class="site" tal:content="siteName"/> can send you a new
             password.
             Carry out the following to reset your password.
           </p>
           <ol>
             <li>
-              Click on <samp class="link">Log In</samp>, on 
+              Click on <samp class="link">Log In</samp> on
               <span tal:condition="includeThe" tal:content="string:the"/>
               <span class="site" tal:content="siteName"/>
               homepage.
@@ -402,7 +401,7 @@
             </li>
             <li>
               Choose a new password, enter it into the first text box and 
-              confirm it in the second, and click the 
+              confirm it in the second and click the
               <samp class="button">Set</samp> button.
             </li>
           </ol>
@@ -415,7 +414,7 @@
         </h>
         
         <p>
-          A profile is information kept by <span class="site" tal:content="siteName"/> about all users,
+          A profile is information kept by <span class="site" tal:content="siteName"/> about all users
           including you.
           You can
           <a href="#groupserver-viewing-your-profile">view your
@@ -444,7 +443,7 @@
                 <span class="site" tal:content="siteName"/></cite>).
             </li>
             <li>
-              Click on your user-name, which is displayed at the 
+              Click on your user-name which is displayed at the
               top-right of every page on
               <span class="site" tal:content="siteName"/> .
             </li>
@@ -452,7 +451,7 @@
           
           <p>
             Your profile will show the groups that you belong to, the most 
-            recent messages that you have posted, and the profile data listed
+            recent messages that you have posted and the profile data listed
             in 
             <cite href="#groupserver-tab-profile-information">Profile
               Information</cite>.
@@ -585,7 +584,7 @@
               </li>
             </ol>
             <p>
-              If the passwords that you typed in do not match, an error
+              If the passwords that you typed in do not match an error
               message will appear and the password will not be changed.
             </p>
           </section>
@@ -595,9 +594,9 @@
               Changing a Text Field
             </h>
             <p>
-              All fields in your profile, except for the password 
-              and image fields, are text fields.
-              Carry out the following, to change a text-field.
+              All fields in your profile except for the password
+              and image fields are text fields.
+              Carry out the following to change a text-field.
             </p>
             
             <ol>
@@ -609,7 +608,7 @@
               <li>Click <samp class="link">Change Profile</samp>.
                 The <cite>Change Profile</cite> page will appear.</li>
               <li>
-                Edit the text field, so it reflects the new
+                Edit the text field so it reflects the new
                 value.
               </li>
               <li>
@@ -625,8 +624,8 @@
             </h>
             
             <p>
-              Carry out the following, to change the image that is shown on 
-              your profile and placed next to messages you post.
+              Carry out the following to change the image that is shown on
+              your profile and placed next to the messages you post.
             </p>
             
             <ol>
@@ -662,8 +661,8 @@
               You can use your existing email addresses to
               <a href="#groupserver-posting-a-message">post messages</a>, and
               <a href="#groupserver-reading-email-posts">receive messages
-                and summaries of group activities</a>.
-              In addition, a monthly account summary will be sent to your
+                as well as summaries of group activities</a>.
+              In addition a monthly account summary will be sent to your
               email addresses
               (see 
               <cite
@@ -671,7 +670,7 @@
                 Changing Your Message Notification Settings</cite>).
             </p>
             
-            <p>To use your existing email address, you must
+            <p>To use your existing email address you must
               <a href="#groupserver-profile-adding-an-email-address">add
                 it to the system.</a>
               You can also
@@ -687,8 +686,8 @@
               </h>
               
               <p>
-                Unlike most fields, you can have multiple email addresses.
-                To add an email address to the list of your addresses, carry out
+                Unlike most fields you can have multiple email addresses.
+                To add an email address to the list of your addresses carry out
                 the following.
               </p>
               
@@ -714,7 +713,7 @@
               </ol>
               
               <p>
-                If the email address is used by another user, an
+                If the email address is used by another user an
                 error message will appear and the email address will not be 
                 added.
               </p>
@@ -726,8 +725,8 @@
               </h>
               
               <p>
-                To remove an email address from the list of addresses in your
-                profile, carry out the following.
+                To remove an email address from the list of email addresses in your
+                profile carry out the following.
               </p>
               <ol>
                 <li>
@@ -747,7 +746,7 @@
               </ol>
               
               <p>
-                The last address cannot be removed, as you must have at least 
+                The last address cannot be removed as you must have at least
                 one email address.
               </p>
             </section>
@@ -757,7 +756,7 @@
                 the Default Email Address or Addresses</h>
               
               <p>
-                To change where message notifications are sent by default, you
+                To change where message notifications are sent by default you
                 can 
                 <a title="Adding a Default Email Address"
                   href="#groupserver-adding-a-default-email-address">add a 
@@ -773,7 +772,7 @@
                   a Default Email Address</h>
                 
                 <p>
-                  To add an address to the list of default addresses, carry
+                  To add an address to the list of default addresses carry
                   out the following tasks.
                   (You cannot add an email address to the list of default 
                   addresses if all your email addresses are in the list of
@@ -789,7 +788,7 @@
                   <li>Click <samp class="link">Change Email Settings</samp>.
                     The <cite>Change Email Settings</cite> page will
                     appear.</li>
-                  <li>Select an email address, or email addresses, from the
+                  <li>Select an email address or email addresses from the
                     <samp class="list">Add Default Address</samp> list.</li>
                   <li>Click <samp class="button">Add to Default</samp>.</li>
                 </ol>
@@ -800,8 +799,8 @@
                   a Default Email Address</h>
                 
                 <p>
-                  To remove an email address from the default list of addresses
-                  that are used to notify you of posts, carry out the following.
+                  To remove an email address from the default list of email addresses
+                  that are used to notify you of posts carry out the following.
                   (You cannot reduce the list of default email addresses to
                   fewer than one.)
                 </p>
@@ -839,13 +838,13 @@
           
           <ol>
             <li>
-              Click on <samp class="link">Members</samp>, on the homepage
+              Click on <samp class="link">Members</samp> on the homepage
               of a group
               (see 
               <cite 
                 href="#groupserver-viewing-a-group">Viewing a Group</cite>).
-              The <cite>Members</cite> page, which lists all
-              members of the selected group, will be shown.
+              The <cite>Members</cite> page which lists all
+              members of the selected group will be shown.
             </li>
             <li>
               Click on the name of the user whose profile you
@@ -855,7 +854,7 @@
           </ol>
           
           <p>
-            Alternatively, click on a user's name in a message, and the
+            Alternatively click on a user's name in a message and the
             profile for that person will be shown.
           </p>
         </section>
@@ -869,7 +868,7 @@
         <p>
           Groups are online areas where people collaborate on
           <span class="site" tal:content="siteName"/>.
-          As a registered user, you can
+          As a registered user you can
           <a href="#groupserver-joining-a-group">join a group</a>,
           <a href="#groupserver-leaving-a-group">leave a group</a>,
           <a href="#groupserver-viewing-a-group">view a group</a> or
@@ -884,7 +883,7 @@
           
           <p>
             You will need to join a group to post messages to it.
-            To join a group, carry out the following.
+            To join a group carry out the following.
           </p>
           
           <ol>
@@ -904,9 +903,9 @@
             </li>
             <li>
               Click on <samp class="link">Join</samp>.
-              A message will be sent to your email account, informing
+              A message will be sent to your email account informing
               you of your request to join a group: in most cases you
-              will immediately belong to a group, but sometimes your
+              will immediately belong to a group but sometimes your
               request must be approved.
             </li>
           </ol>
@@ -927,7 +926,7 @@
           </h>
           
           <p>
-            To leave a group, carry out the following.
+            To leave a group carry out the following.
           </p>
           
           <ol>
@@ -937,13 +936,13 @@
             </li>
             <li>
               Click <samp class="link">Leave</samp>.
-              You will receive a email message informing confirming
+              You will receive a email message confirming
               that you have left the group.
             </li>
           </ol>
           
           <p>
-            Alternatively, follow the instructions that is placed in the
+            Alternatively follow the instructions that is placed in the
             footer of all email messages sent from that group.
           </p>
         </section>
