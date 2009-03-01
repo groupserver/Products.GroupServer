@@ -957,14 +957,14 @@
             including who belongs to the group and the messages that have been
             sent to the group.
             (The exact information that is visible can differ from group to
-            group, and will depend on your group membership.)
-            To view a group, carry out the following.
+            group and will depend on your group membership.)
+            To view a group carry out the following.
           </p>
           
           <ol>
             <li>
-              Click <samp class="link">Groups</samp>, in the main
-              navigation bar, to show the <cite>Online Groups</cite>
+              Click <samp class="link">Groups</samp> in the main
+              navigation bar to show the <cite>Online Groups</cite>
               page.
             </li>
             <li>
@@ -976,7 +976,7 @@
           
           <p>
             Your profile also displays the <samp class="list">My Groups</samp>
-            list, which can be used to access groups.        
+            list which can be used to access groups.
           </p>
         </section>
         
@@ -1000,7 +1000,7 @@
             </h>
             
             <p>
-              Carry out the following, to change how you are informed of
+              Carry out the following to change how you are informed of
               messages posted to a group.
             </p>
 
@@ -1058,7 +1058,7 @@
                   <td>Digest of Topics</td>
                   <td>You will receive an email that summarises the 
                     daily-activity in the group; if there is
-                    no activity for a week, then you will only receive
+                    no activity for a week then you will only receive
                     a message at the end of the week.</td>
                 </tr>
                 <tr id="groupserver-delivery-disabled">
@@ -1070,12 +1070,12 @@
             </table>
             
             <p>
-              On the first day of each month, regardless of your message
-              settings, you will be sent an email-reminder by
+              On the first day of each month regardless of your message
+              settings you will be sent an email-reminder by
               <span class="site" 
                 tal:content="siteName">OnlineGroups.Net</span> that
               lists the groups you belong to, the message settings for each
-              group, and how to leave the groups.
+              group and how to leave the groups.
             </p>
           </section>
           
@@ -1090,7 +1090,7 @@
               <cite href="#groupserver-profile-adding-an-email-address">Adding
                 an Email Address</cite>), then you can change where email
               messages from a group are sent.
-              To do this, carry out the following.
+              To do this carry out the following.
             </p>
             
             <ol>
@@ -1108,7 +1108,7 @@
                 Click <samp class="link">Change your email settings</samp>, 
                 which is found in the
                 <samp class="field">Members</samp> section of the group 
-                homepage, or <samp class="link">Email settings</samp> in the
+                homepage or <samp class="link">Email settings</samp> in the
                 side-menu for the group.
                 The <cite>Email Delivery Settings</cite> page for the group
                 will be shown.
@@ -1179,7 +1179,7 @@
               Contact the user.
               <ul>
                 <li>
-                  If the email addresses of the user are visible, 
+                  If the email addresses of the user are visible
                   click on an email address of the user and write the
                   user a message in your normal email client.
                 </li>
@@ -1236,7 +1236,7 @@
               </h>
               
               <p>
-                To read a message that someone else has posted to a group, 
+                To read a message that someone else has posted to a group 
                 carry out the following.
               </p>
               
@@ -1252,7 +1252,7 @@
                     <ul>
                       <li>
                         Click on the name of a topic in the
-                        <samp class="list">Latest Topics</samp> list, which lists
+                        <samp class="list">Latest Topics</samp> list which lists
                         the six most active topics on the main page for the
                         group, or
                       </li>
@@ -1264,14 +1264,14 @@
                     </ul>
                     <p>
                       The page for the selected topic will be displayed.
-                      (If you are not a member of a group, you may not be able
+                      (If you are not a member of a group you may not be able
                       to see any topics.)
                     </p>
                   </li>
                   <li>
                     Scroll to view the messages, which are displayed from oldest
                     (at the top) to newest.
-                    Alternatively, click on 
+                    Alternatively click on
                     <samp class="link">Latest post</samp>
                     to view the most recent post<!--, or use the
                     <samp class="list">Post Index</samp> list to jump to a
@@ -1306,18 +1306,18 @@
                 </h>
                 
                 <p>  
-                  If configured, you will receive an email for each individual
+                  If configured you will receive an email for each individual
                   message that is posted to a group.
                   Messages from <span class="site" tal:content="siteName"/> can be identified by the subject
                   that starts with the name of the group in square brackets,
                   followed by the name of the topic.
-                  In addition, the message will be sent from an email account
-                  that is named after the group, such as
+                  In addition the message will be sent from an email account
+                  that is named after the group such as
                   <email>example_group@onlinegroups.net</email>.
                 </p>
                 
                 <p>
-                  The email message will contain the text of the post, and
+                  The email message will contain the text of the post and
                   a link  to the relevant group and topic.
                   You can reply to the email to add a post to the group
                   (see 
@@ -1332,9 +1332,9 @@
                 </h>
                 
                 <p>
-                  If configured, you will receive a message digest once
+                  If configured you will receive a message digest once
                   a day.
-                  The message will be sent shortly after midnight, and 
+                  The message will be sent shortly after midnight and
                   can be identified by the subject line that will read
                   <quote>[Example Group] Topic Digest</quote>, where 
                   <quote>Example Group</quote> will be replaced with the name
@@ -1343,7 +1343,7 @@
                 
                 <p>
                   The message will summarise the postings in each of your 
-                  groups, and provide links that can be followed to view 
+                  groups and provide links that can be followed to view
                   the postings on 
                   <span class="site" 
                     tal:content="siteName">OnlineGroups.Net</span>.
@@ -1367,13 +1367,13 @@
                   <quote>RSS Feeds</quote> and
                   <quote>Live Bookmarks</quote>) provide summaries
                   of the messages that are posted to groups.
-                  They can be viewed in an aggregator, such as
+                  They can be viewed in an aggregator such as
                   <cite class="software">Microsoft Internet
                     Explorer 7</cite>,
                   <cite class="software">Mozilla Firefox</cite> and
                   <cite class="software">Apple Safari</cite>.
-                  Links to three feeds are provided, which summarise the
-                  notices, files and topics that have been posted, are
+                  Links to three feeds are provided which summarise the
+                  notices, files and topics that have been posted are
                   linked of the homepage for the site.
                   Consult the documentation for your aggregator on how
                   to view a feed.
@@ -1432,7 +1432,7 @@
                         Messages Using the Web</cite>).
                     </li>
                     <li>
-                      Scroll to the bottom of the page, where the 
+                      Scroll to the bottom of the page where the
                       <cite>Add to the topic</cite> section is located.
                     </li>
                     <li>
@@ -1444,27 +1444,27 @@
                           entry.
                         </li>
                         <li>
-                          Optionally, add tags to your message by writing them
+                          Optionally add tags to your message by writing them
                           into the <samp class="field">Tags</samp> entry.
                           (See <cite href="#groupserver-tag">Tags</cite>.)
                         </li>
                       </ul>
                     </li>
                     <li>
-                      In addition, you may add a file along with your post 
+                      In addition you may add a file along with your post
                       (see <cite href="#groupserver-posting-files-using-the-web">Posting 
                       Files using the Web</cite>).
                     </li>
                     <li>
                       Click the <samp class="button">Add</samp> button.
-                      Your message will be shown on the topic page, and will
+                      Your message will be shown on the topic page and will
                       be sent to all group members who receive one email
                       notification of posts.
                     </li>
                   </ol>
                 </div>
                 <p>
-                  (If you do not belong to the group, you cannot
+                  (If you do not belong to the group you cannot
                   post messages to the group.)
                 </p>
               </section>
@@ -1472,7 +1472,7 @@
               <section class="note" id="groupserver-tags">
                 <h>Tags</h>
                 <p>
-                  A tag is a keyword, or category, that is associated with
+                  A tag is a keyword or category that is associated with
                   a post.
                   You can associate multiple tags with a post
                   when it is created; this should make the file easier for
@@ -1484,29 +1484,29 @@
                     Viewing Files</cite>).
                 </p>
                 <p>
-                  Currently, tags can only be entered via the Web
+                  Currently tags can only be entered via the Web
                   (see
                   <cite href="#groupserver-posting-messages">
                     Posting Messages</cite>
                    and
                   <cite href="#groupserver-post-files">Posting Files</cite>).
-                  When entering a tag, they can be formatted in one of two
+                  When entering a tag they can be formatted in one of two
                   ways.
                 </p>
                 <dl>
                   <di></di>
                     <dt>Space separated</dt>
                     <dd>
-                      The tags are separated by spaces, with quote-characters
-                      used to group words together, such as the following four 
+                      The tags are separated by spaces with quote-characters
+                      used to group words together such as the following four
                       tags:
                       <code>tags "example post" email message</code>
                     </dd>
                   <di>
                     <dt>Comma separated</dt>
                     <dd>
-                      The tags are separated by commas, which also allow words
-                      to be grouped together, such as the following four tags:
+                      The tags are separated by commas which also allow words
+                      to be grouped together such as the following four tags:
                       <code>tags, example post, email, message</code>                      
                     </dd>
                   </di>
@@ -1519,7 +1519,7 @@
                 </h>
                 <div id="groupserver-posting-a-message-using-email-instructions">
                   <p>
-                    To post a message to an existing topic using email, open
+                    To post a message to an existing topic using email open
                     a message that was posted to the topic
                     (see 
                     <cite href="#groupserver-reading-email-posts">Reading Email
@@ -1532,7 +1532,7 @@
                       href="#groupserver-starting-a-new-topic-using-email">
                       Starting a New Topic Using Email</cite>).
                     Once sent, the message will be added to the Topics page for
-                    the group, and be sent to all group members who receive
+                    the group and be sent to all group members who receive
                     email notification of posts.
                   </p>
                 </div>
@@ -1554,8 +1554,8 @@
               </h>
               
               <p>
-                You can create a new topic for discussion, in any group
-                that you are a member of, by
+                You can create a new topic for discussion in any group
+                that you are a member of by
                 <a href="#groupserver-starting-a-new-topic-using-the-web">using
                   the Web</a>
                 or
@@ -1569,7 +1569,7 @@
                 </h>
                 
                 <p>
-                  To create a new topic using the Web, carry out the following.
+                  To create a new topic using the Web carry out the following.
                 </p>
                 
                 <ol>
@@ -1596,12 +1596,12 @@
                         entry.
                       </li>
                       <li>
-                        Optionally, add tags to your message by writing them
+                        Optionally add tags to your message by writing them
                         into the <samp class="field">Tags</samp> entry.
                         (See <cite href="#groupserver-tag">Tags</cite>.)
                       </li>
                       <li>
-                        In addition, you may add a file along with your post 
+                        In addition you may add a file along with your post
                         (see <cite href="#groupserver-posting-files-using-the-web">Posting 
                         Files using the Web</cite>).
                       </li>
@@ -1609,7 +1609,7 @@
                   </li>
                   <li>
                     Click <samp class="button">Start</samp>.
-                    The topic page will be created, and messages will be sent
+                    The topic page will be created and messages will be sent
                     to all group members who wish to receive email notification
                     of posts.
                   </li>
@@ -1622,18 +1622,18 @@
                 </h>
                 
                 <p>
-                  To create a topic using email, send a message to the
+                  To create a topic using email send a message to the
                   email address for the group
                   (such as 
                   <code class="email">example_group@onlinegroups.net</code>)
                   with the message subject set to the name of topic;
                   do not use the name of an existing topic as this will cause
-                  the message to be added to the existing topic, rather than
+                  the message to be added to the existing topic rather than
                   creating a new topic.
                   If you are not a member of a group you cannot create a new
-                  topic, and you will be sent an error message informing you
+                  topic and you will be sent an error message informing you
                   why you cannot post to the group.
-                  However, people who are not <span class="site" tal:content="siteName"/> users will not 
+                  However people who are not <span class="site" tal:content="siteName"/> users will not
                   receive error messages.
                 </p>
               </section>
@@ -1647,18 +1647,18 @@
             
             <p>
               Sometimes it is useful to send someone a link to a post.
-              To create a link, view the message you wish to link to
+              To create a link view the message you wish to link to
               (see 
               <cite href="#groupserver-reading-messages-using-the-web">Reading
                 Messages Using the Web</cite>)
-              and click <samp class="link">short link</samp>, at the
+              and click <samp class="link">short link</samp> at the
               top of the  message; the post will be shown on a single
               Web page.
               You can copy the address of the message from
               the location bar of your Web browser and paste it into any 
               message you wish to send.
-              If the recipient cannot view the post, because of inadequate 
-              permissions, then an error message will be shown when he or she
+              If the recipient cannot view the post because of inadequate
+              permissions then an error message will be shown when he or she
               tries and follow the link.
             </p>
           </section>
@@ -1670,7 +1670,7 @@
           </h>
           
           <p>
-            All documents, which are not messages, that are stored on
+            All documents which are not messages that are stored on
             <span class="site" tal:content="siteName"/> are <quote>files</quote>.
             You can 
             <a href="#groupserver-viewing-files">view files that others
@@ -1722,7 +1722,7 @@
                 </li>
               </ul>
               <p>
-                Using either technique, when you have found the file,
+                Using either technique when you have found the file,
                 click the link to the file and your Web browser will allow
                 you to view the file.
               </p>
@@ -1740,15 +1740,15 @@
               
               <p>
                 If you have configured <span class="site" tal:content="siteName"/> to send you an email whenever 
-                someone posts a message, you will also receive an email when a
+                someone posts a message you will also receive an email when a
                 file is posted.
-                The file is not attached to the email. Instead, you will receive
+                The file is not attached to the email. Instead you will receive
                 a link to the file and a short description
                 (see 
                 <cite href="#groupserver-tab-viewing-files-using-email">Viewing
                   File Information</cite>).
-                To view a file from an email, click on the link to the
-                file that is contained in the email message, and your Web 
+                To view a file from an email click on the link to the
+                file that is contained in the email message and your Web
                 browser will allow you to view the file.
               </p>
               
@@ -1766,7 +1766,7 @@
                   <tr>
                     <td>URI</td>
                     <td>The location of the file on <span class="site" tal:content="siteName"/>.
-                      When viewed on the Web this becomes the link, which
+                      When viewed on the Web this becomes the link which
                       your browser follows when you click on the 
                       filename.</td>
                   </tr>
@@ -1833,7 +1833,7 @@
               </h>
               
               <p>
-                To post files using the Web, carry out the following:
+                To post files using the Web carry out the following:
               </p>
               
               <ol>
@@ -1859,7 +1859,7 @@
                 </li>
                 <li>
                   Click the <samp class="button">Browse</samp> button and
-                  select a file in the file dialog, instead of (or in
+                  select a file in the file dialog instead of (or in
                   addition to) writing a message.
                 </li>
                 <li>
@@ -1868,12 +1868,12 @@
               </ol>
               <p>
                 The file will be uploaded to <span class="site" tal:content="siteName"/> and
-                displayed  under the relevant topic, and messages
+                displayed  under the relevant topic and messages
                 will be sent  to all group  members who wish to
                 receive email notification of posts.
                 Any tags that are set (see 
                 <cite href="#groupserver-tags">Tags</cite>) will be
-                associated with the file, as well as the message that is 
+                associated with the file as well as the message that is
                 sent.
               </p>
             </section>
