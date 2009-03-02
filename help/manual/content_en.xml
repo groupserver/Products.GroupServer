@@ -236,9 +236,9 @@
               User Manual</cite>
             from any page on 
             <span class="site" tal:content="siteName"/>.
-            To access help, carry out the following.</p>
+            To access help carry out the following.</p>
           <ol>
-            <li>Click on <samp class="link">Help</samp>, in the main 
+            <li>Click on <samp class="link">Help</samp> in the main
               menu-bar at the top of every page.
               The <cite>Help</cite> page will open.</li>
             <li>Click on <samp class="link">User Manual</samp>.
@@ -256,10 +256,10 @@
           <p>Help that relates to a particular situation
             &#8212; or <span class="wordasword">context</span> &#8212;
             is available on many pages.
-            To access the context-sensitve help, carry out the following. 
+            To access the context-sensitve help carry out the following.
           </p>
           <ol>
-            <li>Locate the link to the context-sensitive help, which looks
+            <li>Locate the link to the context-sensitive help which looks
               like <span class="helpLink">[?]</span>.
               The link will be next to the item that the help 
               applies to.</li>
@@ -271,7 +271,7 @@
           <p>To view a section of
             <cite><span tal:condition="includeThe" tal:content="string:The"/>
             <span class="site" tal:content="siteName"/> User Manual</cite> that the 
-            context-sensitive help comes from, click on 
+            context-sensitive help comes from click on
             <samp class="link">Read more</samp> at the bottom of the 
             help-window.</p> 
         </section>
@@ -282,7 +282,7 @@
           
           <p>The participation coach is the person responsible for 
             assisting group members with team interaction and <span class="site" tal:content="siteName"/>.
-            To contact the participation coach, carry out the following 
+            To contact the participation coach carry out the following
             tasks.</p>
           
           <ol>
@@ -312,8 +312,8 @@
               tal:attributes="href string:mailto:${supportEmail}" 
               tal:content="supportEmail"/>.
             Your message should contain a description of exactly what you are
-            doing, what is not happening, and what you think <em>should</em> happen.
-            If possible supply all the email addresses you use, and your
+            doing, what is not happening and what you think <em>should</em> happen.
+            If possible supply all the email addresses you use and your
             user <acronym title="identifier">ID</acronym> would be helpful
             to <span class="site" tal:content="siteName"/> Support.
           </p>
@@ -431,7 +431,7 @@
           </h>
           
           <p>
-            To view your profile, carry out the following.
+            To view your profile carry out the following.
           </p>
           
           <ol>
@@ -555,7 +555,7 @@
             </h>
             
             <p>
-              To change your password, carry out the following.
+              To change your password carry out the following.
             </p>
             
             <ol>
@@ -570,7 +570,7 @@
               <li>
                 Type the new password in the first entry of the
                 <samp class="field">New Password</samp> field.
-                (For security reasons, asterisk characters
+                (For security reasons asterisk characters
                 <quote class="wordasword">*</quote> will appear
                 rather than the characters you type.)
               </li>
@@ -659,7 +659,7 @@
             
             <p>
               You can use your existing email addresses to
-              <a href="#groupserver-posting-a-message">post messages</a>, and
+              <a href="#groupserver-posting-a-message">post messages</a> and
               <a href="#groupserver-reading-email-posts">receive messages
                 as well as summaries of group activities</a>.
               In addition a monthly account summary will be sent to your
@@ -1184,8 +1184,8 @@
                   user a message in your normal email client.
                 </li>
                 <li>
-                  If the email addresses of the user are not visible,
-                  click  <samp class="link">Request contact</samp>,
+                  If the email addresses of the user are not visible
+                  click  <samp class="link">Request contact</samp>
                   which is also listed in the 
                   <samp class="field">Email Address</samp> field of the user's
                   profile.
@@ -1269,7 +1269,7 @@
                     </p>
                   </li>
                   <li>
-                    Scroll to view the messages, which are displayed from oldest
+                    Scroll to view the messages which are displayed from oldest
                     (at the top) to newest.
                     Alternatively click on
                     <samp class="link">Latest post</samp>
@@ -1526,7 +1526,7 @@
                       Posts</cite>) 
                     and reply;
                     <em>do not</em> change the subject of the email
-                    message, as this will cause <span class="site" tal:content="siteName"/> to create a new topic
+                    message as this will cause <span class="site" tal:content="siteName"/> to create a new topic
                     (see
                     <cite
                       href="#groupserver-starting-a-new-topic-using-email">
