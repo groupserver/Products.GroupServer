@@ -372,49 +372,49 @@
 
         <!-- Checked by Nick: 040309 -->
         <section id="groupserver-resetting-your-password">
-          <h id="groupserver-resetting-your-password-t">
-            Resetting Your Password
-          </h>
-          
-          <p>
-            If you forget your password, <span class="site" tal:content="siteName"/> can send you a new
-            password.
-            Carry out the following to reset your password.
-          </p>
-          <ol>
-            <li>
-              Click on <samp class="link">Log In</samp>, on 
-              <span tal:condition="includeThe" tal:content="string:the"/>
-              <span class="site" tal:content="siteName"/>
-              homepage.
-              The <cite>Log In</cite> page will open.
-            </li>
-            <li>
-              Click <samp class="link">Reset Password</samp> to open
-              the <cite>Reset Password</cite> page.
-            </li>
-            <li>
-              Enter your email address into the
-              <samp class="field">Email Address</samp> field.
-            </li>
-            <li>
-              Click the <samp class="button">Reset</samp> button.
-              A message will be sent to all your
-              email addresses listed with <span class="site" tal:content="siteName"/>
-              (see 
-              <cite
-                href="#groupserver-profile-adding-an-email-address">Adding
-                an Email Address</cite>).
-            </li>
-            <li>
-              The message will contain a link. Click on the link.
-            </li>
-            <li>
-              Choose a new password, enter it into the first text box and 
-              confirm it in the second, and click the 
-              <samp class="button">Set</samp> button.
-            </li>
-          </ol>
+          <h id="groupserver-resetting-your-password-t">Reset your password</h>
+            <p>To reset your password, carry out the following.</p>
+
+            <ol>
+              <li>
+                  1. Click Reset Password on the login page. The Reset Password page
+                     will be shown.
+              </li>
+
+              <li>
+                  2. Enter the email address that you wish to use, with your online
+                     groups on GroupServer, in the Email Address entry box. If you have
+                     more than one address registered with GroupServer, enter your
+                     preferred address into the Email Address entry box.
+              </li>
+
+              <li>
+                  3. Click the Reset button. An email message, containing a link to the
+                     password reset page will be sent to you.
+              </li>
+
+              <li>
+                  4. Click the link in the password-reset email message that has been
+                     sent to you. The Set Password page will be shown.
+              </li>
+
+              <li>
+                  5. Enter your new password in the first entry, and repeat the
+                     password in the second entry.
+              </li>
+
+              <li>
+                  6. Click the Set Password button. Your profile page will be shown.
+              </li>
+            </ol>
+
+            <p>
+                  Note: Administrator Password-Reset
+                      Some administrators can reset passwords for group members. If
+                      this occurs, you will receive an email message informing you that
+                      your password has been reset. From this message, you can carry
+                      out the tasks 4–6 above.
+            </p>
         </section>
       </section>
       
@@ -704,42 +704,54 @@
 
             <!-- Checked by Nick: 040309 -->
             <section id="groupserver-profile-adding-an-email-address">
-              <h id="groupserver-profile-adding-an-email-address-t">
-                Adding an Email Address
-              </h>
-              
-              <p>
-                Unlike most fields, you can have multiple email addresses.
-                To add an email address to the list of your addresses, carry out
-                the following.
-              </p>
-              
-              <ol>
-                <li>
-                  View your profile (see
-                  <cite href="#groupserver-viewing-your-profile">Viewing Your
-                    Profile</cite>).
-                </li>
-                <li>Click <samp class="link">Change Email Settings</samp>.
-                  The <cite>Change Email Settings</cite> page will appear.</li>
-                <li>
-                  Type the new email address into the blank 
-                  <samp class="field">New address</samp> entry.
-                </li>
-                <li>
-                  Click the <samp class="button">Add Address</samp>
-                  button.
-                  You can now send messages from the newly added address 
-                  to your groups on
-                  <span class="site" tal:content="siteName"/>. 
-                </li>
-              </ol>
-              
-              <p>
-                If the email address is used by another user, an
-                error message will appear and the email address will not be 
-                added.
-              </p>
+              <h id="groupserver-profile-adding-an-email-address-t">Add an email address to your profile</h>
+            <p>
+            To send messages to a group, from a particular email address — and
+                  receive messages at a particular email address — the email address
+                  must be added to your profile. To add an address to your profile,
+                  carry out the following steps.
+            </p>
+
+            <ol>
+              <li>
+                  1. Click Add an Email Address, on your profile page. The Add an
+                     Address page will be shown.
+              </li>
+
+              <li>
+                  2. Enter your new email address in the Email Address entry.
+              </li>
+
+              <li>
+                  3. Click Verify Address. You will be sent an Email Address
+                     Verification message, to ensure that you control the address you
+                     entered.
+              </li>
+
+              <li>
+                  4. Carry out one of the two options below, when you receive the Email
+                     Address Verification message.
+
+                     * Click on the link in the Email Address Verification message. The
+                       Address Verification page will be shown. Click on the Verify
+                       button to verify your address.
+
+                     * Reply to the message, making no alterations to the message —
+                       other than those automatically carried out by your email client.
+                       You will receive an email message, confirming the verified
+                       address.
+              </li>
+            </ol>
+
+            <p>
+                  Note: Administrator Adding an Email Address
+                      Some administrators can add an email address to your profile. If
+                      this occurs you will receive an email message that will allow
+                      you to carry out one of the two tasks in Step 4 above. In
+                      addition, you will receive an email message on *all* your other
+                      addresses informing you that an administrator has added a new
+                      address to your profile.
+            </p>
             </section>
 
             <!-- Checked by Nick: 040309 -->
@@ -908,6 +920,92 @@
 
         <!-- Checked by Nick: 040309 -->
         <section id="groupserver-joining-a-group">
+            <h>Join a group using email</h>
+            <p>To join a group using email, carry out the following tasks.</p>
+
+            <ol>
+              <li>
+                  1. Send a message to the group, with Subscribe in the subject line.
+                     You will receive a verification message in reply. If you do not
+                     have a GroupServer profile, one will be created.
+              </li>
+
+              <li>
+                  2. Reply to the verification message, making no alterations to the
+                    message — other than those automatically carried out by your email
+                    client. You will receive an email message, confirming that you have
+                    joined the group.
+              </li>
+            </ol>
+
+            <h>Join a group using the web</h>
+            <p>
+            To post to a group, and receive email messages from a group, you must
+                  register an account with GroupServer. To use the Web to register an
+                  account with GroupServer, carry out the following tasks.
+            </p>
+
+            <ol>
+              <li>
+                  1. Click Register and Join in the group you wish to join. The
+                     Register and Join page will be shown.
+              </li>
+
+              <li>
+                  2. Enter your email address in the Email Address entry.
+              </li>
+
+              <li>
+                  3. Click Next. Two things will happen:
+                     * A email address verification message will be sent to you (see
+                       Adding an Email Address, Step 4)
+                       http://groupserver.org/r/post/6b5rm4OsiHJ4kWpZ37jUOl
+                       and
+                     * You will be shown the Edit Profile page.
+              </li>
+
+              <li>
+                  4. Edit your profile. Your profile will allow other users of
+                     GroupServer to get to know you better. At this stage you can also
+                     join other  groups, by selecting them in the Groups section of
+                     your profile.
+
+                     Tip: Nickname
+                        Your nickname is a single word that is used to identify you and
+                        your profile. Its primary purpose is to create the link to your
+                        profile. By default, your nickname is created out of your
+                        display name, with the spaces removed.
+              </li>
+
+              <li>
+                  5. Click Next. You will be shown one of two pages.
+
+                     * If you have not verified your email address (see Adding an Email
+                       Address, Step 4) you will be shown the Waiting for Verification
+                       page; once you verified click Next to see the Set Password page
+                       (see Resetting Your Password step 6).
+                       http://groupserver.org/r/post/3JJvi3M6zykWP5SCogRZK
+
+                     * If you have verified your email address, you will be shown the
+                       Set Password page (see Resetting Your Password, Step 6).
+                       http://groupserver.org/r/post/3JJvi3M6zykWP5SCogRZK
+              </li>
+
+              <li>
+                  6. Set your new password. You will be shown your profile page after
+                     the password has been set.
+              </li>
+            </ol>
+
+            <p>
+                  Note: Administrator Registration
+                      If you do not have an account with GroupServer, an administrator
+                      can create one for you. If this happens, you will receive an
+                      email message informing you that this has occurred. Clicking on
+                      the link in the email message will take you to the Edit Profile
+                      page (Step 4 above) and verify your email address.
+            </p>
+
           <h id="groupserver-joining-a-group-t">
             Joining a Group
           </h>
