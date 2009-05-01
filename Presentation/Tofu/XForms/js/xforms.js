@@ -15,7 +15,7 @@ window.onpageshow = initXForms;
 window.onload = initXForms;
 
 function initXForms() {
-	var form = document.forms[0];
+	var form = document.forms[1];
 	for (var i=0; i < form.elements.length; i++) {
 		if (form.elements[i].disabled == true) {
 		    if (form.elements[i].oldvalue) {
