@@ -1,0 +1,361 @@
+/* some defaults */
+form {
+	margin: 0;
+	padding: 0;
+}
+
+label.required {
+	color: #dd0000;
+}
+
+/* text input row */
+div.formelementtext {
+	width: 600px;
+        margin: 12px 0 0 0;
+}
+
+div.formelementtext input {
+ 	/*margin: 0 0 0 205px;*/
+	width: 300px;
+}
+
+
+div.formelementtext textarea, div.formelementtextarea textarea {
+        /*margin: 0 0 0 205px;*/
+        width: 600px;
+        height: 200px;
+}
+
+div.formelementtext label, div.formelementtextarea label {
+	float: left;
+	text-align: right;
+	width: 200px;
+        height: 25px; /*hack to force correct layout of elements*/
+	padding: 0 5px 10px 0;
+	font-weight: bold;
+}
+
+div.formelementtext div.hint, .hint {
+    padding: 0 5px 0 5px;
+    font-size: 9px;
+    color: #aaaaaa;
+    vertical-align: bottom;
+    /* visibility: hidden;
+       display: none; */
+}
+
+/* checkbox row */
+div.formelementcheck label {
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+/* single checkbox */
+div.formelementsinglecheck label {
+	float: left;
+	text-align: right;
+	width: 200px;
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+/* Submit Button */
+div.formelementbutton {
+	margin: 5px 0 0 205px;
+	padding: 0px;
+	clear: both;
+}
+
+div.formelementsimple-row-input input {
+	cursor: pointer;
+	padding: 2px 4px 2px 4px;
+	margin: 5px;
+	height: 20px;
+	width: 300px;
+	clear: both;
+}
+
+div.formelementsimple-row-button input {
+	/* background-color: #ff9966;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	font-weight: bold;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	padding: 2px 4px 2px 4px;
+	margin: 5px;
+	width: 200px; */
+}
+
+div.formelementbutton input {
+	/* background-color: #ff9966;
+	border-color: #000;
+	border-style: solid;
+	border-width: 1px;
+	font-weight: bold;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	padding: 2px 4px 2px 4px; */
+}
+
+/* Textarea -- manage profile, boxes under label */
+div.formelementtextareaprofile label {
+	clear: both;
+	margin: 10px 0 0 0;
+	padding: 0 5px 0 5px;
+	font-weight: bold;
+}
+
+div.formelementtextareaprofile div.hint {
+	clear: both;
+	padding: 5px;
+	font-style: italic;
+}
+
+div.formelementtextareaprofile textarea {
+	float: left;
+	clear: both;
+	margin: 0 0 20px 5px;
+	padding: 5px;
+	width: 705px;
+	height: 200px;
+	font-size: 12px;
+	border-color: black;
+	border-width: thin;
+	border-style: solid;
+}
+
+/* text input row -- manage profile */
+div.formelementtextprofile {
+	margin: 0 0 10px 0;
+	padding: 5px;
+	clear: both;
+	width: 520px;
+}
+
+div.formelementtextprofile div.hint {
+	clear: both;
+	padding: 0 5px 0 5px;
+	font-style: italic;
+}
+
+div.formelementtextprofile label {
+	float: left;
+	width: 150px;
+	margin: 10px 0 0 0;
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+div.formelementtextprofile input {
+	float: left;
+	clear: both;
+	margin: 0 0 20px 0;
+	padding: 5px;
+	width: 300px;
+	border-color: black;
+	border-width: thin;
+	border-style: solid;
+}
+
+/* selector -- manage profile */
+div.formelementselectprofile {
+	margin: 0 0 10px 0;
+	padding: 5px;
+	clear: both;
+	width: 520px;
+}
+
+div.formelementselectprofile div.hint {
+	clear: both;
+	padding: 5px;
+	font-style: italic;
+}
+
+div.formelementselectprofile label {
+	float: left;
+	width: 150px;
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+div.formelementselectprofile select {
+	float: left;
+	clear: both;
+	margin: 0 0 20px 0;
+	padding: 5px;
+	width: 705px;
+	border-color: black;
+	border-width: thin;
+	border-style: solid;
+}
+
+/* selector -- multiple selector */
+div.formelementmultipleselect {
+	margin: 0 0 10px 0;
+	padding: 5px;
+	clear: both;
+	width: 520px;
+}
+
+div.formelementmultipleselect div.hint {
+	clear: both;
+	padding: 5px;
+	font-style: italic;
+}
+
+div.formelementmultipleselect label {
+	float: left;
+	width: 300px;
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+div.formelementmultipleselect select {
+	float: left;
+	clear: both;
+	margin: 0 0 20px 0;
+	padding: 5px;
+	width: 500px;
+	height: 100px;
+	border-color: black;
+	border-width: thin;
+	border-style: solid;
+}
+
+
+/* selector -- single selector */
+div.formelementselect {
+	margin: 0 0 10px 0;
+	padding: 5px;
+	clear: both;
+	width: 520px;
+}
+
+div.formelementselect div.hint {
+	clear: both;
+	padding: 0 5px 0 5px;
+	font-style: italic;
+}
+
+div.formelementselect label {
+	float: left;
+	width: 150px;
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+div.formelementselect select {
+	float: left;
+	clear: both;
+	margin: 0 0 20px 0;
+	width: 300px;
+	font-size: 12px;
+	border-color: black;
+	border-width: thin;
+	border-style: solid;
+}
+
+/* File selector, no label */
+div.formelementuploadnolabel div.hint {
+	clear: both;
+	padding: 5px;
+	font-style: italic;
+}
+
+div.formelementuploadnolabel label {
+	display: none;
+}
+
+div.formelementuploadnolabel input {
+	width: 300px;
+	margin: 0 0 10px 5px;
+}
+
+/* TODO */
+div.select {
+	margin: 0;
+	padding: 0;
+	clear: both;
+	width: 420px;
+	height: 25px;
+}
+
+div.select label {
+	float: left;
+	width: 150px;
+	padding: 0 5px 0 0;
+	font-weight: bold;
+}
+
+div.select select {
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	font-size: 12px;
+}
+
+div#steps {
+	position: absolute;
+	top: 90px;
+	right: 60px;
+	width: 122px;
+	height: 28px;
+}
+
+/* Style */
+div.styleicon {
+	float: left;
+	margin: 0 15px 0 0;
+	width: 84px;
+	height: 52px;
+	cursor: pointer;
+}
+
+img {
+	border-style: none;
+}
+
+/* Messages */
+div.message-error {
+	margin: 0 3px 0 2px;
+	padding: 10px;
+	border-color: gray;
+	border-width: thin;
+	border-style: solid;
+	background-color: #ffdddd;;
+	padding: 10px;
+}
+
+div.message-alert {
+	margin: 0 3px 0 2px;
+	padding: 10px;
+	border-color: gray;
+	border-width: thin;
+	border-style: solid;
+	background-color: #eeeeee;
+}
+
+div.message p {
+	margin: 0;
+	padding: 0;
+	font-size: 10px;
+}
+
+/* Form Layouts */
+div.row {
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+div.formspacer {
+	margin: 0;
+	padding: 0;
+	clear: both;
+	line-height: 5px;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <output>
+    <content tal:define="site context/Scripts/get/division_object">
+      <heading1 tal:content="context/title_or_id"/>
+
+      <paragraph>
+        As an administrator for 
+        <span class="site" tal:content="site/title_or_id"/>, you
+        can carry out the following administration tasks.
+      </paragraph>
+      <bulletlist 
+        tal:define="isChargable python:site.getProperty('isChargable', False)">
+        <listitem><link url="start_a_group">Start a 
+          <bold>group</bold></link></listitem>
+        <listitem><link url="change_intro">Change the site <bold>introduction 
+              text</bold></link></listitem>
+        <listitem><link url="change_name">Change the <bold>name</bold> 
+            of the site</link></listitem>
+        <listitem><link url="set_site_timezone">Set the <bold>timezone</bold>
+            for the site</link></listitem>
+        <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
+          <link url="/siteshop">Alter the site <bold>subscription</bold></link>
+        </listitem>
+        <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
+          <link url="/siteshop/current_charges">View the
+            <bold>current charges</bold></link>
+        </listitem>
+      </bulletlist> 
+      
+      <heading2>Group Administration</heading2>
+      
+      <paragraph>As an administrator for 
+        <span class="site" tal:content="site/title_or_id"/>, 
+          you can administer the following groups.</paragraph>
+      
+      <bulletlist tal:define="groups context/Scripts/get/division_groups;">
+        <listitem tal:repeat="group groups">
+          <link tal:attributes="title string:Administer ${group/title_or_id};
+            url string:/groups/${group/getId}/admingroup">
+            <span class="group" tal:content="group/title_or_id"/>
+          </link>
+        </listitem>
+      </bulletlist>
+    </content>
+  </output>
+</root>
+

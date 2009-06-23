@@ -1,0 +1,19 @@
+<xf:model xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  id="start_a_group"
+  tal:define="site_object context/Scripts/get/division_object">
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <siteId tal:content="site_object/getId"/>
+      <groupType tal:content="result/form/groupType | string:standard"/>
+      <groupName 
+        tal:content="result/form/groupName | string:Example Name"/>
+      <groupId
+        tal:content="result/form/groupId | string:exampleid"/>
+      <realLifeGroup>example people doing exemplary things</realLifeGroup>
+      <privacy>public</privacy>
+    </data>
+  </xf:instance>
+  <xf:submission action="" method="urlencoded-post" id="next"/>
+</xf:model>

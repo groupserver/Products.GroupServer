@@ -1,0 +1,31 @@
+<xf:model id="moderate_group"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  tal:define="group_object here/Scripts/get/group_object; 
+  site_object here/Scripts/get/division_object;
+  moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);
+  moderate_new python:here.Scripts.get.list_property(group_object.getId(), 'moderate_new_members', False);
+  level python:(moderated and (moderate_new and 'specified_and_new' or 'specified_only')) or 'none'">
+  <!--xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <groupid tal:content="group_object/getId">group id</groupid>
+      <divisionid 
+        tal:content="site_object/getId">division id</divisionid>
+    </data>
+  </xf:instance>
+  <xf:submission method="urlencoded-post" id="turn_on_moderation"
+    tal:attributes="action request/URL" />
+  <xf:submission method="urlencoded-post" id="turn_off_moderation"
+    tal:attributes="action request/URL" /-->
+    
+  <xf:instance>
+    <data>
+      <submitted>1</submitted>
+      <groupid tal:content="group_object/getId">group id</groupid>
+      <siteid 
+        tal:content="site_object/getId">site id</siteid>
+      <moderation_level tal:content="level">none</moderation_level>
+    </data>
+  </xf:instance>
+</xf:model>

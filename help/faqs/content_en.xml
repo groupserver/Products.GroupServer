@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>Online Groups User Guide: Frequently Asked Questions</title>
+    <meta property="dc:created">March 2008</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Alice Murphy</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body
+    tal:define="site context/Scripts/get/division_object;
+      siteId site/getId;
+      siteName site/title_or_id;
+      isAuthenticated python:'Authenticated' in user.getRolesInContext(site);
+      get_support_email python:modules['Products.XWFCore.XWFUtils'].get_support_email">
+    <section>
+      <h>Frequently Asked Questions</h>
+      
+      <nl>
+        <li href="#groupserver-faq-password-reset">
+          I can't log in. How do I get a new password?
+        </li>
+        <li href="#groupserver-faq-password-reset-freezes">
+          When I try to confirm my new password, the page freezes.
+        </li>
+        <li href="#groupserver-faq-change-email">
+          How do I change my email address?
+        </li>
+        <li href="#groupserver-faq-file-attach-freezes">
+          When I try to send a file to my online group via the web, the page freezes.
+        </li>
+        <li href="#groupserver-faq-delete-posts-files">
+          How do I delete a post? How do I delete a file?
+        </li>
+        <li href="#groupserver-faq-email-not-member">
+          When I send an email to my Online Group, I receive an email
+    	    telling me I am not a member of the group even though I am.
+  	    </li>
+        <li href="#groupserver-faq-email-not-in-topics">
+          I sent an email to my Online Group. Why hasn't appeared in the 
+          Topics section of my Online Group?
+        </li>
+        <li href="#groupserver-faq-email-settings-default">
+          On my 'Change Email Settings' page, what does 'Default' mean?
+        </li>
+        <li href="#groupserver-faq-support">
+          I'm still stuck. How can I get help?
+        </li>
+      </nl>
+    
+      <section id="groupserver-faq-password-reset">
+        <h>I can't log in. How do I get a new password?</h>
+        <p>
+    	    Visit the <a href="/reset_password.html">Reset Password page</a> and
+    	    follow the instructions there to set a new password.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-password-reset-freezes">
+        <h>When I try to confirm my new password, the page freezes.</h>
+        <p>
+    	    Clear the cache of your internet browser and then 
+    	    <a href="#groupserver-faq-password-reset">reset your password</a>
+    	    again. Microsoft has 
+    	    <a class="weblink"
+    	      href="http://www.microsoft.com/windows/ie/ie6/using/howto/customizing/clearcache.mspx">instructions</a> 
+    	    for clearing the cache of Internet Explorer 6.
+        </p>
+      </section>
+      
+      <section id="groupserver-faq-change-email">
+        <h>How do I change my email address?</h>
+        <p>
+    	    Log in and go to your
+          <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
+            tal:omit-tag="python:not(isAuthenticated)">Change Email Settings page</a>.
+          On this page you can add or remove email addresses. To add an email 
+          address, type your email address into the 'Add Address' field and 
+          click the 'Add' button. To remove an email address, choose 'Remove Address'
+          from the drop-down list under 'Change' next to that email address.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-file-attach-freezes">
+        <h>When I try to send a file to my online group via the web, the page freezes.</h>
+        <p>
+          If you wish to share a link to a webpage with your group, simply paste 
+          the URL of the webpage into the <cite>Message</cite> section of the 
+          page, along with the rest of your post.
+        </p>
+        <p>
+          You should only use the <cite>File</cite> section of the page to 
+          select and upload a file that is saved to your local computer.
+        </p>
+      </section>
+      
+      <section id="groupserver-faq-delete-posts-files">
+        <h>How do I delete a post? How do I delete a file?</h>
+        <p>
+    	    Because messages and files in <span tal:content="siteName" /> groups are sent 
+    	    out via email as well as being displayed on the web, we cannot alter 
+    	    or delete any post or file once it has been added to the group. (If 
+    	    we did that, then the email version would be different from the web 
+    	    version, which would be very strange.) Instead, we encourage you to
+    	    post another message correcting your previous one.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-email-not-member">
+        <h>
+          When I send an email to my Online Group, I receive an email telling me I 
+          am not a member of the group even though I am.
+    	  </h>
+        <p>
+    	    Your email account might be configured such that your outgoing
+    	    messages are sent from an email address slightly different from the 
+    	    one at which you receive messages. If so, the system will not 
+    	    recognize your sent emails. If the rejected address mentioned in 
+    	    the email is not listed on your 
+          <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
+            tal:omit-tag="python:not(isAuthenticated)">Change Email Settings page</a>,
+          add it.
+        </p>
+      </section>
+      
+      <section id="groupserver-faq-email-not-in-topics">
+        <h>
+          I sent an email to my Online Group. Why hasn't it appeared in the 
+          Topics section of my Online Group?
+        </h>
+        <p>
+    	    First, check that the message was sent to the Online Group. If it 
+    	    was, you will have received a copy of your own message. It will have
+    	    a shortened version of the Online Group name in the subject line 
+    	    (e.g. [groupname]). If you got the message and it is not in the 
+    	    Topics section of the Online Group on this website, please 
+    	    <a class="emaillink" title="Email address for support"
+            tal:define="supportEmail python:get_support_email(context, siteId)"
+            tal:attributes="href string:mailto:${supportEmail}">contact us</a>. If 
+    	    you did not receive the message, check to make sure the email address you 
+    	    sent it to was correct. Also check that the email address you sent 
+    	    the message from is registered to your profile. You can do this by 
+    	    going to your 
+          <a tal:attributes="href python:'/p/%s/email.html' % user.getId()"
+            tal:omit-tag="python:not(isAuthenticated)">Change Email Settings page</a>.
+          You can change your email address(es) there if neccessary.
+        </p>
+      </section>
+      
+      <section id="groupserver-faq-email-settings-default">      
+        <h>On my 'Change Email Settings' page, what does 'Default' mean?</h>
+        <p>
+          If you select 'Make default' under 'Change' next to your email 
+          address, you will receive posts from all your Online Groups
+          at that address unless you specify otherwise.
+        </p>
+      </section>
+
+      <section id="groupserver-faq-support">
+        <h>I'm still stuck. How can I get help?</h>
+        <p>
+          If your question is still unanswered, you can address it to
+          <a class="emaillink" title="Email address for support"
+            tal:define="supportEmail python:get_support_email(context, siteId)"
+            tal:attributes="href string:mailto:${supportEmail}" 
+            tal:content="supportEmail"/>.
+        </p>
+      </section>
+      
+    </section>
+  </body>
+</html>
+

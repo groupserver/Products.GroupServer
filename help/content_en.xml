@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>OnlineGroups.Net Help</title>
+    <meta property="dc:created">October 2006</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Michael JasonSmith</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body id="groupserver-manual"
+    tal:define="baseName string:OnlineGroups.Net;
+      siteName python:options.has_key('siteName') and options['siteName'] or baseName;
+      includeThe python:siteName.split(' ')[0].lower() != 'the';
+      site context/Scripts/get/division_object;
+      siteId site/getId">
+    <section>
+      <h>Help</h>
+      <p>
+        Stuck? 
+        You can find solutions to common problems in the 
+        <a href="faqs">Frequently Asked Questions</a>.
+      </p>
+      <div style="display:block;float:left;" src="faq.png" href="faqs">
+        F*A*Q
+      </div>
+
+      <section style="clear:left;">
+        <h>Want to find out more?</h>
+        <p>
+          In addition to the Frequently Asked Questions, this Help section 
+          contains the following resources.
+        </p>
+        <dl>
+          <di>
+            <dt href="participation">
+              <span tal:condition="includeThe" tal:content="string:The"/>
+              <span class="site" tal:content="siteName"/> User Guide
+            </dt>
+            <dd>
+              A guide to participating in groups
+              on <span class="site" tal:content="siteName" />.
+            </dd>
+          </di>
+          <di>
+            <dt href="manual">
+              <span tal:condition="includeThe" tal:content="string:The"/>
+              <span class="site" tal:content="siteName"/> User Manual
+            </dt>
+            <dd>
+              Step-by-step instructions for using
+              <span class="site" tal:content="siteName" />.
+            </dd>
+          </di>
+          <di>
+            <dt href="admin_guide">
+              <span tal:condition="includeThe" tal:content="string:The"/>
+              <span class="site" tal:content="siteName"/> Administration Guide
+            </dt>
+            <dd>
+              A guide to setting up groups and configuring
+              <span class="site" tal:content="siteName" />.
+            </dd>
+          </di>
+          <di>
+            <dt href="admin_manual">
+              <span tal:condition="includeThe" tal:content="string:The"/>
+              <span class="site" tal:content="siteName"/> Administration Manual
+            </dt>
+            <dd>
+              Step-by-step instructions for the
+              administration of
+              <span class="site" tal:content="siteName" />.
+            </dd>
+          </di>
+        </dl>
+        <p>
+          You can also find help around the site from the context-sensitive 
+          help-links:
+          <a href="/help/manual/#groupserver-getting-help-from-context"
+            class="helpLink">[?]</a>.
+          </p>
+      </section>
+
+    </section>
+  </body>
+</html>
+

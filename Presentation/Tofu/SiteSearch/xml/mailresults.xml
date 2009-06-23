@@ -1,0 +1,59 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:search="http://purl.org/rss/1.0/modules/search/"
+         xmlns:results="http://xwft.org/ns/rss/modules/results/0.9"
+         xmlns="http://purl.org/rss/1.0/"
+         xmlns:email="http://xwft.net/namespaces/email/0.9/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:tal="http://xml.zope.org/namespaces/tal"
+         xmlns:metal="http://xml.zope.org/namespaces/metal"
+         tal:define="b_results python:here.lscripts.search_site_email(request.form.get('query', ''), request.form.get('start', 0), request.form.get('size', 10)); xcu python:modules['Products.XWFCore.XWFUtils']; cr python:xcu.createRequestFromRequest; ct python:xcu.convertTextToAscii;">
+# e_b_start, e_b_end, e_b_size, e_result_size, e_result_set 
+  <channel id="emailresults" rdf:about="">
+    <title></title>
+    <link>http://query.url.com/?query=...</link>
+    
+    <results:first tal:content="python:b_results[0]">0</results:first>
+    <results:last tal:content="python:b_results[1]">10</results:last>
+    <results:batchsize tal:content="python:b_results[2]">20</results:batchsize>
+    <results:total tal:content="python:b_results[3]">1000</results:total>
+    <results:nextlink tal:condition="python:(b_results[3]-b_results[1]) &gt; 0" tal:content="python:request.URL1+'/search_email.xml?'+cr(request, start=b_results[0]+b_results[2]+1)"></results:nextlink>
+    <results:prevlink tal:condition="python:b_results[0] &gt; 1" tal:content="python:request.URL1+'/search_email.xml?'+cr(request, start=(b_results[0]-b_results[2]+1))"></results:prevlink>
+    
+    <description>
+      A channel for file results
+    </description>
+
+    <!-- <image rdf:resource="http://..." /> -->
+
+    <items>
+      <rdf:Seq>
+        <!-- An ordered list of URLs -->
+        <rdf:li tal:repeat="result python:b_results[4]" tal:attributes="rdf:resource python:result['url']"/>
+      </rdf:Seq>
+    </items>
+    </channel>
+
+    <textinput rdf:resource="http://search.xml.com" />
+
+    <item tal:repeat="result python:b_results[4]" tal:attributes="rdf:about python:result['url']">
+
+      <result tal:omit-tag="">
+        <title tal:content="result/subject"></title>      
+        <!-- <email:mailFrom tal:content="python:object['mailFrom']">someaddress@iopen.co.nz</email:mailFrom> 
+        <email:from tal:content="python:object.getProperty('from', [None])[0] or object.getProperty('mailFrom')">someaddress@iopen.co.nz</email:from> -->
+        <!--<span tal:omit-tag="" tal:define="mailUserId object/mailUserId | nothing;
+                                      mailFromName python:here.Scripts.get.user_realnames(mailUserId)">
+            <email:mailUserId tal:content="mailUserId | nothing"/>
+            <email:mailFromName tal:content="mailFromName | nothing">Some Person</email:mailFromName>
+        </span> -->
+        <email:subject tal:content="result/subject">Some Subject</email:subject>
+        <dc:date tal:content="python:DateTime(result['last_post_date'].isoformat())">2003/04/09 12:00pm</dc:date>
+        <!--<description tal:content="python:ct(object['mailBody'])">Some body text.</description> -->
+        <email:listId tal:content="result/group_id">list id</email:listId>
+        <email:id tal:content="result/last_post_id">email id</email:id>
+
+      </result> 
+
+    </item> 
+
+</rdf:RDF>

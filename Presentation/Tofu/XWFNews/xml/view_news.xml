@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <output>
+    <content>
+      <heading1>Current News</heading1>
+
+      <div class="newsitems"
+        tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date">
+        <tal:block
+          tal:repeat="result python:map(lambda x: x.getObject(), options['results'])">
+          <div class="newsitem" 
+            tal:define="pubDate result/dc_valid;
+              published python:pubDate &lt; DateTime();
+              n repeat/result/number;
+              odd python:n%2;
+              oddClass python:odd and 'odd' or 'even';
+              pubClass python:published and 'published' or 'unpublished';
+              canModify python:user.has_permission('Add news item', result)"
+            tal:attributes="class string:${pubClass} ${oddClass} newsitem;
+              id string:newsitem-${result/getId}">
+            <heading2>
+              <span 
+              	tal:replace="python:munge_date(here, pubDate)"/>
+              <bold tal:condition="python:not published">[Unpublished]</bold>
+              <span tal:replace="structure result/title"/>
+            </heading2>
+            <p>Posted By 
+              <a class="name"
+              	tal:attributes="href python:'/contacts/%s/' % result.dc_creator" 
+              	tal:content="result/dc_creator"/> 
+              <span class="modify" tal:condition="canModify">
+                (<link url="#"
+                  tal:attributes="url string:view_modify_newsitem?id=${result/getId}">modify
+                    newsitem</link>)</span>
+            </p>
+            <bulletlist class="resources"
+            	tal:condition="python:filter(None, result.linked_resources)">
+              <listitem tal:repeat="link result/linked_resources">
+                <a tal:attributes="href link" tal:content="link"/>
+            	</listitem>
+            </bulletlist>
+            <p tal:repeat="dpart python:result.dc_description.split('\n\n')"
+              tal:content="structure dpart"/>
+          </div><!--newsitem-->
+        </tal:block>
+      </div><!--newsitems-->
+    </content>
+  </output>
+</root>

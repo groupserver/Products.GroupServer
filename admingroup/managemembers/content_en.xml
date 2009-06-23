@@ -1,0 +1,334 @@
+<?xml version="1.0" ?>
+<root
+  xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <data tal:content="structure python:here.models(method='xml')"/>
+  <output>
+    <content 
+      tal:define="division_object here/Scripts/get/division_object;
+        group_object here/Scripts/get/group_object;
+        moderated_members python:here.Scripts.get.group_members_moderated();
+        moderated_members_ids python:map(lambda m: m.getId(), moderated_members);
+        isGroupModerated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False);
+        list python:getattr(here.ListManager, group_object.getId(), None);
+        moderator_ids python:list.getProperty('moderator_members', []);
+        showMembers python:request.get('show', 'all');
+        uIds python:request.get('userIds', '');
+        editIds python:hasattr(uIds, 'split') and uIds.split() or uIds;
+        groupType python:group_object.getProperty('group_template');
+        isGroupAnnouncement python:groupType == 'announcement';
+        postingMembers python: (isGroupAnnouncement and group_object.messages.get_listProperty(group_object.getId(), 'posting_members')) or [];
+        localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+        usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+        joinable python:usersCanJoinGroup(group_object.getId(),True);
+        canJoin python:joinable[0];
+        allMembers here/Scripts/get/group_members;
+        member_count python:len(allMembers);
+        unverifiedUsers here/Scripts/get/unverified_group_members;
+        unverifiedUsersIds python:map(lambda u:u.getId(), unverifiedUsers)">
+      
+      <heading1>
+        Manage the Members of 
+        <span class="group"
+          tal:content="group_object/title_or_id"/>
+      </heading1>
+
+      <paragraph>
+        There 
+        <span tal:replace="python:member_count == 1 and 'is %s member' % member_count or 'are %s members' % member_count"/>
+        <span tal:condition="unverifiedUsers"
+          tal:define="u_member_count python:len(unverifiedUsers)">
+          — of which
+          <span tal:replace="python:u_member_count == 1 and '%s member is' % u_member_count or '%s members are' % u_member_count"/>
+          unverified
+          —
+        </span>
+        in this group.
+        <span tal:condition="editIds">Currently, 
+          <span class="cardinal" tal:content="python:len(editIds)"/>
+          member<span tal:condition="python:len(editIds)&gt;1">s are</span>
+          <span tal:condition="python:len(editIds)==1"> is</span>
+          shown below.
+        </span>	
+        <span tal:condition="canJoin">
+          (<link title="Add new members to the group"
+            url="../addusers">Add new members.</link>)</span>
+      </paragraph>
+      
+      <bulletlist tal:condition="python:member_count &gt; 1">
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/${here/getId}/"
+            tal:condition="python:showMembers!='all'">List all the
+            members of 
+            <span class="group"
+              tal:content="group_object/title_or_id"/>.
+          </link>
+          <span tal:condition="python:showMembers=='all'">Listing 
+            <bold>all members.</bold></span>
+        </listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/${here/getId}/?show=managers"
+            tal:condition="python:showMembers!='managers'">List only the
+            managers of 
+            <span class="group"
+              tal:content="group_object/title_or_id"/>.
+          </link>
+          <span tal:condition="python:showMembers=='managers'">Listing all
+            <bold>managers.</bold></span>
+        </listitem>
+        <listitem tal:condition="python:isGroupModerated">
+          <link 
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/${here/getId}/?show=moderated"
+            tal:condition="python:showMembers!='moderated'">List only the
+            moderated members of
+            <span class="group"
+              tal:content="group_object/title_or_id"/>.
+          </link>
+          <span
+            tal:condition="python:showMembers=='moderated'">Listing
+            all <bold>moderated members.</bold></span>
+        </listitem>
+        <listitem tal:condition="unverifiedUsers">
+          <link 
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/${here/getId}/?show=unverified"
+            tal:condition="python:showMembers!='unverified'">List only the
+            unverified members of
+            <span class="group" tal:content="group_object/title_or_id"/>.
+          </link>
+          <span
+            tal:condition="python:showMembers=='unverified'">Listing
+            all <bold>unverified members.</bold></span>
+        </listitem>
+        
+        <listitem tal:condition="isGroupAnnouncement">
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/admingroup/${here/getId}/?show=posting"
+            tal:condition="python:showMembers!='posting'">List 
+            all posting members.</link>
+          <span tal:condition="python:showMembers=='posting'">Listing only the 
+            posting members of
+            <span class="group"
+              tal:content="group_object/title_or_id"/>.</span>
+        </listitem>
+      </bulletlist>
+      
+      <div class="contacts">
+        <tal:block
+          tal:repeat="userobj allMembers">
+          <tal:block
+            tal:define="roles python:userobj.getRolesInContext(group_object);
+            isSiteAdmin python:'DivisionAdmin' in roles;
+            isGroupAdmin python:'GroupAdmin' in roles;
+            isPtnCoach python:userobj.getId()==group_object.getProperty('ptn_coach_id', '');
+            isModerated python:userobj.getId() in moderated_members_ids;
+            isModerator python:userobj.getId() in moderator_ids;
+            isPoster python:(not isGroupAnnouncement) or (userobj.getId() in postingMembers);
+            isUnverified python:userobj.getId() in unverifiedUsersIds;
+            isNormal python:not (isSiteAdmin or isGroupAdmin or isPtnCoach or isModerator or isModerated or isUnverified) and ((not isPoster and isGroupAnnouncement) or (isPoster and not isGroupAnnouncement));"
+            tal:condition="python:((not editIds) or userobj.getId() in editIds ) and (showMembers=='all') or (isModerated and (showMembers=='moderated')) or ((isGroupAdmin or isSiteAdmin) and (showMembers=='managers')) or ((isGroupAnnouncement and isPoster) and (showMembers=='posting')) or (isUnverified and (showMembers=='unverified'))">
+            <div class="member">
+              <heading3>
+                <link class="fn"
+                  tal:attributes="url string:/contacts/${userobj/getId};
+                  id string:${userobj/getId}">
+                  <span class="name"
+                    tal:content="userobj/fn | nothing"/>
+                </link><!--name-->
+                &#8212;
+                <span class="membershipStatus"
+                  tal:condition="isSiteAdmin">
+                  Site Administrator
+                </span>
+                <span class="membershipStatus"
+                  tal:condition="python:isGroupAdmin and (not isSiteAdmin)">
+                  Group Administrator
+                </span>
+                <span 
+                  tal:condition="python:(isSiteAdmin or isGroupAdmin) and isPtnCoach">and</span>
+                <span class="membershipStatus"
+                  tal:condition="isPtnCoach">
+                  Participation Coach
+                </span>
+                <span 
+                  tal:condition="python:(isSiteAdmin or isGroupAdmin or isPtnCoach) and (isModerator and isGroupModerated)">and</span>
+                <span class="membershipStatus"
+                  tal:condition="python:isModerator and isGroupModerated">
+                  Moderator for         
+                  <span class="group" tal:content="group_object/title_or_id"/>
+                </span>
+                <span class="membershipStatus"
+                  tal:condition="python:isModerated and isGroupModerated">
+                  Moderated Member
+                </span>
+                <span 
+                  tal:condition="python:(isSiteAdmin or isGroupAdmin or isPtnCoach or (isModerator and isGroupModerated)) and isGroupAnnouncement and isPoster">and</span>
+                <span tal:condition="python:isGroupAnnouncement and isPoster">
+                  Posting Member
+                </span>
+                <span class="membershipStatus" tal:condition="isUnverified">
+                  Unverified Member
+                </span>
+                
+                <span class="membershipStatus"
+                  tal:condition="python:isNormal">
+                  Normal Member
+                </span>
+                <span class="membershipStatus"
+                  tal:condition="python:isModerated and (isSiteAdmin or isGroupAdmin or isPtnCoach and isModerator)">
+                  An Oddly Configured Member. (Please contact
+                  <link url="mailto:support@onlinegroups.net">support@onlinegroups.net</link>.)
+                </span>
+              </heading3>
+              <div class="userOptions">
+                
+                <xf:select1 appearance="full" model="manage_group_members"
+                  ref="ptn_coach_add_userid"
+                  tal:condition="python:(not isUnverified) and not isPtnCoach and not isModerated">
+                  <xf:item>
+                    <xf:label>Make
+                      <span tal:replace="userobj/fn | nothing"/>
+                      the participation coach.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select1>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="ptn_coach_remove_userid"
+                  tal:condition="isPtnCoach">
+                  <xf:item>
+                    <xf:label>Revoke participation coach status from
+                      <span tal:replace="userobj/fn | nothing"/>.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="group_admin_add_userid"
+                  tal:condition="python:(not isUnverified) and ((not(isSiteAdmin or isGroupAdmin)) and (not isModerated)) and (isNormal or isPtnCoach or isModerator)">
+                  <xf:item>
+                    <xf:label>Make
+                      <span tal:replace="userobj/fn | nothing"/>
+                      a group administrator.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="group_admin_remove_userid"
+                  tal:condition="isGroupAdmin">
+                  <xf:item>
+                    <xf:label>Revoke the administrator privileges from
+                      <span tal:replace="userobj/fn | nothing"/>.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="moderators_add_userid"
+                  tal:condition="python:(not isUnverified) and isGroupModerated and (not (isModerated or isModerator))">
+                  <xf:item>
+                    <xf:label>Make
+                      <span tal:replace="userobj/fn | nothing"/>
+                      a moderator for this group.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="moderators_remove_userid"
+                  tal:condition="python:(not isUnverified) and isModerator and isGroupModerated">
+                  <xf:item>
+                    <xf:label>Revoke moderator status from
+                      <span tal:replace="userobj/fn | nothing"/>.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="moderate_add_userid"
+                  tal:condition="python:(not isUnverified) and isGroupModerated and (not isModerated) and not (isGroupAdmin or isSiteAdmin or isPtnCoach or isModerator)">
+                  <xf:item>
+                    <xf:label>Start moderating messages from
+                      <span tal:replace="userobj/fn | nothing"/>.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="moderate_remove_userid"
+                  tal:condition="python:(not isUnverified) and isModerated and isGroupModerated">
+                  <xf:item>
+                    <xf:label>Stop moderating messages from
+                    <span tal:replace="userobj/fn | nothing"/>.
+                    </xf:label>
+                    <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="posting_add_userid"
+                  tal:condition="python:(not isUnverified) and isGroupAnnouncement and (not isPoster) and (len(postingMembers) &lt; 5)">
+                  <xf:item>
+                    <xf:label>Make 
+                      <span tal:replace="userobj/fn | nothing"/>
+                      a posting member.
+                    </xf:label>
+                  <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="posting_remove_userid"
+                  tal:condition="python:(not isUnverified) and isGroupAnnouncement and isPoster">
+                  <xf:item>
+                    <xf:label>Revoke the ability to post, from
+                    <span tal:replace="userobj/fn | nothing"/>.
+                    </xf:label>
+                  <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+                
+                <bulletlist tal:condition="isUnverified">
+                  <listitem>
+                    <link 
+                      tal:attributes="url string:send_verification_reminder?userId=${userobj/getId}">Send
+                      a verification reminder</link> to
+                    <span tal:replace="userobj/fn | nothing" />
+                  </listitem>
+                </bulletlist>
+                
+                <xf:select appearance="full" model="manage_group_members"
+                  ref="group_remove_userid">
+                  <xf:item>
+                    <xf:label>Remove
+                      <span tal:replace="userobj/fn | nothing"/>
+                      from 
+                    <span tal:replace="group_object/title_or_id"/>.
+                    </xf:label>
+                  <xf:value tal:content="userobj/getId"></xf:value>
+                  </xf:item>
+                </xf:select>
+              </div><!--userOptions-->
+            </div>
+          </tal:block>
+        </tal:block>
+      </div><!--memberlist-->
+      
+      <xf:submit class="button" model="manage_group_members"
+        submission="change">
+        <xf:label>Change</xf:label>
+      </xf:submit>
+    </content>
+  </output>
+</root>
+

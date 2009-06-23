@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns="http://www.w3.org/2002/06/xhtml2/">
+  <head>
+    <title>Group Properties</title>
+    <meta property="dc:created">July 2007</meta>
+    <meta property="dc:publisher">OnlineGroups.Net</meta>
+    <meta property="dc:rightsHolder">OnlineGroups.Net</meta>
+    <meta property="dc:creator">Alice Murphy</meta>
+    <meta property="dc:licence"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/Presentation/Tofu/Common/css/xhtml2-globalstyle.css"/>
+  </head>
+  <body>
+    <section id="group-properties-main"
+      tal:define="site here/Scripts/get/division_object;
+        siteName site/title_or_id;
+        group here/Scripts/get/group_object;
+        groupName group/title_or_id;
+        groupType python:group.getProperty('group_template');
+        isGroupDiscussion python:groupType == 'standard'">
+      <h>Edit Group Properties</h>
+      <p>
+        As site administrator of <span class="site" tal:content="siteName"/>,
+        you may edit the following properties of 
+        <span class="group" tal:content="groupName"/>:
+      </p>
+      <ul>
+        <li>
+          <a href="generalproperties">Edit the <strong>general</strong> 
+            properties of 
+            <span class="group" tal:content="groupName"/></a> &#8213;
+            define the group
+          <a class="helpLink" 
+            href="../help/admin_manual/#groupserver-general-group-properties">[?]</a>
+        </li>
+        <li><a href="#"
+            tal:attributes="href string:/groups/${group/getId}/admin_change_basic_privacy.html">Change
+            the privacy</a> of 
+          <span class="group" tal:content="groupName">this group</span>
+          &#8213; set who can see the group and the posts
+        </li>
+        <li tal:condition="python:context.Scripts.get.option('admin_can_set_posting_limit', True)">
+          <a href="postinglimit">
+            Edit the group <strong>posting limit</strong></a> &#8213; 
+            limit how often members may post to the group
+        </li>
+        <li tal:condition="python:isGroupDiscussion">
+          <a href="changemoderation">Change group <strong>moderation</strong></a> 
+          &#8213; set the level of moderation for the group
+          <a class="helpLink" href="../help/admin_manual/#groupserver-moderation-group-properties">[?]</a>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>

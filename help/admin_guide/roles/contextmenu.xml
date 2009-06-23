@@ -1,0 +1,33 @@
+<div id="contextnav">
+  <p class="label">
+    <a href="/help/">Help</a>
+  </p>
+  <ul>
+    <li>
+      <a href="/help/faqs/" class="not-current">Frequently Asked Questions</a>  
+    </li>
+    <li>
+      <a href="/help/participation/" class="not-current">User Guide</a> 
+    </li>
+    <li>
+      <a href="/help/manual/" class="not-current">User Manual</a>
+    </li>
+    <li>
+      <a href="/help/admin_guide/" class="not-current">Administration Guide</a>   
+      <div>
+        <ul>
+          <li>
+            <a href="/help/admin_guide/design/" class="not-current">Design of Online Groups</a>
+          </li>
+          <li>
+            <a href="/help/admin_guide/roles/" class="current">Roles in Online Groups</a> 
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <a href="/help/admin_manual/" class="not-current">Administration Manual</a>  
+    </li>
+  </ul>
+</div>
+

@@ -1,0 +1,64 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:search="http://purl.org/rss/1.0/modules/search/"
+         xmlns:results="http://xwft.org/ns/rss/modules/results/0.9"
+         xmlns="http://purl.org/rss/1.0/"
+         xmlns:email="http://xwft.net/namespaces/email/0.9/"
+         xmlns:files="http://xwft.net/namespaces/files/0.9/"
+         xmlns:groups="http://xwft.net/namespaces/groups/0.9/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:tal="http://xml.zope.org/namespaces/tal"
+         xmlns:metal="http://xml.zope.org/namespaces/metal"
+         tal:define="b_results python:here.lscripts.search_site_files(request.form.get('query', ''), request.form.get('start', 0), request.form.get('size', 10));
+                     xcu python:modules['Products.XWFCore.XWFUtils'];
+                     cr python:xcu.createRequestFromRequest;
+                     ct python:xcu.convertTextToAscii;
+                     groups_object python:here.Scripts.get.groups_object()">
+# e_b_start, e_b_end, e_b_size, e_result_size, e_result_set 
+  <channel id="fileresults" rdf:about="">
+    <title></title>
+    <link>http://query.url.com/?query=...</link>
+    
+    <results:first tal:content="python:b_results[0]">0</results:first>
+    <results:last tal:content="python:b_results[1]">10</results:last>
+    <results:batchsize tal:content="python:b_results[2]">20</results:batchsize>
+    <results:total tal:content="python:b_results[3]">1000</results:total>
+    <results:nextlink tal:condition="python:(b_results[3]-b_results[1]) &gt; 0" tal:content="python:request.URL1+'/search_files.xml?'+cr(request, start=b_results[0]+b_results[2]+1)"></results:nextlink>
+    <results:prevlink tal:condition="python:b_results[0] &gt; 1" tal:content="python:request.URL1+'/search_files.xml?'+cr(request, start=(b_results[0]-b_results[2]+1))"></results:prevlink>
+    
+    <description>
+      A channel for file results
+    </description>
+
+    <!-- <image rdf:resource="http://..." /> -->
+
+    <items>
+      <rdf:Seq>
+        <!-- An ordered list of URLs -->
+        <rdf:li tal:repeat="result python:map(lambda x: x.getObject(), b_results[4])" 
+                tal:attributes="rdf:resource python:'%s/get_file?id=%s' % (result.getProperty('group_ids')[0], result.getId())"/>
+      </rdf:Seq>
+    </items>
+    </channel>
+
+    <textinput rdf:resource="http://search.xml.com" />
+
+    <tal:block tal:repeat="result python:b_results[4]">
+    <item tal:define="oresult result/getObject" tal:attributes="rdf:about python:'%s/get_file?id=%s' % (oresult.getProperty('group_ids')[0], result.id)">
+      <result tal:omit-tag="">
+        <title tal:content="result/title"></title>      
+        <description tal:content="python:ct(result.indexable_summary or '')">Some file description.</description>
+        <dc:creator tal:content="python:ct(result.dc_creator or '')">Some file description.</dc:creator>
+        <dc:date tal:content="python:result.modification_time.ISO()">2003/04/09 12:00pm</dc:date>
+        <tal:block tal:define="group python:getattr(groups_object, oresult.group_ids[0], None)">
+          <groups:title tal:content="python:group and group.title_or_id()"/>
+          <groups:id tal:content="python:group.getId()"/>
+          <groups:url tal:content="python:group.absolute_url(1)"/>
+        </tal:block>
+        <files:id tal:content="python:result.id"></files:id>
+      </result>  -->
+      
+      <search:relevance tal:content="result/data_record_normalized_score_">100</search:relevance>
+    </item>
+    </tal:block>
+
+</rdf:RDF>

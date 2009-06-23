@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <data 
+    tal:content="structure python:getattr(context, 'models')(method='xml')" />
+  <output>
+    <content>
+      <heading1>Change Site Name</heading1>
+      <paragraph>
+        What is the name of your site?
+        (You may want to look at the names of the 
+        <link url="http://onlinegroups.net/products/sites">OnlineGroups.Net 
+          sites</link> for some ideas.)
+      </paragraph>
+      <xf:input model="siteinfo" ref="sitename" class="text">
+        <xf:label>Site Name</xf:label>
+        <xf:hint>Enter the name of your site here</xf:hint>
+      </xf:input>
+      <xf:submit class="button" model="siteinfo"
+        submission="changeNameStandard">
+        <xf:label>Change</xf:label>
+      </xf:submit>
+    </content>
+  </output>
+</root>

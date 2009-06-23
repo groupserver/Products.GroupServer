@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <data 
+    tal:content="structure python:here.models(method='xml')" />
+  <output>
+    <content 
+      tal:define="group_members here/Scripts/get/group_members; 
+        group_object here/Scripts/get/group_object;
+        division_object here/Scripts/get/division_object;
+        localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+        usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+        joinable python:usersCanJoinGroup(group_object.getId(),True);
+        canJoin python:joinable[0];
+        realnames python:modules['Products.XWFCore.XWFUtils'].get_user_realnames">
+      
+      <heading1>Add Members of 
+        <span class="division"
+          tal:content="division_object/title_or_id"/>
+        to
+        <span class="group"
+          tal:content="group_object/title_or_id"/>
+      </heading1>
+      
+      <tal:block tal:condition="canJoin">
+        <paragraph>To add existing members of the site 
+          <span class="division"
+            tal:content="division_object/title_or_id"/>
+          to the group 
+          <span class="group"
+            tal:content="group_object/title_or_id"/>,
+          select the names of the members from the
+          <span class="field">Site Members</span> list, and click
+          <span class="button">Add</span>.
+        </paragraph>
+        
+        <fieldset>
+          <legend>Site Members</legend>
+          <para>
+            <xf:select appearance="minimal" model="addusers" ref="userid">
+              <xf:label></xf:label>
+              <xf:hint>Select the site members you wish to add to the
+                group</xf:hint>
+              <xf:item tal:repeat="userobj python:filter(lambda x:x not in group_members, here.Scripts.get.division_users(division_object.getId()))">
+                <xf:label tal:content="python:'%s (%s)' % (realnames(usr=userobj, user_id=userobj.getId()), userobj.getId())">blarg</xf:label>
+                <xf:value tal:content="userobj/getId">blarg</xf:value>
+              </xf:item>
+            </xf:select>
+            
+            <xf:submit model="addusers" submission="add" class="button">
+              <xf:label>Add</xf:label>
+              <xf:hint>Add the selected members to the group
+              <span tal:replace="group_object/title_or_id"/>
+              </xf:hint>
+            </xf:submit>
+          </para>
+        </fieldset>
+        <fieldset>
+          <legend>Current Group Members</legend>
+          <xf:select appearance="minimal" model="removeusers" ref="userid">
+            <xf:label></xf:label>
+            <xf:hint>The following are the current members of
+            <span tal:replace="group_object/title_or_id"/>.</xf:hint>
+            <xf:item tal:repeat="userobj here/Scripts/get/group_members">
+              <xf:label tal:content="python:'%s (%s)' % (realnames(usr=userobj, user_id=userobj.getId()), userobj.getId())">blarg</xf:label>
+            <xf:value tal:content="userobj/getId">blarg</xf:value>
+            </xf:item>
+          </xf:select>
+        </fieldset>
+      </tal:block>
+      <tal:block tal:condition="python:not canJoin">
+        <paragraph>
+          Normally, you could add existing members of
+          <span class="site" tal:content="division_object/title_or_id"/> 
+          to
+          <span class="group" tal:content="group_object/title_or_id"/>,
+          but <span tal:content="python:joinable[1][1].lower()"/>.
+        </paragraph>
+      </tal:block>
+      <paragraph>
+        To remove a member of this group, go to
+      <link url="../../managemembers">the manage members page.</link>
+      </paragraph>
+    </content>
+  </output>
+</root>

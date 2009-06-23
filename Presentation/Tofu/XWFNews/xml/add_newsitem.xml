@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:xf="http://www.w3.org/2002/xforms"
+      metal:use-macro="here/Templates/page.xml/macros/page">
+  
+  <messages metal:fill-slot="messages"
+            tal:condition="options/message">
+    <message type="result"
+             tal:content="structure options/message"/>
+  </messages>
+
+  <data metal:fill-slot="data">
+        <span tal:replace="structure options/xform_data"/>
+  </data>
+
+  <output>
+    <content metal:fill-slot="maincontent">
+
+       <fieldset>
+         <legend>Add News Item</legend>
+       <para>
+       
+       <span tal:replace="structure options/xform_control"/>
+
+       </para>
+       </fieldset>
+
+    </content>
+  </output>
+
+</root>
+
+

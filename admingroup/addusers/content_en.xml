@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<root xmlns:tal="http://xml.zope.org/namespaces/tal" 
+  xmlns:metal="http://xml.zope.org/namespaces/metal" 
+  xmlns:xf="http://www.w3.org/2002/xforms">
+  <output>
+    <content>
+      <tal:block      
+        tal:define="site context/Scripts/get/division_object;
+          group context/Scripts/get/group_object;
+          permission python:context.Scripts.check.permission((site, group), ('DivisionAdmin', 'GroupAdmin', 'Manager'));
+          localUsersCanJoinGroup python:hasattr(context.LocalScripts, 'get') and getattr(context.LocalScripts.get, 'usersCanJoinGroup', None) or None;
+          usersCanJoinGroup python:localUsersCanJoinGroup or modules['Products.XWFCore.XWFUtils'].users_can_join_group;
+          joinable python:usersCanJoinGroup(group.getId(),True);
+          canJoin python:joinable[0];">
+
+        <heading1>Add Members to
+          <span class="group"
+            tal:content="group/title_or_id"/></heading1>
+
+        <tal:block tal:condition="canJoin">
+          <paragraph>There are four ways to add a member to 
+            <span class="group"
+              tal:content="group/title_or_id"/>:</paragraph>
+          
+          <numberedlist>
+            <listitem
+              tal:define="group_members context/Scripts/get/group_members;
+                potential_members python:filter(lambda x:x not in group_members, context.Scripts.get.division_users(site.getId()))">
+              <link tal:omit-tag="python: not(potential_members)"
+                title="Select an existing member"
+                url="addsitemembers"
+                tal:attributes="url string:/groups/${group/getId}/admin_invite_site_members.html">Select existing site
+                members</link><span tal:condition="python: not(potential_members)"
+                  tal:content="string: (all site members are members of this group)"/>,
+              </listitem>
+            <listitem>
+              <link title="Add a new member" url="create_single_user"
+                tal:attributes="url string:/groups/${group/getId}/admin_join.html">Enter
+                the details of a new member</link>, or</listitem>
+          <listitem>Advanced users can 
+              <link title="Add bulk members in bulk" url="createbulkusers"
+               tal:attributes="url string:/groups/${group/getId}/admin_join_csv.html">upload
+               the details of multiple members using a CSV file</link>.
+            </listitem>
+          </numberedlist>
+          <paragraph 
+            tal:define="joinability here/Scripts/get/group_joinability"
+            tal:condition="python:joinability=='anyone'">
+            You can also 
+            <link
+              tal:attributes="url string:/groups/${group/getId}/admin_remote_request_register.html"
+              url="#">put a registration box on a remote site.</link>
+          </paragraph>
+        </tal:block><!--canJoin-->
+        <tal:block tal:condition="python:not canJoin">
+          <paragraph>
+            Normally, you could add people to
+            <span class="group" tal:content="group/title_or_id"/>,
+            but <span tal:content="python:joinable[1][1].lower()"/>.
+          </paragraph>
+        </tal:block>
+      </tal:block>
+    </content>
+  </output>
+</root>
