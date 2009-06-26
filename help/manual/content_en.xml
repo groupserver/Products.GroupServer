@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns="http://www.w3.org/2002/06/xhtml2/">
@@ -186,6 +185,7 @@
             </li>
           </ul>
         </li>
+        <li><cite href="#manage-pages">Manage Pages</cite></li>
       </ul>
 
       <!-- Checked by Nick: 040309 -->
@@ -2083,6 +2083,572 @@
         </section>
       </section>
     </section>
+    <section id="manage-pages" 
+      tal:define="siteName python:options.get('siteName','this site');">
+      <h>Managing Pages</h>
+      <p>
+        You can manage some pages on 
+        <span class="site" tal:content="siteName">This site</span>.
+        The pages you can manage will have some of the following 
+        tabs at the top.
+      </p>
+      <div id="tabmenu" style="">
+        <ul>
+          <li>
+            <a href="#" class="not-current"
+               title="View the page">View</a>
+          </li>
+          <li>
+            <a href="#manage-pages-edit-change-a-page" 
+              class="not-current"
+              title="Change the contents of the page">Change</a>
+          </li>
+          <li>
+            <a href="#manage-pages-change-privacy" class="not-current"
+               title="Change the privacy of the page">Privacy</a>
+          </li>
+          <li>
+            <a href="#manage-pages-versions" class="not-current"
+               title="">History</a>
+          </li>
+        </ul>
+      </div><!--tabmenu-->
+      <div style="clear:left; height:0px;">&#160;</div>
+      <p>
+        Depending on the privacy settings you can
+        <a href="#manage-pages-edit-change-a-page">change the
+          page,</a>
+        <a href="#manage-pages-change-privacy">change the privacy of
+          the page,</a> and
+        <a href="#manage-pages-versions">work with the history of 
+          the page.</a>
+      </p>
+      <section id="manage-pages-edit-change-a-page">
+        <h id="manage-pages-change-a-page-t">Change the Contents of
+          a Page</h>
+        <p>
+          To change a page, carry out the following tasks.
+        </p>
+        <div id="manage-pages-edit-change-a-page-instructions">
+          <ol>
+            <li>Navigate to the page that you want to change.</li>
+            <li>Click <samp class="link">Change</samp>.
+              The <cite>Change</cite> page will be shown.
+              (Only people with the correct permissions will see
+              the <samp class="link">Change</samp> link.)</li>
+            <li>Change the contents of the page, which is shown in 
+              the
+              <samp class="field">Content</samp> entry.
+              You can also change the 
+              <samp class="field">Title</samp> and
+              <samp class="field">Publish</samp> fields.
+              <ul>
+                <li>The <samp class="field">Title</samp> is shown
+                  in the title-bar of your  browser, in the
+                  navigation bar at the side of the page, and at the
+                  top of the page.</li>
+                <li>Select the <samp class="field">Publish</samp> 
+                  to show your new changes to the groups 
+                  of people listed at the bottom of the 
+                  <cite>Change</cite> page (which is the default).
+                  Unselect <samp class="field">Publish</samp> if 
+                  you want the currently published version of the 
+                  page to continue to be shown to others; the new
+                  version will only be visble to those that
+                  can change the page.</li>
+              </ul>
+            </li>
+            <li>Click the <samp class="button">Change</samp> button.
+              Your change will be saved to a new version of the 
+              page.
+            </li>
+          </ol>
+        </div><!--manage-pages-edit-change-a-page-instructions-->
+      </section><!--manage-pages-edit-change-a-page-->
+      <!--section id="manage-pages-edit-link-files">
+        <h id="manage-pages-edit-link-files-t">Link a Page to a
+          File</h>
+        <p>
+          If you want a page to contain an image, or allow people
+          to download a file, then you will need to 
+          <a href="#manage-pages-manage-files-add-files-to-a-page">add
+            the file to the page,</a>
+          and then link the page to a file.
+          To link a page to a file carry out the following tasks.
+        </p>
+        <div id="manage-pages-link-files-instructions">
+          <ol>
+            <li>Navigate to the page you are interested in.</li>
+            <li><a title="Add Files to a Page"
+                href="#manage-pages-manage-files-add-files-to-a-page">Add
+                the file</a> that you want to link to from the
+              page.</li>
+            <li>Click <samp class="link">Change</samp>.
+              The <cite>Change</cite> page will be shown.</li>
+            <li>Select the text you want as the link text and click
+              the <samp class="button">Link</samp> button &#8213;
+              or click the <samp class="button">Image</samp> 
+              button.
+              The dialog for selecting the link destination,
+              or image source, will be shown.</li>
+            <li>Select the file you wish to add to the page
+              from the <samp class="field">Files</samp> list.
+              <ul>
+                <li>Select the published version of a file if you
+                  want all users to view the page and file.</li>
+                <li>Select a specific version of a file to the
+                  page if you are creating a draft page that you only
+                  wish to show to specific people.</li>
+              </ul>
+            </li>
+            <li>Click the <samp class="button">Ok</samp--><!--?-->
+            <!--  button.
+              The file will be added to the page.</li>
+          </ol>
+        </div>
+      </section--><!--manage-pages-edit-link-files-->
+      <section id="manage-pages-change-privacy">
+        <h id="manage-pages-change-privacy-t">Change the Privacy
+          of the Page</h>
+        <p>
+          To change a page, carry out the following tasks.
+        </p>
+        <div id="manage-pages-change-privacy-instructions">
+          <ol>
+            <li>Navigate to the page you are interested in.</li>
+            <li>Click <samp class="link">Privacy</samp>.
+              The <cite>Privacy</cite> page will be 
+                shown.</li>
+            <li>Select the privacy setting for the field
+              <samp class="field">View the page</samp>.
+              The three settings are as follows.
+              <dl>
+                <di>
+                  <dt>
+                    <samp class="value">Anyone</samp>
+                  </dt>
+                  <dd>
+                    Any person can view the page, including those 
+                    that have not loged in.
+                    The person does not have to be a 
+                    member any site or group.
+                    Any computer service, such as a search engine, 
+                    can access the page.
+                  </dd>
+                </di>
+                <di>
+                  <dt>
+                    <samp class="value">Logged in members</samp> 
+                  </dt>
+                  <dd>
+                    The page can only be viewed by members of the
+                    group, if the page is part of a group, or members
+                    of the site.
+                    The person must be logged in to view the page, 
+                    and computer services cannot access the page.
+                  </dd>
+                </di>
+                <di>
+                  <dt>
+                    <samp class="value">Administrators</samp>
+                  </dt>
+                  <dd>
+                    The page can only be viewed by administrators of 
+                    the group and site, if the page is part of a
+                    group, or administrators of the site.
+                    The person must be logged in to view the page, 
+                    and computer services cannot access the page.
+                  </dd>
+                </di>
+              </dl>
+            </li>
+            <li>
+              Select the privacy setting for the field
+              <samp class="field">Change the page</samp>.
+              The two settings are 
+              <samp class="value">Members</samp> and 
+              <samp class="value">Administrators</samp>.
+            </li>
+            <li>
+              Click the <samp class="button">Change</samp> button.
+              The privacy for the page will be changed.
+            </li>
+          </ol>
+          <p class="note">
+            The permissions for administering the page cannot be
+            be more lax than for viewing the page.
+            <!--In addition, the permissions for a page cannot be more
+            lax than the page that contains it.-->
+          </p>
+        </div>
+      </section><!--manage-pages-change-privacy-->
+      <section id="manage-pages-versions">
+        <h id="manage-pages-versions-t">History</h>
+        <p>
+          <span class="site" tal:content="siteName">this site</span>
+          keeps a record of all changes made to a page.
+          You can 
+          <a href="#manage-pages-view-a-version">view a particular
+            version</a> of a page.
+          While only one version is
+          <span class="wordasword">published</span> (shown
+          by default), you can 
+          <a href="#manage-pages-edit-publish-a-version">publish a
+            particular version.</a>
+        </p>
+        <section id="manage-pages-view-a-version">
+          <h id="manage-pages-view-a-version-t">View a Version of a 
+            Page</h>
+          <p>
+            You can view any version of a page by carrying out the 
+            following tasks.
+          </p>
+          <div id="manage-pages-view-a-version-instructions">
+            <ol>
+              <li>Navigate to the page you are interested in.</li>
+              <li>Click <samp class="link">History</samp>.
+                The <cite>Version History</cite> page will be shown.
+                (Only people with the correct permissions will see
+                the <samp class="link">History</samp> link.)
+                Each version lists
+                <ul>
+                  <li>If the version was published or just 
+                    created,</li>
+                  <li>Who created the version.</li>
+                  <li>When the version was created, and</li>
+                  <li>How large the version is.</li>
+                </ul>
+              </li>
+              <li>Click <samp class="link">View</samp> in the entry
+                of the version you want to view.
+                The selected version of the page will be shown.</li>
+            </ol>
+          </div>
+        </section><!--view-a-version-->
+        <section id="manage-pages-edit-publish-a-version">
+          <h id="manage-pages-edit-publish-a-version-t">Publish a 
+            Version of a Page</h>
+          <p>
+            Only one version of a page can be 
+            <span class="wordasword">published</span> (shown to 
+            people by default).
+            You can publish an older version of the page to
+            correct an error, or publish a draft that has not been
+            widely shown to people.
+            To publish a version carry out the following tasks.
+          </p>
+          <div id="manage-pages-publish-a-version-instructions">
+            <ol>
+              <li>Navigate to the page you want to change.</li>
+              <li>Click <samp class="link">Change</samp>.
+                The <cite>Change</cite> page will show the most recent
+                version.</li>
+              <li>Select the version you want to publish 
+                from the  <samp class="field">Version History</samp> 
+                list and click <samp class="link">Change</samp>.
+                The <cite>Change</cite> page will show the selected
+                version.
+                <ol>
+                  <li>Click <samp class="link">View more</samp> if
+                    the version you want to change to is not
+                    shown.
+                    The <cite>History</cite> page will be shown.</li>
+                  <li>Select the version you want to publish 
+                    from the  <samp class="field">Version History</samp> 
+                    list and click <samp class="link">Change</samp>.
+                    The <cite>Change</cite> page will show the selected
+                    version.</li>
+                </ol>
+              </li>
+              <li>Click the <samp class="button">Publish</samp> 
+                button.
+                The version of the page will be published.
+                <ul>
+                  <li>If the version is already published the 
+                    <samp class="button">Publish</samp> button will
+                    be unavailable.</li>
+                  <li>The published version will be visible to the 
+                    groups of people listed at the bottom of the 
+                    <cite>Change</cite> page.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </section><!--manage-pages-edit-publish-a-version-->
+        <!--section id="manage-pages-compare-versions">
+          <h id="manage-pages-compare-versions-t">Compare Versions of
+            a Page</h>
+          <p>
+            Comparing versions of a page allow you to see the specific
+            changes that were made when creating the page.
+            To compare versions to a page carry out the following 
+            tasks.
+          </p>
+          <div id="manage-pages-compare-versions-instructions">
+            <ol>
+              <li>Navigate to the page you are interested in.</li>
+              <li>Click <samp class="link">History</samp>.
+                The <cite>Version History</cite> page will be 
+                shown.</li>
+              <li>Select the first version you want to compare.</li>
+              <li>Select the second version you want to compare.</li>
+              <li>Click the <samp class="button">Compare</samp>
+                button.
+                The <cite>Compare Page Versions</cite> page will
+                be shown, illustrating the different between the
+                selected versions.</li>
+            </ol>
+          </div>
+        </section--><!--manage-pages-compare-versions-->
+      </section><!--manage-pages-versions-->
+      <!--section id="manage-pages-manage-files">
+        <h id="manage-pages-manage-files-t">Manage Files</h-->
+        <!--
+          Should the files be managed in a seperate tab to 
+          changing the contents? 
+          - Yes. We do not want the files to appear as if they are
+            version-controlled with the contents of the page.
+          Will the files be version-controlled?
+          - Maybe. Pros: No over-writing files. No one asking us
+            for the old version back.
+            Cons: Adding a new version of a file (house.jpg) will
+              not cause the page to update (or will it?)
+          Will the files be attached to the page-versions?
+          - No. That will just confuse people too much.
+          Permissions?
+          - Same as page, with history needed to view the prior 
+            version of files (if we version control files).
+        -->
+        <!--section id="manage-pages-manage-files-add-files-to-a-page">
+          <h id="manage-pages-manage-files-add-files-to-a-page-t">Add
+            Files to a Page</h>
+          <p>
+            To add files to a page, carry out the following tasks.
+          </p>
+          <div id="manage-pages-manage-files-add-files-to-a-page-instructions">
+            <ol>
+              <li>Navigate to the page you are interested in.</li>
+              <li>Click <samp class="link">Files</samp>.
+                The <cite>Files</cite> page will be shown.</li>
+              <li>Select the file you want to add to the page by
+                clicking the <samp class="button">Browse</samp> 
+                button in the <cite>Add Files</cite> section of the
+                <cite>Files</cite> page.
+                The name of the file you selected will be shown in
+                the <samp class="field">Add Files</samp> list.
+                Repeat until you have selected all the files you want 
+                to add to the page.</li>
+              <li>Check <samp class="field">Publish</samp> if you
+                want the new files to be visible to the groups of
+                people listed on the <cite>Files</cite> page (the
+                default).
+                Uncheck <samp	 class="field">Publish</samp> if you
+                want the old versions of the files shown to
+                others.</li--><!--Hmmmm-->
+              <!--li>Click the <samp class="button">Add</samp> button.
+                The files will be added to the page.
+                A new version of a file will be created if a file of
+                the same name is had already been added.
+              </li>
+            </ol>
+            <p>
+              You will need to 
+              <a href="#manage-pages-edit-link-files">link the page 
+                to the file</a> for others to be able to access the
+              files, either by links or as images.
+            </p>
+          </div>
+        </section--><!--manage-pages-manage-files-adding-files-->
+        <!--section id="manage-pages-manage-files-publish-files">
+          <h id="manage-pages-manage-files-publish-files-t">Publish
+            a Version of a File</h>
+          <div id="manage-pages-manage-files-publish-files-instructions">
+            <ol>
+              <li>Navigate to the page you are interested in.</li>
+              <li>Click <samp class="link">Files</samp>.
+                The <cite>Files</cite> page will be shown.
+                A list of files and their versions will be shown, 
+                showing the name of the person who added the file, 
+                and the date the file was added.</li>
+              <li>Select the version file you wish to publish.</li>
+              <li>Click the <samp class="button">Publish</samp>
+                button.
+                The selected version of the file will be
+                published.</li>
+            </ol>
+          </div>
+        </section--><!--manage-pages-manage-files-publish-files-->
+        <!--section id="manage-pages-manage-files-hiding-files">
+          <h id="manage-pages-manage-files-hiding-files-t">Hiding
+            Files</h>
+          <p>
+            Files on 
+            <cite class="site" tal:content="siteName">this
+              site</cite>
+            cannot be deleted, but they can be hidden, so most
+            cannot see it.
+            To hide a file carry out the following tasks.
+          </p>
+          <div id="manage-pages-manage-files-hiding-files-instructions">
+            <ol>
+              <li>Navigate to the page you are interested in.</li>
+              <li>Click <samp class="link">Files</samp>.
+                The <cite>Files</cite> page will be shown.</li>
+              <li>Select the file you wish to hide.
+                You cannot hide files that are already hidden.</li>
+              <li>Click the <samp class="button">Change</samp> 
+                button.
+                The file will be hidden.</li>
+            </ol>
+            <p>
+              <a title="Change the Contents of a Page"
+                href="#manage-pages-edit-change-a-page">Change the
+                contents of the page</a> if the file is linked
+              to from the page, otherwise other users will see an
+              error when trying to access the file.
+            </p>
+          </div>
+        </section--><!--manage-pages-manage-files-hiding-files-->
+      <!--/section--><!--manage-pages-manage-files-->
+      <!--section id="manage-pages-manage-metadata">
+        <h id="manage-pages-manage-metadata-t">Manage Metadata</h>
+        
+        <p>
+          <a href="#manage-pages-manage-metadata-add-a-page">Adding,</a>
+          <a href="#manage-pages-manage-metadata-copy">copying,</a>
+          <a href="#manage-pages-manage-metadata-rename">renaming</a>
+          and
+          <a href="manage-pages-manage-metadata-move">moving</a>
+          a page is carried out with the <cite>Manage Pages</cite>
+          page.
+          It is divided into three sections.
+          First, the page selector is used to specify the
+          page to alter.
+          It lists all the pages that you can mange.
+          Next, the action selector is used to specify the action
+          to carry out on the page.
+          The final section is used to set the parameters for the
+          action.
+        </p>
+        <section id="manage-pages-manage-metadata-add-a-page">
+          <h id="manage-pages-manage-metadata-add-a-page-t">Add a
+            Page</h>
+          <div id="manage-pages-manage-metadata-add-a-page-instructions">
+            <ol>
+              <li>Navigate to the page you want to be the
+                <span class="wordasword">parent</span>
+                of the new 
+                page.</li--><!--Issues with the term "parent"-->
+              <!--li>Click <samp class="link">Manage</samp>.
+                The <cite>Manage Pages</cite> page is shown,
+                with the current page selected.</li>
+              <li>Click <samp class="link">Add</samp>.
+                The 
+                <samp class="field">Page Identifier</samp>,
+                <samp class="field">Title</samp> and
+                <samp class="filed">Hidden</samp>
+                fields will be shown.</li>
+              <li>Fill out the 
+                <samp class="field">Page Identifier</samp>,
+                <samp class="field">Title</samp> and
+                <samp class="filed">Hidden</samp> fields.
+                <ul>
+                  <li>The <samp class="field">Page Identifier</samp>
+                    is used to link to the page.
+                    You will see it in the location bar of your 
+                    browser.</li>
+                  <li>The <samp class="field">Title</samp> is shown
+                    in the title-bar of your  browser, in the
+                    navigation bar at the side of the page, and at the
+                    top of the page.</li>
+                  <li> Select <samp class="filed">Hidden</samp> if you 
+                    do not want the new page to be visible to 
+                    others.</li>
+                </ul>
+              </li>
+              <li>Click the <samp class="button">Add</samp> button.
+                The new page will be created, and selected.</li> 
+            </ol>
+            <p>
+              After adding the page, you may want to 
+              <a title="Change the Contents of a Page"
+                href="#manage-pages-edit-change-a-page">change the 
+                page contents.</a>
+            </p>
+          </div>
+        </section>
+        <section id="manage-pages-manage-metadata-copy">
+          <h id="manage-pages-manage-metadata-copy-t">Copy a Page</h>
+          <p>
+            To copy a page carry out the following tasks.
+          </p>
+          <ol>
+            <li>Navigate to the page you are interested in.</li>
+            <li>Click <samp class="link">Manage</samp>.
+              The <cite>Manage Pages</cite> page is shown,
+              with the current page selected.</li>
+            <li>Click <samp class="link">Copy</samp>.
+              The <samp class="field">New Page Identifier</samp> and
+              <samp class="field">Destination</samp> fields are 
+              shown.
+              The suggested name for the copy similar to the original
+              page, but with <code>-copy</code> added to the 
+              end.
+              The default destination for the copy is the parent
+              of the original page.
+              A page cannot have the same name as one of its 
+              siblings.</li>
+            <li>Edit the name and the destination.</li>
+            <li>Click the <samp class="button">Copy</samp>
+              button.
+              The page will be duplicated, given the new name, and 
+              moved to the specified destination. 
+              The new page will be selected.</li>
+          </ol>
+        </section--><!--manage-pages-manage-metadata-copy-->
+        <!--section id="manage-pages-manage-metadata-rename">
+          <h id="manage-pages-manage-metadata-rename-h">Rename a
+            Page</h>
+          <p>
+            To rename a page carry out the following tasks.
+          </p>
+          <ol>
+            <li>Navigate to the page you are interested in.</li>
+            <li>Click <samp class="link">Manage</samp>.
+              The <cite>Manage Pages</cite> page is shown,
+              with the current page selected.</li>
+            <li>Click <samp class="link">Rename</samp>.
+              The <samp class="field">New Page Identifier</samp> 
+              field is shown, with the existing name in the 
+              field.</li>
+            <li>Edit the new name.
+              Note that the new name cannot be the same as the name 
+              of the sibling pages.</li>
+            <li>Click <samp class="button">Rename</samp>.
+              The page will be renamed.</li>
+          </ol>
+        </section--><!--manage-pages-manage-metadata-rename-->
+        <!--section id="manage-pages-manage-metadata-move">
+          <h id="manage-pages-manage-metadata-move-h">Moving
+            Pages</h>
+          <p>
+            To move a page carry out the following tasks.
+          </p>
+          <ol>
+            <li>Navigate to the page you are interested in.</li>
+            <li>Click <samp class="link">Manage</samp>.
+              The <cite>Manage Pages</cite> page is shown,
+              with the current page selected.</li>
+            <li>Click <samp class="button">Move</samp>. 
+              The <samp class="field">Destination</samp> list is
+              shown.</li>
+            <li>Select the destination.</li>
+            <li>Click the <samp class="button">Move</samp> button.
+              The page will be moved to the new destination.</li>
+          </ol>
+        </section--><!--manage-pages-manage-metadata-move-->
+      <!--/section--><!--manage-pages-manage-metadata-->
+    </section><!--manage-pages-->
   </body>
 </html>
 
