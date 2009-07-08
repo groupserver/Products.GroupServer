@@ -1592,7 +1592,7 @@
                         <li>
                           Optionally, add tags to your message by writing them
                           into the <samp class="field">Tags</samp> entry.
-                          (See <cite href="#groupserver-tag">Tags</cite>.)
+                          (See <cite href="#groupserver-tags">Tags</cite>.)
                         </li>
                       </ul>
                     </li>
@@ -1633,7 +1633,7 @@
                 <p>
                   Currently, tags can only be entered via the Web
                   (see
-                  <cite href="#groupserver-posting-messages">
+                  <cite href="#groupserver-posting-a-message">
                     Posting Messages</cite>
                    and
                   <cite href="#groupserver-post-files">Posting Files</cite>).
@@ -1748,7 +1748,7 @@
                       <li>
                         Optionally, add tags to your message by writing them
                         into the <samp class="field">Tags</samp> entry.
-                        (See <cite href="#groupserver-tag">Tags</cite>.)
+                        (See <cite href="#groupserver-tags">Tags</cite>.)
                       </li>
                       <li>
                         In addition, you may add a file along with your post 
