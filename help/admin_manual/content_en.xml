@@ -36,7 +36,6 @@
               <li href="#groupserver-moderation-group-properties">the <strong>moderation</strong> of the group</li>
             </ul>
           </li>
-          <li><a href="#groupserver-group-size">Alter the group size</a> (site administrators only)</li>
         </ul>
       </section>
 
@@ -731,39 +730,6 @@
           </ol>
         </section><!-- groupserver-moderation-group-properties -->
       </section><!-- groupserver-group-properties -->
-
-      <section id="groupserver-group-size">
-        <h id="groupserver-group-size">Change Group Size (Site Administrators Only)</h>
-        <p>
-          This page allows you to change the size of the group.
-        </p>
-        <ol>
-          <li>
-            Click on <samp class="link">Group Admin</samp>, on your 
-            Group's homepage, to open the 
-            <cite>Group Administration</cite> page.
-          </li>
-          <li>
-            Click on <samp class="link">Alter the size of [Group Name]</samp>
-            on the Group Administration page, to open the 
-            <cite>Change the Size of [Group Name]</cite> page.
-          </li>
-          <li>
-            Select your preferred group size.
-          </li>
-          <li>
-            Click the <samp class="button">Checkout</samp> button to go
-            to the confirmation page.
-          </li>
-          <li>
-            Review the summary of changes and cost.
-          </li>
-          <li>
-            Click the <samp class="button">Confirm</samp> button to go
-            to Paypal and pay for your new subscription.
-          </li>
-        </ol>
-      </section><!-- groupserver-group-size -->
     </section>
   </body>
 </html>
