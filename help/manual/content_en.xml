@@ -940,9 +940,10 @@
 
             <h>Join a group using the web</h>
             <p>
-            To post to a group, and receive email messages from a group, you must
-                  register an account with GroupServer. To use the Web to register an
-                  account with GroupServer, carry out the following tasks.
+            To post to a group, and receive email messages from a 
+            group, you must register an account with GroupServer. 
+            To use the Web to register an account with GroupServer, 
+            carry out the following tasks.
             </p>
 
             <ol>
@@ -1028,17 +1029,48 @@
             </li>
             <li>
               Click on the name of the group that you wish to join.
-              The home-page for the selected group will be shown.
+              The <cite>Join</cite> page for the selected group will
+              be shown.
             </li>
             <li>
-              Click on <samp class="link">Join</samp>.
-              A message will be sent to your email account, informing
-              you of your request to join a group: in most cases you
-              will immediately belong to a group, but sometimes your
-              request must be approved.
+              Select the delivery setting you want from the 
+              <samp class="list">Message Delivery Settings</samp>
+              list.
+              There are three settings possible.
+              <dl>
+                <di>
+                  <dt>One email per post.</dt>
+                  <dd>
+                    Every time a person posts to the group, you will
+                    receive an email message.
+                  </dd>
+                </di>
+                <di>
+                  <dt>Daily digest of topics.</dt>
+                  <dd>
+                    Once a day you will receive an email that 
+                    contains a summary of all the topics that have
+                    been discussed in the group.
+                    If no topics have been discussed you will not
+                    receive a digest.
+                  </dd>
+                </di>
+                <di>
+                  <dt>Web only.</dt>
+                  <dd>
+                    You will not receive any email when someone posts
+                    to the group.
+                    You can view the posts using the Web only.
+                  </dd>
+                </di>
+              </dl>
             </li>
-          </ol>
-          
+            <li>
+              Click on the <samp class="button">Join</samp> button.
+              A message will be sent to your email account, informing
+              you that you have joined the group.
+            </li>
+          </ol>          
           <p>
             The <cite>Groups</cite> page and your profile will
             list all the groups that you belong to
