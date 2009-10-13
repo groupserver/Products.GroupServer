@@ -11,8 +11,8 @@
 def sorter(a,b):
    if a ==None or b == None:
       return 0
-   nameA = a.getProperty('fn', '')
-   nameB = b.getProperty('fn', '')
+   nameA = a.getProperty('fn', '').encode('utf-8', 'ignore')
+   nameB = b.getProperty('fn', '').encode('utf-8', 'ignore')
    if nameA.lower() > nameB.lower():
       return 1
    else:
