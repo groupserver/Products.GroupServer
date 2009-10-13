@@ -1,31 +1,40 @@
-from setuptools import setup, find_packages
+# coding=utf-8
 import os
+from setuptools import setup, find_packages
+from version import get_version
 
-version = '0.98'
+version = get_version()
 
 setup(name='Products.GroupServer',
-      version=version,
-      description="",
-      long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=[
-        "Programming Language :: Python",
-        ],
-      keywords='',
-      author='Richard Waid',
-      author_email='richard@iopen.net',
-      url='http://groupserver.org',
-      license='ZPL',
-      packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['Products'],
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
+    version=version,
+    description="Base GroupServer product",
+    long_description=open("README.txt").read() + "\n" +
+                      open(os.path.join("docs", "HISTORY.txt")).read(),
+    classifiers=[
+      "Development Status :: 4 - Beta",
+      "Environment :: Web Environment",
+      "Framework :: Zope2",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: GNU General Public License (GPL)",
+      "Natural Language :: English",
+      "Operating System :: POSIX :: Linux",
+      "Programming Language :: Python",
+      "Topic :: Software Development :: Libraries :: Python Modules",
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+    keywords='groupserver',
+    author='Richard Waid',
+    author_email='richard@iopen.net',
+    url='http://groupserver.org',
+    license='GNU GPL',
+    packages=find_packages(exclude=['ez_setup']),
+    namespace_packages=['Products'],
+    include_package_data=True,
+    zip_safe=True,
+    install_requires=[
+        'setuptools',
+        # -*- Extra requirements: -*-
+    ],
+    entry_points="""
+    # -*- Entry points: -*-
+    """,)
+
