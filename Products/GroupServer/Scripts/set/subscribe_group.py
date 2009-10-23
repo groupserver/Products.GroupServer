@@ -36,7 +36,6 @@ if ptnCoachId:
 #  The last two keys are superfluous on OGN, but included
 #  for backwards-compatibility (for eDem, effectively).
 if ptnCoach:
-    newUserEmail = user.get_defaultDeliveryEmailAddresses()[0]
     n_dict = {
                 'groupId'      : group_id,
                 'groupName'    : group.title_or_id(),
@@ -45,7 +44,6 @@ if ptnCoach:
                 'supportEmail' : site.GlobalConfiguration.getProperty('supportEmail'),
                 'memberId'     : user_id,
                 'memberName'   : user.getProperty('fn',''),
-                'memberEmail'  : newUserEmail,
                 'joining_user' : user,
                 'joining_group': group
               }
