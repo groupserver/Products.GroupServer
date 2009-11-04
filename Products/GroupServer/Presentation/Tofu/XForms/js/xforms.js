@@ -1,13 +1,18 @@
 function getEventSrc(e) {
- // get a reference to the IE/windows event object
- if (!e) e = window.event;
+  // get a reference to the IE/windows event object
+  if (!e) {
+    e = window.event;
+  }
 
- // DOM-compliant name of event source property
- if (e.target)
-   return e. target;
- // IE/windows name of event source property
- else if (e.srcElement)
-   return e.srcElement;
+  if (e.target) {
+    // DOM-compliant name of event source property
+    return e.target;
+  } else if (e.srcElement) {
+    // IE/windows name of event source property
+    return e.srcElement;
+  } else {
+    return null;
+  }
 }
 
 // New in firefox 1.5
@@ -16,16 +21,17 @@ window.onload = initXForms;
 
 function initXForms() {
 	var form = document.forms[1];
-	for (var i=0; i < form.elements.length; i++) {
-		if (form.elements[i].disabled == true) {
-		    if (form.elements[i].oldvalue) {
-		        form.elements[i].value = form.elements[i].oldvalue;
-		    }
-		    form.elements[i].disabled = false;
-		}
-	}
+	if (form) {
+  	for (var i=0; i < form.elements.length; i++) {
+  		if (form.elements[i].disabled == true) {
+  		    if (form.elements[i].oldvalue) {
+  		        form.elements[i].value = form.elements[i].oldvalue;
+  		    }
+  		    form.elements[i].disabled = false;
+  		}
+  	}
+  }
 }
-
 //
 // Process the XForm submission
 //
@@ -167,7 +173,7 @@ function ToggleNavigationVisibility (modelid, id, submissionid) {
 
     // Get the form containing this element.
     var parent = checkbox;
-    while (parent = parent.parentNode) {
+    while (parent == parent.parentNode) {
         if (parent.tagName == 'FORM') break;
     }
     if (!parent) {
@@ -189,7 +195,7 @@ function SubmitParentForm (el, modelid, submissionid) {
 
     // Get the form containing this element.
     var parent = el;
-    while (parent = parent.parentNode) {
+    while (parent == parent.parentNode) {
         if (parent.tagName == 'FORM') break;
     }
     if (!parent) {
