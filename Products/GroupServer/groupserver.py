@@ -161,9 +161,9 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     
     # TODO: Create these groups instead of importing them
     example_site = getattr(groupserver_site.Content, 'example_site')
-    example_site.manage_setLocalRoles(adminuser.getId(), ['DivisionAdmin'])
+    example_site.manage_addLocalRoles(adminuser.getId(), ['DivisionAdmin'])
     example_group = getattr(example_site.groups, 'example_group')
-    example_group.manage_setLocalRoles(adminuser.getId(), ['GroupAdmin'])    
+    example_group.manage_addLocalRoles(adminuser.getId(), ['GroupAdmin'])    
 
     site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonical)
