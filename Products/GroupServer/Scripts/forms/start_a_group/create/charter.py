@@ -33,8 +33,8 @@ if hasattr(templatedir, 'charter'):
       'No "charter" folder in "CodeTemplates/group"'
     charter = getattr(site_root.CodeTemplates.group, 'charter')
     group.manage_clone(charter, 'charter')
-    assert group.charter, '%s/charter not created' % group.getId()
-    if hasattr(group.charter, 'index.xml'):
+    assert group.charter.aq_explicit, '%s/charter not created' % group.getId()
+    if hasattr(group.charter.aq_explicit, 'index.xml'):
         group.charter.manage_delObjects(['index.xml'])
     interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
     add_marker_interfaces(group.charter, interfaces)

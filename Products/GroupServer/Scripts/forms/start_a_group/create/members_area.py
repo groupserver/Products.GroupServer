@@ -27,8 +27,8 @@ assert hasattr(site_root.CodeTemplates.group, 'members'), \
 
 members = getattr(site_root.CodeTemplates.group, 'members')
 group.manage_clone(members, 'members')
-assert group.members, '"%s/members" not created' % group.getId()
-if hasattr(group.members, 'index.xml'):
+assert group.members.aq_explicit, '"%s/members" not created' % group.getId()
+if hasattr(group.members.aq_explicit, 'index.xml'):
     group.members.manage_delObjects(['index.xml'])
 interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
 add_marker_interfaces(group.members, interfaces)
