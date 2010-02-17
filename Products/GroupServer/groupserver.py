@@ -11,7 +11,7 @@ from interfaces import IGroupserverSite
 import transaction
 import datetime
 import urlparse
-
+from urllib import quote
 import pathutil
 import os.path
 
@@ -91,7 +91,14 @@ class GroupserverSite( OrderedFolder ):
         request = self.REQUEST
         context = self.getRealContext()
         if kw['error_type'] == 'NotFound':
-            request.RESPONSE.redirect('/not_found.html', lock=1)
+            URL = request.get('URL','')
+            HTTP_REFERRER = request.get('HTTP_REFERER','')
+            m = '404: Link from <%s> to <%s> is broken.' % (HTTP_REFERRER, URL)
+            q = quote(URL)
+            r = quote(HTTP_REFERRER)
+            log.warn(m)
+            uri = '/new_not_found.html?q=%s&r=%s'  %(q, r)
+            request.RESPONSE.redirect(uri, lock=1)
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):
             pass
