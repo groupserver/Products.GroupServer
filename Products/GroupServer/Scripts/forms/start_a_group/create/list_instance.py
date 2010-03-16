@@ -22,10 +22,10 @@
 #    A mailing-list is created for the group, with the privacy set 
 #    accordingly.
 #
-assert group
-assert mailhost
-assert siteId
-assert privacy in ('public', 'private')
+assert group, 'No group'
+assert mailhost, 'No mailhost'
+assert siteId, 'No siteId'
+assert privacy in ('public', 'private'), 'Privacy is %s' % privacy
 
 site_root = context.site_root()
 listManager = site_root.ListManager

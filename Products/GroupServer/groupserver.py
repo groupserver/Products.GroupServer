@@ -2,7 +2,7 @@ from zope.interface import implements
 from OFS.OrderedFolder import OrderedFolder
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.XWFCore.XWFUtils import createRequestFromRequest, rfc822_date
+from Products.XWFCore.XWFUtils import createRequestFromRequest, rfc822_date, assign_ownership
 
 from App.config import getConfiguration
 
@@ -111,8 +111,6 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     acl = getattr( groupserver_site, 'acl_users' )
     acl.userFolderAddGroup( 'example_site_member', 
                                 'Membership of Example Site' )
-    acl.userFolderAddGroup( 'example_group_member', 
-                                'Member of Example Group' )
     
     acl._doAddUser(initial_user, initial_password, [], [], [])
     adminuser = acl.getUser(initial_user)
@@ -128,7 +126,7 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     except:
         m = 'init_user_folder: Issues verifying initial user email address %s' % email
         log.error(m)
-    acl.addGroupsToUser(['example_site_member', 'example_group_member'], adminuser.getId())
+    acl.addGroupsToUser(['example_site_member'], adminuser.getId())
     
 
     acl._doAddUser('example_user', 'fake', [], [], [])
@@ -146,7 +144,7 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     except:
         m = 'init_user_folder: Issues verifying example user email address %s' % example_address
         log.error(m)
-    acl.addGroupsToUser(['example_site_member', 'example_group_member'], exampleuser.getId())
+    acl.addGroupsToUser(['example_site_member'], exampleuser.getId())
         
     cc = groupserver_site.manage_addProduct['CookieCrumbler']
     cc.manage_addCC('cookie_authentication')
@@ -159,17 +157,11 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     contacts = getattr( groupserver_site, 'contacts' )
     contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
     
-    # TODO: Create these groups instead of importing them
     example_site = getattr(groupserver_site.Content, 'example_site')
     example_site.manage_addLocalRoles(adminuser.getId(), ['DivisionAdmin'])
-    example_group = getattr(example_site.groups, 'example_group')
-    example_group.manage_addLocalRoles(adminuser.getId(), ['GroupAdmin'])    
 
     site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonical)
-    
-    maillist = getattr(groupserver_site.ListManager, 'example_group')
-    maillist.manage_changeProperties(mailto='example_group@%s' % canonical)
 
 def init_global_configuration( groupserver_site, siteName, supportEmail, timezone, canonicalHost,
                                userVerificationEmail, registrationEmail ):
@@ -287,17 +279,77 @@ def import_content( container ):
     fss = site.manage_addProduct['FileSystemSite']
     fss.manage_addDirectoryView( pathutil.get_groupserver_path('admindivision'), 'admindivision' )
     assert hasattr(site.aq_explicit, 'admindivision')
-    #getattr(site, 'admindivision').manage_changeProperties(title='Administer Site')
+    getattr(site, 'admindivision').manage_changeProperties(title='Administer Site')
     fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
     assert hasattr(site.aq_explicit, 'help')
-    #getattr(site, 'help').manage_changeProperties(title='Help')
-    
-    group = getattr(site.groups, 'example_group')
+    getattr(site, 'help').manage_changeProperties(title='Help')
+
+def init_group ( container, initial_user ):
+    site = getattr(container.Content, 'example_site')
+    assert site, 'No example_site found' 
+    group = create_group(site, initial_user)
     assert group, 'No example_group found'
-    fss = group.manage_addProduct['FileSystemSite']
-    fss.manage_addDirectoryView( pathutil.get_groupserver_path('admingroup'), 'admingroup' )
-    assert hasattr(group.aq_explicit, 'admingroup')
-    #getattr(group, 'admingroup').manage_changeProperties(title='Administer Group')
+    site.acl_users.addGroupsToUser(['example_group_member'], 'example_user')
+
+def create_group( site, initial_user ):
+    groups = getattr(site, 'groups')
+    group = site.Scripts.forms.start_a_group.create.group_folder(groups, 'example_group', 'Example Group',
+                                       'example people', 'standard')
+    site.Scripts.forms.start_a_group.create.group_index(group)
+    site.Scripts.forms.start_a_group.create.javascript(group)
+    site.Scripts.forms.start_a_group.create.files_area(group)
+    site.Scripts.forms.start_a_group.create.messages_area(group)
+    site.Scripts.forms.start_a_group.create.charter(group, 'standard')
+    site.Scripts.forms.start_a_group.create.email_settings(group)
+    site.Scripts.forms.start_a_group.create.administration(group)
+    site.Scripts.forms.start_a_group.create.members_area(group)
+    site.Scripts.forms.start_a_group.create.chat(group)
+
+    canonicalHost = site.DivisionConfiguration.getProperty('canonicalHost')
+    mailHost = canonicalHost
+    groupList = site.Scripts.forms.start_a_group.create.list_instance(group, mailHost, site.getId(), 'public')
+    create_default_administrator(group, initial_user)
+
+    # Set the permissions for the group.
+    joinCondition = 'anyone'
+    userGroups = ['Anonymous', 'Authenticated', 'DivisionMember',
+                  'DivisionAdmin', 'GroupAdmin','GroupMember','Manager',
+                  'Owner']
+    group.manage_changeProperties(join_condition=joinCondition)
+    group.manage_permission('View', userGroups)
+    group.manage_permission('Access contents information', userGroups)
+
+    # Set the messages and files to default, following the group.
+    group.files.manage_permission('View', [], 1)
+    group.files.manage_permission('Access contents information', [], 1)
+    group.messages.manage_permission('View', [], 1)
+    group.messages.manage_permission('Access contents information', [], 1)
+
+    # Set the administration interface to site and group admins only
+    adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']
+    group.admingroup.manage_permission('View', adminGroups)
+    group.admingroup.manage_permission('Access contents information', adminGroups)
+
+    # Add the start date to the group
+    curr_time = datetime.datetime.now()
+    group.manage_addProperty('date_open', curr_time.strftime('%d %B %Y'), 'string')
+
+    # --=rrw=--
+    #   The group needs to be 'owned' by a top level user, since the Scripts are
+    #   above the context of the site, and some of them require Manager level
+    #   proxy access. Yes, this is darker magic than we'd like. Any suggestions
+    #   welcome.
+    assign_ownership(group, 'admin', 1, '/acl_users')
+    assign_ownership(groupList, 'admin', 1, '/acl_users')
+    return group
+
+def create_default_administrator(group, adminUserId):
+    assert group
+    user = group.acl_users.getUser(adminUserId)
+    assert user
+    user.add_groupWithNotification('%s_member' % group.getId())
+    group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
+    return
 
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
                                support_email, timezone,
@@ -339,6 +391,9 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
 
     init_global_configuration( gss, title, support_email, timezone,
                                canonicalHost, userVerificationEmail, registrationEmail )
+    transaction.commit()
+
+    init_group( gss, initial_user )
     transaction.commit()
                                
     if REQUEST is None:

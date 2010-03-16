@@ -23,9 +23,7 @@
 # SIDE EFFECTS
 #    A group-folder is created in the "groups" folder
 #
-import Products.XWFCore.XWFUtils
 site_root = context.site_root()
-
 assert not(hasattr(groups.aq_explicit, groupId)), \
   'Group "%s" exists' % groupId
 # Check the template
@@ -55,3 +53,4 @@ group.manage_addProperty('group_template', templateId, 'string')
 group.manage_changeProperties(title=groupName)
 
 return group
+

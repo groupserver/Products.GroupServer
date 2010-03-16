@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=group=None,mailhost='',siteId=''
-##title=Create a Defaulty Administrator
+##title=Create a Default Administrator
 ##
 # Make the current user the default administrator for the group
 #

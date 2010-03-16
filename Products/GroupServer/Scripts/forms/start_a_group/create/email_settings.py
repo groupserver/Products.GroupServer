@@ -31,8 +31,6 @@ emailSettings = getattr(site_root.CodeTemplates.group, 'email_settings')
 group.manage_clone(emailSettings, 'email_settings')
 assert hasattr(group.aq_explicit, 'email_settings'), \
   '"%s/email_settings" not created' % group.getId()
-if hasattr(group.email_settings.aq_explicit, 'index.xml'):
-  group.email_settings.manage_delObjects(['index.xml'])
 
 interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
 add_marker_interfaces(group.email_settings, interfaces)

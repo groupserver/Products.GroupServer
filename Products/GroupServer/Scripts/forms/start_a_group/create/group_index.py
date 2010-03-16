@@ -31,3 +31,4 @@ interfaces =  ('Products.GSContent.interfaces.IGSContentFolder',)
 add_marker_interfaces(group, interfaces)
 
 assert hasattr(group.aq_explicit, 'content_en')
+
