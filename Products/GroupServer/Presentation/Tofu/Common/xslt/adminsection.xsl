@@ -30,9 +30,6 @@
       href="/++resource++site-20091229.css" />
 
     <script type="text/javascript" src="/Presentation/Tofu/XForms/js/xforms.js">&#160;</script>
-    <script type="text/javascript" src="/++resource++protoculous-20070809.js">&#160;</script>
-    <script type="text/javascript" src="/++resource++pane/dynamic_load.js">&#160;</script>
-
 
     <xsl:if test="//link[@class='alternateRDF']">
       <xsl:for-each select="//link[@class='alternateRDF']">
