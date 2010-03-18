@@ -305,12 +305,10 @@ def import_content( container ):
     #getattr(group, 'admingroup').manage_changeProperties(title='Administer Group')
 
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
-                               support_email, timezone,
-                               canonicalHost, 
+                               support_email, timezone, canonicalHost,
                                databaseHost, databasePort,
                                databaseUsername, databasePassword,
-                               databaseName,
-                               REQUEST=None ):
+                               databaseName, REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
