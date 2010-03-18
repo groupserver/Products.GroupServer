@@ -179,7 +179,7 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     maillist.manage_changeProperties(mailto='example_group@%s' % canonical)
 
 def init_global_configuration( groupserver_site, siteName, supportEmail,
-                        timezone, canonicalHost, registrationEmail ):
+                        timezone, canonicalHost ):
     cp = groupserver_site.manage_addProduct['CustomProperties']
     cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
     gc = getattr(groupserver_site, 'GlobalConfiguration')
@@ -189,7 +189,6 @@ def init_global_configuration( groupserver_site, siteName, supportEmail,
     gc.manage_addProperty('supportEmail', supportEmail, 'string')
     gc.manage_addProperty('timezone', timezone, 'string')
     gc.manage_addProperty('canonicalHost', canonicalHost, 'string')
-    gc.manage_addProperty('registrationEmail', registrationEmail, 'string')
     
 def init_fs_presentation( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
@@ -307,7 +306,7 @@ def import_content( container ):
 
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
                                support_email, timezone,
-                               canonicalHost, registrationEmail,
+                               canonicalHost, 
                                databaseHost, databasePort,
                                databaseUsername, databasePassword,
                                databaseName,
@@ -344,7 +343,7 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     transaction.commit()
 
     init_global_configuration( gss, title, support_email, timezone,
-                               canonicalHost, registrationEmail )
+                               canonicalHost )
     transaction.commit()
                                
     if REQUEST is None:
