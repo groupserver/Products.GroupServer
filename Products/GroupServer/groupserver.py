@@ -185,10 +185,8 @@ def init_global_configuration( groupserver_site, siteName, supportEmail,
     gc = getattr(groupserver_site, 'GlobalConfiguration')
     gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
     gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
-    gc.manage_addProperty('siteName', siteName, 'string')
     gc.manage_addProperty('supportEmail', supportEmail, 'string')
     gc.manage_addProperty('timezone', timezone, 'string')
-    gc.manage_addProperty('canonicalHost', canonicalHost, 'string')
     
 def init_fs_presentation( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
