@@ -170,19 +170,15 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonical)
 
-def init_global_configuration( groupserver_site, siteName, supportEmail, timezone, canonicalHost,
-                               userVerificationEmail, registrationEmail ):
+def init_global_configuration( groupserver_site, siteName, supportEmail,
+                        timezone, canonicalHost ):
     cp = groupserver_site.manage_addProduct['CustomProperties']
     cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
     gc = getattr(groupserver_site, 'GlobalConfiguration')
     gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
     gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
-    gc.manage_addProperty('siteName', siteName, 'string')
     gc.manage_addProperty('supportEmail', supportEmail, 'string')
     gc.manage_addProperty('timezone', timezone, 'string')
-    gc.manage_addProperty('canonicalHost', canonicalHost, 'string')
-    gc.manage_addProperty('userVerificationEmail', userVerificationEmail, 'string')
-    gc.manage_addProperty('registrationEmail', registrationEmail, 'string')
     
 def init_fs_presentation( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
@@ -359,12 +355,10 @@ def create_default_administrator(group, adminUserId):
     return
 
 def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
-                               support_email, timezone,
-                               canonicalHost, userVerificationEmail, registrationEmail,
+                               support_email, timezone, canonicalHost,
                                databaseHost, databasePort,
                                databaseUsername, databasePassword,
-                               databaseName,
-                               REQUEST=None ):
+                               databaseName, REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
@@ -397,7 +391,7 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     transaction.commit()
 
     init_global_configuration( gss, title, support_email, timezone,
-                               canonicalHost, userVerificationEmail, registrationEmail )
+                               canonicalHost )
     transaction.commit()
 
     init_group( gss, initial_user )
