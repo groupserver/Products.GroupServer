@@ -82,26 +82,6 @@
   <tr>
     <td align="left" valign="top">
     <div class="form-label">
-    User Verification Email Address (eg. verify_user@groupserver.org)
-    </div>
-    </td>
-    <td align="left" valign="top">
-    <input type="text" name="userVerificationEmail" size="40" />
-    </td>
-  </tr>
-  <tr>
-    <td align="left" valign="top">
-    <div class="form-label">
-    Registration Email Address (eg. registration@groupserver.org)
-    </div>
-    </td>
-    <td align="left" valign="top">
-    <input type="text" name="registrationEmail" size="40" />
-    </td>
-  </tr>
-  <tr>
-    <td align="left" valign="top">
-    <div class="form-label">
     Database Host (eg. localhost)
     </div>
     </td>
