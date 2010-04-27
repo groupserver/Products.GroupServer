@@ -107,7 +107,8 @@ class GroupserverSite( OrderedFolder ):
         
         raise
 
-def init_user_folder( groupserver_site, initial_user, initial_password, email, canonical ):
+def init_user_folder( groupserver_site, initial_user, initial_password, 
+                        email, canonicalHost, canonicalPort ):
     btf = groupserver_site.manage_addProduct['BTreeFolder2']
     btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
     groupserver_site.manage_addFolder( 'contactsimages', 'People in the Site' )
@@ -139,7 +140,7 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     acl._doAddUser('example_user', 'fake', [], [], [])
     exampleuser = acl.getUser('example_user')
     assert exampleuser, 'Did not create the example user'
-    example_address = 'example_user@%s' % canonical
+    example_address = 'example_user@%s' % canonicalHost
     exampleuser.manage_changeProperties(fn='Example User')
     exampleuser.add_defaultDeliveryEmailAddress(example_address)
     try:
@@ -164,14 +165,26 @@ def init_user_folder( groupserver_site, initial_user, initial_password, email, c
     contacts = getattr( groupserver_site, 'contacts' )
     contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
     
+
+    # --=mpj17=-- The example_site is created as a side-effect of
+    # importing the content of the GroupServer instance (see the
+    # ``init_content`` method, and the "big ugly hack" comment below).
+    # This is bad in so many ways that it would take an essay to 
+    # document them all. However, time is scarce, so rather than fix
+    # the problem I am documenting it: configure the example site here.
+    # *sigh*.
     example_site = getattr(groupserver_site.Content, 'example_site')
     example_site.manage_addLocalRoles(adminuser.getId(), ['DivisionAdmin'])
-
     site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
-    site_config.manage_changeProperties(canonicalHost=canonical)
+    site_config.manage_changeProperties(canonicalHost=canonicalHost)
+    if not(hasattr(site_config, 'canonicalPort')):
+        site_config.manage_addProperties('canonicalPort', canonicalPort, 
+                                            'string')
+    else:
+        site_config.manage_changeProperties(canonicalPort=canonicalPort)
 
 def init_global_configuration( groupserver_site, siteName, supportEmail,
-                        timezone, canonicalHost ):
+                                timezone):
     cp = groupserver_site.manage_addProduct['CustomProperties']
     cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
     gc = getattr(groupserver_site, 'GlobalConfiguration')
@@ -265,7 +278,7 @@ def init_db_connection( container, databaseHost, databasePort, databaseUsername,
                                                   database=databaseName)
 
 def import_content( container ):
-    # big ugly hack
+    # --=rrw=-- big ugly hack
     from Products.GroupServer import pathutil
     
     container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
@@ -354,11 +367,13 @@ def create_default_administrator(group, adminUserId):
     group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
     return
 
-def manage_addGroupserverSite( container, id, title, initial_user, initial_password,
-                               support_email, timezone, canonicalHost,
-                               databaseHost, databasePort,
-                               databaseUsername, databasePassword,
-                               databaseName, REQUEST=None ):
+def manage_addGroupserverSite(  container, id, title, 
+                                initial_user, initial_password,
+                                support_email, timezone, 
+                                canonicalHost, canonicalPort,
+                                databaseHost, databasePort,
+                                databaseUsername, databasePassword,
+                                databaseName, REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
@@ -381,7 +396,8 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     import_content( gss )
     transaction.commit()
     
-    init_user_folder( gss, initial_user, initial_password, support_email, canonicalHost )
+    init_user_folder( gss, initial_user, initial_password, 
+                        support_email, canonicalHost, canonicalPort )
     transaction.commit()
 
     init_fs_presentation( gss )
@@ -390,8 +406,7 @@ def manage_addGroupserverSite( container, id, title, initial_user, initial_passw
     init_fs_scripts( gss )
     transaction.commit()
 
-    init_global_configuration( gss, title, support_email, timezone,
-                               canonicalHost )
+    init_global_configuration( gss, title, support_email, timezone )
     transaction.commit()
 
     init_group( gss, initial_user )
