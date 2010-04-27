@@ -178,8 +178,8 @@ def init_user_folder( groupserver_site, initial_user, initial_password,
     site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonicalHost)
     if not(hasattr(site_config, 'canonicalPort')):
-        site_config.manage_addProperties('canonicalPort', canonicalPort, 
-                                            'string')
+        site_config.manage_addProperty('canonicalPort', canonicalPort, 
+                                        'string')
     else:
         site_config.manage_changeProperties(canonicalPort=canonicalPort)
 
