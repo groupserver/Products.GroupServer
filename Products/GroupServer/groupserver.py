@@ -2,6 +2,7 @@
 import transaction, datetime, urlparse, pathutil, os.path
 from urllib import quote
 from zope.interface import implements
+from zope.component import createObject
 from OFS.OrderedFolder import OrderedFolder
 from App.config import getConfiguration
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
@@ -9,6 +10,7 @@ from Products.XWFCore.XWFUtils import createRequestFromRequest, \
     rfc822_date, assign_ownership
 from Products.GSProfile.utils import create_user_from_email
 from Products.GSProfile.set_password import set_password
+from Products.GSGroupMember.groupmembership import join_group
 from interfaces import IGroupserverSite
 
 import logging
@@ -287,18 +289,26 @@ def import_content( container ):
     assert hasattr(site.aq_explicit, 'help')
     getattr(site, 'help').manage_changeProperties(title='Help')
 
-def init_group ( container, initial_user ):
-    #  --=mpj17=-- WTF?
+def init_group ( container, admin_email, user_email, zope_admin_id ):
     site = getattr(container.Content, 'example_site')
     assert site, 'No example_site found' 
-    group = create_group(site, initial_user)
-    assert group, 'No example_group found'
-    site.acl_users.addGroupsToUser(['example_group_member'], 'example_user')
+    groupInfo = create_group(site, zope_admin_id)
 
-def create_group( site, initial_user ):
+    acl_users = container.site_root().acl_users
+    
+    admin = acl_users.get_userByEmail(admin_email)
+    join_group(admin, groupInfo)
+    groupInfo.groupObj.manage_addLocalRoles(admin.getId(), ['GroupAdmin'])
+
+    user = acl_users.get_userByEmail(user_email)
+    join_group(user, groupInfo)
+
+def create_group( site, zope_admin_id ):
     groups = getattr(site, 'groups')
-    group = site.Scripts.forms.start_a_group.create.group_folder(groups, 'example_group', 'Example Group',
-                                       'example people', 'standard')
+    group = site.Scripts.forms.start_a_group.create.group_folder(groups,
+                'example_group', 'Example Group', 'example people', 
+                'standard')
+    assert group, 'No group found'
     site.Scripts.forms.start_a_group.create.group_index(group)
     site.Scripts.forms.start_a_group.create.javascript(group)
     site.Scripts.forms.start_a_group.create.files_area(group)
@@ -311,8 +321,9 @@ def create_group( site, initial_user ):
 
     canonicalHost = site.DivisionConfiguration.getProperty('canonicalHost')
     mailHost = canonicalHost
-    groupList = site.Scripts.forms.start_a_group.create.list_instance(group, mailHost, site.getId(), 'public')
-    create_default_administrator(group, initial_user)
+    groupList = site.Scripts.forms.start_a_group.create.list_instance(group, 
+                    mailHost, site.getId(), 'public')
+    assert groupList, 'No groupList found'
 
     # Set the permissions for the group.
     joinCondition = 'anyone'
@@ -339,27 +350,21 @@ def create_group( site, initial_user ):
     group.manage_addProperty('date_open', curr_time.strftime('%d %B %Y'), 'string')
 
     # --=rrw=--
-    #   The group needs to be 'owned' by a top level user, since the Scripts are
-    #   above the context of the site, and some of them require Manager level
-    #   proxy access. Yes, this is darker magic than we'd like. Any suggestions
-    #   welcome.
-    assign_ownership(group, 'admin', 1, '/acl_users')
-    assign_ownership(groupList, 'admin', 1, '/acl_users')
-    return group
+    #   The group needs to be 'owned' by a top level user, since the
+    #   Scripts are above the context of the site, and some of them
+    #   require Manager level proxy access. Yes, this is darker magic
+    #   than we'd like. Any suggestions welcome.
+    assign_ownership(group, zope_admin_id, 1, '/acl_users')
+    assign_ownership(groupList, zope_admin_id, 1, '/acl_users')
 
-def create_default_administrator(group, adminUserId):
-    assert group
-    user = group.acl_users.getUser(adminUserId)
-    assert user
-    user.add_groupWithNotification('%s_member' % group.getId())
-    group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
-    return
+    groupInfo = createObject('groupserver.GroupInfo', group)
+    return groupInfo
 
 def manage_addGroupserverSite( container, id, title,
-        admin_email, admin_password, user_email, user_password,
-        support_email, timezone, canonicalHost, canonicalPort,
-        databaseHost, databasePort, databaseUsername, databasePassword,
-        databaseName, REQUEST=None ):
+        admin_email, admin_password, user_email, user_password, 
+        zope_admin_id, support_email, timezone, canonicalHost, 
+        canonicalPort, databaseHost, databasePort, databaseUsername, 
+        databasePassword, databaseName, REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
@@ -397,7 +402,7 @@ def manage_addGroupserverSite( container, id, title,
     init_global_configuration( gss, title, support_email, timezone )
     transaction.commit()
 
-    init_group( gss, initial_user )
+    init_group( gss, admin_email, user_email, zope_admin_id )
     transaction.commit()
                                
     if REQUEST is None:
