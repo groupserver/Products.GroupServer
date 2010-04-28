@@ -9,7 +9,6 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest, \
     rfc822_date, assign_ownership
 from Products.GSProfile.utils import create_user_from_email
-from Products.GSProfile.set_password import set_password
 from Products.GSGroupMember.groupmembership import join_group
 from interfaces import IGroupserverSite
 
@@ -108,7 +107,7 @@ class GroupserverSite( OrderedFolder ):
 def create_user(groupserver_site, email, fn, password):
     user = create_user_from_email(groupserver_site, email)
     user.manage_changeProperties(fn=fn)
-    set_password(user, password)
+    user.set_password(password, updateCookies=False)
     try:
         vid = 'AssumedTrue%s' % email.replace('@', 'at')
         user.add_emailAddressVerification(vid, email)
