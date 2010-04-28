@@ -267,20 +267,27 @@ def init_db_connection( container, databaseHost, databasePort, databaseUsername,
                                                   password=databasePassword,
                                                   database=databaseName)
 
-def init_notifications_smtp_host(   container, smtp_host, smtp_port, 
-                                    smtp_user, smtp_password):
-    '''Initalise Notifications SMTP Host
+def init_smtp_host( container, smtp_host, smtp_port, smtp_user, smtp_password):
+    '''Initalise SMTP Hosts
     
     Create the MailHost instance that will communicate to the SMTP host
-    in order to send the GroupServer notifications.'''
+    in order to send the GroupServer notifications, and configure the
+    MailHost used to send posts from groups.'''
     mailHostId = 'MailHost'
+    
     container.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
-    mailHost = getattr(container, mailHostId)
-    mailHost.manage_makeChanges(title='Notifications SMTP Settings',
-        smtp_host=smtp_host, smtp_port=smtp_port,
-        smtp_uid=smtp_user, smtp_pwd=smtp_password,
-        REQUEST=None)
-    return mailHost
+    notificationsMailHost = getattr(container, mailHostId)
+    notificationsMailHost.manage_makeChanges(
+        title='Notifications SMTP Settings',
+        smtp_host=smtp_host, smtp_port=smtp_port, smtp_uid=smtp_user,
+        smtp_pwd=smtp_password, REQUEST=None)
+    
+    listManager = getattr(container.site_root(), 'ListManager')
+    listMailHost = getattr(listManager, mailHostId)
+    listMailHost.manage_makeChanges(
+        title='Mail List SMTP Settings',
+        smtp_host=smtp_host, smtp_port=smtp_port, smtp_uid=smtp_user,
+        smtp_pwd=smtp_password, REQUEST=None)
     
 def import_content( container ):
     # --=rrw=-- big ugly hack
@@ -402,8 +409,7 @@ def manage_addGroupserverSite( container, id, title,
     import_content( gss )
     transaction.commit()
     
-    init_notifications_smtp_host( gss, smtp_host, smtp_port, 
-        smtp_user, smtp_password )
+    init_smtp_host( gss, smtp_host, smtp_port, smtp_user, smtp_password )
     transaction.commit()
     
     init_user_folder( gss, admin_email, admin_password, 
