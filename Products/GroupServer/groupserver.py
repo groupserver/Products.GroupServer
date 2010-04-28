@@ -399,7 +399,7 @@ def manage_addGroupserverSite( container, id, title,
     init_file_library( gss )
     transaction.commit()
     
-    import_content( gss, smtp_host, smtp_port, smtp_user, smtp_password )
+    import_content( gss )
     transaction.commit()
     
     init_notifications_smtp_host( gss, smtp_host, smtp_port, 
