@@ -267,15 +267,27 @@ def init_db_connection( container, databaseHost, databasePort, databaseUsername,
                                                   password=databasePassword,
                                                   database=databaseName)
 
+def init_notifications_smtp_host(   container, smtp_host, smtp_port, 
+                                    smtp_user, smtp_password):
+    '''Initalise Notifications SMTP Host
+    
+    Create the MailHost instance that will communicate to the SMTP host
+    in order to send the GroupServer notifications.'''
+    mailHostId = 'MailHost'
+    container.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
+    mailHost = getattr(container, mailHostId)
+    mailHost.manage_makeChanges(title='Notifications SMTP Settings',
+        smtp_host=smtp_host, smtp_port=smtp_port,
+        smtp_uid=smtp_user, smtp_pwd=smtp_password,
+        REQUEST=None)
+    return mailHost
+    
 def import_content( container ):
     # --=rrw=-- big ugly hack
     from Products.GroupServer import pathutil
-    
-    container.manage_addProduct['MailHost'].manage_addMailHost('MailHost',
-                                                                smtp_host='localhost')   
+        
     objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
                          'ListManager.zexp', 'Templates.zexp']
-    
     for object_to_import in objects_to_import:
         container._importObjectFromFile( pathutil.get_import_path(
                                              object_to_import) )
@@ -362,10 +374,11 @@ def create_group( site, zope_admin_id ):
     return groupInfo
 
 def manage_addGroupserverSite( container, id, title,
-        admin_email, admin_password, user_email, user_password, 
-        zope_admin_id, support_email, timezone, canonicalHost, 
-        canonicalPort, databaseHost, databasePort, databaseUsername, 
-        databasePassword, databaseName, REQUEST=None ):
+        admin_email, admin_password, user_email, user_password,
+        zope_admin_id, support_email, timezone, canonicalHost,
+        canonicalPort, smtp_host, smtp_port, smtp_user, smtp_password,
+        databaseHost, databasePort, databaseUsername, databasePassword,
+        databaseName, REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
@@ -386,7 +399,11 @@ def manage_addGroupserverSite( container, id, title,
     init_file_library( gss )
     transaction.commit()
     
-    import_content( gss )
+    import_content( gss, smtp_host, smtp_port, smtp_user, smtp_password )
+    transaction.commit()
+    
+    init_notifications_smtp_host( gss, smtp_host, smtp_port, 
+        smtp_user, smtp_password )
     transaction.commit()
     
     init_user_folder( gss, admin_email, admin_password, 
