@@ -1,19 +1,15 @@
+# coding=utf-8
+import transaction, datetime, urlparse, pathutil, os.path
+from urllib import quote
 from zope.interface import implements
 from OFS.OrderedFolder import OrderedFolder
-
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.XWFCore.XWFUtils import createRequestFromRequest, rfc822_date, assign_ownership
-
 from App.config import getConfiguration
-
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from Products.XWFCore.XWFUtils import createRequestFromRequest, \
+    rfc822_date, assign_ownership
+from Products.GSProfile.utils import create_user_from_email
+from Products.GSProfile.set_password import set_password
 from interfaces import IGroupserverSite
-
-import transaction
-import datetime
-import urlparse
-from urllib import quote
-import pathutil
-import os.path
 
 import logging
 log = logging.getLogger('GroupServer Site')
@@ -107,64 +103,55 @@ class GroupserverSite( OrderedFolder ):
         
         raise
 
-def init_user_folder( groupserver_site, initial_user, initial_password, 
-                        email, canonicalHost, canonicalPort ):
+def create_user(groupserver_site, email, fn, password):
+    user = create_user_from_email(groupserver_site, email)
+    user.manage_changeProperties(fn=fn)
+    set_password(user, password)
+    try:
+        vid = 'AssumedTrue%s' % email.replace('@', 'at')
+        user.add_emailAddressVerification(vid, email)
+        user.verify_emailAddress(vid)
+        m = 'init_user_folder: Verified the address <%s> for %s (%s).' %\
+            (email, fn, user.getId())
+        log.info(m)
+    except:
+        m = 'init_user_folder: Issues verifying the address <%s> for '\
+            '%s (%s).' % (email, fn, user.getId())
+        log.error(m)
+    return user
+
+def init_user_folder( groupserver_site, admin_email, admin_password,
+        user_email, user_password, support_email, canonicalHost, 
+        canonicalPort ):
     btf = groupserver_site.manage_addProduct['BTreeFolder2']
     btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
-    groupserver_site.manage_addFolder( 'contactsimages', 'People in the Site' )
-
+    # --=mpj17=-- Do we need contactsimages? 
+    #       groupserver_site.manage_addFolder( 'contactsimages', 'People in the Site' )
+    # The contacts folder stores the user-data.
     cuf = groupserver_site.manage_addProduct['CustomUserFolder']
     cuf.manage_addCustomUserFolder( 'contacts' )
-    
-    acl = getattr( groupserver_site, 'acl_users' )
-    acl.userFolderAddGroup( 'example_site_member', 
-                                'Membership of Example Site' )
-    
-    acl._doAddUser(initial_user, initial_password, [], [], [])
-    adminuser = acl.getUser(initial_user)
-    assert adminuser, 'Did not create the initial user'
-    adminuser.manage_changeProperties(fn='Default Administrator')
-    adminuser.add_defaultDeliveryEmailAddress(email)
-    try:
-        vid = 'AdminVerified%s' % email.replace('@', 'at')
-        adminuser.add_emailAddressVerification(vid, email)
-        adminuser.verify_emailAddress(vid)
-        m = 'init_user_folder: Verified initial user email address %s' % email
-        log.info(m)
-    except:
-        m = 'init_user_folder: Issues verifying initial user email address %s' % email
-        log.error(m)
-    acl.addGroupsToUser(['example_site_member'], adminuser.getId())
-    
-
-    acl._doAddUser('example_user', 'fake', [], [], [])
-    exampleuser = acl.getUser('example_user')
-    assert exampleuser, 'Did not create the example user'
-    example_address = 'example_user@%s' % canonicalHost
-    exampleuser.manage_changeProperties(fn='Example User')
-    exampleuser.add_defaultDeliveryEmailAddress(example_address)
-    try:
-        vid = 'AdminVerified%s' % example_address.replace('@', 'at')
-        exampleuser.add_emailAddressVerification(vid, example_address)
-        exampleuser.verify_emailAddress(vid)
-        m = 'init_user_folder: Verified example user email address %s' % example_address
-        log.info(m)
-    except:
-        m = 'init_user_folder: Issues verifying example user email address %s' % example_address
-        log.error(m)
-    acl.addGroupsToUser(['example_site_member'], exampleuser.getId())
-        
+    contacts = getattr( groupserver_site, 'contacts' )
+    contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
+    # Cookie Crumbler logs people in
     cc = groupserver_site.manage_addProduct['CookieCrumbler']
     cc.manage_addCC('cookie_authentication')
-    
     cookies = getattr( groupserver_site, 'cookie_authentication' )
     cookies.manage_changeProperties( auto_login_page='Content/login.html',
                                      unauth_page='Content/login.html',
                                      logout_page='Content/logout.html' )
     
-    contacts = getattr( groupserver_site, 'contacts' )
-    contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
-    
+    # Create the default members of the site.    
+    egSiteMember = 'example_site_member', 
+    acl = getattr( groupserver_site, 'acl_users' )
+    acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
+    # The admin.
+    admin = create_user(groupserver_site, admin_email, 
+                u'GroupServer Administrator', admin_password)
+    acl.addGroupsToUser([egSiteMember], admin.getId())
+    # The normal user
+    user = create_user(groupserver_site, user_email, u'GroupServer User',
+                    user_password)
+    acl.addGroupsToUser([egSiteMember], user.getId())    
 
     # --=mpj17=-- The example_site is created as a side-effect of
     # importing the content of the GroupServer instance (see the
@@ -174,7 +161,7 @@ def init_user_folder( groupserver_site, initial_user, initial_password,
     # the problem I am documenting it: configure the example site here.
     # *sigh*.
     example_site = getattr(groupserver_site.Content, 'example_site')
-    example_site.manage_addLocalRoles(adminuser.getId(), ['DivisionAdmin'])
+    example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
     site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonicalHost)
     if not(hasattr(site_config, 'canonicalPort')):
@@ -301,6 +288,7 @@ def import_content( container ):
     getattr(site, 'help').manage_changeProperties(title='Help')
 
 def init_group ( container, initial_user ):
+    #  --=mpj17=-- WTF?
     site = getattr(container.Content, 'example_site')
     assert site, 'No example_site found' 
     group = create_group(site, initial_user)
@@ -367,13 +355,11 @@ def create_default_administrator(group, adminUserId):
     group.manage_addLocalRoles(user.getId(), ['GroupAdmin'])
     return
 
-def manage_addGroupserverSite(  container, id, title, 
-                                initial_user, initial_password,
-                                support_email, timezone, 
-                                canonicalHost, canonicalPort,
-                                databaseHost, databasePort,
-                                databaseUsername, databasePassword,
-                                databaseName, REQUEST=None ):
+def manage_addGroupserverSite( container, id, title,
+        admin_email, admin_password, user_email, user_password,
+        support_email, timezone, canonicalHost, canonicalPort,
+        databaseHost, databasePort, databaseUsername, databasePassword,
+        databaseName, REQUEST=None ):
     """ Add a Groupserver Site object to a given container.
     
     """
@@ -382,7 +368,8 @@ def manage_addGroupserverSite(  container, id, title,
     
     gss = getattr( container, id )
 
-    init_db_connection( gss, databaseHost, databasePort, databaseUsername, databasePassword, databaseName )
+    init_db_connection( gss, databaseHost, databasePort, 
+        databaseUsername, databasePassword, databaseName )
 
     init_catalog( gss )
     transaction.commit()
@@ -396,8 +383,9 @@ def manage_addGroupserverSite(  container, id, title,
     import_content( gss )
     transaction.commit()
     
-    init_user_folder( gss, initial_user, initial_password, 
-                        support_email, canonicalHost, canonicalPort )
+    init_user_folder( gss, admin_email, admin_password, 
+        user_email, user_password, support_email, canonicalHost, 
+        canonicalPort )
     transaction.commit()
 
     init_fs_presentation( gss )
