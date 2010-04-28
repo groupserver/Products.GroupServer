@@ -145,7 +145,6 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
     egSiteMember = 'example_site_member'
     acl = getattr( groupserver_site, 'acl_users' )
     acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
-    groupserver_site.manage_addLocalGroupRoles(egSiteMember, ('DivisionMember',))
     # The admin.
     admin = create_user(groupserver_site, admin_email, 
                 u'GroupServer Administrator', admin_password)
@@ -164,7 +163,9 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
     # *sigh*.
     example_site = getattr(groupserver_site.Content, 'example_site')
     example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
-    site_config = getattr(groupserver_site.Content.example_site, 'DivisionConfiguration')
+    example_site.manage_addLocalGroupRoles(egSiteMember, ('DivisionMember',))
+    site_config = getattr(groupserver_site.Content.example_site,
+                    'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonicalHost)
     if not(hasattr(site_config, 'canonicalPort')):
         site_config.manage_addProperty('canonicalPort', canonicalPort, 
