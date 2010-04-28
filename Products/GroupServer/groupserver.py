@@ -428,7 +428,12 @@ def manage_addGroupserverSite( container, id, title,
 
     init_group( gss, admin_email, user_email, zope_admin_id )
     transaction.commit()
-                               
+    
+    vhm = getattr(gss, 'virtual_hosting')
+    mapText = '%s/example/Content/example_site' % canonicalHost
+    vhm.set_map(mapText, None)
+    transaction.commit()
+    
     if REQUEST is None:
         return
     
