@@ -145,6 +145,7 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
     egSiteMember = 'example_site_member'
     acl = getattr( groupserver_site, 'acl_users' )
     acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
+    groupserver_site.manage_addLocalGroupRoles(egSiteMember, ('DivisionMember',))
     # The admin.
     admin = create_user(groupserver_site, admin_email, 
                 u'GroupServer Administrator', admin_password)
@@ -152,7 +153,7 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
     # The normal user
     user = create_user(groupserver_site, user_email, u'GroupServer User',
                     user_password)
-    acl.addGroupsToUser([egSiteMember], user.getId())    
+    acl.addGroupsToUser([egSiteMember], user.getId())
 
     # --=mpj17=-- The example_site is created as a side-effect of
     # importing the content of the GroupServer instance (see the
