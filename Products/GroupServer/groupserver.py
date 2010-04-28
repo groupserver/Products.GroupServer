@@ -143,7 +143,7 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
                                      logout_page='Content/logout.html' )
     
     # Create the default members of the site.    
-    egSiteMember = 'example_site_member', 
+    egSiteMember = 'example_site_member'
     acl = getattr( groupserver_site, 'acl_users' )
     acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
     # The admin.
