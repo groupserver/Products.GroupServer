@@ -323,9 +323,11 @@ def init_group ( container, admin_email, user_email, zope_admin_id ):
     user = acl_users.get_userByEmail(user_email)
     join_group(user, groupInfo)
 
-def init_vhm( container, canonicalHost ):
+def init_vhm( canonicalHost, container ):
     vhm = getattr(container, 'virtual_hosting')
-    mapText = '%s/example/Content/example_site' % canonicalHost
+    sitePath = '/'.join(container.getPhysicalPath())[1:]
+    mapText = '%s/%s/Content/example_site' % \
+      (canonicalHost, sitePath)
     vhm.set_map(mapText, None)
 
 def create_group( site, zope_admin_id ):
@@ -434,7 +436,7 @@ def manage_addGroupserverSite( container, id, title,
     init_group( gss, admin_email, user_email, zope_admin_id )
     transaction.commit()
 
-    init_vhm( gss, canonicalHost )    
+    init_vhm( canonicalHost, gss )
     transaction.commit()
     
     if REQUEST is None:
