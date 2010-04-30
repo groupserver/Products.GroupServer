@@ -350,6 +350,8 @@
 	<xsl:if test="@class = 'wymeditor'">
 	</xsl:if> 
       <script type="text/javascript" 
+        src="/++resource++jquery-1.3.2.min.js">&#160;</script>
+      <script type="text/javascript" 
         src="/++resource++wymeditor-20090831/jquery.wymeditor.js">&#160;</script>
       <script type="text/javascript" 
         src="/++resource++gswym.js">&#160;</script>
