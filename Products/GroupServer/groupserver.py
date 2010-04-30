@@ -302,9 +302,17 @@ def import_content( container ):
     site = getattr(container.Content, 'example_site')
     assert site, 'No example_site found'
     fss = site.manage_addProduct['FileSystemSite']
+    
     fss.manage_addDirectoryView( pathutil.get_groupserver_path('admindivision'), 'admindivision' )
     assert hasattr(site.aq_explicit, 'admindivision')
-    getattr(site, 'admindivision').manage_changeProperties(title='Administer Site')
+    adminDivision = getattr(site, 'admindivision')
+    adminDivision.manage_changeProperties(title='Administer Site')
+    adminSitePerms = ['DivisionAdmin', 'Manager', 'Owner']
+    adminDivision.admingroup.manage_permission('View',
+        adminSitePerms, acquire=0)
+    adminDivision.admingroup.manage_permission('Access contents information',
+        adminSitePerms, acquire=0)
+    
     fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
     assert hasattr(site.aq_explicit, 'help')
     getattr(site, 'help').manage_changeProperties(title='Help')
