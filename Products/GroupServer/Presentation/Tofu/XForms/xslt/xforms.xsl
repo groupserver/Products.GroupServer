@@ -348,15 +348,11 @@
 
 	<!-- If this is a WYMEditor instance, we need to also include the WYMEditor support scripts. -->
 	<xsl:if test="@class = 'wymeditor'">
-	</xsl:if>
-		<link rel="stylesheet" type="text/css" media="screen" 
-		  href="/++resource++wymeditor-20080123/skins/default/screen.css" />
-		<script type="text/javascript" 
-		  src="/++resource++jquery-1.2.1.min.js">&#160;</script>
-    <script type="text/javascript" 
-      src="/++resource++wymeditor-20080123/jquery.wymeditor.pack.js">&#160;</script>
-    <script type="text/javascript" 
-      src="/++resource++wymeditor-20080123/init.js">&#160;</script>
+	</xsl:if> 
+      <script type="text/javascript" 
+        src="/++resource++wymeditor-20090831/jquery.wymeditor.js">&#160;</script>
+      <script type="text/javascript" 
+        src="/++resource++gswym.js">&#160;</script>
     </div>
     
   </xsl:template>
