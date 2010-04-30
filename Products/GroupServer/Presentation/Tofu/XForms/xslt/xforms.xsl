@@ -353,8 +353,18 @@
         src="/++resource++jquery-1.3.2.min.js">&#160;</script>
       <script type="text/javascript" 
         src="/++resource++wymeditor-20090831/jquery.wymeditor.js">&#160;</script>
-      <script type="text/javascript" 
-        src="/++resource++gswym.js">&#160;</script>
+      <script type="text/javascript">
+        jQuery(document).ready( function() {
+          jQuery("[type='submit']").addClass('wymupdate'); 
+          var options = {
+            skinPath: '/++resource++gswymskin/gs/',
+            skin: 'gs',
+            langPath: '/++resource++wymeditor-20090831/wymeditorlang/',
+            dialogFeatures: "menubar=no,titlebar=no,toolbar=no,resizable=no,width=504,height=504,top=0,left=0",
+          };
+          jQuery('.wymeditor').wymeditor(options);
+        });
+      </script>
     </div>
     
   </xsl:template>
