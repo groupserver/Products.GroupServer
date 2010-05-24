@@ -25,9 +25,9 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/++resource++globalstyle-20090126.css" />
+      href="/++resource++globalstyle-20100525.css" />
     <link rel="stylesheet" type="text/css" 
-      href="/++resource++site-20100330.css" />
+      href="/++resource++site-20100525.css" />
 
     <script type="text/javascript" src="/Presentation/Tofu/XForms/js/xforms.js">&#160;</script>
 
