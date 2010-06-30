@@ -25,7 +25,7 @@
 assert group, 'No group'
 assert mailhost, 'No mailhost'
 assert siteId, 'No siteId'
-assert privacy in ('public', 'private'), 'Privacy is %s' % privacy
+assert privacy in ('public', 'private', 'secret'), 'Privacy is %s' % privacy
 
 site_root = context.site_root()
 listManager = site_root.ListManager

@@ -15,8 +15,8 @@ assert templateId != '', 'No template ID set'
 assert groupId != '', 'No group ID set'
 assert groupName != '', 'No group name set'
 assert realLifeGroup != '', 'No realLifeGroup set'
-assert privacy in ('public', 'private'),\
-  'Privacy must be "public" or "private"'
+assert privacy in ('public', 'private', 'secret'),\
+  'Privacy must be "public","private" or "secret"'
 
 site_root = context.site_root()
 assert hasattr(site_root.Content, siteId), 'No site with ID %s found' % siteId
@@ -46,25 +46,32 @@ groupList = container.create.list_instance(group, mailHost, siteId, privacy)
 container.create.default_administrator(group)
 
 # Set the permissions for the group.
-if privacy == 'private':
+everyone = ['Anonymous', 'Authenticated', 'DivisionMember',
+              'DivisionAdmin', 'GroupAdmin','GroupMember','Manager',
+              'Owner']
+grpOnly = ['DivisionAdmin', 'GroupAdmin', 'GroupMember',
+              'Manager', 'Owner'] 
+
+if privacy == 'secret':
+    joinCondition = 'invite'
+    grpVisibility = grpOnly
+    msgVisibility = grpOnly
+elif privacy == 'private':
     joinCondition = 'apply'
-    userGroups = ['DivisionAdmin', 'GroupAdmin', 'GroupMember',
-                  'Manager', 'Owner']
+    grpVisibility = everyone
+    msgVisibility = grpOnly
 elif privacy == 'public':
     joinCondition = 'anyone'
-    userGroups = ['Anonymous', 'Authenticated', 'DivisionMember',
-                  'DivisionAdmin', 'GroupAdmin','GroupMember','Manager',
-                  'Owner']
+    grpVisibility = everyone
+    msgVisibility = everyone
 
-group.manage_changeProperties(join_condition=joinCondition)
-group.manage_permission('View', userGroups)
-group.manage_permission('Access contents information', userGroups)
-
-# Set the messages and files to default, following the group.
-group.files.manage_permission('View', [], 1)
-group.files.manage_permission('Access contents information', [], 1)
-group.messages.manage_permission('View', [], 1)
-group.messages.manage_permission('Access contents information', [], 1)
+group.manage_addProperty('join_condition', joinCondition, 'string')
+group.manage_permission('View', grpVisibility)
+group.manage_permission('Access contents information', grpVisibility)
+group.messages.manage_permission('View', msgVisibility)
+group.messages.manage_permission('Access contents information', msgVisibility)
+group.files.manage_permission('View', msgVisibility) # Files follow message settings
+group.files.manage_permission('Access contents information', msgVisibility)
 
 # Set the administration interface to site and group admins only
 adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']

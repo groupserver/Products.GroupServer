@@ -160,18 +160,35 @@ the subject-line of the group.<br/>
         <xf:select1 appearance="full" model="start_a_group"
           ref="privacy">
           <xf:item>
-            <xf:label>Public Group: anyone can see the group, and the
-              messages posted to the group.</xf:label>
+            <xf:label>
+              Public Group: Anyone can see the group, and the 
+              messages posted to it, including users who are 
+              not logged in. Anyone can join the group.
+            </xf:label>
             <xf:value>public</xf:value>
           </xf:item>
         </xf:select1>
         <xf:select1 appearance="full" model="start_a_group"
           ref="privacy">
           <xf:item>
-            <xf:label>Private Group: only group members can see the
-              existence of the group, and the messages posted to the
-              group.</xf:label>
+            <xf:label>
+              Private Group: Anyone can see the group, including 
+              people who are not logged in. However, only group 
+              members can see the messages posted to the group.
+              The group is joinable upon approval or invitation. 
+            </xf:label>
             <xf:value>private</xf:value>
+          </xf:item>
+        </xf:select1>
+        <xf:select1 appearance="full" model="start_a_group"
+          ref="privacy">
+          <xf:item>
+            <xf:label>
+              Secret Group: Only group members can see the group 
+              and the messages posted to it. New members must be
+              invited to join the group.
+            </xf:label>
+            <xf:value>secret</xf:value>
           </xf:item>
         </xf:select1>
       </fieldset>
