@@ -161,9 +161,8 @@ the subject-line of the group.<br/>
           ref="privacy">
           <xf:item>
             <xf:label>
-              Public Group: Anyone can see the group, and the 
-              messages posted to it, including users who are 
-              not logged in. Anyone can join the group.
+              Public Group: Everyone can view the group, 
+              view the posts, and join the group.
             </xf:label>
             <xf:value>public</xf:value>
           </xf:item>
@@ -172,10 +171,9 @@ the subject-line of the group.<br/>
           ref="privacy">
           <xf:item>
             <xf:label>
-              Private Group: Anyone can see the group, including 
-              people who are not logged in. However, only group 
-              members can see the messages posted to the group.
-              The group is joinable upon approval or invitation. 
+              Private Group: Everyone can view the group, 
+              but only group members can view the posts. 
+              Anyone can request to become a member.
             </xf:label>
             <xf:value>private</xf:value>
           </xf:item>
@@ -184,9 +182,9 @@ the subject-line of the group.<br/>
           ref="privacy">
           <xf:item>
             <xf:label>
-              Secret Group: Only group members can see the group 
-              and the messages posted to it. New members must be
-              invited to join the group.
+              Secret Group: Only group members can view the 
+              group and posts. People must be invited to 
+              join the group.
             </xf:label>
             <xf:value>secret</xf:value>
           </xf:item>

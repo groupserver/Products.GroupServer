@@ -114,9 +114,8 @@
         ref="privacy">
         <xf:item>
           <xf:label>
-            Public Group: Anyone can see the group, and the 
-            messages posted to it, including users who are 
-            not logged in. Anyone can join the group.
+            Public Group: Everyone can view the group, 
+            view the posts, and join the group.
           </xf:label>
           <xf:value>public</xf:value>
         </xf:item>
@@ -125,10 +124,9 @@
         ref="privacy">
         <xf:item>
           <xf:label>
-            Private Group: Anyone can see the group, including 
-            people who are not logged in. However, only group 
-            members can see the messages posted to the group.
-            The group is joinable upon approval or invitation. 
+            Private Group: Everyone can view the group, 
+            but only group members can view the posts. 
+            Anyone can request to become a member.
           </xf:label>
           <xf:value>private</xf:value>
         </xf:item>
@@ -137,18 +135,19 @@
         ref="privacy">
         <xf:item>
           <xf:label>
-            Secret Group: Only group members can see the group 
-            and the messages posted to it. New members must be
-            invited to join the group.
+            Secret Group: Only group members can view the 
+            group and posts. People must be invited to 
+            join the group.
           </xf:label>
           <xf:value>secret</xf:value>
         </xf:item>
       </xf:select1>
 
       <paragraph>
-        <bold>Note</bold> after posts have been made to the group, a
-        private group <em>cannot</em> be made public, as this
-        would violate the privacy of the group members.
+        <bold>Note</bold> after posts have been made to the group, 
+        a private group should not be made public, and a secret
+        group should not be made private or public, as this would 
+        violate the privacy of the group members.
       </paragraph>
 
       <xf:submit model="start_a_group" submission="next" class="button">
