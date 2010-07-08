@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=group=None,templateId
+##parameters=group,templateId
 ##title=Create a charter for a group
 ##
 # Create a charter in a group
