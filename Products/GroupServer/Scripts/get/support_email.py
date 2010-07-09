@@ -19,14 +19,10 @@ assert global_config, 'Global Config set to %s' % global_config
 global_support_email = global_config.getProperty('supportEmail', 'support@onlinegroups.net')
 canonical = division_config.getProperty('canonicalHost', 'onlinegroups.net')
 
-print 'global_support_email: %s' % global_support_email
-print 'canonical: %s' % canonical
-
 # First, check if we're on an instance other than OGN
 #  If so, just take the Global supportEmail
 if global_support_email != 'support@onlinegroups.net':
     retval = global_config.supportEmail
-    print 'We\'re not on OGN: %s' % retval
 
 # If not, we must be on the onlinegroups.net instance
 else:
@@ -37,7 +33,6 @@ else:
         #   therefore inaccessible to anyone who wants to
         #   obtain help from them
         retval = '%s_support@onlinegroups.net' % siteId
-        print 'We\'re on an OGN subdomain: %s' % retval
 
     # If not, check if the site has a custom domain
     elif canonical != 'onlinegroups.net':
@@ -46,14 +41,11 @@ else:
         #   therefore inaccessible to anyone who wants to
         #   obtain help from them
         retval = '%s_support@%s' % (siteId, canonical)
-        print 'We\'re on an a custom domain: %s' % retval
 
     # Otherwise, we must be on ogs
     else:
         retval = 'support@onlinegroups.net'
-        print 'We\'re on ogs: %s' % retval
 
-#return printed
 assert retval
 assert '@' in retval
 return retval
