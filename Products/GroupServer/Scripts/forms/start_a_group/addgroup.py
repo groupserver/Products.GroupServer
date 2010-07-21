@@ -8,7 +8,7 @@
 ##title=Add Group
 ##
 from Products.XWFCore.XWFUtils import getOption, assign_ownership
-from Products.GSContent.groupsInfo import GSGroupsInfoFactory
+from gs.groups.groupsInfo import GSGroupsInfoFactory
 
 assert siteId != '', 'No site ID set'
 assert templateId != '', 'No template ID set'

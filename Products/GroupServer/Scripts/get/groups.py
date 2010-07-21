@@ -10,7 +10,7 @@
 from Products.XWFCore.XWFUtils import deprecated
 deprecated(context, script, "Use 'GSGroupsInfo(context).get_visible_groups()' instead")
 
-from Products.GSContent.groupsInfo import GSGroupsInfo
+from gs.groups.groupsInfo import GSGroupsInfo
 
 context = groups_context or context
 visible_groups = GSGroupsInfo(context).get_visible_groups() or []
