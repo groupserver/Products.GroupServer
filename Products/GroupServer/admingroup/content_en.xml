@@ -34,14 +34,14 @@
           isGroupAnnouncement python:groupType == 'announcement';
           isGroupModerated python:context.Scripts.get.list_property(group.getId(), 'moderated', False);">
         
-        <li tal:condition="canJoin" href="addusers">
-          <strong>Add members</strong> to the group
+        <li tal:condition="canJoin" href="../admin_invite.html">
+          <strong>Invite members</strong> to the group
         </li>
         <li tal:condition="python:not canJoin">
           Normally, you could add members to the group, but
           <span tal:content="python:joinable[1][1].lower()"/>
         </li>
-        <li tal:condition="python:member_count &lt;= 127" href="managemembers">
+        <li tal:condition="python:member_count &lt;= 127" href="../managemembers.html">
           <strong>Manage the group members</strong>
         </li>
         <li tal:condition="python:member_count &gt; 127" href="manage_many_members">
