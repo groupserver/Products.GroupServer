@@ -15,5 +15,5 @@
       <privacy>public</privacy>
     </data>
   </xf:instance>
-  <xf:submission action="" method="urlencoded-post" id="next"/>
+  <xf:submission tal:attributes="action request/URL" method="urlencoded-post" id="next"/>
 </xf:model>

@@ -18,6 +18,6 @@
         tal:content="python:request.get('privacy', '')"/>
     </data>
   </xf:instance>
-  <xf:submission action="" method="urlencoded-post" id="preview"/>
-  <xf:submission action="" method="urlencoded-post" id="start"/>
+  <xf:submission tal:attributes="action request/URL" method="urlencoded-post" id="preview"/>
+  <xf:submission tal:attributes="action request/URL" method="urlencoded-post" id="start"/>
 </xf:model>
