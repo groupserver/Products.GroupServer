@@ -47,16 +47,19 @@
         <li tal:condition="python:member_count &gt; 127" href="manage_many_members">
           <strong>Manage the many group members</strong>
           <ul>
-            <li tal:condition="isGroupModerated" href="managemembers/?show=moderated">
+            <li tal:condition="isGroupModerated" href="../managemembers.html?showOnly=moderated">
               Manage the moderated members
             </li>
-            <li href="managemembers/?show=unverified">
-              Manage the unverified members
+            <li href="../managemembers.html?showOnly=unverified">
+              Manage the members with no verified email addresses
             </li>
-            <li tal:condition="isGroupAnnouncement" href="managemembers/?show=posting">
+            <li href="../managemembers.html?showOnly=invited">
+              Manage the invited members
+            </li>
+            <li tal:condition="isGroupAnnouncement" href="../managemembers.html?showOnly=posting">
               Manage the posting members
             </li>
-            <li href="managemembers/?show=managers">
+            <li href="../managemembers.html?showOnly=managers">
               Manage the managers</li>
           </ul>
         </li>
