@@ -14,8 +14,8 @@
         tal:define="isChargable python:site.getProperty('isChargable', False)">
         <listitem><link url="start_a_group">Start a 
           <bold>group</bold></link></listitem>
-        <listitem><link url="change_intro">Change the site <bold>introduction 
-              text</bold></link></listitem>
+        <listitem><link url="/admin_changeintro.html">Change the site
+          <bold>introduction text</bold></link></listitem>
         <listitem><link url="change_name">Change the <bold>name</bold> 
             of the site</link></listitem>
         <listitem><link url="set_site_timezone">Set the <bold>timezone</bold>
