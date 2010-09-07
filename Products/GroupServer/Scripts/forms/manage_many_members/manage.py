@@ -26,7 +26,7 @@ assert form.has_key('divisionid')
 divisionid = form['divisionid']
 
 mIds = form['member_ids']
-url = '/groups/%s/admingroup/managemembers?userIds=%s' % \
+url = '/groups/%s/managemembers.html?showOnly=%s' % \
   (groupid, same_type(mIds, []) and ' '.join(mIds) or mIds)
 context.REQUEST.RESPONSE.redirect(url)
  

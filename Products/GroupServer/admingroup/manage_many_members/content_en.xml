@@ -22,22 +22,27 @@
       <bulletlist>
         <listitem>
           <link
-            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=all"
+            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html"
             url="#">All members</link></listitem>
         <listitem>
           <link
-            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=managers"
+            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=moderated"
+            url="#">Moderated members only</link>
+        </listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=unverified"
+            url="#">Members with no verified email addresses only</link>
+        </listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=invited"
+            url="#">Invited members only</link>
+        </listitem>
+        <listitem>
+          <link
+            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=managers"
             url="#">Managers only</link>
-        </listitem>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=unverified"
-            url="#">Unverified members</link>
-        </listitem>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/admingroup/managemembers/?show=moderated"
-            url="#">Moderated members</link>
         </listitem>
       </bulletlist><!--memberlist-->
       <bulletlist class="contacts">
