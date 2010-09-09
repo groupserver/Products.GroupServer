@@ -8,26 +8,28 @@
 ##title=Generate a Fake Footer
 ##
 import string
-
-def getValueFor(foo):
-    return '%s@onlinegroups.net' % groupId
-
 result = {}
 
 site_root = context.site_root()
 
 #host = context.Scripts.get.option('canonical_host', 'onlinegroups.net')
 groupPropD = {'canonical_host': host,
-              'title': groupName,
-              'id': groupId}
+              'title':          groupName,
+              'id':             groupId}
 listObjD = {'getId' : '19771975'}
-gvfD = {'mailto': getValueFor }
-
+mailto = '%s@onlinegroups.net' % groupId
 user = context.REQUEST.AUTHENTICATED_USER
-r = site_root.ListManager.email_footer(group_properties=groupPropD,
-                                       list_object=listObjD,
-                                       user_object=user,
-                                       getValueFor=getValueFor,
-                                       post_id="AAAAAAAAAAAAAAAAAAAAAA",
-                                      files = [])
+r = site_root.ListManager.email_footer(context.REQUEST,
+                                       list_object      = listObjD,
+                                       group_properties = groupPropD,
+                                       title            = 'title',
+                                       mailto           = mailto,
+                                       mail             = 'mail',
+                                       body             = 'body',
+                                       user_object      = user,
+                                       from_addr        = 'from_addr',
+                                       files            = [],
+                                       post_id          = 'example',
+                                       pap_set          = '')
 return r.replace('\n', '<br/>')
+
