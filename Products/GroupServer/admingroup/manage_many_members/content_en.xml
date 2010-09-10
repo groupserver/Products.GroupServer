@@ -15,38 +15,12 @@
       </heading1>
       <paragraph>
         There 
-        <span tal:define="member_count here/Scripts/get/group_member_count"
+        <span tal:define="member_count context/Scripts/get/group_member_count"
           tal:replace="python:member_count == 1 and 'is %s member' % member_count or 'are %s members' % member_count"/>
         in this group.
       </paragraph>
-      <bulletlist>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html"
-            url="#">All members</link></listitem>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=moderated"
-            url="#">Moderated members only</link>
-        </listitem>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=unverified"
-            url="#">Members with no verified email addresses only</link>
-        </listitem>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=invited"
-            url="#">Invited members only</link>
-        </listitem>
-        <listitem>
-          <link
-            tal:attributes="url string:/groups/${group_object/getId}/managemembers.html?showOnly=managers"
-            url="#">Managers only</link>
-        </listitem>
-      </bulletlist><!--memberlist-->
       <bulletlist class="contacts">
-        <tal:block tal:repeat="userobj here/Scripts/get/all_group_members">
+        <tal:block tal:repeat="userobj context/Scripts/get/all_group_members">
           <listitem>
             <xf:select appearance="full" model="manage_many_members"
               ref="member_ids">

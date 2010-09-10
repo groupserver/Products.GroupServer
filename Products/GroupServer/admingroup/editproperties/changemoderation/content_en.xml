@@ -6,7 +6,8 @@
   <output>
     <content
       tal:define="group_object here/Scripts/get/group_object; 
-        group_members here/Scripts/get/group_members;
+        group_members context/Scripts/get/group_members;
+        member_count context/Scripts/get/group_member_count;
         groupType python:group_object.getProperty('group_template');
         isGroupDiscussion python:groupType == 'standard';
         moderated python:here.Scripts.get.list_property(group_object.getId(), 'moderated', False)"
@@ -20,12 +21,14 @@
       <paragraph>This page is used to toggle moderation for
         <span class="group"
           tal:content="group_object/title_or_id"/>.
-        See the 
-        <link url="../managemembers">manage members</link>
-        page to specify the members of 
-        <span class="group"
-          tal:content="group_object/title_or_id"/> that
-        are moderated, and who the moderator is.
+        <span tal:condition="python:member_count &lt;= 127">
+		  See the 
+		  <link url="#"
+		  	tal:attributes="url string:/groups/${group_object/getId}/managemembers.html">Manage Members</link>
+		  page to specify the members of 
+		  <span class="group"
+		    tal:content="group_object/title_or_id"/> that
+		  are moderated, and who the moderator is.</span>
       </paragraph>
 
       <fieldset>
