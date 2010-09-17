@@ -334,8 +334,11 @@ def init_group ( container, admin_email, user_email, zope_admin_id ):
 def init_vhm( canonicalHost, container ):
     vhm = getattr(container, 'virtual_hosting')
     sitePath = '/'.join(container.getPhysicalPath())[1:]
-    mapText = '%s/%s/Content/example_site' % \
+    newMap = '%s/%s/Content/example_site' % \
       (canonicalHost, sitePath)
+    lines = list(vhm.lines)
+    lines.append(newMap)
+    mapText = '\n'.join(lines)
     vhm.set_map(mapText, None)
 
 def create_group( site, zope_admin_id ):
