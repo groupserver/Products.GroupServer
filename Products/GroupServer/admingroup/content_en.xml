@@ -41,9 +41,9 @@
           Normally, you could add members to the group, but
           <span tal:content="python:joinable[1][1].lower()"/>
         </li>
-        <li tal:condition="python:member_count &lt;= 127" href="../managemembers.html">
+        <li tal:condition="python:member_count &lt;= 100" href="../managemembers.html">
           <strong>Manage the group members</strong>
-		  <ul>
+		      <ul>
             <li tal:condition="isGroupModerated" href="../managemembers.html?showOnly=moderated">
               Manage the moderated members
             </li>
@@ -60,8 +60,24 @@
               Manage the managers</li>
           </ul>
         </li>
-        <li tal:condition="python:member_count &gt; 127" href="manage_many_members">
+        <li tal:condition="python:member_count &gt; 100" href="manage_many_members">
           <strong>Manage the many group members</strong>
+          <ul>
+            <li tal:condition="isGroupModerated" href="../managemembers.html?showOnly=moderated">
+              Manage the moderated members
+            </li>
+            <li href="../managemembers.html?showOnly=unverified">
+              Manage the members with no verified email addresses
+            </li>
+            <li href="../managemembers.html?showOnly=invited">
+              Manage the invited members
+            </li>
+            <li tal:condition="isGroupAnnouncement" href="../managemembers.html?showOnly=posting">
+              Manage the posting members
+            </li>
+            <li href="../managemembers.html?showOnly=managers">
+              Manage the managers</li>
+          </ul>
         </li>
         <li tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group) and groupType != 'support'"
           href="editproperties">Edit group <strong>properties</strong>
