@@ -37,12 +37,8 @@ if templateId == 'standard':
     container.create.members_area(group)
     container.create.chat(group)
 
-canonicalHost = getOption(site, 'canonicalHost', 'onlinegroups.net')
-if ('onlinegroups.net' in canonicalHost):
-    mailHost = 'onlinegroups.net'
-else:
-    mailHost = canonicalHost
-groupList = container.create.list_instance(group, mailHost, siteId, privacy)
+emailDomain = getOption(site, 'emailDomain', '')
+groupList = container.create.list_instance(group, emailDomain, siteId, privacy)
 container.create.default_administrator(group)
 
 # Set the permissions for the group.
