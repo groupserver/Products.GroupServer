@@ -7,6 +7,7 @@
 ##parameters=
 ##title=
 ##
+raise NotImplementedError('Why are you calling this method?')
 from Products.XWFCore.XWFUtils import assign_ownership
 from Products.PythonScripts.standard import html_quote
 
