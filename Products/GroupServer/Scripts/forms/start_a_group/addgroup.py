@@ -38,6 +38,7 @@ if templateId == 'standard':
     container.create.chat(group)
 
 emailDomain = getOption(site, 'emailDomain', '')
+assert emailDomain, 'No emailDomain'
 groupList = container.create.list_instance(group, emailDomain, siteId, privacy)
 container.create.default_administrator(group)
 

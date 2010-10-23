@@ -174,7 +174,7 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
         site_config.manage_changeProperties(canonicalPort=canonicalPort)
 
 def init_global_configuration( groupserver_site, siteName, supportEmail,
-                                timezone):
+                                timezone, canonicalHost):
     cp = groupserver_site.manage_addProduct['CustomProperties']
     cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
     gc = getattr(groupserver_site, 'GlobalConfiguration')
@@ -182,6 +182,7 @@ def init_global_configuration( groupserver_site, siteName, supportEmail,
     gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
     gc.manage_addProperty('supportEmail', supportEmail, 'string')
     gc.manage_addProperty('timezone', timezone, 'string')
+    gc.manage_addProperty('emailDomain', canonicalHost, 'string')
     
 def init_fs_presentation( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
@@ -283,6 +284,7 @@ def init_smtp_host( container, smtp_host, smtp_port, smtp_user, smtp_password):
         smtp_pwd=smtp_password, REQUEST=None)
     
     listManager = getattr(container.site_root(), 'ListManager')
+    listManager.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
     listMailHost = getattr(listManager, mailHostId)
     listMailHost.manage_makeChanges(
         title='Mail List SMTP Settings',
@@ -441,7 +443,8 @@ def manage_addGroupserverSite( container, id, title,
     init_fs_scripts( gss )
     transaction.commit()
 
-    init_global_configuration( gss, title, support_email, timezone )
+    init_global_configuration( gss, title, support_email, 
+                               timezone, canonicalHost )
     transaction.commit()
 
     init_group( gss, admin_email, user_email, zope_admin_id )
