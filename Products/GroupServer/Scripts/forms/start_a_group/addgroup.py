@@ -69,6 +69,9 @@ group.messages.manage_permission('View', msgVisibility)
 group.messages.manage_permission('Access contents information', msgVisibility)
 group.files.manage_permission('View', msgVisibility) # Files follow message settings
 group.files.manage_permission('Access contents information', msgVisibility)
+if hasattr(group, 'members'):
+    group.members.manage_permission('View', msgVisibility) # Mship follows message settings
+    group.members.manage_permission('Access contents information', msgVisibility)
 
 # Set the administration interface to site and group admins only
 adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']
