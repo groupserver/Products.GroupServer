@@ -27,11 +27,11 @@ site_root = context.site_root()
 assert not(hasattr(groups.aq_explicit, groupId)), \
   'Group "%s" exists' % groupId
 # Check the template
-assert(hasattr(site_root.Templates.groups, templateId)), \
-  'Template "%s" not found in "Templates/groups"' % templateId
-templatedir = getattr(site_root.Templates.groups, templateId)
-assert(hasattr(templatedir, 'home')), \
-  'No "home" in "Templates/groups/%s"' % templateId
+#assert(hasattr(site_root.Templates.groups, templateId)), \
+#  'Template "%s" not found in "Templates/groups"' % templateId
+#templatedir = getattr(site_root.Templates.groups, templateId)
+#assert(hasattr(templatedir, 'home')), \
+#  'No "home" in "Templates/groups/%s"' % templateId
 
 # Create the group folder
 groups.manage_addFolder(groupId)
