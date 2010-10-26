@@ -344,16 +344,17 @@ def init_vhm( canonicalHost, container ):
     vhm.set_map(mapText, None)
 
 def create_group( site, zope_admin_id ):
+    # TODO: use the gs.group.start code.
     groups = getattr(site, 'groups')
     group = site.Scripts.forms.start_a_group.create.group_folder(groups,
                 'example_group', 'Example Group', 'example people', 
                 'standard')
     assert group, 'No group found'
-    site.Scripts.forms.start_a_group.create.group_index(group)
-    site.Scripts.forms.start_a_group.create.javascript(group)
+    # site.Scripts.forms.start_a_group.create.group_index(group)
+    # site.Scripts.forms.start_a_group.create.javascript(group)
     site.Scripts.forms.start_a_group.create.files_area(group)
     site.Scripts.forms.start_a_group.create.messages_area(group)
-    site.Scripts.forms.start_a_group.create.charter(group, 'standard')
+    # site.Scripts.forms.start_a_group.create.charter(group, 'standard')
     site.Scripts.forms.start_a_group.create.email_settings(group)
     site.Scripts.forms.start_a_group.create.administration(group)
     site.Scripts.forms.start_a_group.create.members_area(group)
