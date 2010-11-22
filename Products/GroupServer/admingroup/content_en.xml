@@ -82,8 +82,8 @@
         <li tal:condition="python:'DivisionAdmin' in user.getRolesInContext(group) and groupType != 'support'"
           href="editproperties">Edit group <strong>properties</strong>
           <ul>
-            <li href="editproperties/generalproperties">
-              Edit the <strong>general</strong> group properties
+            <li href="../changeproperties.html">
+              Change the group properties
             </li>
             <li href="#"
                 tal:attributes="href string:/groups/${group/getId}/admin_change_basic_privacy.html">Change
