@@ -111,7 +111,7 @@ def create_user(groupserver_site, email, fn, password):
     user = create_user_from_email(groupserver_site, email)
     user.manage_changeProperties(fn=fn)
     pu = IGSPasswordUser(user)
-    pu.set_password(password, updateCookies=False)
+    pu.set_password(password)
     try:
         vid = 'AssumedTrue%s' % email.replace('@', 'at')
         user.add_emailAddressVerification(vid, email)
