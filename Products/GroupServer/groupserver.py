@@ -7,9 +7,12 @@ from OFS.OrderedFolder import OrderedFolder
 from App.config import getConfiguration
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest, \
-    rfc822_date, assign_ownership
+    rfc822_date, assign_ownership, getOption
 from Products.GSProfile.utils import create_user_from_email
-from Products.GSGroupMember.groupmembership import join_group
+from Products.CustomUserFolder.interfaces import IGSUserInfo
+from gs.profile.password.interfaces import IGSPasswordUser
+from gs.group.start.groupcreator import MoiraeForGroup
+from gs.group.member.join.interfaces import IGSJoiningUser
 from interfaces import IGroupserverSite
 
 import logging
@@ -107,7 +110,8 @@ class GroupserverSite( OrderedFolder ):
 def create_user(groupserver_site, email, fn, password):
     user = create_user_from_email(groupserver_site, email)
     user.manage_changeProperties(fn=fn)
-    user.set_password(password, updateCookies=False)
+    pu = IGSPasswordUser(user)
+    pu.set_password(password, updateCookies=False)
     try:
         vid = 'AssumedTrue%s' % email.replace('@', 'at')
         user.add_emailAddressVerification(vid, email)
@@ -319,19 +323,23 @@ def import_content( container ):
     assert hasattr(site.aq_explicit, 'help')
     getattr(site, 'help').manage_changeProperties(title='Help')
 
-def init_group ( container, admin_email, user_email, zope_admin_id ):
+def init_group ( container, admin_email, user_email, emailDomain ):
+    acl_users = container.site_root().acl_users
+    assert acl_users
     site = getattr(container.Content, 'example_site')
     assert site, 'No example_site found' 
-    groupInfo = create_group(site, zope_admin_id)
-
-    acl_users = container.site_root().acl_users
+    siteInfo = createObject('groupserver.SiteInfo', site)
     
+    starter = MoiraeForGroup(siteInfo)
+    groupId = 'example_group'
     admin = acl_users.get_userByEmail(admin_email)
-    join_group(admin, groupInfo)
-    groupInfo.groupObj.manage_addLocalRoles(admin.getId(), ['GroupAdmin'])
-
+    adminInfo = IGSUserInfo(admin)
+    groupInfo = starter.create('Example Group', groupId, 'public', 
+                                '%s@%s' % (groupId, emailDomain), 
+                                adminInfo)
     user = acl_users.get_userByEmail(user_email)
-    join_group(user, groupInfo)
+    ju = IGSJoiningUser(user)
+    ju.join(groupInfo)
 
 def init_vhm( canonicalHost, container ):
     vhm = getattr(container, 'virtual_hosting')
@@ -342,64 +350,6 @@ def init_vhm( canonicalHost, container ):
     lines.append(newMap)
     mapText = '\n'.join(lines)
     vhm.set_map(mapText, None)
-
-def create_group( site, zope_admin_id ):
-    # TODO: use the gs.group.start code.
-    groups = getattr(site, 'groups')
-    group = site.Scripts.forms.start_a_group.create.group_folder(groups,
-                'example_group', 'Example Group', 'example people', 
-                'standard')
-    assert group, 'No group found'
-    # site.Scripts.forms.start_a_group.create.group_index(group)
-    # site.Scripts.forms.start_a_group.create.javascript(group)
-    site.Scripts.forms.start_a_group.create.files_area(group)
-    site.Scripts.forms.start_a_group.create.messages_area(group)
-    # site.Scripts.forms.start_a_group.create.charter(group, 'standard')
-    site.Scripts.forms.start_a_group.create.email_settings(group)
-    site.Scripts.forms.start_a_group.create.administration(group)
-    site.Scripts.forms.start_a_group.create.members_area(group)
-    site.Scripts.forms.start_a_group.create.chat(group)
-
-    canonicalHost = site.DivisionConfiguration.getProperty('canonicalHost')
-    mailHost = canonicalHost
-    groupList = site.Scripts.forms.start_a_group.create.list_instance(group, 
-                    mailHost, site.getId(), 'public')
-    assert groupList, 'No groupList found'
-
-    # Set the permissions for the group.
-    joinCondition = 'anyone'
-    userGroups = ['Anonymous', 'Authenticated', 'DivisionMember',
-                  'DivisionAdmin', 'GroupAdmin','GroupMember','Manager',
-                  'Owner']
-    group.manage_changeProperties(join_condition=joinCondition)
-    group.manage_permission('View', userGroups)
-    group.manage_permission('Access contents information', userGroups)
-
-    # Set the messages and files to default, following the group.
-    group.files.manage_permission('View', [], 1)
-    group.files.manage_permission('Access contents information', [], 1)
-    group.messages.manage_permission('View', [], 1)
-    group.messages.manage_permission('Access contents information', [], 1)
-
-    # Set the administration interface to site and group admins only
-    adminGroups = ['DivisionAdmin', 'GroupAdmin', 'Manager', 'Owner']
-    group.admingroup.manage_permission('View', adminGroups)
-    group.admingroup.manage_permission('Access contents information', adminGroups)
-
-    # Add the start date to the group
-    curr_time = datetime.datetime.now()
-    group.manage_addProperty('date_open', curr_time.strftime('%d %B %Y'), 'string')
-
-    # --=rrw=--
-    #   The group needs to be 'owned' by a top level user, since the
-    #   Scripts are above the context of the site, and some of them
-    #   require Manager level proxy access. Yes, this is darker magic
-    #   than we'd like. Any suggestions welcome.
-    assign_ownership(group, zope_admin_id, 1, '/acl_users')
-    assign_ownership(groupList, zope_admin_id, 1, '/acl_users')
-
-    groupInfo = createObject('groupserver.GroupInfo', group)
-    return groupInfo
 
 def manage_addGroupserverSite( container, id, title,
         admin_email, admin_password, user_email, user_password,
@@ -448,7 +398,7 @@ def manage_addGroupserverSite( container, id, title,
                                timezone, canonicalHost )
     transaction.commit()
 
-    init_group( gss, admin_email, user_email, zope_admin_id )
+    init_group( gss, admin_email, user_email, canonicalHost )
     transaction.commit()
 
     init_vhm( canonicalHost, gss )
