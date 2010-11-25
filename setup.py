@@ -33,7 +33,7 @@ setup(name='Products.GroupServer',
     install_requires=[
         'setuptools',
         'Products.CustomUserFolder',
-        'Products.XWFCore.XWFUtils',
+        'Products.XWFCore',
         'gs.profile.password',
         'gs.group.member.join',
         # -*- Extra requirements: -*-
