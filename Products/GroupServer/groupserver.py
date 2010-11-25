@@ -10,8 +10,8 @@ from Products.XWFCore.XWFUtils import createRequestFromRequest, \
     rfc822_date, assign_ownership, getOption
 from Products.GSProfile.utils import create_user_from_email
 from Products.CustomUserFolder.interfaces import IGSUserInfo
-from gs.profile.password.interfaces import IGSPasswordUser
-from gs.group.member.join.interfaces import IGSJoiningUser
+from gs.profile.password.passworduser import PasswordUser
+from gs.group.member.join.joininguser import JoiningUser
 from gs.group.start.groupcreator import MoiraeForGroup
 from interfaces import IGroupserverSite
 
@@ -111,7 +111,7 @@ def create_user(groupserver_site, email, fn, password):
     user = create_user_from_email(groupserver_site, email)
     user.manage_changeProperties(fn=fn)
     ui = IGSUserInfo(user)
-    pu = IGSPasswordUser(ui)
+    pu = PasswordUser(ui)
     pu.set_password(password)
     try:
         vid = 'AssumedTrue%s' % email.replace('@', 'at')
@@ -339,7 +339,8 @@ def init_group ( container, admin_email, user_email, emailDomain ):
                                 '%s@%s' % (groupId, emailDomain), 
                                 adminInfo)
     user = acl_users.get_userByEmail(user_email)
-    ju = IGSJoiningUser(user)
+    ui = IGSUserInfo(user)
+    ju = JoiningUser(ui)
     ju.join(groupInfo)
 
 def init_vhm( canonicalHost, container ):
