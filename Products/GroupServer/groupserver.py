@@ -11,8 +11,8 @@ from Products.XWFCore.XWFUtils import createRequestFromRequest, \
 from Products.GSProfile.utils import create_user_from_email
 from Products.CustomUserFolder.interfaces import IGSUserInfo
 from gs.profile.password.interfaces import IGSPasswordUser
-from gs.group.start.groupcreator import MoiraeForGroup
 from gs.group.member.join.interfaces import IGSJoiningUser
+from gs.group.start.groupcreator import MoiraeForGroup
 from interfaces import IGroupserverSite
 
 import logging
@@ -110,7 +110,8 @@ class GroupserverSite( OrderedFolder ):
 def create_user(groupserver_site, email, fn, password):
     user = create_user_from_email(groupserver_site, email)
     user.manage_changeProperties(fn=fn)
-    pu = IGSPasswordUser(user)
+    ui = IGSUserInfo(user)
+    pu = IGSPasswordUser(ui)
     pu.set_password(password)
     try:
         vid = 'AssumedTrue%s' % email.replace('@', 'at')
