@@ -107,10 +107,11 @@ class GroupserverSite( OrderedFolder ):
         
         raise
 
-def create_user(groupserver_site, email, fn, password):
-    user = create_user_from_email(groupserver_site, email)
+def create_user(site, email, fn, password):
+    user = create_user_from_email(site, email)
     user.manage_changeProperties(fn=fn)
-    ui = IGSUserInfo(user)
+    # We want the userInfo in the context of the site
+    ui = createObject('groupserver.UserFromId', site, user.getId())
     pu = PasswordUser(ui)
     pu.set_password(password)
     try:
@@ -146,18 +147,10 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
                                      unauth_page='Content/login.html',
                                      logout_page='Content/logout.html' )
     
-    # Create the default members of the site.    
+    # Create the user-group for the site.
     egSiteMember = 'example_site_member'
     acl = getattr( groupserver_site, 'acl_users' )
     acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
-    # The admin.
-    admin = create_user(groupserver_site, admin_email, 
-                u'GroupServer Administrator', admin_password)
-    acl.addGroupsToUser([egSiteMember], admin.getId())
-    # The normal user
-    user = create_user(groupserver_site, user_email, u'GroupServer User',
-                    user_password)
-    acl.addGroupsToUser([egSiteMember], user.getId())
 
     # --=mpj17=-- The example_site is created as a side-effect of
     # importing the content of the GroupServer instance (see the
@@ -167,8 +160,8 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
     # the problem I am documenting it: configure the example site here.
     # *sigh*.
     example_site = getattr(groupserver_site.Content, 'example_site')
-    example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
     example_site.manage_addLocalGroupRoles(egSiteMember, ('DivisionMember',))
+    # Ok, now we are configuring the site. *sigh*
     site_config = getattr(groupserver_site.Content.example_site,
                     'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonicalHost)
@@ -177,6 +170,14 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
                                         'string')
     else:
         site_config.manage_changeProperties(canonicalPort=canonicalPort)
+
+    # The admin.
+    admin = create_user(example_site, admin_email, 
+                u'GroupServer Administrator', admin_password)
+    example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
+    # The normal user
+    user = create_user(example_site, user_email, u'GroupServer User',
+                    user_password)
 
 def init_global_configuration( groupserver_site, siteName, supportEmail,
                                 timezone, canonicalHost):
