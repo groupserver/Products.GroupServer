@@ -334,13 +334,19 @@ def init_group ( container, admin_email, user_email, emailDomain ):
     
     starter = MoiraeForGroup(siteInfo)
     groupId = 'example_group'
+    # We want the userInfo in the context of the site
     admin = acl_users.get_userByEmail(admin_email)
-    adminInfo = IGSUserInfo(admin)
+    adminInfo = createObject('groupserver.UserFromId', site, admin.getId())
     groupInfo = starter.create('Example Group', groupId, 'public', 
                                 '%s@%s' % (groupId, emailDomain), 
                                 adminInfo)
+    ju = JoiningUser(adminInfo)
+    ju.join(groupInfo)
+
+    # Join the normal user to the group.
     user = acl_users.get_userByEmail(user_email)
-    ui = IGSUserInfo(user)
+    # We want the userInfo in the context of the site
+    ui = createObject('groupserver.UserFromId', site, user.getId())
     ju = JoiningUser(ui)
     ju.join(groupInfo)
 
