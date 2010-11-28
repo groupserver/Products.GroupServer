@@ -10,9 +10,8 @@
         <span class="site" tal:content="site/title_or_id"/>, you
         can carry out the following administration tasks.
       </paragraph>
-      <bulletlist 
-        tal:define="isChargable python:site.getProperty('isChargable', False)">
-        <listitem><link url="start_a_group">Start a 
+      <bulletlist>
+        <listitem><link url="/startgroup.html">Start a 
           <bold>group</bold></link></listitem>
         <listitem><link url="/admin_changeintro.html">Change the site
           <bold>introduction text</bold></link></listitem>
@@ -20,13 +19,6 @@
             of the site</link></listitem>
         <listitem><link url="set_site_timezone">Set the <bold>timezone</bold>
             for the site</link></listitem>
-        <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
-          <link url="/siteshop">Alter the site <bold>subscription</bold></link>
-        </listitem>
-        <listitem tal:condition="python:isChargable and hasattr(site, 'siteshop')">
-          <link url="/siteshop/current_charges">View the
-            <bold>current charges</bold></link>
-        </listitem>
       </bulletlist> 
       
       <heading2>Group Administration</heading2>
