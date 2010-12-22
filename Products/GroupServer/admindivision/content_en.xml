@@ -17,6 +17,8 @@
           <bold>introduction text</bold></link></listitem>
         <listitem><link url="change_name">Change the <bold>name</bold> 
             of the site</link></listitem>
+        <listitem><link url="/change_greeting.html">Change the site 
+            <bold>greeting</bold></link></listitem>
         <listitem><link url="set_site_timezone">Set the <bold>timezone</bold>
             for the site</link></listitem>
       </bulletlist> 
