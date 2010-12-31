@@ -7,9 +7,9 @@ from OFS.OrderedFolder import OrderedFolder
 from App.config import getConfiguration
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.XWFCore.XWFUtils import createRequestFromRequest, \
-    rfc822_date, assign_ownership, getOption
+    rfc822_date
 from Products.GSProfile.utils import create_user_from_email
-from Products.CustomUserFolder.interfaces import IGSUserInfo
+from gs.profile.email.verify.emailverificationuser import EmailVerificationUser
 from gs.profile.password.passworduser import PasswordUser
 from gs.group.member.join.joininguser import JoiningUser
 from gs.group.start.groupcreator import MoiraeForGroup
@@ -116,8 +116,9 @@ def create_user(site, email, fn, password):
     pu.set_password(password)
     try:
         vid = 'AssumedTrue%s' % email.replace('@', 'at')
-        user.add_emailAddressVerification(vid, email)
-        user.verify_emailAddress(vid)
+        evu = EmailVerificationUser(site, ui, email)
+        evu.add_verification_id(vid)
+        evu.verify_email(vid)
         m = 'init_user_folder: Verified the address <%s> for %s (%s).' %\
             (email, fn, user.getId())
         log.info(m)
