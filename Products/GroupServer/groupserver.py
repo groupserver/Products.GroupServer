@@ -1,4 +1,5 @@
 # coding=utf-8
+from traceback import format_exc
 import transaction, datetime, urlparse, pathutil, os.path
 from urllib import quote
 from zope.interface import implements
@@ -103,9 +104,12 @@ class GroupserverSite( OrderedFolder ):
         elif kw['error_type'] in ('Forbidden',):
             pass
         else:
-            request.RESPONSE.redirect('unknown_error.html', lock=1)
-        
-        raise
+            URL = request.get('URL','')
+            q = quote(URL)
+            m = quote(format_exc())
+            uri = '/new_unexpected_error.html?q=%s&m=%s' % (q, m)
+            request.RESPONSE.redirect(uri, lock=1)
+        raise # Propogate the error up.
 
 def create_user(site, email, fn, password):
     user = create_user_from_email(site, email)
