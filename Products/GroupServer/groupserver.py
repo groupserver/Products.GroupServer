@@ -106,7 +106,9 @@ class GroupserverSite( OrderedFolder ):
         else:
             URL = request.get('URL','')
             q = quote(URL)
-            m = quote(format_exc())
+            e = format_exc()
+            t = ((len(e) > 1536) and (e[:256] +'\nsnip...\n'+e[-1024:])) or e
+            m = quote(t)
             uri = '/new_unexpected_error.html?q=%s&m=%s' % (q, m)
             request.RESPONSE.redirect(uri, lock=1)
         raise # Propogate the error up.
