@@ -106,7 +106,15 @@ class GroupserverSite( OrderedFolder ):
         else:
             URL = request.get('URL','')
             q = quote(URL)
-            e = format_exc()
+            formatedError = format_exc()
+            eggs = 'eggs/'
+            e = ''
+            for line in formatedError.split('\n'):
+                if eggs in line:
+                    e += '  %s' % line.split(eggs)[1]
+                else:
+                    e += line
+                e += '\n'
             t = ((len(e) > 1536) and (e[:256] +'\nsnip...\n'+e[-1024:])) or e
             m = quote(t)
             uri = '/new_unexpected_error.html?q=%s&m=%s' % (q, m)
