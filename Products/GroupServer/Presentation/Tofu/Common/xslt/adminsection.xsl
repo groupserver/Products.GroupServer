@@ -106,24 +106,22 @@
 
   </div>
   <!-- Top Area Ends -->
+  <!-- Main Content Area Starts -->
   <div id="bodyblock">
-    <!-- Contextual Navigation Starts -->
-    <xsl:apply-templates select="output/menus/menu[@id='side']" />
-    <!-- Contextual Navigation Ends -->
 
-    <!-- Main Content Area Starts -->
-    <div id="content">
     <!-- Present any messages from the system -->
     <xsl:if test="//output/messages/message">
       <xsl:call-template name="result-messages" />
     </xsl:if>
     <!-- Messages End -->
 
-    <!-- Body Content Starts -->
-    <xsl:apply-templates select="output/content" />
-    <!-- Body Content Ends -->
-    </div><!--content-->
-  </div><!-- bodyblock -->
+    <div id="divisionHomeContent">
+      <!-- Body Content Starts -->
+      <xsl:apply-templates select="output/content" />
+      <!-- Body Content Ends -->
+    </div><!-- Main Content Area Ends -->
+
+  </div><!-- Main Content Area Ends -->
 
   <xsl:apply-templates select="output/menus/menu[@id='footerlinks']"/>
 
