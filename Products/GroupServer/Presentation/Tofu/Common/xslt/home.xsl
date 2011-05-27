@@ -11,7 +11,7 @@
 	<title>ABEL eCampus</title>
 	<meta http-equiv="Content-Type" content="text/html" />
 	<link rel="stylesheet"
-		href="/Presentation/Tofu/Common/css/globalstyle.css" />
+		href="/++resource++globalstyle-20110406.css" />
         <link rel="stylesheet" media="print"
 		href="/Presentation/Tofu/Common/css/print.css" />
         <base href="{//output/metadata/base/@href}" />

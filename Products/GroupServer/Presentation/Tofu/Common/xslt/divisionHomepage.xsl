@@ -38,9 +38,9 @@
       </xsl:if>
     </title>
     <link rel="stylesheet" type="text/css"
-      href="/++resource++globalstyle-20110308.css" />
+      href="/++resource++globalstyle-20110406.css" />
     <link rel="stylesheet" type="text/css" 
-      href="/++resource++site-20110308.css" />
+      href="/++resource++site-20110406.css" />
 
     <script type="text/javascript"
       src="/Presentation/Tofu/XForms/js/xforms.js">
