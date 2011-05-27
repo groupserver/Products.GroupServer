@@ -353,8 +353,7 @@ def init_group ( container, admin_email, user_email, emailDomain ):
     admin = acl_users.get_userByEmail(admin_email)
     adminInfo = createObject('groupserver.UserFromId', site, admin.getId())
     groupInfo = starter.create('Example Group', groupId, 'public', 
-                                '%s@%s' % (groupId, emailDomain), 
-                                adminInfo)
+                                emailDomain, adminInfo)
     ju = JoiningUser(adminInfo)
     ju.join(groupInfo)
 
