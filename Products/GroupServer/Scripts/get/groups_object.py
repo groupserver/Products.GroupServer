@@ -7,6 +7,8 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.groups.base instead.")
 try:
     division_object = context.Scripts.get.division_object()
     groups_object = division_object.groups

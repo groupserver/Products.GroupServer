@@ -9,6 +9,8 @@
 ##
 # Basically a wrapped version of OFS.objectValues -- only
 # return objects we are actually allowed to see
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use OFS.objectValues instead.")
 objects = []
 if not ocontainer:
     return objects

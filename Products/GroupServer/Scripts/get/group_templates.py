@@ -7,6 +7,8 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.home instead.")
 site_root = context.site_root()
 
 templates = site_root.Templates.groups

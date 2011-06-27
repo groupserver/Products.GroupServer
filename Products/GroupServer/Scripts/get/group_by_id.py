@@ -11,6 +11,9 @@
 # This is a Manager level script, designed to be run with elevated
 # priviledges. Do not allow to be run as a non-Manager user.
 #
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroup.groupInfo instead.")
+
 divisions = context.Scripts.get_unrestricted_division_objects()
 group = None
 for division in divisions:

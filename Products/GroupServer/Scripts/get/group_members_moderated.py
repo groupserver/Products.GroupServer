@@ -7,6 +7,8 @@
 ##parameters=ids_only=False
 ##title=Get Moderated Group Members
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroupMember instead?")
 
 def sorter(a,b):
     if a.getProperty('lastName') > b.getProperty('lastName'):

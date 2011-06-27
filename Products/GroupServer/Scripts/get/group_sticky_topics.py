@@ -7,6 +7,8 @@
 ##parameters=
 ##title=Get the Sticky Topics for the Group
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.messages.topic instead.")
 group = context.Scripts.get.group_object()
 assert group
 assert group.messages

@@ -7,6 +7,8 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSContent.siteInfo instead.")
 
 # try to get the division object directly, without traversal
 division_object = context.restrictedTraverse(

@@ -7,6 +7,8 @@
 ##parameters=
 ##title=All members of a group, including unverified
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Products.GSGroupMember.groupmembership instead.")
 from Products.GSGroupMember.groupmembership import get_group_users
 
 def sorter(a,b):

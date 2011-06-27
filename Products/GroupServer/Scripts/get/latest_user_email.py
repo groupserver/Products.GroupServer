@@ -7,6 +7,8 @@
 ##parameters=user_id, limit=15
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSSearch instead.")
 groups_object = context.get.groups_object()
 if not groups_object:
     return []

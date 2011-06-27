@@ -7,6 +7,8 @@
 ##parameters=siteId
 ##title=Get Support Email
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.XWFCore.XWFUtils.get_support_email instead.")
 
 site_root = context.site_root()
 site = getattr(site_root.Content, siteId, None)

@@ -7,6 +7,8 @@
 ##parameters=user_id
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSProfile instead.")
 site_root = context.site_root()
 
 user = site_root.acl_users.getUser(user_id)

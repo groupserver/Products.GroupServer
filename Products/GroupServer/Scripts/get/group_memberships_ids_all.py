@@ -7,6 +7,8 @@
 ##parameters=division_objects, gtype, user_id=None
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroupMember instead.")
 group_title_ids = []
 group_ids = []
 for division_object in division_objects:

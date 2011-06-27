@@ -7,6 +7,8 @@
 ##parameters=division_id=None, group_id=None
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.member.join instead.")
 if not division_id:
     group_object = context.Scripts.get.group_object()
 elif division_id and group_id:

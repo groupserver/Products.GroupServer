@@ -7,6 +7,8 @@
 ##parameters=
 ##title=Get Unverified Members
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.member.invite instead.")
 from Products.GSGroupMember.groupmembership import get_unverified_group_users
 
 group_object = context.Scripts.get.group_object()

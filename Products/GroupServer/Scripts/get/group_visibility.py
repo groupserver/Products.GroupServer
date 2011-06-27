@@ -7,6 +7,8 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.privacy instead.")
 group_object = context.Scripts.get.group_object()
 
 view_roles = filter(None, map(lambda x: x['selected'] and x['name'] or None, group_object.rolesOfPermission('View')))

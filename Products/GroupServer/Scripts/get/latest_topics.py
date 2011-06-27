@@ -7,6 +7,8 @@
 ##parameters=limit=12
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.messages.topic instead.")
 division_object = context.get.division_object()
 
 def sorter(x, y):

@@ -7,6 +7,8 @@
 ##parameters=group_object=None
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroupMember instead.")
 users = []
 site_object = context.site_root()
 group_object = group_object or context.Scripts.get.group_object()

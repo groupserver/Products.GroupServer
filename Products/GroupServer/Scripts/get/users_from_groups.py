@@ -7,6 +7,8 @@
 ##parameters=group_ids=[], exclude_groups=['facilitator','abel_member','ecampus_staff', 'enabel_member']
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroupMember instead.")
 site_root = context.site_root()
 
 def sorter(a,b):

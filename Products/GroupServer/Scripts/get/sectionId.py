@@ -7,4 +7,7 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use something sane instead.")
 return getattr(context, 'section_id', 'home')
+

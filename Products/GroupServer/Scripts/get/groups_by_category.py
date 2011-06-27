@@ -1,6 +1,8 @@
 # groups_by_category
 #  All the groups have a custom field, "Category" - and I want to sort them
 #  by that, to make output pages easier to read
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.groups instead.")
 
 groupdict = {}
 for group in groups:

@@ -7,8 +7,10 @@
 ##parameters=
 ##title=
 ##
-REQUEST = context.REQUEST
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Remove all traces of 'Documents'.")
 
+REQUEST = context.REQUEST
 user = REQUEST.AUTHENTICATED_USER
 
 documents_object = getattr(user, 'Documents', None) or getattr(user, 'documents', None)

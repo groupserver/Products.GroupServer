@@ -7,6 +7,8 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroupMember instead.")
 
 def sorter(a,b):
    if a ==None or b == None:

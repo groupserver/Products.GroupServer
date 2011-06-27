@@ -12,6 +12,8 @@
 # Now the behaviour is to lways return preferred name, so this parameter
 # exists, but defaults to 1, and is meaningless :)
 #
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSProfile.userInfo instead.")
 site_root = context.site_root()
 
 try:

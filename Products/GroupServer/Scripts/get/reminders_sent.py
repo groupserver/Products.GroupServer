@@ -7,6 +7,8 @@
 ##parameters=user_id
 ##title=Get the List of Reminders sent to the User
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.member.invite instead.")
 site_root = context.site_root()
 
 retval = []

@@ -7,6 +7,8 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Zope permissions instead.")
 group_object = context.Scripts.get.group_object()
 files_object = getattr(group_object, 'files', None)
 

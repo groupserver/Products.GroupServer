@@ -7,6 +7,8 @@
 ##parameters=limit=5
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use gs.group.messages.file instead.")
 site_root = context.site_root()
 
 def sorter(x, y):

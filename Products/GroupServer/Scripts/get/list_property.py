@@ -7,6 +7,8 @@
 ##parameters=group_id, group_property, default=None
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Products.GSGroup.mailinglistinfo instead.")
 site_root = context.site_root()
 listManager = site_root.objectValues('XWF Mailing List Manager')[0]
 group = listManager.get_list(group_id)
