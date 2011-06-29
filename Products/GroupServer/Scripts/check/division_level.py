@@ -7,6 +7,9 @@
 ##parameters=
 ##title=
 ##
+from Products.XWFCore.XWFUtils import deprecated
+deprecated(context, script, "Use Zope Five traversal instead.")
+
 request = container.REQUEST
 RESPONSE =  request.RESPONSE
 if getattr(context, 'supress_redirect', False):
