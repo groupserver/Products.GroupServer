@@ -19,6 +19,8 @@ from interfaces import IGroupserverSite
 import logging
 log = logging.getLogger('GroupServer Site')
 
+SITE_ID = 'initial_site'
+
 class GroupserverSite( OrderedFolder ):
     implements( IGroupserverSite )
     
@@ -163,22 +165,21 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
                                      logout_page='Content/logout.html' )
     
     # Create the user-group for the site.
-    egSiteMember = 'example_site_member'
+    egSiteMember = '%s_member' % SITE_ID
     acl = getattr( groupserver_site, 'acl_users' )
     acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
 
-    # --=mpj17=-- The example_site is created as a side-effect of
+    # --=mpj17=-- The initial site is created as a side-effect of
     # importing the content of the GroupServer instance (see the
     # ``init_content`` method, and the "big ugly hack" comment below).
     # This is bad in so many ways that it would take an essay to 
     # document them all. However, time is scarce, so rather than fix
     # the problem I am documenting it: configure the example site here.
     # *sigh*.
-    example_site = getattr(groupserver_site.Content, 'example_site')
+    example_site = getattr(groupserver_site.Content, SITE_ID)
     example_site.manage_addLocalGroupRoles(egSiteMember, ('DivisionMember',))
     # Ok, now we are configuring the site. *sigh*
-    site_config = getattr(groupserver_site.Content.example_site,
-                    'DivisionConfiguration')
+    site_config = getattr(example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonicalHost)
     if not(hasattr(site_config, 'canonicalPort')):
         site_config.manage_addProperty('canonicalPort', canonicalPort, 
@@ -322,8 +323,8 @@ def import_content( container ):
         container._importObjectFromFile( pathutil.get_import_path(
                                              object_to_import) )
 
-    site = getattr(container.Content, 'example_site')
-    assert site, 'No example_site found'
+    site = getattr(container.Content, SITE_ID)
+    assert site, 'No %s found' % SITE_ID
     fss = site.manage_addProduct['FileSystemSite']
     
     fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
@@ -333,8 +334,8 @@ def import_content( container ):
 def init_group ( container, admin_email, user_email, emailDomain ):
     acl_users = container.site_root().acl_users
     assert acl_users
-    site = getattr(container.Content, 'example_site')
-    assert site, 'No example_site found' 
+    site = getattr(container.Content, SITE_ID)
+    assert site, 'No %s found' % SITE_ID
     siteInfo = createObject('groupserver.SiteInfo', site)
     
     starter = MoiraeForGroup(siteInfo)
@@ -357,8 +358,8 @@ def init_group ( container, admin_email, user_email, emailDomain ):
 def init_vhm( canonicalHost, container ):
     vhm = getattr(container, 'virtual_hosting')
     sitePath = '/'.join(container.getPhysicalPath())[1:]
-    newMap = '%s/%s/Content/example_site' % \
-      (canonicalHost, sitePath)
+    newMap = '%s/%s/Content/%s' % \
+      (canonicalHost, sitePath, SITE_ID)
     lines = list(vhm.lines)
     lines.append(newMap)
     mapText = '\n'.join(lines)
@@ -425,3 +426,4 @@ def manage_addGroupserverSite( container, id, title,
 manage_addGroupserverSiteForm = PageTemplateFile( 
     'management/manage_addGroupserverSiteForm.zpt', 
     globals(), __name__='manage_addGroupserverSiteForm' )
+
