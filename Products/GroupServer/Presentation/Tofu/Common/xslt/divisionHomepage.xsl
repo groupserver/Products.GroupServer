@@ -20,7 +20,6 @@
   <xsl:include href="file://Presentation/Tofu/Common/xslt/news" />
   <xsl:include href="file://Presentation/Tofu/Common/xslt/contacts" />
   <xsl:include href="file://Presentation/Tofu/Common/xslt/layout" />
-  <xsl:include href="file://Presentation/Tofu/SiteSearch/xslt/results" />
   <xsl:include href="file://Presentation/Tofu/XForms/xslt/xforms" />
   
   <xsl:output method="xml" indent="yes" encoding="UTF8"
