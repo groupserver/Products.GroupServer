@@ -4,6 +4,7 @@ import transaction, datetime, urlparse, pathutil, os.path
 from urllib import quote
 from zope.interface import implements
 from zope.component import createObject
+from zExceptions import BadRequest
 from OFS.OrderedFolder import OrderedFolder
 from App.config import getConfiguration
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
@@ -19,7 +20,11 @@ from interfaces import IGroupserverSite
 import logging
 log = logging.getLogger('GroupServer Site')
 
-SITE_ID = 'initial_site'
+def mumble_exists_mumble(function, thing):
+    log.warning('%s: "%s" already exists.' % (function, thing))
+    log.warning('%s: Carrying on regardless.' % function)
+
+SITE_ID = 'initial_site' # FIX
 
 class GroupserverSite( OrderedFolder ):
     implements( IGroupserverSite )
@@ -148,17 +153,28 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
         user_email, user_password, support_email, canonicalHost, 
         canonicalPort ):
     btf = groupserver_site.manage_addProduct['BTreeFolder2']
-    btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
-    # --=mpj17=-- Do we need contactsimages? 
-    #       groupserver_site.manage_addFolder( 'contactsimages', 'People in the Site' )
+    try:
+        btf.manage_addBTreeFolder( 'contacts', 'Contacts' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_user_folder', 'contacts')
+    
     # The contacts folder stores the user-data.
     cuf = groupserver_site.manage_addProduct['CustomUserFolder']
-    cuf.manage_addCustomUserFolder( 'contacts' )
+    try:
+        cuf.manage_addCustomUserFolder( 'contacts' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_user_folder', 'acl_users')
+        
     contacts = getattr( groupserver_site, 'contacts' )
     contacts.manage_permission( 'Manage properties', ('Owner','Manager'), acquire=1 )
+
     # Cookie Crumbler logs people in
     cc = groupserver_site.manage_addProduct['CookieCrumbler']
-    cc.manage_addCC('cookie_authentication')
+    try:
+        cc.manage_addCC('cookie_authentication')
+    except BadRequest, br:
+        mumble_exists_mumble('init_user_folder', 'cookie_authentication')
+        
     cookies = getattr( groupserver_site, 'cookie_authentication' )
     cookies.manage_changeProperties( auto_login_page='Content/login.html',
                                      unauth_page='Content/login.html',
@@ -167,7 +183,11 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
     # Create the user-group for the site.
     egSiteMember = '%s_member' % SITE_ID
     acl = getattr( groupserver_site, 'acl_users' )
-    acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
+    try:
+        acl.userFolderAddGroup( egSiteMember, 'Membership of Example Site' )
+    except ValueError, ve:
+        u = 'User group %s' % egSiteMember
+        mumble_exists_mumble('init_user_folder',  u)
 
     # --=mpj17=-- The initial site is created as a side-effect of
     # importing the content of the GroupServer instance (see the
@@ -198,43 +218,84 @@ def init_user_folder( groupserver_site, admin_email, admin_password,
 def init_global_configuration( groupserver_site, siteName, supportEmail,
                                 timezone, canonicalHost):
     cp = groupserver_site.manage_addProduct['CustomProperties']
-    cp.manage_addCustomProperties( 'GlobalConfiguration', 'The global configuration for the Site' )
-    gc = getattr(groupserver_site, 'GlobalConfiguration')
-    gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
-    gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
-    gc.manage_addProperty('supportEmail', supportEmail, 'string')
-    gc.manage_addProperty('timezone', timezone, 'string')
-    gc.manage_addProperty('emailDomain', canonicalHost, 'string')
+    try:
+        cp.manage_addCustomProperties( 'GlobalConfiguration', 
+            'The global configuration for the Site' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_global_configuration', 'GlobalConfiguration')
+        log.warning('init_global_configuration: Not configuring "GlobalConfiguration"')
+    else:
+        gc = getattr(groupserver_site, 'GlobalConfiguration')
+        gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
+        gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
+        gc.manage_addProperty('supportEmail', supportEmail, 'string')
+        gc.manage_addProperty('timezone', timezone, 'string')
+        gc.manage_addProperty('emailDomain', canonicalHost, 'string')
     
 def init_fs_presentation( groupserver_site ):
+    # TODO: --mpj17=-- Drop Presentation
     fss = groupserver_site.manage_addProduct['FileSystemSite']
-    fss.manage_addDirectoryView( pathutil.get_groupserver_path('Presentation'), 'Presentation' )
-    groupserver_site.manage_addFolder('PresentationCustom', 'Site specific presentation customisation')
+    try:
+        fss.manage_addDirectoryView( pathutil.get_groupserver_path('Presentation'), 'Presentation' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_presentation', 'Presentation')
+        
+    try:
+        groupserver_site.manage_addFolder('PresentationCustom', 'Site specific presentation customisation')
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_presentation', 'PresentationCustom')
     pc = getattr(groupserver_site, 'PresentationCustom')
-    pc.manage_addFolder('Tofu', 'Choose Your Own Flavor')
+    try:
+        pc.manage_addFolder('Tofu', 'Choose Your Own Flavor')
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_presentation', 'Tofu')
     tofu = getattr(pc, 'Tofu')
-    tofu.manage_addFolder('Common', 'Common Style')
+    try:
+        tofu.manage_addFolder('Common', 'Common Style')
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_presentation', 'Common')
     common = getattr(tofu, 'Common')
-    common.manage_addFolder('css', 'Cascading Style Sheets')
+    try:
+        common.manage_addFolder('css', 'Cascading Style Sheets')
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_presentation', 'css')
     css = getattr(common, 'css')
-    css.manage_addDTMLMethod('globalstyle.css', 'Custom Stylesheet')
+    try:
+        css.manage_addDTMLMethod('globalstyle.css', 'Custom Stylesheet')
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_presentation', 'globalstyle.css')
     
 def init_fs_scripts( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
-    fss.manage_addDirectoryView( pathutil.get_groupserver_path('Scripts'), 'Scripts' )
-    groupserver_site.manage_addFolder('LocalScripts', 'Site specific scripts')
+    try:
+        fss.manage_addDirectoryView( pathutil.get_groupserver_path('Scripts'), 'Scripts' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_scripts', 'Scripts')
+    try:
+        groupserver_site.manage_addFolder('LocalScripts', 'Site specific scripts')
+    except BadRequest, br:
+        mumble_exists_mumble('init_fs_scripts', 'LocalScripts')
 
 def init_file_library( groupserver_site ):
     fl = groupserver_site.manage_addProduct['XWFFileLibrary2']
-    fl.manage_addXWFFileLibrary2( 'FileLibrary2' )
+    try:
+        fl.manage_addXWFFileLibrary2( 'FileLibrary2' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_file_library', 'FileLibrary2')
     
     file_library = getattr( groupserver_site, 'FileLibrary2' )
     fls = file_library.manage_addProduct['XWFFileLibrary2']
-    fls.manage_addXWFFileStorage2( 'storage' )
+    try:
+        fls.manage_addXWFFileStorage2( 'storage' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_file_library', 'FileLibrary2/storage')
     
 def init_id_factory( groupserver_site ):
     xif = groupserver_site.manage_addProduct['XWFIdFactory']
-    xif.manage_addXWFIdFactory( 'IdFactory' )
+    try:
+        xif.manage_addXWFIdFactory( 'IdFactory' )
+    except BadRequest, br:
+        mumble_exists_mumble('init_id_factory', 'IdFactory')
     
 def init_catalog( groupserver_site ):
     groupserver_site.manage_addProduct['XWFCore'].manage_addXWFCatalog( 'Catalog' )
@@ -282,7 +343,11 @@ def init_db_connection( container, databaseHost, databasePort, databaseUsername,
     databasePort = int(databasePort)
     assert databasePort != 0
 
-    container.manage_addProduct['ZSQLAlchemy'].manage_addZSQLAlchemy('zsqlalchemy')
+    try:
+        container.manage_addProduct['ZSQLAlchemy'].manage_addZSQLAlchemy('zsqlalchemy')
+    except BadRequest, br:
+        mumble_exists_mumble('init_db_connection', 'zsqlalchemy')
+
     container.zsqlalchemy.manage_changeProperties(dbtype='postgres',
                                                   hostname=databaseHost,
                                                   port=databasePort,
@@ -298,7 +363,10 @@ def init_smtp_host( container, smtp_host, smtp_port, smtp_user, smtp_password):
     MailHost used to send posts from groups.'''
     mailHostId = 'MailHost'
     
-    container.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
+    try:    
+        container.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
+    except BadRequest, br:
+        mumble_exists_mumble('init_smtp_host', mailHostId)
     notificationsMailHost = getattr(container, mailHostId)
     notificationsMailHost.manage_makeChanges(
         title='Notifications SMTP Settings',
@@ -306,7 +374,11 @@ def init_smtp_host( container, smtp_host, smtp_port, smtp_user, smtp_password):
         smtp_pwd=smtp_password, REQUEST=None)
     
     listManager = getattr(container.site_root(), 'ListManager')
-    listManager.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
+    try:    
+        listManager.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
+    except BadRequest, br:
+        i = 'ListManager/%s' % mailHostId
+        mumble_exists_mumble('init_smtp_host', i)
     listMailHost = getattr(listManager, mailHostId)
     listMailHost.manage_makeChanges(
         title='Mail List SMTP Settings',
@@ -320,14 +392,21 @@ def import_content( container ):
     objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
                          'ListManager.zexp', 'Templates.zexp']
     for object_to_import in objects_to_import:
-        container._importObjectFromFile( pathutil.get_import_path(
-                                             object_to_import) )
+        try:
+            container._importObjectFromFile( pathutil.get_import_path(
+                                                 object_to_import) )
+        except BadRequest, br:
+            mumble_exists_mumble('import_content', object_to_import)
 
     site = getattr(container.Content, SITE_ID)
-    assert site, 'No %s found' % SITE_ID
+    assert site, 'No site "%s" found' % SITE_ID
     fss = site.manage_addProduct['FileSystemSite']
+
+    try:
+        fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
+    except BadRequest, br:
+            mumble_exists_mumble('import_content', 'help')
     
-    fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
     assert hasattr(site.aq_explicit, 'help')
     getattr(site, 'help').manage_changeProperties(title='Help')
 
@@ -343,17 +422,22 @@ def init_group ( container, admin_email, user_email, emailDomain ):
     # We want the userInfo in the context of the site
     admin = acl_users.get_userByEmail(admin_email)
     adminInfo = createObject('groupserver.UserFromId', site, admin.getId())
-    groupInfo = starter.create('Example Group', groupId, 'public', 
-                                emailDomain, adminInfo)
-    ju = JoiningUser(adminInfo)
-    ju.join(groupInfo)
+    try:
+        groupInfo = starter.create('Example Group', groupId, 'public', 
+                                    emailDomain, adminInfo)
+    except BadRequest, br:
+        mumble_exists_mumble('init_group', 'groups/%s' % groupId)
+        log.warning('init_group: Skipping the rest of the group configuration.')
+    else:
+        ju = JoiningUser(adminInfo)
+        ju.join(groupInfo)
 
-    # Join the normal user to the group.
-    user = acl_users.get_userByEmail(user_email)
-    # We want the userInfo in the context of the site
-    ui = createObject('groupserver.UserFromId', site, user.getId())
-    ju = JoiningUser(ui)
-    ju.join(groupInfo)
+        # Join the normal user to the group.
+        user = acl_users.get_userByEmail(user_email)
+        # We want the userInfo in the context of the site
+        ui = createObject('groupserver.UserFromId', site, user.getId())
+        ju = JoiningUser(ui)
+        ju.join(groupInfo)
 
 def init_vhm( canonicalHost, container ):
     vhm = getattr(container, 'virtual_hosting')
@@ -374,16 +458,23 @@ def manage_addGroupserverSite( container, id, title,
     """ Add a Groupserver Site object to a given container.
     
     """
-    id = container._setObject( id, GroupserverSite( id, title ) )
-    transaction.commit()
-    
+    try:
+        id = container._setObject( id, GroupserverSite( id, title ) )
+        transaction.commit()
+    except BadRequest, br:
+        mumble_exists_mumble('manage_addGroupserverSite', id)
+        
     gss = getattr( container, id )
+    assert gss, 'Could not get the site "%s"' % id
 
     init_db_connection( gss, databaseHost, databasePort, 
         databaseUsername, databasePassword, databaseName )
 
-    init_catalog( gss )
-    transaction.commit()
+    try:
+        init_catalog( gss )
+        transaction.commit()
+    except BadRequest, br:
+        mumble_exists_mumble('manage_addGroupserverSite', 'catalog')
 
     init_id_factory( gss )
     transaction.commit()
