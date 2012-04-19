@@ -389,7 +389,7 @@ def import_content( container ):
     # --=rrw=-- big ugly hack
     from Products.GroupServer import pathutil
         
-    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp', 'GroupProperties.zexp',
+    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp',
                          'ListManager.zexp', 'Templates.zexp']
     for object_to_import in objects_to_import:
         try:
