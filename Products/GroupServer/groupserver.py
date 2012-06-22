@@ -344,22 +344,6 @@ def init_catalog( groupserver_site ):
             # The key is already in the column
             pass
 
-def init_db_connection( container, databaseHost, databasePort, databaseUsername, databasePassword, databaseName ):
-    databasePort = int(databasePort)
-    assert databasePort != 0
-
-    try:
-        container.manage_addProduct['ZSQLAlchemy'].manage_addZSQLAlchemy('zsqlalchemy')
-    except BadRequest, br:
-        mumble_exists_mumble('init_db_connection', 'zsqlalchemy')
-
-    container.zsqlalchemy.manage_changeProperties(dbtype='postgres',
-                                                  hostname=databaseHost,
-                                                  port=databasePort,
-                                                  username=databaseUsername,
-                                                  password=databasePassword,
-                                                  database=databaseName)
-
 def init_smtp_host( container, smtp_host, smtp_port, smtp_user, smtp_password):
     '''Initalise SMTP Hosts
     
@@ -471,9 +455,6 @@ def manage_addGroupserverSite( container, id, title,
         
     gss = getattr( container, id )
     assert gss, 'Could not get the site "%s"' % id
-
-    init_db_connection( gss, databaseHost, databasePort, 
-        databaseUsername, databasePassword, databaseName )
 
     try:
         init_catalog( gss )
