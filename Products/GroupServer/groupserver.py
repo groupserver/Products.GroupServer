@@ -236,40 +236,7 @@ def init_global_configuration( groupserver_site, siteName, supportEmail,
         gc.manage_addProperty('supportEmail', supportEmail, 'string')
         gc.manage_addProperty('timezone', timezone, 'string')
         gc.manage_addProperty('emailDomain', canonicalHost, 'string')
-    
-def init_fs_presentation( groupserver_site ):
-    # TODO: --mpj17=-- Drop Presentation
-    fss = groupserver_site.manage_addProduct['FileSystemSite']
-    try:
-        fss.manage_addDirectoryView( pathutil.get_groupserver_path('Presentation'), 'Presentation' )
-    except BadRequest, br:
-        mumble_exists_mumble('init_fs_presentation', 'Presentation')
-        
-    try:
-        groupserver_site.manage_addFolder('PresentationCustom', 'Site specific presentation customisation')
-    except BadRequest, br:
-        mumble_exists_mumble('init_fs_presentation', 'PresentationCustom')
-    pc = getattr(groupserver_site, 'PresentationCustom')
-    try:
-        pc.manage_addFolder('Tofu', 'Choose Your Own Flavor')
-    except BadRequest, br:
-        mumble_exists_mumble('init_fs_presentation', 'Tofu')
-    tofu = getattr(pc, 'Tofu')
-    try:
-        tofu.manage_addFolder('Common', 'Common Style')
-    except BadRequest, br:
-        mumble_exists_mumble('init_fs_presentation', 'Common')
-    common = getattr(tofu, 'Common')
-    try:
-        common.manage_addFolder('css', 'Cascading Style Sheets')
-    except BadRequest, br:
-        mumble_exists_mumble('init_fs_presentation', 'css')
-    css = getattr(common, 'css')
-    try:
-        css.manage_addDTMLMethod('globalstyle.css', 'Custom Stylesheet')
-    except BadRequest, br:
-        mumble_exists_mumble('init_fs_presentation', 'globalstyle.css')
-    
+
 def init_fs_scripts( groupserver_site ):
     fss = groupserver_site.manage_addProduct['FileSystemSite']
     try:
@@ -344,36 +311,6 @@ def init_catalog( groupserver_site ):
             # The key is already in the column
             pass
 
-def init_smtp_host( container, smtp_host, smtp_port, smtp_user, smtp_password):
-    '''Initalise SMTP Hosts
-    
-    Create the MailHost instance that will communicate to the SMTP host
-    in order to send the GroupServer notifications, and configure the
-    MailHost used to send posts from groups.'''
-    mailHostId = 'MailHost'
-    
-    try:    
-        container.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
-    except BadRequest, br:
-        mumble_exists_mumble('init_smtp_host', mailHostId)
-    notificationsMailHost = getattr(container, mailHostId)
-    notificationsMailHost.manage_makeChanges(
-        title='Notifications SMTP Settings',
-        smtp_host=smtp_host, smtp_port=smtp_port, smtp_uid=smtp_user,
-        smtp_pwd=smtp_password, REQUEST=None)
-    
-    listManager = getattr(container.site_root(), 'ListManager')
-    try:    
-        listManager.manage_addProduct['MailHost'].manage_addMailHost(mailHostId)
-    except BadRequest, br:
-        i = 'ListManager/%s' % mailHostId
-        mumble_exists_mumble('init_smtp_host', i)
-    listMailHost = getattr(listManager, mailHostId)
-    listMailHost.manage_makeChanges(
-        title='Mail List SMTP Settings',
-        smtp_host=smtp_host, smtp_port=smtp_port, smtp_uid=smtp_user,
-        smtp_pwd=smtp_password, REQUEST=None)
-    
 def import_content( container ):
     # --=rrw=-- big ugly hack
     from Products.GroupServer import pathutil
@@ -471,15 +408,9 @@ def manage_addGroupserverSite( container, id, title,
     import_content( gss )
     transaction.commit()
     
-    init_smtp_host( gss, smtp_host, smtp_port, smtp_user, smtp_password )
-    transaction.commit()
-    
     init_user_folder( gss, admin_email, admin_password, 
         user_email, user_password, support_email, canonicalHost, 
         canonicalPort )
-    transaction.commit()
-
-    init_fs_presentation( gss )
     transaction.commit()
 
     init_fs_scripts( gss )
