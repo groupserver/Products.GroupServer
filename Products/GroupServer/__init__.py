@@ -12,7 +12,6 @@ def initialize( context ):
     registerDirectory( 'Scripts', globals() )
     registerDirectory( 'Presentation', globals() )
     registerDirectory( 'help', globals() )
-    registerDirectory( 'admingroup', globals() )
 
     context.registerClass( 
         groupserver.GroupserverSite, 
