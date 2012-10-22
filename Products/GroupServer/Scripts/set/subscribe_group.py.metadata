@@ -1,7 +1,0 @@
-[default]
-proxy = Manager
-
-[security]
-Access contents information = 0:Authenticated
-View = 0:Authenticated
-
