@@ -328,14 +328,6 @@ def import_content( container ):
     assert site, 'No site "%s" found' % SITE_ID
     fss = site.manage_addProduct['FileSystemSite']
 
-    try:
-        fss.manage_addDirectoryView( pathutil.get_groupserver_path('help'), 'help' )
-    except BadRequest, br:
-            mumble_exists_mumble('import_content', 'help')
-    
-    assert hasattr(site.aq_explicit, 'help')
-    getattr(site, 'help').manage_changeProperties(title='Help')
-
 def init_group ( container, admin_email, user_email, emailDomain ):
     acl_users = container.site_root().acl_users
     assert acl_users

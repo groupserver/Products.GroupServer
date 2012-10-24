@@ -1,17 +1,13 @@
-import os
+# coding=utf-8
 from Products.FileSystemSite.DirectoryView import registerDirectory
 from AccessControl import ModuleSecurityInfo
-
 from pathutil import get_groupserver_path
-
 import groupserver
 
 # registerDirectory is also in here to get around some serious chicken-egg
 # problems with getting the module path
 def initialize( context ):
     registerDirectory( 'Scripts', globals() )
-    registerDirectory( 'Presentation', globals() )
-    registerDirectory( 'help', globals() )
 
     context.registerClass( 
         groupserver.GroupserverSite, 
@@ -22,4 +18,3 @@ def initialize( context ):
                            
 pathutil_security = ModuleSecurityInfo('Products.GroupServer.pathutil')
 pathutil_security.declarePublic('get_groupserver_path')
-
