@@ -3,7 +3,7 @@ from traceback import format_exc
 import transaction, datetime, urlparse, pathutil, os.path
 from urllib import quote
 from zope.interface import implements
-from zope.component import createObject
+from zope.component import createObject, getMultiAdapter
 from zExceptions import BadRequest
 from OFS.OrderedFolder import OrderedFolder
 from App.config import getConfiguration
@@ -106,32 +106,20 @@ class GroupserverSite( OrderedFolder ):
         if kw['error_type'] == 'NotFound':
             URL = request.get('URL','')
             HTTP_REFERRER = request.get('HTTP_REFERER','')
-            m = '404: Link from <%s> to <%s> is broken.' % (HTTP_REFERRER, URL)
-            q = quote(URL)
-            r = quote(HTTP_REFERRER)
-            log.warn(m)
-            uri = '/not_found.html?q=%s&r=%s'  %(q, r)
-            request.RESPONSE.redirect(uri, lock=1)
+            m = '404: Link from <{referrer}> to <{url}> is broken.'
+            log.warn(m.format(referrer=HTTP_REFERRER, url=URL))
+            page = getMultiAdapter((context, request), name='not_found.html')
+            retval = page()
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):
-            pass
+            raise # Propogate the error up.
         else:
-            URL = request.get('URL','')
-            q = quote(URL)
-            formatedError = format_exc()
-            eggs = 'eggs/'
-            e = ''
-            for line in formatedError.split('\n'):
-                if eggs in line:
-                    e += '  %s' % line.split(eggs)[1]
-                else:
-                    e += line
-                e += '\n'
-            t = ((len(e) > 1536) and (e[:256] +'\nsnip...\n'+e[-1024:])) or e
-            m = quote(t)
-            uri = '/unexpected_error.html?q=%s&m=%s' % (q, m)
-            request.RESPONSE.redirect(uri, lock=1)
-        raise # Propogate the error up.
+            request = self.REQUEST
+            context = self.getRealContext()
+            page = getMultiAdapter((context, request), 
+                                   name='unexpected_error.html')
+            retval = page()
+        return retval
 
 def create_user(site, email, fn, password):
     user = create_user_from_email(site, email)
