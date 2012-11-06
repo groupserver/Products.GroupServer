@@ -43,11 +43,6 @@ class GroupserverSite( OrderedFolder ):
     
     site_root = get_site
     
-    def fail( self ):
-        """A test for the error-handling system.
-        """
-        assert False, 'This is a test of the error-handling system.'
-    
     def setAuthCookie(self, resp, cookie_name, cookie_value):
         """ Persistent authentication cookie support.
         
@@ -121,6 +116,11 @@ class GroupserverSite( OrderedFolder ):
             retval = page()
         return retval
 
+    def fail( self ):
+        """A test for the error-handling system.
+        """
+        assert False, 'This is a test of the error-handling system.'
+    
 def create_user(site, email, fn, password):
     user = create_user_from_email(site, email)
     user.manage_changeProperties(fn=fn)
