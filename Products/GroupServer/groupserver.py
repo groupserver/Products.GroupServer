@@ -110,7 +110,7 @@ class GroupserverSite( OrderedFolder ):
             q = quote(URL)
             r = quote(HTTP_REFERRER)
             log.warn(m)
-            uri = '/new_not_found.html?q=%s&r=%s'  %(q, r)
+            uri = '/not_found.html?q=%s&r=%s'  %(q, r)
             request.RESPONSE.redirect(uri, lock=1)
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):
@@ -129,7 +129,7 @@ class GroupserverSite( OrderedFolder ):
                 e += '\n'
             t = ((len(e) > 1536) and (e[:256] +'\nsnip...\n'+e[-1024:])) or e
             m = quote(t)
-            uri = '/new_unexpected_error.html?q=%s&m=%s' % (q, m)
+            uri = '/unexpected_error.html?q=%s&m=%s' % (q, m)
             request.RESPONSE.redirect(uri, lock=1)
         raise # Propogate the error up.
 
