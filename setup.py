@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 import os
 from setuptools import setup, find_packages
 from version import get_version
@@ -11,26 +11,26 @@ setup(name='Products.GroupServer',
     long_description=open("README.txt").read() + "\n" +
                       open(os.path.join("docs", "HISTORY.txt")).read(),
     classifiers=[
-      "Development Status :: 4 - Beta",
-      "Environment :: Web Environment",
-      "Framework :: Zope2",
-      "Intended Audience :: Developers",
-      "License :: OSI Approved :: GNU General Public License (GPL)",
-      "Natural Language :: English",
-      "Operating System :: POSIX :: Linux",
-      "Programming Language :: Python",
-      "Topic :: Software Development :: Libraries :: Python Modules",
+        'Development Status :: 5 - Production/Stable',
+        "Environment :: Web Environment",
+        "Framework :: Zope2",
+        "Intended Audience :: Developers",
+        'License :: OSI Approved :: Zope Public License',
+        "Natural Language :: English",
+        "Operating System :: POSIX :: Linux"
+        "Programming Language :: Python",
+        "Topic :: Software Development :: Libraries :: Python Modules",
       ],
     keywords='groupserver',
     author='Richard Waid',
     author_email='richard@iopen.net',
     url='http://groupserver.org',
-    license='GNU GPL',
+    license='ZPL 2.1',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['Products'],
     include_package_data=True,
     zip_safe=True,
-    install_requires=[
+    install_requires=[  # FIXME: sort out the egg deps.
         'setuptools',
         'Products.CustomUserFolder',
         'Products.XWFCore',
@@ -41,4 +41,3 @@ setup(name='Products.GroupServer',
     entry_points="""
     # -*- Entry points: -*-
     """,)
-
