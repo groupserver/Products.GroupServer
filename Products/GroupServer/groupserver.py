@@ -123,7 +123,8 @@ class GroupserverSite(OrderedFolder):
     def fail(self):
         """A test for the error-handling system.
         """
-        assert False, 'This is a test of the error-handling system.'
+        m = 'This is a test of the error-handling system.'
+        raise RuntimeError(m)
 
 
 def create_user(site, email, fn, password):
