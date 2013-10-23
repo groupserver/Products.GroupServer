@@ -42,7 +42,7 @@ setup(name='Products.GroupServer',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['Products'],
     include_package_data=True,
-    zip_safe=False,  # --=mpj17=-- All sorts of FileSystemSite evil
+    zip_safe=False,  # --=mpj17=-- False because of FileSystemSite evil
     install_requires=[  # FIXME: sort out the egg deps.
         'setuptools',
         'Products.CustomUserFolder',
