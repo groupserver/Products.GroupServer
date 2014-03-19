@@ -10,4 +10,4 @@ def get_import_path(filename=''):
     return path
 
 def get_groupserver_path(name=''):
-    return 'Products/GroupServer/%s' % name
+    return 'GroupServer/%s' % name
