@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configure xmlns="http://namespaces.zope.org/zope"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:five="http://namespaces.zope.org/five">
+           xmlns:browser="http://namespaces.zope.org/browser"
+           i18n_domain="groupserver">
+
 
   <!-- =mpj17= The following declaration will have to change to follow
     -  BlueBream out of "zope.app". -->
-  <browser:defaultView 
-    for="zope.app.folder.interfaces.IFolder" 
+  <browser:defaultView
+    for="zope.app.folder.interfaces.IFolder"
     name='index.html'/>
 
   <class class=".groupserver.GroupserverSite">
     <allow attributes="index_html" />
   </class>
 
+  <class class=".groupserver.GroupserverSite">
+    <implements interface=".interfaces.IGroupserverSite"/>
+  </class>
+
   <class
     class="Products.FileSystemSite.DirectoryView.DirectoryViewSurrogate">
     <implements interface="Products.GSContent.interfaces.IGSContentFolder"/>
   </class>
-  
+
 </configure>
