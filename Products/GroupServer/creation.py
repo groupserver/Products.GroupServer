@@ -24,6 +24,7 @@ import transaction
 from zope.component import createObject
 from zExceptions import BadRequest
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from gs.core import to_ascii
 from gs.group.member.join.join.inguser import JoiningUser
 from gs.group.start.groupcreator import MoiraeForGroup
 from gs.profile.email.verify.emailverificationuser import EmailVerificationUser
@@ -52,13 +53,14 @@ def create_user(site, email, fn, password):
         evu = EmailVerificationUser(site, ui, email)
         evu.add_verification_id(vid)
         evu.verify_email(vid)
-        m = 'init_user_folder: Verified the address <%s> for %s (%s).' %\
-            (email, fn, user.getId())
-        log.info(m)
-    except:
-        m = 'init_user_folder: Issues verifying the address <%s> for '\
-            '%s (%s).' % (email, fn, user.getId())
-        log.error(m)
+        m = 'create_user: Verified the address <{0}> for {1} ({2}).'
+        msg = m.format(email, fn, user.getId())
+        log.info(to_ascii(msg))
+    except Exception as e:
+        m = 'create_user: Issues verifying the address <{0}> for {1} ({2}).'
+        msg = m.format(email, fn, user.getId())
+        log.error(to_ascii(msg))
+        raise e
     return user
 
 
