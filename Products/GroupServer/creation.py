@@ -25,7 +25,7 @@ from zope.component import createObject
 from zExceptions import BadRequest
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from gs.core import to_ascii
-from gs.group.member.join.join.inguser import JoiningUser
+from gs.group.member.join.joininguser import JoiningUser
 from gs.group.start.groupcreator import MoiraeForGroup
 from gs.profile.email.verify.emailverificationuser import EmailVerificationUser
 from gs.profile.password.passworduser import PasswordUser
@@ -273,7 +273,9 @@ def init_group(container, admin_email, emailDomain):
         log.warning(m)
     else:
         ju = JoiningUser(adminInfo)
-        ju.join(groupInfo)
+        # Silent Join is used so if the SMTP config is borken everything still
+        # works.
+        ju.silent_join(groupInfo)
 
 
 def init_vhm(canonicalHost, container):
