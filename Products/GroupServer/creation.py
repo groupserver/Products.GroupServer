@@ -42,6 +42,7 @@ def mumble_exists_mumble(function, thing):
 
 
 def create_user(site, email, fn, password):
+    'Create a user'
     user = create_user_from_email(site, email)
     user.manage_changeProperties(fn=fn)
     # We want the userInfo in the context of the site
@@ -165,6 +166,7 @@ def init_fs_scripts(gss):
 
 
 def init_file_library(gss):
+    'Create the XWFFileLibrary2'
     fl = gss.manage_addProduct['XWFFileLibrary2']
     try:
         fl.manage_addXWFFileLibrary2('FileLibrary2')
@@ -246,17 +248,20 @@ def import_content(container):
         except BadRequest:
             mumble_exists_mumble('import_content', object_to_import)
 
-    site = getattr(container.Content, SITE_ID)
-    assert site, 'No site "%s" found' % SITE_ID
+    site = getattr(container.Content, SITE_ID, None)
+    if not site:
+        m = 'No site "{0}" found in "{1}"'.format(SITE_ID, container)
+        raise ValueError(m)
     site.manage_addProduct['FileSystemSite']
 
 
 def init_group(container, admin_email, emailDomain):
     '''Initialise the first group.'''
     acl_users = container.site_root().acl_users
-    assert acl_users
-    site = getattr(container.Content, SITE_ID)
-    assert site, 'No %s found' % SITE_ID
+    site = getattr(container.Content, SITE_ID, None)
+    if not site:
+        m = 'No site "{0}" found in "{1}"'.format(SITE_ID, container)
+        raise ValueError(m)
     siteInfo = createObject('groupserver.SiteInfo', site)
 
     starter = MoiraeForGroup(siteInfo)
@@ -294,20 +299,32 @@ def init_vhm(canonicalHost, container):
 
 
 def manage_addGroupserverSite(container, gsId, title, supportEmail,
-        admin_email, admin_password, zope_admin_id, timezone,
-        canonicalHost, canonicalPort, smtp_host, smtp_port, smtp_user,
-        smtp_password, databaseHost, databasePort, databaseUsername,
-        databasePassword, databaseName, REQUEST=None):
-    """ Add a Groupserver Site object to a given container.
+        admin_email, admin_password, canonicalHost, canonicalPort,
+        smtp_host, smtp_port, smtp_user, smtp_password, REQUEST=None):
+    """Add a Groupserver instance to a given container.
 
-    """
+:param OFS.Folder container: The folder in the ZMI that holds the new instance.
+:param str gsId: The identifier for the new GroupServer instance.
+:param str title: The title for the new instance.
+:param str supportEmail: The email address of support for the GS instance.
+:param str admin_email: The email address for the administrator of the new site.
+:param str admin_password: The password for the new site administrator.
+:param str canonicalHost: The host-name of the new site.
+:param str canonicalPort: The port of the new site.
+:param str smtp_host: The host-name of the *outgoing* SMTP server.
+:param str smtp_port: The port of the *outgoing* SMTP server.
+:param str smtp_user: The user-name of the user for the *outgoing* SMTP server.
+:param str smtp_password: The password for the *outgoing* SMTP server.
+:param object REQUEST: The request object (may be ``None``).
+"""
     try:
         gsId = container._setObject(gsId, GroupserverSite(gsId, title))
     except BadRequest:
         mumble_exists_mumble('manage_addGroupserverSite', gsId)
 
-    gss = getattr(container, gsId)
-    assert gss, 'Could not get the site "%s"' % gsId
+    gss = getattr(container, gsId, None)
+    if not gss:
+        raise ValueError('Could not get the site "{0}"'.format(gsId))
 
     try:
         init_catalog(gss)
@@ -321,10 +338,13 @@ def manage_addGroupserverSite(container, gsId, title, supportEmail,
                         canonicalPort)
     init_fs_scripts(gss)
 
-    init_global_configuration(gss, title, supportEmail, timezone,
+    init_global_configuration(gss, title, supportEmail, 'UTC',
                                 canonicalHost)
     init_group(gss, admin_email, canonicalHost)
     init_vhm(canonicalHost, gss)
+
+    # TODO: SMTP
+
     transaction.commit()
 
     if REQUEST is None:
