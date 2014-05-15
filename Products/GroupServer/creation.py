@@ -293,7 +293,7 @@ def init_vhm(canonicalHost, container):
     vhm.set_map(mapText, None)
 
 
-def manage_addGroupserverSite(container, gsId, title,
+def manage_addGroupserverSite(container, gsId, title, supportEmail,
         admin_email, admin_password, zope_admin_id, timezone,
         canonicalHost, canonicalPort, smtp_host, smtp_port, smtp_user,
         smtp_password, databaseHost, databasePort, databaseUsername,
@@ -321,7 +321,6 @@ def manage_addGroupserverSite(container, gsId, title,
                         canonicalPort)
     init_fs_scripts(gss)
 
-    supportEmail = 'support@{0}'.format(canonicalHost)
     init_global_configuration(gss, title, supportEmail, timezone,
                                 canonicalHost)
     init_group(gss, admin_email, canonicalHost)
