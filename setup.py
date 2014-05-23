@@ -44,7 +44,7 @@ setup(name='Products.GroupServer',
     author_email='richard@iopen.net',
     maintainer='Michael JasonSmith',
     maintainer_email='mpj17@onlinegroups.net',
-      url='https://source.iopen.net/groupserver/Products.GroupServer/',
+    url='https://source.iopen.net/groupserver/Products.GroupServer/',
     license='ZPL 2.1',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['Products'],
@@ -52,11 +52,17 @@ setup(name='Products.GroupServer',
     zip_safe=False,  # --=mpj17=-- False because of FileSystemSite evil
     install_requires=[  # FIXME: sort out the egg deps.
         'setuptools',
+        'zope.component',
+        'zExceptions',
+        'Zope2',
         'Products.CustomUserFolder',
         'Products.XWFCore',
-        'gs.profile.password',
+        'gs.core',
         'gs.group.member.join',
-        # -*- Extra requirements: -*-
+        'gs.group.start',
+        'gs.profile.email.verify',
+        'gs.profile.password',
+        'Products.GSProfile',
     ],
     entry_points="""
     # -*- Entry points: -*-
