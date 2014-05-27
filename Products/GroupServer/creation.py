@@ -36,9 +36,19 @@ SITE_ID = 'initial_site'  # FIX
 
 
 def mumble_exists_mumble(function, thing):
-    '''Warn that a thing still exists'''
-    log.warning('%s: "%s" already exists.' % (function, thing))
-    log.warning('%s: Carrying on regardless.' % function)
+    '''Warn that a thing exists
+
+:param str function: The function that is raising the warning.
+:param str thing: The thing that exists.
+:returns: ``None``
+
+Installation sometimes dies. When this happens various *things* are left in
+the object database. These things should left alone when installation is rerun,
+but it is good practice to mention that they are being left alone.
+'''
+    m = '{0}: "{1}" already exists.\n{0}: Carrying on regardless.'
+    msg = m.format(function, thing)
+    log.warning(msg)
 
 
 def create_user(site, email, fn, password):
@@ -130,9 +140,8 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
     example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
 
 
-def init_global_configuration(gss, siteName, supportEmail,
-                                timezone, canonicalHost):
-    '''Initalise the global configuration.'''
+def init_global_configuration(gss, siteName, supportEmail, canonicalHost):
+    '''Initalise the global configuration (``GlobalConfiguration``).'''
     cp = gss.manage_addProduct['CustomProperties']
     try:
         cp.manage_addCustomProperties('GlobalConfiguration',
@@ -147,7 +156,7 @@ def init_global_configuration(gss, siteName, supportEmail,
         gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
         gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
         gc.manage_addProperty('supportEmail', supportEmail, 'string')
-        gc.manage_addProperty('timezone', timezone, 'string')
+        gc.manage_addProperty('timezone', 'UTC', 'string')
         gc.manage_addProperty('emailDomain', canonicalHost, 'string')
 
 
@@ -338,8 +347,7 @@ def manage_addGroupserverSite(container, gsId, title, supportEmail,
                         canonicalPort)
     init_fs_scripts(gss)
 
-    init_global_configuration(gss, title, supportEmail, 'UTC',
-                                canonicalHost)
+    init_global_configuration(gss, title, supportEmail, canonicalHost)
     init_group(gss, admin_email, canonicalHost)
     init_vhm(canonicalHost, gss)
 
