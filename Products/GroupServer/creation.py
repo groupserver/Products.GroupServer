@@ -32,7 +32,7 @@ from gs.profile.password.passworduser import PasswordUser
 from Products.GSProfile.utils import create_user_from_email
 from .pathutil import get_groupserver_path, get_import_path
 from .groupserver import GroupserverSite
-SITE_ID = 'initial_site'  # FIX
+SITE_ID = to_ascii('initial_site')  # FIX
 
 
 def mumble_exists_mumble(function, thing):
@@ -78,31 +78,33 @@ def create_user(site, email, fn, password):
 def init_user_folder(gss, admin_email, admin_password, canonicalHost,
                         canonicalPort):
     '''Initalise the user-folder (contacts)'''
+    CONTACTS_NAME = to_ascii('contacts')
     btf = gss.manage_addProduct['BTreeFolder2']
     try:
-        btf.manage_addBTreeFolder('contacts', 'Contacts')
+        btf.manage_addBTreeFolder(CONTACTS_NAME, 'Contacts')
     except BadRequest:
-        mumble_exists_mumble('init_user_folder', 'contacts')
+        mumble_exists_mumble('init_user_folder', CONTACTS_NAME)
 
     # The contacts folder stores the user-data.
     cuf = gss.manage_addProduct['CustomUserFolder']
     try:
-        cuf.manage_addCustomUserFolder('contacts')
+        cuf.manage_addCustomUserFolder(CONTACTS_NAME)
     except BadRequest:
         mumble_exists_mumble('init_user_folder', 'acl_users')
 
-    contacts = getattr(gss, 'contacts')
+    contacts = getattr(gss, CONTACTS_NAME)
     contacts.manage_permission('Manage properties', ('Owner', 'Manager'),
                                 acquire=1)
 
     # Cookie Crumbler logs people in
+    CA_NAME = to_ascii('cookie_authentication')
     cc = gss.manage_addProduct['CookieCrumbler']
     try:
-        cc.manage_addCC('cookie_authentication')
+        cc.manage_addCC(CA_NAME)
     except BadRequest:
-        mumble_exists_mumble('init_user_folder', 'cookie_authentication')
+        mumble_exists_mumble('init_user_folder', CA_NAME)
 
-    cookies = getattr(gss, 'cookie_authentication')
+    cookies = getattr(gss, CA_NAME)
     cookies.manage_changeProperties(auto_login_page='Content/login.html',
                                      unauth_page='Content/login.html',
                                      logout_page='Content/logout.html')
@@ -142,17 +144,18 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
 
 def init_global_configuration(gss, siteName, supportEmail, canonicalHost):
     '''Initalise the global configuration (``GlobalConfiguration``).'''
+    GLOBAL_CONFIG_NAME = to_ascii('GlobalConfiguration')
     cp = gss.manage_addProduct['CustomProperties']
     try:
-        cp.manage_addCustomProperties('GlobalConfiguration',
+        cp.manage_addCustomProperties(GLOBAL_CONFIG_NAME,
             'The global configuration for the Site')
     except BadRequest:
         mumble_exists_mumble('init_global_configuration',
-                                'GlobalConfiguration')
+                                GLOBAL_CONFIG_NAME)
         m = 'init_global_configuration: Not configuring "GlobalConfiguration"'
         log.warning(m)
     else:
-        gc = getattr(gss, 'GlobalConfiguration')
+        gc = getattr(gss, GLOBAL_CONFIG_NAME)
         gc.manage_addProperty('alwaysShowMemberPhotos', True, 'boolean')
         gc.manage_addProperty('showEmailAddressTo', 'request', 'string')
         gc.manage_addProperty('supportEmail', supportEmail, 'string')
@@ -165,45 +168,49 @@ def init_fs_scripts(gss):
     FileSystemSite code.'''
     fss = gss.manage_addProduct['FileSystemSite']
     try:
-        fss.manage_addDirectoryView(get_groupserver_path('Scripts'), 'Scripts')
+        fss.manage_addDirectoryView(get_groupserver_path('Scripts'),
+                                    to_ascii('Scripts'))
     except BadRequest:
         mumble_exists_mumble('init_fs_scripts', 'Scripts')
     try:
-        gss.manage_addFolder('LocalScripts', 'Site specific scripts')
+        gss.manage_addFolder(to_ascii('LocalScripts'), 'Site specific scripts')
     except BadRequest:
         mumble_exists_mumble('init_fs_scripts', 'LocalScripts')
 
 
 def init_file_library(gss):
     'Create the XWFFileLibrary2'
+    LIBRARY_NAME = to_ascii('FileLibrary2')
     fl = gss.manage_addProduct['XWFFileLibrary2']
     try:
-        fl.manage_addXWFFileLibrary2('FileLibrary2')
+        fl.manage_addXWFFileLibrary2(LIBRARY_NAME)
     except BadRequest:
-        mumble_exists_mumble('init_file_library', 'FileLibrary2')
+        mumble_exists_mumble('init_file_library', LIBRARY_NAME)
 
-    file_library = getattr(gss, 'FileLibrary2')
+    file_library = getattr(gss, LIBRARY_NAME)
     fls = file_library.manage_addProduct['XWFFileLibrary2']
     try:
         fls.manage_addXWFFileStorage2('storage')
     except BadRequest:
-        mumble_exists_mumble('init_file_library', 'FileLibrary2/storage')
+        mumble_exists_mumble('init_file_library', LIBRARY_NAME + '/storage')
 
 
 def init_id_factory(gss):
     '''Initalise the XWF ID Factory, which is used by the Files system.'''
+    FACTORY_NAME = to_ascii('IdFactory')
     xif = gss.manage_addProduct['XWFIdFactory']
     try:
-        xif.manage_addXWFIdFactory('IdFactory')
+        xif.manage_addXWFIdFactory(FACTORY_NAME)
     except BadRequest:
-        mumble_exists_mumble('init_id_factory', 'IdFactory')
+        mumble_exists_mumble('init_id_factory', FACTORY_NAME)
 
 
 def init_catalog(gss):
     '''Initalise the ZODB catalog.'''
+    CATALOG_NAME = to_ascii('Catalog')
     mAP = gss.manage_addProduct['XWFCore']
-    mAP.manage_addXWFCatalog('Catalog')
-    catalog = getattr(gss, 'Catalog')
+    mAP.manage_addXWFCatalog(CATALOG_NAME)
+    catalog = getattr(gss, CATALOG_NAME)
 
     catalogEntries = ('content_type', 'dc_creator', 'group_ids', 'id',
       'indexable_summary', 'meta_type', 'modification_time', 'size', 'tags',
@@ -231,14 +238,14 @@ def init_catalog(gss):
 
     for key in list(keysToAdd.keys()):
         try:
-            catalog.manage_addIndex(key, keysToAdd[key])
+            catalog.manage_addIndex(to_ascii(key), to_ascii(keysToAdd[key]))
         except:
             # The key is already in the index
             pass
 
     for catalogEntry in catalogEntries:
         try:
-            catalog.manage_addColumn(key)
+            catalog.manage_addColumn(to_ascii(key))
         except:
             # The key is already in the column
             pass
@@ -252,7 +259,7 @@ def import_content(container):
                          'ListManager.zexp', 'Templates.zexp']
     for object_to_import in objects_to_import:
         try:
-            path = get_import_path(object_to_import)
+            path = to_ascii(get_import_path(object_to_import))
             container._importObjectFromFile(path)
         except BadRequest:
             mumble_exists_mumble('import_content', object_to_import)
