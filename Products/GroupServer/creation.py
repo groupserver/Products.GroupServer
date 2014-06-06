@@ -255,8 +255,7 @@ def import_content(container):
     '''Import the content from the ZEXP files.'''
     # --=rrw=-- big ugly hack
 
-    objects_to_import = ['CodeTemplates.zexp', 'Content.zexp',
-                         'ListManager.zexp', 'Templates.zexp']
+    objects_to_import = ('Content.zexp', 'ListManager.zexp', 'Templates.zexp')
     for object_to_import in objects_to_import:
         try:
             path = to_ascii(get_import_path(object_to_import))
