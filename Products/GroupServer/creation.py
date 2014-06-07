@@ -148,7 +148,7 @@ def init_global_configuration(gss, siteName, supportEmail, canonicalHost):
     cp = gss.manage_addProduct['CustomProperties']
     try:
         cp.manage_addCustomProperties(GLOBAL_CONFIG_NAME,
-            'The global configuration for the Site')
+            'The global configuration for the site')
     except BadRequest:
         mumble_exists_mumble('init_global_configuration',
                                 GLOBAL_CONFIG_NAME)
@@ -285,7 +285,7 @@ def init_group(container, admin_email, emailDomain):
     admin = acl_users.get_userByEmail(admin_email)
     adminInfo = createObject('groupserver.UserFromId', site, admin.getId())
     try:
-        groupInfo = starter.create('Example Group', groupId, 'public',
+        groupInfo = starter.create('Example group', groupId, 'public',
                                     emailDomain, adminInfo)
     except BadRequest:
         mumble_exists_mumble('init_group', 'groups/%s' % groupId)
