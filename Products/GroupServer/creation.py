@@ -190,7 +190,7 @@ def init_file_library(gss):
     file_library = getattr(gss, LIBRARY_NAME)
     fls = file_library.manage_addProduct['XWFFileLibrary2']
     try:
-        fls.manage_addXWFFileStorage2('storage')
+        fls.manage_addXWFFileStorage2(to_ascii('storage'))
     except BadRequest:
         mumble_exists_mumble('init_file_library', LIBRARY_NAME + '/storage')
 
