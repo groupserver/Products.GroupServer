@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2008, 2009, 2010, 2011, 2012, 2013, 2014 OnlineGroups.net and
 # Contributors. All Rights Reserved.
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import absolute_import, unicode_literals
 import datetime
 from logging import getLogger
@@ -46,7 +46,7 @@ class GroupserverSite(OrderedFolder):
             expires = rfc822_date(datetime.datetime.utcnow() +
                                   datetime.timedelta(365))
             resp.setCookie(cookie_name, cookie_value, path=path,
-                            expires=expires)
+                           expires=expires)
         else:
             resp.setCookie(cookie_name, cookie_value, path=path)
 
@@ -70,7 +70,7 @@ class GroupserverSite(OrderedFolder):
         #   the ol' Zope 2 index.xml page template
         context = self.getRealContext()
         if (hasattr(context.aq_explicit, 'content_en.xml')
-            or hasattr(context.aq_explicit, 'content_en')):
+                or hasattr(context.aq_explicit, 'content_en')):
             redirectFile = 'index.html'
         else:
             redirectFile = 'index.xml'
@@ -94,7 +94,8 @@ class GroupserverSite(OrderedFolder):
             HTTP_REFERRER = request.get('HTTP_REFERER', '')
             m = '404: Link from <{referrer}> to <{url}> is broken.'
             log.warn(m.format(referrer=HTTP_REFERRER, url=URL))
-            page = getMultiAdapter((context, request), name='not_found.html')
+            page = getMultiAdapter((context, request),
+                                   name='not_found.html')
             retval = page()
         # ignore these types
         elif kw['error_type'] in ('Forbidden',):

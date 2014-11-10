@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2008, 2009, 2010, 2011, 2012, 2013, 2014 OnlineGroups.net and
 # Contributors. All Rights Reserved.
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import absolute_import, unicode_literals
 from logging import getLogger
 log = getLogger('Products.GroupServer.creation')
@@ -27,7 +27,8 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from gs.core import to_ascii
 from gs.group.member.join.joininguser import JoiningUser
 from gs.group.start.groupcreator import MoiraeForGroup
-from gs.profile.email.verify.emailverificationuser import EmailVerificationUser
+from gs.profile.email.verify.emailverificationuser import (
+    EmailVerificationUser)
 from gs.profile.password.passworduser import PasswordUser
 from Products.GSProfile.utils import create_user_from_email
 from .pathutil import get_groupserver_path, get_import_path
@@ -43,8 +44,8 @@ def mumble_exists_mumble(function, thing):
 :returns: ``None``
 
 Installation sometimes dies. When this happens various *things* are left in
-the object database. These things should left alone when installation is rerun,
-but it is good practice to mention that they are being left alone.
+the object database. These things should left alone when installation is
+rerun, but it is good practice to mention that they are being left alone.
 '''
     m = '{0}: "{1}" already exists.\n{0}: Carrying on regardless.'
     msg = m.format(function, thing)
@@ -76,7 +77,7 @@ def create_user(site, email, fn, password):
 
 
 def init_user_folder(gss, admin_email, admin_password, canonicalHost,
-                        canonicalPort):
+                     canonicalPort):
     '''Initalise the user-folder (contacts)'''
     CONTACTS_NAME = to_ascii('contacts')
     btf = gss.manage_addProduct['BTreeFolder2']
@@ -94,7 +95,7 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
 
     contacts = getattr(gss, CONTACTS_NAME)
     contacts.manage_permission('Manage properties', ('Owner', 'Manager'),
-                                acquire=1)
+                               acquire=1)
 
     # Cookie Crumbler logs people in
     CA_NAME = to_ascii('cookie_authentication')
@@ -106,8 +107,8 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
 
     cookies = getattr(gss, CA_NAME)
     cookies.manage_changeProperties(auto_login_page='Content/login.html',
-                                     unauth_page='Content/login.html',
-                                     logout_page='Content/logout.html')
+                                    unauth_page='Content/login.html',
+                                    logout_page='Content/logout.html')
 
     # Create the user-group for the site.
     egSiteMember = '%s_member' % SITE_ID
@@ -126,19 +127,20 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
     # the problem I am documenting it: configure the example site here.
     # *sigh*.
     example_site = getattr(gss.Content, SITE_ID)
-    example_site.manage_addLocalGroupRoles(egSiteMember, ('DivisionMember',))
+    example_site.manage_addLocalGroupRoles(egSiteMember,
+                                           ('DivisionMember',))
     # Ok, now we are configuring the site. *sigh*
     site_config = getattr(example_site, 'DivisionConfiguration')
     site_config.manage_changeProperties(canonicalHost=canonicalHost)
     if not(hasattr(site_config, 'canonicalPort')):
         site_config.manage_addProperty('canonicalPort', canonicalPort,
-                                        'string')
+                                       'string')
     else:
         site_config.manage_changeProperties(canonicalPort=canonicalPort)
 
     # The admin.
-    admin = create_user(example_site, admin_email, 'GroupServer Administrator',
-                            admin_password)
+    admin = create_user(example_site, admin_email,
+                        'GroupServer Administrator', admin_password)
     example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
 
 
@@ -147,12 +149,13 @@ def init_global_configuration(gss, siteName, supportEmail, canonicalHost):
     GLOBAL_CONFIG_NAME = to_ascii('GlobalConfiguration')
     cp = gss.manage_addProduct['CustomProperties']
     try:
-        cp.manage_addCustomProperties(GLOBAL_CONFIG_NAME,
-            'The global configuration for the site')
+        cp.manage_addCustomProperties(
+            GLOBAL_CONFIG_NAME, 'The global configuration for the site')
     except BadRequest:
-        mumble_exists_mumble('init_global_configuration',
-                                GLOBAL_CONFIG_NAME)
-        m = 'init_global_configuration: Not configuring "GlobalConfiguration"'
+        mumble_exists_mumble(
+            'init_global_configuration', GLOBAL_CONFIG_NAME)
+        m = 'init_global_configuration: Not configuring '\
+            '"GlobalConfiguration"'
         log.warning(m)
     else:
         gc = getattr(gss, GLOBAL_CONFIG_NAME)
@@ -173,7 +176,8 @@ def init_fs_scripts(gss):
     except BadRequest:
         mumble_exists_mumble('init_fs_scripts', 'Scripts')
     try:
-        gss.manage_addFolder(to_ascii('LocalScripts'), 'Site specific scripts')
+        gss.manage_addFolder(to_ascii('LocalScripts'),
+                             'Site specific scripts')
     except BadRequest:
         mumble_exists_mumble('init_fs_scripts', 'LocalScripts')
 
@@ -213,27 +217,27 @@ def init_catalog(gss):
     catalog = getattr(gss, CATALOG_NAME)
 
     catalogEntries = ('content_type', 'dc_creator', 'group_ids', 'id',
-      'indexable_summary', 'meta_type', 'modification_time', 'size', 'tags',
-      'title', 'topic')
+                      'indexable_summary', 'meta_type', 'modification_time',
+                      'size', 'tags', 'title', 'topic')
 
     keysToAdd = {
-      'allowedRolesAndUsers': 'KeywordIndex',
-      'content_type': 'FieldIndex',
-      'dc_creator': 'FieldIndex',
-      'group_ids': 'KeywordIndex',
-      'id': 'FieldIndex',
-      'indexable_content': 'ZCTextIndex',
-      'meta_type': 'FieldIndex',
-      'modification_time': 'DateIndex',
-      'tags': 'KeywordIndex',
-      'title': 'FieldIndex',
-      'topic': 'FieldIndex',
-      'dc_description': 'ZCTextIndex',
-      'dc_title': 'KeywordIndex',
-      'dc_valid': 'DateIndex',
-      'linked_resources': 'KeywordIndex',
-      'path': 'PathIndex',
-      'resource_locator': 'KeywordIndex',
+        'allowedRolesAndUsers': 'KeywordIndex',
+        'content_type': 'FieldIndex',
+        'dc_creator': 'FieldIndex',
+        'group_ids': 'KeywordIndex',
+        'id': 'FieldIndex',
+        'indexable_content': 'ZCTextIndex',
+        'meta_type': 'FieldIndex',
+        'modification_time': 'DateIndex',
+        'tags': 'KeywordIndex',
+        'title': 'FieldIndex',
+        'topic': 'FieldIndex',
+        'dc_description': 'ZCTextIndex',
+        'dc_title': 'KeywordIndex',
+        'dc_valid': 'DateIndex',
+        'linked_resources': 'KeywordIndex',
+        'path': 'PathIndex',
+        'resource_locator': 'KeywordIndex',
     }
 
     for key in list(keysToAdd.keys()):
@@ -255,7 +259,8 @@ def import_content(container):
     '''Import the content from the ZEXP files.'''
     # --=rrw=-- big ugly hack
 
-    objects_to_import = ('Content.zexp', 'ListManager.zexp', 'Templates.zexp')
+    objects_to_import = ('Content.zexp', 'ListManager.zexp',
+                         'Templates.zexp')
     for object_to_import in objects_to_import:
         try:
             path = to_ascii(get_import_path(object_to_import))
@@ -286,27 +291,27 @@ def init_group(container, admin_email, emailDomain):
     adminInfo = createObject('groupserver.UserFromId', site, admin.getId())
     try:
         groupInfo = starter.create('Example group', groupId, 'public',
-                                    emailDomain, adminInfo)
+                                   emailDomain, adminInfo)
     except BadRequest:
         mumble_exists_mumble('init_group', 'groups/%s' % groupId)
         m = 'init_group: Skipping the rest of the group configuration.'
         log.warning(m)
     else:
         ju = JoiningUser(adminInfo)
-        # Silent Join is used so if the SMTP config is borken everything still
-        # works.
+        # Silent Join is used so if the SMTP config is borken everything
+        # still works.
         ju.silent_join(groupInfo)
 
 
 def init_vhm(canonicalHost, container):
     '''Initalise the virtual host monster
 
-    The virtual host monster maps between a domain name and a path to a folder
-    within the ZMI. This function determines the mapping and sets it up.'''
+    The virtual host monster maps between a domain name and a path to a
+    folder within the ZMI. This function determines the mapping and sets
+    it up.'''
     vhm = getattr(container, 'virtual_hosting')
     sitePath = '/'.join(container.getPhysicalPath())[1:]
-    newMap = '%s/%s/Content/%s' % \
-      (canonicalHost, sitePath, SITE_ID)
+    newMap = '%s/%s/Content/%s' % (canonicalHost, sitePath, SITE_ID)
     lines = list(vhm.lines)
     lines.append(newMap)
     mapText = '\n'.join(lines)
@@ -314,21 +319,25 @@ def init_vhm(canonicalHost, container):
 
 
 def manage_addGroupserverSite(container, gsId, title, supportEmail,
-        admin_email, admin_password, canonicalHost, canonicalPort,
-        smtp_host, smtp_port, smtp_user, smtp_password, REQUEST=None):
+                              admin_email, admin_password, canonicalHost,
+                              canonicalPort, smtp_host, smtp_port,
+                              smtp_user, smtp_password, REQUEST=None):
     """Add a Groupserver instance to a given container.
 
-:param OFS.Folder container: The folder in the ZMI that holds the new instance.
+:param OFS.Folder container: The folder in the ZMI that holds the new
+                             instance.
 :param str gsId: The identifier for the new GroupServer instance.
 :param str title: The title for the new instance.
 :param str supportEmail: The email address of support for the GS instance.
-:param str admin_email: The email address for the administrator of the new site.
+:param str admin_email: The email address for the administrator of the new
+                        site.
 :param str admin_password: The password for the new site administrator.
 :param str canonicalHost: The host-name of the new site.
 :param str canonicalPort: The port of the new site.
 :param str smtp_host: The host-name of the *outgoing* SMTP server.
 :param str smtp_port: The port of the *outgoing* SMTP server.
-:param str smtp_user: The user-name of the user for the *outgoing* SMTP server.
+:param str smtp_user: The user-name of the user for the *outgoing* SMTP
+                      server.
 :param str smtp_password: The password for the *outgoing* SMTP server.
 :param object REQUEST: The request object (may be ``None``).
 """
@@ -350,7 +359,7 @@ def manage_addGroupserverSite(container, gsId, title, supportEmail,
     init_file_library(gss)
     import_content(gss)
     init_user_folder(gss, admin_email, admin_password, canonicalHost,
-                        canonicalPort)
+                     canonicalPort)
     init_fs_scripts(gss)
 
     init_global_configuration(gss, title, supportEmail, canonicalHost)
