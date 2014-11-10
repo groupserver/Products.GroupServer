@@ -106,9 +106,9 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
         mumble_exists_mumble('init_user_folder', CA_NAME)
 
     cookies = getattr(gss, CA_NAME)
-    cookies.manage_changeProperties(auto_login_page='Content/login.html',
-                                    unauth_page='Content/login.html',
-                                    logout_page='Content/logout.html')
+    cookies.manage_changeProperties(auto_login_page=b'/login.html',
+                                    unauth_page=b'/login.html',
+                                    logout_page=b'/logout.html')
 
     # Create the user-group for the site.
     egSiteMember = '%s_member' % SITE_ID
