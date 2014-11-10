@@ -33,7 +33,7 @@ from gs.profile.password.passworduser import PasswordUser
 from Products.GSProfile.utils import create_user_from_email
 from .pathutil import get_groupserver_path, get_import_path
 from .groupserver import GroupserverSite
-SITE_ID = to_ascii('initial_site')  # FIX
+SITE_ID = b'initial_site'  # FIX
 
 
 def mumble_exists_mumble(function, thing):
@@ -79,7 +79,7 @@ def create_user(site, email, fn, password):
 def init_user_folder(gss, admin_email, admin_password, canonicalHost,
                      canonicalPort):
     '''Initalise the user-folder (contacts)'''
-    CONTACTS_NAME = to_ascii('contacts')
+    CONTACTS_NAME = b'contacts'
     btf = gss.manage_addProduct['BTreeFolder2']
     try:
         btf.manage_addBTreeFolder(CONTACTS_NAME, 'Contacts')
@@ -98,7 +98,7 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
                                acquire=1)
 
     # Cookie Crumbler logs people in
-    CA_NAME = to_ascii('cookie_authentication')
+    CA_NAME = b'cookie_authentication'
     cc = gss.manage_addProduct['CookieCrumbler']
     try:
         cc.manage_addCC(CA_NAME)
@@ -146,7 +146,7 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
 
 def init_global_configuration(gss, siteName, supportEmail, canonicalHost):
     '''Initalise the global configuration (``GlobalConfiguration``).'''
-    GLOBAL_CONFIG_NAME = to_ascii('GlobalConfiguration')
+    GLOBAL_CONFIG_NAME = b'GlobalConfiguration'
     cp = gss.manage_addProduct['CustomProperties']
     try:
         cp.manage_addCustomProperties(
@@ -172,19 +172,18 @@ def init_fs_scripts(gss):
     fss = gss.manage_addProduct['FileSystemSite']
     try:
         fss.manage_addDirectoryView(get_groupserver_path('Scripts'),
-                                    to_ascii('Scripts'))
+                                    b'Scripts')
     except BadRequest:
         mumble_exists_mumble('init_fs_scripts', 'Scripts')
     try:
-        gss.manage_addFolder(to_ascii('LocalScripts'),
-                             'Site specific scripts')
+        gss.manage_addFolder(b'LocalScripts', 'Site specific scripts')
     except BadRequest:
         mumble_exists_mumble('init_fs_scripts', 'LocalScripts')
 
 
 def init_file_library(gss):
     'Create the XWFFileLibrary2'
-    LIBRARY_NAME = to_ascii('FileLibrary2')
+    LIBRARY_NAME = b'FileLibrary2'
     fl = gss.manage_addProduct['XWFFileLibrary2']
     try:
         fl.manage_addXWFFileLibrary2(LIBRARY_NAME)
@@ -194,14 +193,14 @@ def init_file_library(gss):
     file_library = getattr(gss, LIBRARY_NAME)
     fls = file_library.manage_addProduct['XWFFileLibrary2']
     try:
-        fls.manage_addXWFFileStorage2(to_ascii('storage'))
+        fls.manage_addXWFFileStorage2(b'storage')
     except BadRequest:
         mumble_exists_mumble('init_file_library', LIBRARY_NAME + '/storage')
 
 
 def init_id_factory(gss):
     '''Initalise the XWF ID Factory, which is used by the Files system.'''
-    FACTORY_NAME = to_ascii('IdFactory')
+    FACTORY_NAME = b'IdFactory'
     xif = gss.manage_addProduct['XWFIdFactory']
     try:
         xif.manage_addXWFIdFactory(FACTORY_NAME)
@@ -211,7 +210,7 @@ def init_id_factory(gss):
 
 def init_catalog(gss):
     '''Initalise the ZODB catalog.'''
-    CATALOG_NAME = to_ascii('Catalog')
+    CATALOG_NAME = b'Catalog'
     mAP = gss.manage_addProduct['XWFCore']
     mAP.manage_addXWFCatalog(CATALOG_NAME)
     catalog = getattr(gss, CATALOG_NAME)
