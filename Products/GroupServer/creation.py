@@ -142,6 +142,7 @@ def init_user_folder(gss, admin_email, admin_password, canonicalHost,
     admin = create_user(example_site, admin_email,
                         'GroupServer Administrator', admin_password)
     example_site.manage_addLocalRoles(admin.getId(), ['DivisionAdmin'])
+    gss.manage_addLocalRoles(admin.getId(), ['Manager'])  # TODO: Test
 
 
 def init_global_configuration(gss, siteName, supportEmail, canonicalHost):
