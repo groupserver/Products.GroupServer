@@ -7,7 +7,7 @@ The core GroupServer product
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
-:Date: 2014-05-15
+:Date: 2015-05-22
 :Organization: `GroupServer.org`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 4.0 International License`_
@@ -38,25 +38,30 @@ by the functions (yes, *functions*) in the
 The ``Products.GroupServer.GroupserverSite`` class is based on
 ``OFS.OrderedFolder``, but it provides three extra *methods*.
 
-#.  ``get_site`` returns the ``GroupServerSite`` instance. This is useful
-    to find the ``acl_users``, ``Contents``, or ``ListManager`` instances::
+#.  ``get_site`` returns the ``GroupServerSite`` instance. This
+    is useful to find the ``acl_users``, ``Contents``, or
+    ``ListManager`` instances:
+
+    .. code-highlight: python
 
       s = self.context.get_site() # Almost everything has self.context
       acl_users = s.acl_users     # Get the acl_users instance.
       contents = s.Contents       # The folder that contains the sites
       ListManager = s.ListManager # The folder that contains the mailing lists
 
-#.  ``standard_error_message`` over-rides the standard Zope2 error message,
-    and calls the messages in ``gs.errormesg``.
+#.  ``standard_error_message`` over-rides the standard Zope2
+    error message, and calls the messages in ``gs.errormesg``.
 
-#.  The ``fail`` method provides the "page" ``/fail``, which is used for
-    testing the error-handling system.
+#.  The ``fail`` method provides the "page" ``/fail``, which is
+    used for testing the error-handling system.
 
 Resources
 =========
 
-- Code repository: https://source.iopen.net/groupserver/Products.GroupServer/
-- Questions and comments to http://groupserver.org/groups/development
+- Code repository:
+  https://github.com/groupserver/Products.GroupServer/
+- Questions and comments to
+  http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver
 
 .. _GroupServer: http://groupserver.org/
