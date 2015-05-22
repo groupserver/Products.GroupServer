@@ -42,7 +42,7 @@ The ``Products.GroupServer.GroupserverSite`` class is based on
     is useful to find the ``acl_users``, ``Contents``, or
     ``ListManager`` instances:
 
-    .. code-highlight:: python
+    .. code-block:: python
 
       s = self.context.get_site() # Almost everything has self.context
       acl_users = s.acl_users     # Get the acl_users instance.
