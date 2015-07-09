@@ -58,6 +58,7 @@ The ``Products.GroupServer.GroupserverSite`` class is based on
 Resources
 =========
 
+- Documentation: http://groupserver.readthedocs.org
 - Code repository:
   https://github.com/groupserver/Products.GroupServer/
 - Questions and comments to
